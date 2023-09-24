@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
 router.delete("/:id", async (req, res) => {
     try{
         const hotel = await Hotel.findByIdAndDelete(req.params.id);
-        res.status(200).json(req.body.name + "Hotel Has Been Deleted")
+        res.status(200).json(req.body.name + " Hotel Has Been Deleted")
     }catch(err){
         res.status(500).json(err)
     }
@@ -35,21 +35,30 @@ router.put("/:id", async (req, res) => {
 })
 
 //Get
-router.get("/:id", async (req, res) => {
+router.get("/:id", async (req, res, next) => {
+    const failed = true;
+    const err = new Error();
+    err.status = 404;
+    err.message = "Object ID not found"
+    if (failed){
+        return next(err);
+    }
+ 
     try{
         const hotel = await Hotel.findById(req.params.id);
         res.status(200).json(hotel)
     }catch(err){
-        res.status(500).json(err)
+        next(err)
     }
 })
 //GetAll
-router.get("/", async (req, res) => {
+router.get("/", async (req, res, next) => {
+
     try{
         const hotels = await Hotel.find();
         res.status(200).json(hotels)
     }catch(err){
-        res.status(500).json(err)
+        next(err)
     }
 })
 
