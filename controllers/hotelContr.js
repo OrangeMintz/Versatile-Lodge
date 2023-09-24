@@ -32,10 +32,10 @@ const updateHotel = async (req, res, next) => {
 
 const getHotel = async (req, res, next) => {
     // Validation and Authentication
-    const failed = true;
-    if (failed){
-        return next(createError(401, "You're not Authenticated"));
-    }
+    // const failed = true;
+    // if (failed){
+    //     return next(createError(401, "You're not Authenticated"));
+    // }
  
     try{
         const hotel = await Hotel.findById(req.params.id);
