@@ -14,7 +14,7 @@ const createHotel = async (req, res, next) => {
 // Define the deleteHotel function
 const deleteHotel = async (req, res, next) => {
     try {
-        const hotel = await Hotel.findByIdAndDelete(req.params.id);
+        await Hotel.findByIdAndDelete(req.params.id);
         res.status(200).json(req.body.name + " Hotel Has Been Deleted");
     } catch (err) {
         next(err);
@@ -32,11 +32,10 @@ const updateHotel = async (req, res, next) => {
 
 const getHotel = async (req, res, next) => {
     // Validation and Authentication
-    const failed = true;
-    if (failed){
-        return next(createError(401, "You're not Authenticated"));
-    }
- 
+    // const failed = true;
+    // if (failed){
+    //     return next(createError(401, "You're not Authenticated"));
+    // }
     try{
         const hotel = await Hotel.findById(req.params.id);
         res.status(200).json(hotel)
