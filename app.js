@@ -15,7 +15,8 @@ try {
   await mongoose.connect(process.env.MONGO);
 
 } catch (error) {
-  throw error
+    console.error('MongoDB Connection Error:', error); // Log the error
+    process.exit(1); // Terminate the application on connection error
 }};
 
 mongoose.connection.on("disconnected", () => {
