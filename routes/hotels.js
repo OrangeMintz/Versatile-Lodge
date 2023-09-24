@@ -18,6 +18,7 @@ router.put("/:id", updateHotel)
 
 //Get
 router.get("/:id", getHotel);
+
 //GetAll
 router.get("/", getHotels);
 
