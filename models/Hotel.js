@@ -2,32 +2,31 @@ const { builtinModules } = require('module');
 const mongoose = require('mongoose');
 
 const hotelschema = new mongoose.Schema({
-    Name:{
-        type: String,
-        required: true
-        
-    },
-    Branch: {
+    name:{
         type: String,
         required: true
     },
-    Address:{
+    branch: {
         type: String,
         required: true
     },
-    Distance:{
+    address:{
         type: String,
         required: true
     },
-    Photo:{
+    distance:{
+        type: String,
+        required: true
+    },
+    photo:{
         type: [String],
         required: true
     },
-    Description:{
+    description:{
         type: String,
         required: true
     },
-    Rating:{
+    rating:{
         type: Number,
         min: 0,
         max: 5
