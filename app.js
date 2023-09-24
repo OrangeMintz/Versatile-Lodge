@@ -28,15 +28,26 @@ mongoose.connection.on("connected", () => {
 })
 
 //middlewares
-app.use(express.json());
 
+app.use(express.json());
 app.use("/api/auth", authroute);
 app.use("/api/users", usersroute);
-app.use("/api/rooms", roomsroute);
 app.use("/api/hotels", hotelsroute);
+app.use("/api/rooms", roomsroute);
 
 app.get("/", (req, res) => {
-    res.send("Hello here's your first requests")
+    res.send("Route folder")
+})
+
+app.use((err,req,res,next) =>{
+    const errorStatus = err.status || 500
+    const errorMessage = err.message || "Something went wrong!"
+    return res.status(errorStatus).json({
+        success: false,
+        status: errorStatus,
+        message: errorMessage,
+        stack: err.stack 
+    })
 })
 
 app.listen( 8000, () => {
