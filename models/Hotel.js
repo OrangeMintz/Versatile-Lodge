@@ -1,4 +1,3 @@
-const { builtinModules } = require('module');
 const mongoose = require('mongoose');
 
 const hotelschema = new mongoose.Schema({
@@ -20,7 +19,6 @@ const hotelschema = new mongoose.Schema({
     },
     photo:{
         type: [String],
-        required: true
     },
     description:{
         type: String,
