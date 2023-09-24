@@ -1,0 +1,24 @@
+{
+  "name": "versatile-lodge",
+  "version": "1.0.0",
+  "description": "Online Booking Reservation System - Versatile Lodge",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OrangeMintz/Versatile-Lodge.git"
+  },
+  "author": "Djeikuje Nickolai C. Gacus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OrangeMintz/Versatile-Lodge/issues"
+  },
+  "homepage": "https://github.com/OrangeMintz/Versatile-Lodge#readme",
+  "dependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
