@@ -22,18 +22,18 @@ router.get("/checkAdmin/:id", verifyAdmin , (req, res, next) =>{
 });
 
 //Create
-router.post("/", createUser);
+router.post("/", verifyUser, createUser);
 
 //Delete
-router.delete("/:id", deleteUser);
+router.delete("/:id", verifyUser, deleteUser);
 
 //Update
-router.put("/:id", updateUser)
+router.put("/:id", verifyUser, updateUser)
 
 //Get
-router.get("/:id", getUser);
+router.get("/:id", verifyUser, getUser);
 
 //GetAll
-router.get("/", getUsers);
+router.get("/", verifyAdmin, getUsers);
 
 module.exports = router;
