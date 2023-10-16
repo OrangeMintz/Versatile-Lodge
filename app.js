@@ -5,6 +5,7 @@ const authroute = require('./routes/auth.js');
 const usersroute = require('./routes/users.js');
 const roomsroute = require('./routes/rooms.js');
 const hotelsroute = require('./routes/hotels.js');
+const cookieParser = require('cookie-parser')
 
 const app = express();
 dotenv.config();
@@ -30,6 +31,8 @@ mongoose.connection.on("connected", () => {
 //middlewares
 
 app.use(express.json());
+app.use(cookieParser());
+
 app.use("/api/auth", authroute);
 app.use("/api/users", usersroute);
 app.use("/api/hotels", hotelsroute);
