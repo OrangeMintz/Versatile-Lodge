@@ -4,8 +4,7 @@ const mongoose = require('mongoose');
 const authroute = require('./routes/auth.js');
 const usersroute = require('./routes/users.js');
 const roomsroute = require('./routes/rooms.js');
-const branchroute = require('./routes/branch.js');
-const cookieParser = require('cookie-parser')
+const hotelsroute = require('./routes/hotels.js');
 
 const app = express();
 dotenv.config();
@@ -29,28 +28,15 @@ mongoose.connection.on("connected", () => {
 })
 
 //middlewares
-
 app.use(express.json());
-app.use(cookieParser());
 
 app.use("/api/auth", authroute);
 app.use("/api/users", usersroute);
-app.use("/api/branch", branchroute);
-app.use("/api/room", roomsroute);
+app.use("/api/rooms", roomsroute);
+app.use("/api/hotels", hotelsroute);
 
 app.get("/", (req, res) => {
-    res.send("Route folder")
-})
-
-app.use((err,req,res,next) =>{
-    const errorStatus = err.status || 500
-    const errorMessage = err.message || "Something went wrong!"
-    return res.status(errorStatus).json({
-        success: false,
-        status: errorStatus,
-        message: errorMessage,
-        stack: err.stack 
-    })
+    res.send("Hello here's your first requests")
 })
 
 app.listen( 8000, () => {
