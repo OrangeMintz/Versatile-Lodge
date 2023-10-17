@@ -120,6 +120,13 @@ section {
     transition: .1s linear;
 }
 
+.header .navbar .active{
+    background-color: var(--main-color);
+    color: var(--branch-color);
+    transition: .1s linear;
+}
+
+
 .home .box img {                /*img values*/
     border-radius: .5rem;
     height: 60vh;
