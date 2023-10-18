@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import './register.css'
 
 export const Register = () => {
   return (
