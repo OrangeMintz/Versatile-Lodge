@@ -554,7 +554,7 @@ section {
         display: none;
     }
 
-    .header .navbar.active {
+    .header .navbar.open {
         display: flex;
     }
 }
