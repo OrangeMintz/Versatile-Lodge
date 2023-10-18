@@ -14,7 +14,6 @@ document.querySelectorAll('.contact .row .faq .box h3').forEach(faqBox => {    /
     }
 });
 
-
 var swiper = new Swiper(".home-slider", {         //swiper defined constructor - home
     loop:true,
     effect: "coverflow",
