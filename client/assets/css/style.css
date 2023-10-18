@@ -510,6 +510,154 @@ section {
 
 
 
+/*login starts========>*/
+
+.container {                    /*login container*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    padding-bottom: 50px;
+    background-color: var(--main-color);
+    min-height: 100vh;              
+}
+
+.container form {               /*form container*/
+    width: 600px;
+    box-shadow: 0 10px 15px rgba(0,0,0,.1);
+    border-radius: 5px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.container form .links {        /*for google and facebook*/
+    background: #ffffff;
+    padding: 25px 12px;
+}
+
+.container form .title {        /*login in with*/
+    font-size: 17px;
+    padding-bottom: 15px;
+    color: var(--main-color); 
+}
+
+.container form .links .buttons .btn {  /*fb and google button*/
+    font-size: 17px;
+    margin: 5px;
+    display: inline-block;
+    background-color: #ddd;
+    border-radius: 5px;
+    padding: 10px 30px;
+}
+
+.container form .links .buttons a {
+    color: black;
+}
+
+.container form .links .buttons .btn i {    /*fb and google icon*/
+    color: black;
+    padding-right: 5px;
+}
+
+.container form .links .buttons .btn:hover {    /*fb and google button hover*/
+    color: #fff;
+    background: var(--main-color);
+}
+
+.container form .links .buttons .btn:hover i{   /*fb and google icon hover*/
+    color: #fff;
+}
+
+.container form .input-box {        /*input container for email and password*/
+    padding: 30px;
+    background: var(--branch-color);
+}
+
+.container form .input-box .input {     /*every input*/
+    margin: 15px auto;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 0.5px 10px rgba(0,0,0,.1);
+    border: var(--border);   
+     
+}
+
+.container form .input-box .input input {  /*each input*/
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #333;
+    text-transform: none;
+}
+
+.container form .input-box .input span {    /*input icon*/
+    color: #999;
+    padding-right: 5px;
+    padding-left: 15px;
+    font-size: 20px;
+}
+
+.container form .checkbox {     /*checkbox*/
+    text-align: left;
+    padding: 10px 0;
+}
+
+.container form .checkbox label {   /*checkbox label*/
+    font-size: 17px;
+    color: #333;
+    cursor: pointer;
+}
+
+.container form .log-in-btn {  /*log in button*/
+    padding: 10px 40px;
+    margin: 15px 0;
+    font-size: 17px;
+    color: white;   
+    border-radius: 5px;
+    background: var(--main-color);
+    cursor: pointer;
+    transition: .2s linear;
+}
+
+.container form .log-in-btn:hover {  /*hover*/
+    background: var(--main-color);
+    color: white;   
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.container form .register-btn {  /*register button*/
+    padding: 10px 40px;
+    margin: 15px 0;
+    font-size: 17px;
+    color: white;   
+    border-radius: 5px;
+    background: var(--main-color);
+    cursor: pointer;
+    transition: .2s linear;
+}
+
+.container form .register-btn:hover {  
+    background: var(--main-color);
+    color: white;   
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.container form .btn {              /*align buttons in column*/
+    display: inline-block;
+    width: 100%;
+}
+
+/*login ends=====>*/
+
+
+
 
 
 
