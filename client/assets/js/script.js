@@ -1,8 +1,8 @@
-let navbar = document.querySelector('.header .navbar');
+// let navbar = document.querySelector('.header .navbar');
 
-document.querySelector('#menu-btn').onclick = () => { //to open side bar
-    navbar.classList.toggle('active');
-}
+// document.querySelector('#menu-btn').onclick = () => { //to open side bar
+//     navbar.classList.toggle('active');
+// }
 
 window.onscroll = () => {                         //close side bar automatically when scrolling
     navbar.classList.remove('active');
