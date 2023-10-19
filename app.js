@@ -4,7 +4,12 @@ const mongoose = require('mongoose');
 const authroute = require('./routes/auth.js');
 const usersroute = require('./routes/users.js');
 const roomsroute = require('./routes/rooms.js');
-const hotelsroute = require('./routes/hotels.js');
+const branchroute = require('./routes/branch.js');
+const cookieParser = require('cookie-parser')
+
+
+const oauthRouter = require('./routes/oauth.js')
+const requestRouter = require('./routes/request.js')
 
 const app = express();
 dotenv.config();
@@ -30,10 +35,17 @@ mongoose.connection.on("connected", () => {
 //middlewares
 
 app.use(express.json());
+app.use(cookieParser());
+
 app.use("/api/auth", authroute);
 app.use("/api/users", usersroute);
-app.use("/api/hotels", hotelsroute);
-app.use("/api/rooms", roomsroute);
+app.use("/api/branch", branchroute);
+app.use("/api/room", roomsroute);
+
+//GOOGLE OAUTH
+app.use('/oauth', oauthRouter);
+app.use('/request', requestRouter);
+
 
 app.get("/", (req, res) => {
     res.send("Route folder")

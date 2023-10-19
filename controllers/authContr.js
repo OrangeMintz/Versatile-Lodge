@@ -1,5 +1,7 @@
 const User = require('../models/User.js')
 const bcrypt = require('bcryptjs');
+const createError = require('../utils/error.js');
+const jwt = require('jsonwebtoken');
 
 
 const register = async(req, res, next) =>{
@@ -14,6 +16,8 @@ const register = async(req, res, next) =>{
             phonenumber: req.body.phonenumber,
             address: req.body.address,
             birthday: req.body.birthday,
+            isAdmin: req.body.isAdmin,
+            isEmployee: req.body.isEmployee,
             sex: req.body.sex
         })
 
@@ -23,7 +27,36 @@ const register = async(req, res, next) =>{
     }catch(err){
         next(err)
     }
+}
+
+const login = async(req, res, next) =>{
+    try{
+    const user = await User.findOne({
+        username: req.body.username
+    })
+    if(!user) 
+    return next(createError(404, "User not found!"));
+
+    const isPasswordCorrect = await bcrypt.compare(req.body.password, user.password)
+    if(!isPasswordCorrect) 
+    return next(createError (400, "Wrong Password or Username!"));
+
+    // success
+    const token = jwt.sign({
+        id: user._id, isAdmin: user.isAdmin },
+        process.env.JWT)
+
+    const {password, ...otherDetails} = user._doc;
+    res.cookie("access_token", token, {
+        httpOnly: true,
+    }).status(200).json({otherDetails});
+        
+    }catch(err){
+        next(err);
+    }
 } 
+
+
 
 const getUser = async(req, res, next) =>{
     try{
@@ -34,4 +67,4 @@ const getUser = async(req, res, next) =>{
     }
 } 
 
-module.exports = {register, getUser}
+module.exports = {register, getUser, login}

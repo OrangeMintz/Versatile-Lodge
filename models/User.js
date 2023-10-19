@@ -35,18 +35,17 @@ const userSchema = new mongoose.Schema({
     },
 
     isAdmin:{
-        type: Joi.boolean(),
+        type: Boolean,
         default: false
         
     },
 
     isEmployee:{
-        type: Joi.boolean(),
+        type: Boolean,
         default: false
         
     },
 
-    
     
 },
     {timestamps: true}
