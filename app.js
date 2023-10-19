@@ -7,6 +7,10 @@ const roomsroute = require('./routes/rooms.js');
 const branchroute = require('./routes/branch.js');
 const cookieParser = require('cookie-parser')
 
+
+const oauthRouter = require('./routes/oauth.js')
+const requestRouter = require('./routes/request.js')
+
 const app = express();
 dotenv.config();
 
@@ -37,6 +41,11 @@ app.use("/api/auth", authroute);
 app.use("/api/users", usersroute);
 app.use("/api/branch", branchroute);
 app.use("/api/room", roomsroute);
+
+//GOOGLE OAUTH
+app.use('/oauth', oauthRouter);
+app.use('/request', requestRouter);
+
 
 app.get("/", (req, res) => {
     res.send("Route folder")
