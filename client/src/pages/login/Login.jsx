@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import './login.css'
 
 export const Login = () => {
     return (
@@ -33,8 +34,11 @@ export const Login = () => {
                         <h3 className="title">Don't have an account?</h3>
                         <a className="register-btn">Register</a>
                     </div>
+
                 </form>
+
             </div>
+
         </Fragment>
 
     )

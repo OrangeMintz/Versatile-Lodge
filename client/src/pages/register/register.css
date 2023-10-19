@@ -115,19 +115,18 @@
 
 .register-container .form .register-btn {   /*register*/
     font-size: 1.5rem;
-    border-radius: 4px;
     margin-left: 10px;
     background: var(--main-color);
-    color: #FFF;
+    color: var(--branch-color);
     padding: 10px;
     letter-spacing: 1px;
 }
 
 .register-container .form .register-btn:hover {
-    color: var(--branch-color);
+    color: #FFF;
     background: var(--main-color);
-    transition: .2s linear
-
+    letter-spacing: 1.5px;
+    font-weight: bolder;
 }
 
 
