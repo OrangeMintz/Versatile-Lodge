@@ -1,5 +1,3 @@
-/*register starts=====>*/
-
 .register-container {
     max-width: 1220px;
     height: 560px;
@@ -99,9 +97,9 @@
 .register-container .form .login-btn {              /*login*/
     font-size: 1.5rem;
     padding: 10px 20px;
-    border: 1px solid #2B1103;
     border-radius: 4px;
     cursor: pointer;
+    border: 1px solid #2B1103;
     background: var(--branch-color);
     color: var(--main-color);
     transition: .2s linear
@@ -116,17 +114,17 @@
 .register-container .form .register-btn {   /*register*/
     font-size: 1.5rem;
     margin-left: 10px;
+    border-radius: 4px;
     background: var(--main-color);
-    color: var(--branch-color);
+    color: #FFF;
     padding: 10px;
     letter-spacing: 1px;
 }
 
 .register-container .form .register-btn:hover {
-    color: #FFF;
+    color: var(--branch-color);
+    transition: .3s linear;
     background: var(--main-color);
-    letter-spacing: 1.5px;
-    font-weight: bolder;
 }
 
 
@@ -187,5 +185,3 @@
         margin: 0px 0 15px 15px;
     }
 }
-
-/*register ends=====>*/
