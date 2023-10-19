@@ -1,18 +1,32 @@
 import React, { Fragment } from 'react'
 import './login.css'
 
+function navigate(url) {
+    window.location.href = url
+}
+
+async function auth() {
+    const response = await fetch('http://127.0.0.1:8000/request', { method: 'post' });
+
+    const data = await response.json();
+    console.log(data);
+    navigate(data.url);
+
+}
+
+
 export const Login = () => {
     return (
         <Fragment>
-
             <div className="container">
+                {/* <button className="btn" onClick={() => auth()}><i className="fab fa-google"></i>google</button> */}
 
                 <form action="/">
                     <div className="links">
                         <h3 className="title">Log-in with</h3>
                         <div className="buttons">
-                            <a href="" className="btn"><i className="fab fa-google"></i>google</a>
-                            <a href="" className="btn"><i className="fab fa-facebook"></i>facebook</a>
+                            <button className="btn" onClick={() => auth()}><i className="fab fa-google"></i>google</button>
+                            <button href="" className="btn"><i className="fab fa-facebook"></i>facebook</button>
                         </div>
                     </div>
 
@@ -39,7 +53,7 @@ export const Login = () => {
 
             </div>
 
-        </Fragment>
+        </Fragment >
 
     )
 }
