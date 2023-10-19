@@ -1,0 +1,192 @@
+/*register starts=====>*/
+
+.register-container {
+    max-width: 1220px;
+    height: 560px;
+    margin: 3rem auto;
+    background-color: var(--branch-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.register-container .image {    /*image container */
+    flex: 2; /* Occupy the left part, adjust as needed */
+    max-width: 600px; 
+    margin-right: 50px; 
+    position: relative;
+}
+
+
+.register-container .image img{  /*image*/
+    max-width: 100%;
+    height: 100%;
+    border-radius: 25px 0 0 25px;
+
+}
+
+.register-container .image .centered-text { /*Versatile Lodge*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    color: var(--main-color); 
+    font-size: 3rem; 
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.3); 
+    border-radius: 10px;
+}
+
+.register-container .form {     /*form container*/
+    flex: 1; /* Occupy the right part */
+    margin-top: 20px;
+}
+
+.register-container .form h1 {                  /*Registration Form*/
+    font-size: 3rem;
+    text-align: center;
+    padding: 10px;
+}
+
+.register-container .form label {
+    font-size: 1.5rem;
+    display: block;
+    margin-top: 10px;
+}
+
+
+.register-container .form .name-inputs {        /*to share same row the*/
+    display: flex;
+    
+}
+
+.register-container .form .input-group {        /*first and last name*/
+    width: 45%;
+    margin-right: 25px;
+
+}
+
+/* Style the text inputs to have a white background and other common properties */
+.register-container .form input[type="text"],
+.register-container .form input[type="email"],
+.register-container .form input[type="tel"],
+.register-container .form input[type="file"] {
+    width: 90%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff; /* background to white */
+}
+
+/* Style the file input to match the other inputs */
+.register-container .form input[type="file"] {
+    margin-top: 5px;
+    background-color: #fff; /* Set the background to white */
+}
+
+.register-container .form .btns {
+    display: flex;
+    margin-top: 50px;
+}
+
+.register-container .form .login-btn {              /*login*/
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    border: 1px solid #2B1103;
+    border-radius: 4px;
+    cursor: pointer;
+    background: var(--branch-color);
+    color: var(--main-color);
+    transition: .2s linear
+}
+
+.register-container .form .login-btn:hover {
+    color: var(--branch-color);
+    background: var(--main-color);
+    
+}
+
+.register-container .form .register-btn {   /*register*/
+    font-size: 1.5rem;
+    border-radius: 4px;
+    margin-left: 10px;
+    background: var(--main-color);
+    color: #FFF;
+    padding: 10px;
+    letter-spacing: 1px;
+}
+
+.register-container .form .register-btn:hover {
+    color: var(--branch-color);
+    background: var(--main-color);
+    transition: .2s linear
+
+}
+
+
+/*register responsiveness*/
+@media screen and (max-width: 991px) {
+    .register-container {
+        height: auto; /* Adjust the container's height to fit its content */
+    }
+
+    .register-container .image {
+        flex: 1; /* Make the image occupy the full width in a stacked layout */
+        max-width: 100%; /* Ensure the image takes the entire width */
+        margin-right: 0; /* Remove the right margin */
+        border-radius: 25px 25px 0 0; /* Adjust border-radius */
+    }
+
+    .register-container .form {
+        flex: 1; /* The form occupies the full width in a stacked layout */
+        margin: 0px 0 15px 15px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .register-container {
+        height: auto; /* Adjust the container's height to fit its content */
+    }
+
+    .register-container .image {
+        flex: 1; /* Make the image occupy the full width in a stacked layout */
+        max-width: 100%; /* Ensure the image takes the entire width */
+        margin-right: 0; /* Remove the right margin */
+        border-radius: 25px 25px 0 0; /* Adjust border-radius */
+    }
+
+    .register-container .form {
+        flex: 1; /* The form occupies the full width in a stacked layout */
+        margin: 0px 0 15px 15px;
+    }
+}
+
+    
+@media screen and (max-width: 450px) {
+    /* Styles to apply when the screen width is 450px or below */
+    .register-container {
+        flex-direction: column; /* Stack the elements vertically on smaller screens */
+        height: auto; /* Adjust the container's height to fit its content */
+    }
+
+    .register-container .image {
+        flex: 1; /* Make the image occupy the full width in a stacked layout */
+        max-width: 100%; /* Ensure the image takes the entire width */
+        margin-right: 0; /* Remove the right margin */
+        border-radius: 25px 25px 0 0; /* Adjust border-radius */
+    }
+
+    .register-container .form {
+        flex: 1; /* The form occupies the full width in a stacked layout */
+        margin: 0px 0 15px 15px;
+    }
+}
+
+/*register ends=====>*/
