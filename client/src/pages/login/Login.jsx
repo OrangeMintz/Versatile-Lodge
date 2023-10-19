@@ -32,7 +32,7 @@ export const Login = () => {
                         </div>
                         <input type="submit" value="Login" className="log-in-btn" />
                         <h3 className="title">Don't have an account?</h3>
-                        <a className="register-btn">Register</a>
+                        <a className="register-btn" href='/register'>Register</a>
                     </div>
 
                 </form>

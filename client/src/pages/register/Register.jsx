@@ -4,6 +4,7 @@ import './register.css'
 export const Register = () => {
     return (
         <Fragment>
+
             <div class="register-container">
                 <div class="image">
                     <img src="/assets/images/gallery-img-1.jpg" alt="Lodge Logo" />
