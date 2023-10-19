@@ -20,8 +20,8 @@ async function getUserData(access_token) {
 router.get('/', async function(req, res, next) {
 
     const code = req.query.code;
-
     console.log(code);
+
     try {
         const redirectURL = "http://127.0.0.1:8000/oauth"
         const oAuth2Client = new OAuth2Client(
@@ -35,6 +35,14 @@ router.get('/', async function(req, res, next) {
         console.info('Tokens acquired.');
         const user = oAuth2Client.credentials;
         console.log('credentials',user);
+
+        const ticket = await oAuth2Client.verifyIdToken({
+            idToken:user.id_token,
+            audience:process.env.CLIENT_ID,
+        });
+        // const email = ticket.getPayload().email;
+        // console.log('User Email:', email);
+        console.log('ticket',ticket);
         await getUserData(oAuth2Client.credentials.access_token);
 
       } catch (err) {

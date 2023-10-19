@@ -20,7 +20,8 @@ export const Login = () => {
         <Fragment>
             <div className="container">
                 {/* <button className="btn" onClick={() => auth()}><i className="fab fa-google"></i>google</button> */}
-
+                <button className="btn" onClick={() => auth()}><i className="fab fa-google"></i>google</button>
+                <button href="" className="btn"><i className="fab fa-facebook"></i>facebook</button>
                 <form action="/">
                     <div className="links">
                         <h3 className="title">Log-in with</h3>
