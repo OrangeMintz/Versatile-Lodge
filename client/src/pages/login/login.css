@@ -1,116 +1,99 @@
 
-/*login starts========>*/
+/*login starts=====>*/
 
-
-
-.container {                    /*login container*/
+.login-container {
+    max-width: 1220px;
+    height: max-content;
+    margin: 3rem auto;
+    background-color: var(--branch-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
     display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 20px;
-    padding-bottom: 50px;
-    background-color: var(--main-color);
-    min-height: 100vh;  
-    flex-direction: column;   
+}
+
+.login-container .image {    /*image container */
+    flex: 2; /* Occupy the left part, adjust as needed */
+    max-width: 600px; 
+    margin-right: 20px; 
+    position: relative;
 }
 
 
-
-/* Media query for widths below 550px */
-@media (max-width: 550px) {
-
-
-    
-    .container  {
-        align-items: flex-start; 
-    }
-    
+.login-container .image img{  /*actual image*/
+    max-width: 100%;
+    height: 100%;
+    border-radius: 25px 0 0 25px;
 
 }
 
-/* @media (max-width:768px) {
-    
-    .container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    flex-direction: column;   
-
-    }
-} */
-
-/* .container .contain {
-    margin: 55px;
-    border: 2px solid green;
-} */
-
-
-
-.container .links {        /*for google and facebook*/
-    background: hsl(0, 0%, 100%);
-    padding: 25px 12px;
-    width: 600px;
+.login-container .image .centered-text { /*Versatile Lodge*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: max-content;
+    height: max-content;
+    text-align: center;
+    color: var(--main-color); 
+    font-size: 3rem; 
+    font-weight: bold;
+    background-color: rgba(220, 198, 156, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add the box shadow */
+    border-radius: 10px;
+    padding: 15px;
 }
 
-.container .title {        /*login in with, or sign-in with email, and don't have an account*/
+.login-container .form {     /*form container*/
+    flex: 1; /* Occupy the right part */
+    margin-top: 20px;
+}
+
+.login-container .form h3 {                  /*Login in with*/
     font-size: 17px;
-    padding-bottom: 15px;
+    text-align: center;
+    margin: 10px 15px 10px 0;
+}
+
+.login-container .form .buttons {          /*facebook & google container*/
+    margin-right: 15px;
+
+}
+
+.login-container .form .buttons i {        /*font-awesome icon*/
+    margin-right: 5px;
+    
+}
+.login-container .form .buttons .btn {      /*facebook & google btn */
+    display: inline-block;
+    width: 100%;
+    border-radius: 15px;
+}
+
+.login-container .form .buttons .btn:hover {
+    color: var(--main-color);
+    background-color: #e2e2e2;
+}
+
+
+
+.login-container .form .input-box .title {        /*or sign in with email*/
+    font-size: 17px;
     color: var(--main-color); 
     text-align: center;
+    padding: 15px 10px 5px 10px;
 }
 
-
-.container .links .buttons .btn {  /*fb and google button*/
-    font-size: 17px;
-    margin: 5px;
-    display: block;
-    background-color: #ddd;
-    border-radius: 5px;
-    padding: 10px 30px;
-}
-
-.container .links .buttons a {
-    color: black;
-}
-
-.container .links .buttons .btn i {    /*fb and google icon*/
-    color: black;
-    padding-right: 5px;
-}
-
-.container .links .buttons .btn:hover {    /*fb and google button hover*/
-    color: #fff;
-    background: var(--main-color);
-}
-
-.container .links .buttons .btn:hover i{   /*fb and google icon hover*/
-    color: #fff;
-}
-
-
-
-
-.container form {               /*form container*/
-    width: 600px;
-    box-shadow: 0 10px 15px rgba(0,0,0,.1);
-    border-radius: 5px;
-    overflow: hidden;
-    text-align: center;
-}
-
-.container form .input-box {        /*input container for email and password*/
-    padding: 30px;
+.login-container .form .input-box {        /*input login-container for email and password*/
     background: var(--branch-color);
+    margin-right: 10px;
+    border-radius: 5px;
+
 }
 
-.container .form .input-box .title {        /*or sign in with email*/
-    font-size: 17px;
-    padding-bottom: 15px;
-    color: var(--branch-color); 
-    text-align: center;
-}
-
-.container form .input-box .input {     /*every input*/
+.login-container .form .input-box .input {     /*every input*/
     margin: 15px auto;
     display: flex;
     align-items: center;
@@ -120,39 +103,64 @@
     background: #fff;
     box-shadow: 0.5px 10px rgba(0,0,0,.1);
     border: var(--border);   
+    
      
 }
 
-.container form .input-box .input input {  /*each input*/
-    height: 100%;
+.login-container .form .input-box .input input {  /*each input*/
+    height: 50px;
     width: 100%;
     padding: 10px;
     font-size: 16px;
     color: #333;
     text-transform: none;
+
 }
 
-.container form .input-box .input span {    /*input icon*/
+.login-container .form .input-box .input span {    /*input icon*/
     color: #999;
     padding-right: 5px;
     padding-left: 15px;
     font-size: 20px;
 }
 
-.container form .checkbox {     /*checkbox*/
+.login-container .form .checkbox {     /*checkbox*/
     text-align: left;
     padding: 10px 0;
 }
 
-.container form .checkbox label {   /*checkbox label*/
+.login-container .form .checkbox label {   /*checkbox label*/
     font-size: 17px;
     color: #333;
     cursor: pointer;
 }
 
-.container form .log-in-btn {  /*log in button*/
+.login-container .form .input-box .buttons {
+    text-align: center;
+    margin: 10px 0 30px 0;
+}
+
+.login-container .form .log-in-btn {  /*log in button*/
     padding: 10px 40px;
-    margin: 15px 0;
+    margin: 15px 0 10px 0;
+    font-size: 17px;
+    color: white;   
+    border-radius: 5px;
+    background: var(--main-color);
+    cursor: pointer;
+    transition: .2s linear;
+
+}
+
+.login-container .form .log-in-btn:hover {  /*hover*/
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-radius: 10px;
+}
+
+.login-container .form .register-btn {  /*register button*/
+    padding: 10px 40px;
+    margin: 15px;
     font-size: 17px;
     color: white;   
     border-radius: 5px;
@@ -161,42 +169,91 @@
     transition: .2s linear;
 }
 
-.container form .log-in-btn:hover {  /*hover*/
-    background: var(--main-color);
-    color: white;   
+.login-container .form .register-btn:hover {  
     font-weight: bold;
     letter-spacing: 1px;
+    border-radius: 10px;
 }
 
-.container form .register-btn {  /*register button*/
-    padding: 10px 40px;
-    margin: 15px 0;
-    font-size: 17px;
-    color: white;   
-    border-radius: 5px;
-    background: var(--main-color);
-    cursor: pointer;
-    transition: .2s linear;
+
+/*login responsiveness*/
+
+@media screen and (max-width: 991px) {
+    .login-container {
+        height: auto; /* Adjust the container's height to fit its content */
+    }
+
+    .login-container .image {
+        flex: 1; /* Make the image occupy the full width in a stacked layout */
+        max-width: 100%; /* Ensure the image takes the entire width */
+        margin-right: 0; /* Remove the right margin */
+        border-radius: 25px 25px 0 0; /* Adjust border-radius */
+    }
+
+    .login-container .form {
+        flex: 1; /* The form occupies the full width in a stacked layout */
+        margin: 0px 0 15px 15px;
+    }
+
 }
 
-.container form .register-btn:hover {  
-    background: var(--main-color);
-    color: white;   
-    font-weight: bold;
-    letter-spacing: 1px;
+@media screen and (max-width: 768px) {      /* Styles will apply when the screen width is 450px or below */
+    .login-container {
+        height: auto; /* Adjust the container's height to fit its content */
+        flex-direction: column; /* Stack the elements vertically on smaller screens */
+    }
+
+    .login-container .image {
+        flex: 1; /* Make the image occupy the full width in a stacked layout */
+        max-width: 100%; /* Ensure the image takes the entire width */
+        margin-right: 0; /* Remove the right margin */
+        border-radius: 25px 25px 0 0; /* Adjust border-radius */
+    }
+
+    .login-container .form {
+        flex: 1; /* The form occupies the full width in a stacked layout */
+        margin: 0px 0 15px 15px;
+    }
+
+    .login-container .form .buttons {              /*align facebook and google in row*/
+        display: flex;
+        flex-direction: row;
+        margin: 0 10px 0 0;
+    }
+
+    .login-container .form .btn {              /*margin*/
+        margin-right: 10px;
+    }
+
+    .login-container .image .centered-text {     /*versatile lodge*/
+        font-size: 2.5rem;
+      }
+
+    .login-container .form .input-box .buttons {              /*login and register column*/
+            
+        text-align: center;
+        display: block;        
+        margin: 10px 0 30px 0;
+    }
+
+    
 }
 
-.container form .btn {              /*align buttons in column*/
-    display: inline-block;
-    width: 100%;
-}
+    
+@media screen and (max-width: 450px) {
+    .login-container .image {
+        flex: 1; /* Make the image occupy the full width in a stacked layout */
+        max-width: 100%; /* Ensure the image takes the entire width */
+        margin-right: 0; /* Remove the right margin */
+        border-radius: 25px 25px 0 0; /* Adjust border-radius */
+    }
 
+    .login-container .form {
+        flex: 1; /* The form occupies the full width in a stacked layout */
+        margin: 0px 0 15px 15px;
+    }
+
+}
 
 
 /*login ends=====>*/
-
-
-
-
-
-
