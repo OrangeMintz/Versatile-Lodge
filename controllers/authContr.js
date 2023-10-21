@@ -1,6 +1,7 @@
 const User = require('../models/User.js')
 const bcrypt = require('bcryptjs');
-const createError = require('../utils/error.js')
+const createError = require('../utils/error.js');
+const jwt = require('jsonwebtoken');
 
 
 const register = async(req, res, next) =>{
@@ -28,7 +29,6 @@ const register = async(req, res, next) =>{
     }
 }
 
-
 const login = async(req, res, next) =>{
     try{
     const user = await User.findOne({
@@ -41,8 +41,15 @@ const login = async(req, res, next) =>{
     if(!isPasswordCorrect) 
     return next(createError (400, "Wrong Password or Username!"));
 
-    const {password, isAdmin, ...otherDetails} = user._doc;
-    res.status(200).json({otherDetails});
+    // success
+    const token = jwt.sign({
+        id: user._id, isAdmin: user.isAdmin },
+        process.env.JWT)
+
+    const {password, ...otherDetails} = user._doc;
+    res.cookie("access_token", token, {
+        httpOnly: true,
+    }).status(200).json({otherDetails});
         
     }catch(err){
         next(err);
