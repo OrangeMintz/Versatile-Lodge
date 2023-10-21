@@ -20,8 +20,7 @@ export const Login = () => {
         <Fragment>
             <div className="container">
                 {/* <button className="btn" onClick={() => auth()}><i className="fab fa-google"></i>google</button> */}
-                <button className="btn" onClick={() => auth()}><i className="fab fa-google"></i>google</button>
-                <button href="" className="btn"><i className="fab fa-facebook"></i>facebook</button>
+                {/* <button href="" className="btn"><i className="fab fa-facebook"></i>facebook</button> */}
                 <form action="/">
                     <div className="links">
                         <h3 className="title">Log-in with</h3>
@@ -35,11 +34,11 @@ export const Login = () => {
                         <h3 className="title">or sign in with email</h3>
                         <div className="input">
                             <span className="far fa-envelope"></span>
-                            <input type="email" name="" placeholder="email" id="" />
+                            <input type="email" name="" placeholder="Email" id="" />
                         </div>
                         <div className="input">
                             <span className="fas fa-lock"></span>
-                            <input type="password" name="" placeholder="password" id="" />
+                            <input type="password" name="" placeholder="Password" id="" />
                         </div>
                         <div className="checkbox">
                             <input type="checkbox" name="" id="remember" />
