@@ -1,12 +1,12 @@
-import React, { Fragment, useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "./register.css";
 import axios from "../../api/axios";
 
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const NAME_REGEX = /^(?! )(?!.* $)[A-Za-z ]{5,50}$/;
-const REGISTER_URL = "/api/register/customer";
+const REGISTER_URL = "/api/auth/register/customer";
 
-export const Register = () => {
+function Register() {
   const userRef = useRef();
   const errRef = useRef();
 
@@ -47,7 +47,6 @@ export const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // if button enabled with JS hack
     const v1 = NAME_REGEX.test(name);
     const v2 = PWD_REGEX.test(pwd);
 
@@ -55,20 +54,17 @@ export const Register = () => {
       setErrMsg("Invalid Entry");
       return;
     }
-    console.log(name, pwd, email, photo);
+
     try {
       const response = await axios.post(
         REGISTER_URL,
-        JSON.stringify({ name, pwd: password, email, photo }),
+        JSON.stringify({ name, password: pwd, email, photo }),
         {
           headers: { "Content-Type": "application/json" },
-          withCredentials: true,
         }
       );
-      console.log(response.data);
-      console.log(JSON.stringify(response));
+
       setSuccess(true);
-      //
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
@@ -82,7 +78,7 @@ export const Register = () => {
   };
 
   return (
-    <>
+    <div>
       {success ? (
         <section>
           <h1>Success!</h1>
@@ -91,7 +87,7 @@ export const Register = () => {
           </p>
         </section>
       ) : (
-        <Fragment>
+        <div>
           <p
             ref={errRef}
             className={errMsg ? "errmsg" : "offscreen"}
@@ -134,19 +130,11 @@ export const Register = () => {
                 <br />
                 No Leading and Trailing spaces
               </p>
-              {/* <input
-                type="text"
-                id="firstName"
-                name="firstName"
-                placeholder="First Name"
-                required
-              /> */}
 
               <label htmlFor="password">Password:</label>
               <input
                 type="password"
                 id="password"
-                // ref={userRef}
                 onChange={(e) => setPwd(e.target.value)}
                 value={pwd}
                 required
@@ -163,7 +151,7 @@ export const Register = () => {
                 3 to 20 characters.
                 <br />
                 First name must contain only letters and be between 3 and 20
-                characters. character.
+                characters.
                 <br />
                 Allowed special characters:{" "}
                 <span aria-label="exclamation mark">!</span>{" "}
@@ -194,7 +182,6 @@ export const Register = () => {
               >
                 Must match the first password input field.
               </p>
-              {/* <input type="text" id="cpassword" name="cpassword" placeholder="Confirm password" required /> */}
 
               <label htmlFor="email">Email:</label>
               <input
@@ -218,10 +205,6 @@ export const Register = () => {
                 accept="image/*"
               />
 
-              {/* <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
-                            Must match the first password input field.
-                    </p> */}
-
               <div className="btns">
                 <a href="/login" className="login-btn">
                   Login
@@ -236,10 +219,10 @@ export const Register = () => {
               </div>
             </form>
           </div>
-        </Fragment>
+        </div>
       )}
-    </>
+    </div>
   );
-};
+}
 
 export default Register;
