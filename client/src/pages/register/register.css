@@ -1,11 +1,12 @@
 .register-container {
   max-width: 1220px;
-  height: 560px;
+  height: max-content;
   margin: 3rem auto;
   background-color: var(--branch-color);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -17,62 +18,47 @@
   position: relative;
 }
 
-.register-container .image img {
-  /*image*/
+.register-container .image img {    /*actual image*/
   max-width: 100%;
   height: 100%;
   border-radius: 15px 0px 0px 15px;
 }
 
-.register-container .image .centered-text {
-  /*Versatile Lodge*/
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.register-container .image .centered-text {   /*Versatile Lodge*/
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: 0; bottom: 0; left: 0; right: 0;
+  margin: auto;
+  width: max-content;
+  height: max-content;
   text-align: center;
   color: var(--main-color);
   font-size: 3rem;
   font-weight: bold;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
+  background-color: rgba(220, 198, 156, 0.25);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add the box shadow */
+  border-radius: 5px;
+  padding: 15px;
 }
 
-.register-container .form {
-  /*form container*/
+
+.register-container .form {     /*form container*/    
   flex: 1; /* Occupy the right part */
   margin-top: 20px;
-}
+  margin: 15px;
+  }
 
-.register-container .form h1 {
-  /*Registration Form*/
+.register-container .form h1 {    /*Registration Form*/
   font-size: 3rem;
   text-align: center;
   padding: 10px;
 }
 
-.register-container .form label {
+.register-container .form label {   /*label*/
   font-size: 1.5rem;
   display: block;
   margin-top: 10px;
 }
 
-/* UNUSED */
-.register-container .form .name-inputs {
-  /*to share same row the*/
-  display: flex;
-}
-
-.register-container .form .input-group {
-  /*first and last name*/
-  width: 45%;
-  margin-right: 25px;
-}
-/* UNUSED */
 
 /* Style the text inputs to have a white background and other common properties */
 .register-container .form input[type="password"],
@@ -99,8 +85,7 @@
   margin-top: 50px;
 }
 
-.register-container .form .login-btn {
-  /*login*/
+.register-container .form .login-btn {    /*login*/
   font-size: 1.5rem;
   padding: 10px 20px;
   border-radius: 4px;
@@ -116,8 +101,7 @@
   background: var(--main-color);
 }
 
-.register-container .form .register-btn {
-  /*register*/
+.register-container .form .register-btn {    /*register*/
   font-size: 1.5rem;
   margin-left: 10px;
   border-radius: 4px;
@@ -132,6 +116,7 @@
   transition: 0.3s linear;
   background: var(--main-color);
 }
+
 
 /* validation css */
 .offscreen {
@@ -272,6 +257,10 @@
   .register-container .form {
     flex: 1; /* The form occupies the full width in a stacked layout */
     margin: 0px 0 15px 15px;
+  }
+
+  .register-container .image .centered-text {
+    font-size: 2.5rem;
   }
 }
 
