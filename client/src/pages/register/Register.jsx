@@ -1,8 +1,10 @@
 import React, { Fragment, useRef, useState, useEffect } from "react";
 import "./register.css";
+import axios from "../../api/axios";
 
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const NAME_REGEX = /^(?! )(?!.* $)[A-Za-z ]{5,50}$/;
+const REGISTER_URL = "/api/register/customer";
 
 export const Register = () => {
   const userRef = useRef();
@@ -22,6 +24,9 @@ export const Register = () => {
 
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
+
+  const [email, setEmail] = useState("");
+  const [photo, setPhoto] = useState("");
 
   useEffect(() => {
     userRef.current.focus();
@@ -45,12 +50,35 @@ export const Register = () => {
     // if button enabled with JS hack
     const v1 = NAME_REGEX.test(name);
     const v2 = PWD_REGEX.test(pwd);
+
     if (!v1 || !v2) {
       setErrMsg("Invalid Entry");
       return;
     }
-    console.log(name, pwd);
-    setSuccess(true);
+    console.log(name, pwd, email, photo);
+    try {
+      const response = await axios.post(
+        REGISTER_URL,
+        JSON.stringify({ name, pwd: password, email, photo }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      console.log(response.data);
+      console.log(JSON.stringify(response));
+      setSuccess(true);
+      //
+    } catch (err) {
+      if (!err?.response) {
+        setErrMsg("No Server Response");
+      } else if (err.response?.status === 409) {
+        setErrMsg("Email Taken");
+      } else {
+        setErrMsg("Registration Failed");
+      }
+      errRef.current.focus();
+    }
   };
 
   return (
@@ -171,6 +199,8 @@ export const Register = () => {
               <label htmlFor="email">Email:</label>
               <input
                 type="email"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
                 id="email"
                 name="email"
                 placeholder="Email"
@@ -181,6 +211,8 @@ export const Register = () => {
               <input
                 type="file"
                 id="photo"
+                onChange={(e) => setPhoto(e.target.value)}
+                value={photo}
                 name="photo"
                 placeholder="Address"
                 accept="image/*"
