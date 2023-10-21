@@ -4,9 +4,9 @@
 //     navbar.classList.toggle('active');
 // }
 
-window.onscroll = () => {                         //close side bar automatically when scrolling
-    navbar.classList.remove('active');
-} 
+// window.onscroll = () => {                         //close side bar automatically when scrolling
+//     navbar.classList.remove('active');
+// } 
 
 document.querySelectorAll('.contact .row .faq .box h3').forEach(faqBox => {    //reveals the answers to FAQ
     faqBox.onclick = () => {
