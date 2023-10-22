@@ -16,20 +16,19 @@
   position: relative;
   background-image: url(/assets/images/gallery-img-1.jpg);
   background-position: top;
+  border-radius: 15px;
+
 }
 
 .register-container .image img {
   max-width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 15px 0px 0px 15px;
+  border-radius: 15px;
 }
 
 .register-container .image .centered-text {   /*Versatile Lodge*/
-  position: absolute;
-  top: 0; bottom: 0; left: 0; right: 0;
   margin: auto;
-  width: max-content;
   height: max-content;
   text-align: center;
   color: var(--main-color);
@@ -37,7 +36,7 @@
   font-weight: bold;
   background-color: rgba(220, 198, 156, 0.25);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add the box shadow */
-  border-radius: 5px;
+  border-radius: 15px;
   padding: 15px;
 }
 
@@ -259,9 +258,14 @@
     margin: 10px 10px;
   }
 
-  .register-container .image .centered-text {
+  .register-container .image .centered-text {   /*Versatile Lodge*/
     font-size: 2.5rem;
   }
+
+  .register-container .form h1 {      /*Registration Form*/
+    font-size: 2.5rem;
+  }
+
 }
 
 @media screen and (max-width: 450px) {
@@ -289,7 +293,11 @@
 
   .register-container .form {
     flex: 1; /* The form occupies the full width in a stacked layout */
-    margin: 55px 5px;
+    margin: 5px 5px;
+  }
+
+  .register-container .form h1 {    /*Registration Form*/
+    font-size: 2.2rem;
   }
 
 }
