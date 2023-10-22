@@ -11,9 +11,11 @@
 }
 
 .register-container .image {
-  flex: 2; /* Occupy the left part, adjust as needed */
+  flex: 1;
   max-width: 600px;
   position: relative;
+  background-image: url(/assets/images/gallery-img-1.jpg);
+  background-position: top;
 }
 
 .register-container .image img {
@@ -267,6 +269,7 @@
   .register-container {
     flex-direction: column; /* Stack the elements vertically on smaller screens */
     height: auto; /* Adjust the container's height to fit its content */
+    margin: 0;
   }
 
   .register-container .image {
@@ -275,9 +278,18 @@
     margin-right: 0; /* Remove the right margin */
     border-radius: 25px 25px 0 0; /* Adjust border-radius */
   }
+  
+  .register-container .image .centered-text {
+    display: block;
+    margin-top: 6px;
+    height: max-content;
+    width: 100%;
+    font-size: 3rem;
+  }
 
   .register-container .form {
     flex: 1; /* The form occupies the full width in a stacked layout */
-    margin: 5px 5px;
+    margin: 55px 5px;
   }
+
 }
