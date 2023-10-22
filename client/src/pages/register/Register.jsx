@@ -3,7 +3,8 @@ import "./register.css";
 import axios from "../../api/axios";
 
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const NAME_REGEX = /^(?! )(?!.* $)[A-Za-z ]{5,50}$/;
+const NAME_REGEX = /^(?! )[A-Z][A-Za-z ]{5,50}(?<! )$/;
+
 const REGISTER_URL = "/api/auth/register/customer";
 
 function Register() {
@@ -88,13 +89,7 @@ function Register() {
         </section>
       ) : (
         <div>
-          <p
-            ref={errRef}
-            className={errMsg ? "errmsg" : "offscreen"}
-            aria-live="assertive"
-          >
-            {errMsg}
-          </p>
+
           <div className="register-container">
             <div className="image">
               <img src="/assets/images/gallery-img-1.jpg" alt="Lodge Logo" />
@@ -102,7 +97,7 @@ function Register() {
             </div>
             <form onSubmit={handleSubmit} className="form">
               <h1>Registration Form</h1>
-
+              <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive"> {errMsg} </p>
               <label htmlFor="name">Full Name:</label>
               <input
                 type="text"
@@ -126,10 +121,6 @@ function Register() {
               >
                 5 and 50 characters
                 <br />
-                Name must start with a capital letter and contain only letters.
-                Name must start with a capital letter and contain only letters.
-                Name must start with a capital letter and contain only letters.
-                Name must start with a capital letter and contain only letters.
                 Name must start with a capital letter and contain only letters.
                 <br />
                 No Leading and Trailing spaces
