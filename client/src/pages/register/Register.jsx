@@ -92,7 +92,7 @@ function Register() {
 
           <div className="register-container">
             <div className="image">
-              <img src="/assets/images/gallery-img-1.jpg" alt="Lodge Logo" />
+              {/* <img src="/assets/images/gallery-img-1.jpg" alt="Lodge Logo" /> */}
               <p className="centered-text">Versatile Lodge</p>
             </div>
             <form onSubmit={handleSubmit} className="form">
