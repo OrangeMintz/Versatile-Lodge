@@ -43,8 +43,8 @@
 
 .register-container .form {     /*form container*/    
   flex: 1; /* Occupy the right part */
-  margin-top: 20px;
-  margin: 15px;
+  margin: 15px 60px 15px 15px;
+  padding: 15px;
   }
 
 .register-container .form h1 {    /*Registration Form*/
@@ -66,7 +66,7 @@
 .register-container .form input[type="email"],
 .register-container .form input[type="tel"],
 .register-container .form input[type="file"] {
-  width: 90%;
+  width: 100%;
   padding: 10px;
   margin-top: 5px;
   border: 1px solid #ccc;
@@ -99,6 +99,7 @@
 .register-container .form .login-btn:hover {
   color: var(--branch-color);
   background: var(--main-color);
+  border-radius: 10px;
 }
 
 .register-container .form .register-btn {    /*register*/
