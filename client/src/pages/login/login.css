@@ -1,227 +1,254 @@
-.container {                    /*login container*/
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    padding-bottom: 50px;
-    background-color: var(--main-color);
-    min-height: 100vh;              
+
+/*login starts=====>*/
+
+.login-container {
+  max-width: 1220px;
+  height: max-content;
+  margin: 3rem auto;
+  background-color: var(--branch-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
 }
 
-.container form {               /*form container*/
-    width: 600px;
-    box-shadow: 0 10px 15px rgba(0,0,0,.1);
-    border-radius: 5px;
-    overflow: hidden;
-    text-align: center;
+.login-container .image {    /*image container */
+  flex: 1; /* Occupy the left part, adjust as needed */
+  max-width: 600px; 
+  position: relative;
 }
 
-.container form .links {        /*for google and facebook*/
-    background: #ffffff;
-    padding: 25px 12px;
+
+.login-container .image img{  /*actual image*/
+  max-width: 100%;
+  height: 100%;
+  border-radius: 25px 0 0 25px;
+  object-fit: cover;
+
 }
 
-.container form .title {        /*login in with*/
-    font-size: 17px;
-    padding-bottom: 15px;
-    color: var(--main-color); 
+.login-container .image .centered-text { /*Versatile Lodge*/
+  position: absolute;
+  top: 0; bottom: 0; right: 0; left: 0;
+  margin: auto;
+  height: max-content;
+  width: max-content;
+  text-align: center;
+  color: var(--main-color);
+  font-size: 3rem;
+  font-weight: bold;
+  background-color: rgba(220, 198, 156, 0.25);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add the box shadow */
+  border-radius: 15px;
+  padding: 15px;
 }
 
-.container form .links .buttons .btn {  /*fb and google button*/
-    font-size: 17px;
-    margin: 5px;
-    display: inline-block;
-    background-color: #ddd;
-    border-radius: 5px;
-    padding: 10px 30px;
+.login-container .form {     /*form container*/
+  flex: 1; /* Occupy the right part */
+  margin: 20px;
 }
 
-.container form .links .buttons button {
-    color: black;
-}
+.login-container .form h3 {                  /*Login in with*/
+  font-size: 17px;
+  text-align: center;
 
-.container form .links .buttons .btn i {    /*fb and google icon*/
-    color: black;
-    padding-right: 5px;
-}
-
-.container form .links .buttons .btn:hover {    /*fb and google button hover*/
-    color: #fff;
-    background: var(--main-color);
-}
-
-.container form .links .buttons .btn:hover i{   /*fb and google icon hover*/
-    color: #fff;
-}
-
-.container form .input-box {        /*input container for email and password*/
-    padding: 30px;
-    background: var(--branch-color);
-}
-
-.container form .input-box .input {     /*every input*/
-    margin: 15px auto;
-    display: flex;
-    align-items: center;
-    height: 50px;
-    width: 100%;
-    border-radius: 5px;
-    background: #fff;
-    box-shadow: 0.5px 10px rgba(0,0,0,.1);
-    border: var(--border);   
-     
-}
-
-.container form .input-box .input input {  /*each input*/
-    height: 100%;
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    color: #333;
-    text-transform: none;
-}
-
-.container form .input-box .input span {    /*input icon*/
-    color: #999;
-    padding-right: 5px;
-    padding-left: 15px;
-    font-size: 20px;
-}
-
-.container form .checkbox {     /*checkbox*/
-    text-align: left;
-    padding: 10px 0;
-}
-
-.container form .checkbox label {   /*checkbox label*/
-    font-size: 17px;
-    color: #333;
-    cursor: pointer;
-}
-
-.container form .log-in-btn {  /*log in button*/
-    padding: 10px 40px;
-    margin: 15px 0;
-    font-size: 17px;
-    color: white;   
-    border-radius: 5px;
-    background: var(--main-color);
-    cursor: pointer;
-    transition: .2s linear;
-}
-
-.container form .log-in-btn:hover {  /*hover*/
-    background: var(--main-color);
-    color: var(--branch-color);
-}
-
-.container form .register-btn {  /*register button*/
-    padding: 10px 40px;
-    margin: 15px 0;
-    font-size: 17px;
-    border-radius: 4px;
-    border: 1px solid #2B1103;
-    background: var(--branch-color);
-    color: var(--main-color);
-    cursor: pointer;
-    transition: .2s linear;
-}
-
-.container form .register-btn:hover {  
-    background: var(--main-color);
-    color: var(--branch-color);
-}
-
-.container form .btn {              /*align buttons in column*/
-    display: inline-block;
-    width: 100%;
 }
 
 
 
-/* validation css */
-.offscreen {
-    position: absolute;
-    left: -9999px;
-  }
+.login-container .form .buttons i {        /*font-awesome icon*/
+  margin-right: 5px;
   
-  .valid {
-    color: limegreen;
-    margin-left: 0.25rem;
-  }
+}
+.login-container .form .buttons .btn {      /*facebook & google btn */
+  display: inline-block;
+  width: 100%;
+  border-radius: 15px;
+}
+
+.login-container .form .buttons .btn:hover {
+  color: var(--main-color);
+  background-color: #e2e2e2;
+}
+
+
+
+.login-container .form .input-box .title {        /*or sign in with email */
+  font-size: 17px;
+  color: var(--main-color); 
+  text-align: center;
+  padding: 15px;
+  margin-top: 25px;
+}
+
+.login-container .form .input-box .title2 {        /*don't have an acc?*/
+  font-size: 17px;
+  color: var(--main-color); 
+  text-align: center;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+.login-container .form .input-box {        /*input login-container for email and password*/
+  background: var(--branch-color);
+  border-radius: 5px;
+
+}
+
+.login-container .form .input-box .input {     /*every input*/
+  margin: 10px auto;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0.5px 10px rgba(0,0,0,.1);
+  border: var(--border);   
   
-  .invalid {
-    color: red;
-    margin-left: 0.25rem;
+   
+}
+
+.login-container .form .input-box .input input {  /*each input*/
+  height: 50px;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  color: #333;
+  text-transform: none;
+
+}
+
+.login-container .form .input-box .input span {    /*input icon*/
+  color: #999;
+  padding-right: 5px;
+  padding-left: 15px;
+  font-size: 20px;
+}
+
+.login-container .form .checkbox {     /*checkbox*/
+  text-align: left;
+  padding: 10px 0;
+}
+
+.login-container .form .checkbox label {   /*checkbox label*/
+  font-size: 17px;
+  color: #333;
+  cursor: pointer;
+}
+
+.login-container .form .input-box .buttons {
+  text-align: center;
+  margin: 10px 0 30px 0;
+}
+
+.login-container .form .log-in-btn {  /*log in button*/
+  padding: 10px 40px;
+  margin: 15px 0 10px 0;
+  font-size: 17px;
+  color: white;   
+  border-radius: 5px;
+  background: var(--main-color);
+  cursor: pointer;
+  transition: .2s linear;
+
+}
+
+.login-container .form .log-in-btn:hover {  /*hover*/
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-radius: 10px;
+}
+
+.login-container .form .register-btn {  /*register button*/
+  padding: 10px 40px;
+  margin: 15px 0;
+  font-size: 17px;
+  border-radius: 4px;
+  border: 1px solid #2B1103;
+  background: var(--branch-color);
+  color: var(--main-color);
+  cursor: pointer;
+  transition: .2s linear;
+}
+
+.login-container .form .register-btn:hover {  
+  color: var(--branch-color);
+  background: var(--main-color);
+
+  border-radius: 10px;
+}
+
+
+/*login responsiveness*/
+
+@media screen and (max-width: 991px) {
+  .login-container {
+      height: auto; /* Adjust the container's height to fit its content */
   }
-  
-  .errmsg {
-    background-color: lightpink;
-    color: firebrick;
-    font-weight: bold;
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
-    font-size: 15px;
+
+  .login-container .image {
+      flex: 1; /* Make the image occupy the full width in a stacked layout */
+      max-width: 100%; /* Ensure the image takes the entire width */
+      border-radius: 25px 25px 0 0; /* Adjust border-radius */
   }
-  
-  .instructions {
-    font-size: 0.75rem;
-    border-radius: 0.5rem;
-    background: #000;
-    color: #fff;
-    padding: 0.25rem;
-    position: relative;
-    bottom: -10px;
+
+
+}
+
+@media screen and (max-width: 768px) {      /* Styles will apply when the screen width is 450px or below */
+  .login-container {
+      height: auto; /* Adjust the container's height to fit its content */
+      flex-direction: column; /* Stack the elements vertically on smaller screens */
   }
-  
-  .instructions > svg {
-    margin-right: 0.25rem;
+
+  .login-container .image {
+      flex: 1; /* Make the image occupy the full width in a stacked layout */
+      max-width: 100%; /* Ensure the image takes the entire width */
+      margin-right: 0; /* Remove the right margin */
+      border-radius: 25px 25px 0 0; /* Adjust border-radius */
   }
-  
-  .offscreen {
-    position: absolute;
-    left: -9999px;
+
+  .login-container .form {
+      flex: 1; /* The form occupies the full width in a stacked layout */
+      margin: 10px;
   }
-  
-  .hide {
-    display: none;
+
+  .login-container .form .buttons {              /*align facebook and google in row*/
+      display: flex;
+      flex-direction: row;
   }
-  
-  .instructions {
-    width: 90%;
-    font-size: 13px;
-    border-radius: 4px;
-    background: #000;
-    color: #fff;
-    padding: 0.5rem;
-    position: relative;
-    bottom: -10px;
+
+  .login-container .form .btn {              /*margin*/
+      margin: 10px;
   }
-  
-  .instructions > svg {
-    margin-right: 0.25rem;
+
+  .login-container .image .centered-text {     /*versatile lodge*/
+    font-size: 2.5rem;
   }
-  
-  .offscreen {
-    position: absolute;
-    left: -9999px;
+
+  .login-container .form .input-box .buttons {              /*login and register column*/
+      text-align: center;
+      display: block;        
   }
+
   
-  .hide {
-    display: none;
+}
+
+  
+@media screen and (max-width: 450px) {
+  .login-container .image {
+      flex: 1; /* Make the image occupy the full width in a stacked layout */
+      max-width: 100%; /* Ensure the image takes the entire width */
+      border-radius: 25px 25px 0 0; /* Adjust border-radius */
   }
-  
-  .valid {
-    color: limegreen;
-    margin-left: 0.25rem;
+
+  .login-container .image .centered-text {     /*versatile lodge*/
+    font-size: 2.2rem;
   }
-  
-  .invalid {
-    color: red;
-    margin-left: 0.25rem;
-  }
-  
-  
-  .line {
-    display: inline-block;
-  }
+
+
+}
+
+
+/*login ends=====>*/
