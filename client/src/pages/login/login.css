@@ -24,6 +24,7 @@
     max-width: 100%;
     height: 100%;
     border-radius: 25px 0 0 25px;
+    object-fit: cover;
 
 }
 

@@ -19,6 +19,7 @@ export const Login = () => {
 
             <div className="input-box">
                 <h3 className="title">or sign in with email</h3>
+
                 <div className="input">
                     <span className="far fa-envelope"></span>
                     <input type="email" name="" placeholder="email" id="" />
