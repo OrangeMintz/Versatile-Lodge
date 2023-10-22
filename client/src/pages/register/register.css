@@ -13,7 +13,6 @@
 .register-container .image {
   flex: 2; /* Occupy the left part, adjust as needed */
   max-width: 600px;
-  margin-right: 50px;
   position: relative;
 }
 
@@ -43,7 +42,7 @@
 
 .register-container .form {     /*form container*/    
   flex: 1; /* Occupy the right part */
-  margin: 15px 60px 15px 15px;
+  margin: 15px 30px;
   padding: 15px;
   }
 
@@ -233,13 +232,12 @@
   .register-container .image {
     flex: 1; /* Make the image occupy the full width in a stacked layout */
     max-width: 100%; /* Ensure the image takes the entire width */
-    margin-right: 0; /* Remove the right margin */
     border-radius: 25px 25px 0 0; /* Adjust border-radius */
   }
 
   .register-container .form {
     flex: 1; /* The form occupies the full width in a stacked layout */
-    margin: 0px 0 15px 15px;
+    margin: 15px 15px;
   }
 }
 
@@ -251,13 +249,12 @@
   .register-container .image {
     flex: 1; /* Make the image occupy the full width in a stacked layout */
     max-width: 100%; /* Ensure the image takes the entire width */
-    margin-right: 0; /* Remove the right margin */
     border-radius: 25px 25px 0 0; /* Adjust border-radius */
   }
 
   .register-container .form {
     flex: 1; /* The form occupies the full width in a stacked layout */
-    margin: 0px 0 15px 15px;
+    margin: 10px 10px;
   }
 
   .register-container .image .centered-text {
@@ -281,6 +278,6 @@
 
   .register-container .form {
     flex: 1; /* The form occupies the full width in a stacked layout */
-    margin: 0px 0 15px 15px;
+    margin: 5px 5px;
   }
 }
