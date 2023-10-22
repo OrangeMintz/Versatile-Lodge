@@ -127,6 +127,10 @@ function Register() {
                 5 and 50 characters
                 <br />
                 Name must start with a capital letter and contain only letters.
+                Name must start with a capital letter and contain only letters.
+                Name must start with a capital letter and contain only letters.
+                Name must start with a capital letter and contain only letters.
+                Name must start with a capital letter and contain only letters.
                 <br />
                 No Leading and Trailing spaces
               </p>
