@@ -1,14 +1,14 @@
 .register-container {
   max-width: 1200px;
   height: 600px;
-  margin: 2rem auto;
+  margin: 3rem 5rem;
   background-color: var(--branch-color);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
 
+  
 }
 
 .register-container .image {
@@ -85,7 +85,7 @@
 
 .register-container .form .login-btn {    /*login*/
   font-size: 1.3rem;
-  padding: 10px 20px;
+  padding: 10px;
   border-radius: 4px;
   cursor: pointer;
   border: 1px solid #2b1103;
@@ -98,6 +98,7 @@
   color: var(--branch-color);
   background: var(--main-color);
   border-radius: 10px;
+
 }
 
 .register-container .form .register-btn {    /*register*/
@@ -107,7 +108,6 @@
   background: var(--main-color);
   color: #fff;
   padding: 10px;
-  letter-spacing: 1px;
 }
 
 .register-container .form .register-btn:hover {
@@ -222,6 +222,9 @@
 /*register responsiveness*/
 @media screen and (max-width: 991px) {
 
+  .register-container {
+    margin: 2rem;
+  }
   .register-container .image {
     flex: 1; /* Make the image occupy the full width in a stacked layout */
     max-width: 100%; /* Ensure the image takes the entire width */
@@ -235,7 +238,6 @@
 }
 
 @media screen and (max-width: 768px) {
-
 
   .register-container .image {
     flex: 1; /* Make the image occupy the full width in a stacked layout */
@@ -263,7 +265,7 @@
   .register-container {
     flex-direction: column; /* Stack the elements vertically on smaller screens */
     height: auto; /* Adjust the container's height to fit its content */
-    margin: 0;
+    margin: 1rem;
   }
 
   .register-container .image {

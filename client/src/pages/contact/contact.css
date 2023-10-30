@@ -1,0 +1,14 @@
+.contact-heading h1{              /*contact-heading section*/
+    color: var(--branch-color);
+    font-size: 4rem;
+    text-align: center;
+    margin: 70px 0;
+
+}
+
+.contact-heading img {
+    border-radius: .5rem;
+    height: 80vh;
+    width: 100%;
+    object-fit: cover;     
+}

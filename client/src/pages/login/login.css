@@ -156,8 +156,9 @@
 
 .login-container .form .log-in-btn:hover {  /*hover*/
   font-weight: bold;
-  letter-spacing: 1px;
   border-radius: 10px;
+  outline: 2px solid white;
+
 }
 
 .login-container .form .register-btn {  /*register button*/
@@ -185,7 +186,8 @@
 @media screen and (max-width: 991px) {
   .login-container {
       height: auto; /* Adjust the container's height to fit its content */
-  }
+      margin-top: 0px;
+    }
 
   .login-container .image {
       flex: 1; /* Make the image occupy the full width in a stacked layout */
@@ -198,9 +200,10 @@
 
 @media screen and (max-width: 768px) {      /* Styles will apply when the screen width is 450px or below */
   .login-container {
-      height: auto; /* Adjust the container's height to fit its content */
       flex-direction: column; /* Stack the elements vertically on smaller screens */
-  }
+      height: auto; /* Adjust the container's height to fit its content */
+      margin-top: 0;
+    }
 
   .login-container .image {
       flex: 1; /* Make the image occupy the full width in a stacked layout */
@@ -237,10 +240,14 @@
 
   
 @media screen and (max-width: 450px) {
-  .login-container .image {
+  .login-container {
+    margin-top: 0px;
+}
+
+  .login-container .image img{
       flex: 1; /* Make the image occupy the full width in a stacked layout */
       max-width: 100%; /* Ensure the image takes the entire width */
-      border-radius: 25px 25px 0 0; /* Adjust border-radius */
+      border-radius: 15px; /* Adjust border-radius */
   }
 
   .login-container .image .centered-text {     /*versatile lodge*/
