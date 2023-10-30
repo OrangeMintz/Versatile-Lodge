@@ -123,7 +123,6 @@ section {
 .header .navbar .active{
     background-color: var(--main-color);
     color: var(--branch-color);
-    transition: .1s linear;
 }
 
 
@@ -510,6 +509,86 @@ section {
 
 
 
+
+/*user-btn*/
+
+
+.header .navbar img {
+    background: var(--branch-color);
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+
+}
+
+.header .navbar img:hover {
+    background: var(--main-color);
+    }
+
+.header .navbar {
+    position: relative;
+}
+    
+.header .navbar .profile {           /*profile toggled*/
+    position: absolute; 
+    top: 150%; right: .1rem;
+    background-color: var(--white);
+    border-radius: .5rem;
+    padding: 2rem;
+    text-align: center;
+    width: 30rem;
+    transform: scale(0);
+    transform-origin: top right;    
+    transition: .2s linear;        
+    z-index: 1000; 
+} 
+
+.header .navbar .profile.active {
+    transform: scale(1);
+}
+
+.header .navbar .profile img {        /*header img, scaling of img*/
+    height: 10rem;
+    width: 10rem;
+    border-radius: 50%;
+    object-fit: cover;              /*scale to cover whole container*/
+    margin-bottom: .5rem;
+}
+
+.header .navbar .profile h3 {         /*profile name*/
+    font-size: 2rem;
+    color:var(--black);
+}
+
+.header .navbar .profile span {     /*profile desc*/
+    color: var(--light-color);
+    font-size: 1.5rem;
+    display: block;
+}
+
+.header .navbar .btn {              /*view profile*/
+    width: 100%;
+}
+
+.header .navbar .flex-btn {         /*container of buttons below viewe profile*/
+    display: flex;
+    justify-content: space-between;
+}
+
+.header .navbar .option-btn {
+    background-color: var(--branch-color);
+    width: 125px;
+    margin: 8px 0;
+}
+.header .navbar .profile a {
+    color: black;
+}
+
+.header .navbar .profile a:hover {
+    color: white;
+}
 
 
 
