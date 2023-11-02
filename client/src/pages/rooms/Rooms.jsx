@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import useFetch from "../../hooks/useFetch"
 import "./rooms.css";
 
 const Rooms = () => {
@@ -7,6 +8,9 @@ const Rooms = () => {
     const toggleNavbar = () => {
         setNavbarActive(!navbarActive);
     };
+
+    const { data, loading, error } = useFetch("http://localhost:8000/api/branch/countByBranch?branches=valencia,malaybalay,maramag")
+    console.log(data);
 
     return (
         <div>
@@ -76,72 +80,73 @@ const Rooms = () => {
 
                 <div className="card-container">
 
-                    <div className="card">
-                        <img src="/assets/images/home-img-3.jpg" alt="" />
-                        <div className="description">
-                            <h3>Room 1</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe commodi, architecto mollitia necessitatibus sit cum nesciunt in sequi eius maxime soluta pariatur temporibus aliquam provident perferendis fugiat voluptatem suscipit incidunt.</p>
-                            <div className="detail">
-                                <h3 className="price">P750/Night</h3>
-                                <a href="roomDetail">View Detail</a>
+                    {loading ? "Loading Please Wait" :
+                        <> <div className="card">
+                            <img src="/assets/images/home-img-3.jpg" alt="" />
+                            <div className="description">
+                                <h3>Room {data[0]} {data[1]} {data[2]}</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe commodi, architecto mollitia necessitatibus sit cum nesciunt in sequi eius maxime soluta pariatur temporibus aliquam provident perferendis fugiat voluptatem suscipit incidunt.</p>
+                                <div className="detail">
+                                    <h3 className="price">P750/Night</h3>
+                                    <a href="roomDetail">View Detail</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="card">
-                        <img src="/assets/images/home-img-1.jpg" alt="" />
-                        <div className="description">
-                            <h3>Room 2</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe commodi, architecto mollitia necessitatibus sit cum nesciunt in sequi eius maxime soluta pariatur temporibus aliquam provident perferendis fugiat voluptatem suscipit incidunt.</p>
-                            <div className="detail">
-                                <h3 className="price">P1050/Night</h3>
-                                <a href="roomDetail">View Detail</a>
+                            <div className="card">
+                                <img src="/assets/images/home-img-1.jpg" alt="" />
+                                <div className="description">
+                                    <h3>Room 2</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe commodi, architecto mollitia necessitatibus sit cum nesciunt in sequi eius maxime soluta pariatur temporibus aliquam provident perferendis fugiat voluptatem suscipit incidunt.</p>
+                                    <div className="detail">
+                                        <h3 className="price">P1050/Night</h3>
+                                        <a href="roomDetail">View Detail</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <img src="/assets/images/home-img-1.jpg" alt="" />
-                        <div className="description">
-                            <h3>Room 3</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe commodi, architecto mollitia necessitatibus sit cum nesciunt in sequi eius maxime soluta pariatur temporibus aliquam provident perferendis fugiat voluptatem suscipit incidunt.</p>
-                            <div className="detail">
-                                <h3 className="price">P450/Night</h3>
-                                <a href="roomDetail">View Detail</a>
+                            <div className="card">
+                                <img src="/assets/images/home-img-1.jpg" alt="" />
+                                <div className="description">
+                                    <h3>Room 3</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe commodi, architecto mollitia necessitatibus sit cum nesciunt in sequi eius maxime soluta pariatur temporibus aliquam provident perferendis fugiat voluptatem suscipit incidunt.</p>
+                                    <div className="detail">
+                                        <h3 className="price">P450/Night</h3>
+                                        <a href="roomDetail">View Detail</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <img src="/assets/images/home-img-2.jpg" alt="" />
-                        <div className="description">
-                            <h3>Room 4</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe commodi, architecto mollitia necessitatibus sit cum nesciunt in sequi eius maxime soluta pariatur temporibus aliquam provident perferendis fugiat voluptatem suscipit incidunt.</p>
-                            <div className="detail">
-                                <h3 className="price">P550/Night</h3>
-                                <a href="roomDetail">View Detail</a>
+                            <div className="card">
+                                <img src="/assets/images/home-img-2.jpg" alt="" />
+                                <div className="description">
+                                    <h3>Room 4</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe commodi, architecto mollitia necessitatibus sit cum nesciunt in sequi eius maxime soluta pariatur temporibus aliquam provident perferendis fugiat voluptatem suscipit incidunt.</p>
+                                    <div className="detail">
+                                        <h3 className="price">P550/Night</h3>
+                                        <a href="roomDetail">View Detail</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <img src="/assets/images/home-img-2.jpg" alt="" />
-                        <div className="description">
-                            <h3>Room 5</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe commodi, architecto mollitia necessitatibus sit cum nesciunt in sequi eius maxime soluta pariatur temporibus aliquam provident perferendis fugiat voluptatem suscipit incidunt.</p>
-                            <div className="detail">
-                                <h3 className="price">P550/Night</h3>
-                                <a href="roomDetail">View Detail</a>
+                            <div className="card">
+                                <img src="/assets/images/home-img-2.jpg" alt="" />
+                                <div className="description">
+                                    <h3>Room 5</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe commodi, architecto mollitia necessitatibus sit cum nesciunt in sequi eius maxime soluta pariatur temporibus aliquam provident perferendis fugiat voluptatem suscipit incidunt.</p>
+                                    <div className="detail">
+                                        <h3 className="price">P550/Night</h3>
+                                        <a href="roomDetail">View Detail</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <img src="/assets/images/home-img-2.jpg" alt="" />
-                        <div className="description">
-                            <h3>Room 6</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe commodi, architecto mollitia necessitatibus sit cum nesciunt in sequi eius maxime soluta pariatur temporibus aliquam provident perferendis fugiat voluptatem suscipit incidunt.</p>
-                            <div className="detail">
-                                <h3 className="price">P550/Night</h3>
-                                <a href="roomDetail">View Detail</a>
-                            </div>
-                        </div>
-                    </div>
+                            <div className="card">
+                                <img src="/assets/images/home-img-2.jpg" alt="" />
+                                <div className="description">
+                                    <h3>Room 6</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe commodi, architecto mollitia necessitatibus sit cum nesciunt in sequi eius maxime soluta pariatur temporibus aliquam provident perferendis fugiat voluptatem suscipit incidunt.</p>
+                                    <div className="detail">
+                                        <h3 className="price">P550/Night</h3>
+                                        <a href="roomDetail">View Detail</a>
+                                    </div>
+                                </div>
+                            </div></>}
                 </div>
 
 
