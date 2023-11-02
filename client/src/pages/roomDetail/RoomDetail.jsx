@@ -10,6 +10,11 @@ const RoomDetail = () => {
     setNavbarActive(!navbarActive);
   };
 
+  const handleUserBtnClick = () => {                      // for toggling profile
+    const profile = document.querySelector('.profile');
+    profile.classList.toggle('active');
+  }
+
   return (
     <div>
         <section class="header">
@@ -25,7 +30,7 @@ const RoomDetail = () => {
                 <a href="./rooms" className="active">Rooms</a>
                 <a href="./contact">Contact</a>
                 <a href="./reviews">Reviews</a>
-                <img src="assets/images/user4.jpg" id="user-btn" alt="user"/>
+                <img src="assets/images/user4.jpg" id="user-btn" alt="user" onClick={handleUserBtnClick}/>
                 {/* <!-- <select id="dropdown">
                     <option value="" selected>Profile</option>
                     <option value="booking-history.html">Booking History</option>
@@ -35,11 +40,11 @@ const RoomDetail = () => {
                 <div class="profile">
                     <img src="assets/images/user4.jpg" alt=""/>
                     <h3>Anzai Mitsuyoshi</h3>
-                    <span>teacher</span>
-                    <a href="account-setting.html" class="btn">view profile</a>
+                    <span>client</span>
+                    <a href="accountSetting" class="btn">View Profile</a>
                     <div class="flex-btn">
-                        <a href="booking-history.html" class="option-btn">history</a>
-                        <a href="login.html" class="option-btn">logout</a>
+                        <a href="bookingHistory" class="option-btn">History</a>
+                        <a href="login" class="option-btn">Logout</a>
                     </div>
                 </div>
             </nav>

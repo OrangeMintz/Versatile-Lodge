@@ -1,0 +1,44 @@
+.booking-history h1 {                                  /*booking history section - BOOKING HISTORY */
+    color: var(--branch-color);
+    font-size: 4rem;
+    text-align: center;
+    margin: 70px 0;
+}
+
+.booking-history table {
+    background-color: var(--branch-color);
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.booking-history th, td {
+    text-align: center;
+    padding: 30px;
+    font-size: 2rem;
+}
+
+@media (max-width:768px) {          /*width half the screen*/
+
+
+    .booking-history h1 {
+        font-size: 4rem;
+    }
+    .booking-history  th, td {
+        font-size: 1.7rem;
+        padding: 18px;
+      }
+
+
+}
+
+@media (max-width:450px) {          /*width 1/4 the screen closest to android phone (380px)*/
+
+    .booking-history h1 {
+        font-size: 3rem;
+    }
+    .booking-history  th, td {
+        font-size: 1.5rem;
+        padding: 8px;
+      }
+
+}
