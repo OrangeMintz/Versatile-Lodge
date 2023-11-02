@@ -1,0 +1,124 @@
+.rooms h1 {                                    /*rooms section - ROOMS */
+    color: var(--branch-color);
+    font-size: 4rem;
+    text-align: center;
+    margin: 70px 0;
+}
+
+.rooms p {
+    color: var(--branch-color);
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.rooms .flex{              /*ROOMS drop down */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: flex-end;
+    border-bottom: 4px solid white;
+    
+}
+
+.rooms .flex form .box .input {
+    width: 100%;
+    padding: 1rem 0;
+    font-size: 1.8rem;
+    background-color: var(--main-color);
+    color: var(--white);
+    border-bottom: var(--border);
+    margin: 1rem 0;
+}
+
+.rooms .flex .search-form {  /*ROOMS search bar*/
+    height: 4rem;
+    width: 25rem;
+    margin-top: 10px;
+    border-radius: .5rem;
+    display: flex;
+    padding: 1rem 2rem;
+    background-color: var(--branch-color);
+}
+
+.rooms .flex .search-form input { /*search bar input*/
+    width: 100%;
+    background: none;
+}
+
+.rooms .flex .search-form button { /*search bar button (icon)*/
+    font-size: 2rem;
+    color: var(--main-color);
+    cursor: pointer;
+    background: none;
+}
+
+.rooms .flex .search-form button:hover {
+    color: var(--white);
+}
+
+.rooms .card-container {            /*container of the entire cards*/
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50rem, 1fr));
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.rooms .card-container .card {           /*container of individual cards*/
+    margin: 3rem 3rem;
+    width: 90%;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+.rooms .card-container .card img {                /*img values*/
+    border-radius: .5rem;
+    width: 100%;
+    height: 300px;
+    object-fit: cover; 
+}
+
+.rooms .card-container .card .description {
+    background-color: var(--branch-color);
+    color: var(--main-color);
+    padding: 1rem 2rem;
+}
+
+.rooms .card-container .card .description h3 {
+    color: var(--main-color);
+    text-align: left;   
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+
+}
+
+.rooms .card-container .card .description p {
+    color: var(--main-color);
+    text-align: left;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    
+}
+
+.rooms .card-container .card .description .detail {        /*price and view detail container*/
+    display: flex;
+    justify-content: space-between;
+}
+
+.rooms .card-container .card .description .detail .price{      /*price*/
+    background-color: var(--main-color);
+    color: var(--branch-color);
+    padding: 7px 7px;
+    border-radius: .7rem;
+    font-size: 1.5rem;
+    font-style: italic;
+}
+
+.rooms .card-container .card .description .detail a{           /*view detail*/
+    background-color: var(--main-color);
+    color: var(--branch-color);
+    padding: 7px 7px;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    border-radius: .7rem;
+    font-size: 1.5rem;
+
+}
