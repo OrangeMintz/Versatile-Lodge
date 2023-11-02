@@ -7,6 +7,9 @@ import Rooms from "./pages/rooms/Rooms";
 import RoomDetail from "./pages/roomDetail/RoomDetail";
 import Contact from "./pages/contact/Contact";
 import Reviews from "./pages/reviews/Reviews";
+import AccountSetting from "./pages/accountSetting/AccountSetting";
+import BookingHistory from "./pages/bookingHistory/BookingHistory";
+import ChangePassword from "./pages/changePassword/ChangePassword";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Layout from './component/layout';
@@ -28,6 +31,10 @@ function App() {
         <Route path="/unauthorized" element={<RoomDetail />} />
         <Route path="/unauthorized" element={<Contact />} />
         <Route path="/unauthorized" element={<Reviews />} />
+        <Route path="/unauthorized" element={<AccountSetting />} />
+        <Route path="/unauthorized" element={<BookingHistory />} />
+        <Route path="/unauthorized" element={<ChangePassword />} />
+
 
 
         <Route path="/" element={<Home />} />
@@ -37,6 +44,10 @@ function App() {
         <Route path="/roomDetail" element={<RoomDetail />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/reviews" element={<Reviews />} />
+        <Route path="/accountSetting" element={<AccountSetting />} />
+        <Route path="/bookingHistory" element={<BookingHistory />} />
+        <Route path="/changePassword" element={<ChangePassword />} />
+
 
         {/* PROTECT THESE ROUTES */}
         <Route element={<RequireAuth allowedRoles={['admin']} />} >

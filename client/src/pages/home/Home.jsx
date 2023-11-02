@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
+// import Header from '../../component/header';
 
 const Home = () => {
+
   const [navbarActive, setNavbarActive] = useState(false);
 
   const toggleNavbar = () => {
     setNavbarActive(!navbarActive);
   };
+
+
+  const handleUserBtnClick = () => {                      // for toggling profile
+    const profile = document.querySelector('.profile');
+    profile.classList.toggle('active');
+  }
 
   return (
     <div>
@@ -15,7 +23,7 @@ const Home = () => {
             Versatile Lodge
           </a>
           <a href="#availability" className="btn">
-            check availability
+            Check availability
           </a>
           <div
             className={`menu fas fa-bars ${navbarActive ? 'active' : ''}`}
@@ -25,30 +33,38 @@ const Home = () => {
         </div>
 
         <nav className={`navbar ${navbarActive ? 'active' : ''}`}>
-          <a href="./" className="active">Home</a>
+          <a href="./" className="active">
+            Home
+          </a>
           <a href="./about">About</a>
           <a href="./rooms">Rooms</a>
           <a href="./contact">Contact</a>
           <a href="./reviews">Reviews</a>
-          <img src="assets/images/user4.jpg" id="user-btn" alt="user"/>
-              {/* <!-- <select id="dropdown">
-                  <option value="" selected>Profile</option>
-                  <option value="booking-history.html">Booking History</option>
-                  <option value="account-setting.html">Account Settings</option>
-                  <option value="login.html">Log out</option>
-              </select> --> */}
-              <div class="profile">
-                  <img src="assets/images/user4.jpg" alt=""/>
-                  <h3>Anzai Mitsuyoshi</h3>
-                  <span>teacher</span>
-                  <a href="account-setting.html" class="btn">view profile</a>
-                  <div class="flex-btn">
-                      <a href="booking-history.html" class="option-btn">history</a>
-                      <a href="login.html" class="option-btn">logout</a>
-                  </div>
-              </div>
+          <img
+            src="assets/images/user4.jpg"
+            id="user-btn"
+            alt="user"
+            onClick={handleUserBtnClick}
+          />
+          <div className="profile">
+            <img src="assets/images/user4.jpg" alt="" />
+            <h3>Anzai Mitsuyoshi</h3>
+            <span>client</span>
+            <a href="accountSetting" className="btn">
+              View Profile
+            </a>
+            <div className="flex-btn">
+              <a href="bookingHistory" className="option-btn">
+                History
+              </a>
+              <a href="login" className="option-btn">
+                Logout
+              </a>
+            </div>
+          </div>
         </nav>
       </section>
+
 
       <section className="home" id="home">
         <div className="swiper home-slider">

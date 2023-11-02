@@ -1,0 +1,97 @@
+.account-settings {
+    width: 100%;
+    max-width: 1160px;
+    margin: 7rem auto;
+    overflow: hidden;
+    padding: 20px;
+    background-color: var(--branch-color);
+    align-items: center;
+}
+
+/* Styling for the left column (profile, account details, password, logout) */
+.account-settings .account-menu {
+    float: left;
+    width: 30%;
+    padding: 20px;
+}
+
+.account-settings .account-menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+
+.account-settings .account-menu li {
+    border: 1px solid black;
+    background-color: var(--branch-color);
+    padding: 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: linear .2s;
+}
+
+.account-settings .account-menu li:hover {
+    background-color: var(--main-color);
+}
+
+.account-settings .account-menu li a {
+    color: var(--main-color);
+    transition: linear .2s;
+}
+
+.account-settings .account-menu li:hover a {
+    background-color: var(--main-color);
+    color: var(--branch-color);
+
+}
+
+.account-settings .account-menu i {
+    margin: 0 7px;
+}
+
+  /* Styling for the right column (account settings form) */
+.account-settings .settings {
+    float: left;
+    width: 65%;
+    padding: 20px;
+    margin-left: 5%;
+}
+
+.account-settings .settings h2 {
+    font-size: 3rem;
+    margin-bottom: 45px;
+}
+
+.account-settings .settings label {
+    display: block;
+    margin-top: 10px;
+    font-size: 1.5rem;
+}
+
+.account-settings .settings input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+  
+.account-settings button {
+    font-size: 1.5rem;
+    margin-top: 30px;
+    cursor: pointer;
+    background: var(--main-color);
+    color: var(--branch-color);
+    padding: 10px;
+}
+
+/* Styling for the profile picture */
+  .profile-picture {
+    width: 100%;
+    text-align: center;
+}
+
+.profile-picture img {
+    width: 160px; 
+    border-radius: 50%;
+    margin-bottom: 2rem;
+}

@@ -1,6 +1,7 @@
 :root {
     --main-color: #2B1103;
     --branch-color: #DCC69C;
+    --black: #000000;
     --white: #FFFFFF;
     --border: .1rem solid rgba(220, 198, 156, .3);
 }
@@ -557,19 +558,20 @@ section {
     margin-bottom: .5rem;
 }
 
-.header .navbar .profile h3 {         /*profile name*/
+.header .navbar .profile h3{         /*profile name*/
     font-size: 2rem;
     color:var(--black);
 }
 
 .header .navbar .profile span {     /*profile desc*/
-    color: var(--light-color);
+    color: var(--black);
     font-size: 1.5rem;
     display: block;
 }
 
 .header .navbar .btn {              /*view profile*/
     width: 100%;
+    background-color: var(--branch-color); 
 }
 
 .header .navbar .flex-btn {         /*container of buttons below viewe profile*/
