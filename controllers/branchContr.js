@@ -46,10 +46,25 @@ const getBranches = async (req, res, next) => {
     }
 };
 
+const countByBranch = async (req, res, next) => {
+    const branches = req.query.branches.split(",");
+    try {
+      const list = await Promise.all(
+        branches.map((city) => {
+          return Branch.countDocuments({ city: city });
+        })
+      );
+      res.status(200).json(list);
+    } catch (err) {
+      next(err);
+    }
+};
+
 module.exports = {
     createBranch,
     deleteBranch,
     updateBranch,
     getBranch,
-    getBranches
+    getBranches,
+    countByBranch
 };
