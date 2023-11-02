@@ -9,7 +9,7 @@ const { verifyAdmin, verifyUser } = require('../utils/verifyToken.js');
 const router = express.Router();
 
 //Create
-router.post("/:branchId", verifyAdmin,  createRoom);
+router.post("/:branchId", createRoom);
 
 //Delete
 router.delete("/:id/:branchId", verifyAdmin, deleteRoom);

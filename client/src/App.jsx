@@ -39,7 +39,7 @@ function App() {
         <Route path="/reviews" element={<Reviews />} />
 
         {/* PROTECT THESE ROUTES */}
-        <Route element={<RequireAuth allowedRoles={['admin']} />} >
+        <Route element={<RequireAuth />} >
           <Route path="/protected/admin" element={<Home />} />
         </Route>
 
