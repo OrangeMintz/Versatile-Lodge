@@ -1,5 +1,5 @@
 const express = require('express');
-const { createRoom, deleteRoom, updateRoom, getRoom, getRooms} = require('../controllers/roomContr.js');
+const { createRoom, deleteRoom, updateRoom, getRoom, getRooms } = require('../controllers/roomContr.js');
 
 const Room = require("../models/Room.js");
 const { verifyAdmin, verifyUser } = require('../utils/verifyToken.js');
@@ -9,9 +9,11 @@ const { verifyAdmin, verifyUser } = require('../utils/verifyToken.js');
 const router = express.Router();
 
 //Create
+// router.post("/", createRoom);
 router.post("/:branchId", createRoom);
 
 //Delete
+// router.delete("/:id", verifyAdmin, deleteRoom);
 router.delete("/:id/:branchId", verifyAdmin, deleteRoom);
 
 //Update

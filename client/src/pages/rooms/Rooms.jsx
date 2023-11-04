@@ -9,13 +9,15 @@ const Rooms = () => {
         setNavbarActive(!navbarActive);
     };
 
-    const { data, loading, error } = useFetch("http://localhost:8000/api/branch/countByBranch?branches=valencia,malaybalay,maramag")
-    console.log(data);
+    // const { data, loading, error } = useFetch("http://localhost:8000/api/branch/countByBranch?branches=valencia,malaybalay,maramag")
+    const { data, loading, error } = useFetch("http://localhost:8000/api/room/")
 
-  const handleUserBtnClick = () => {                      // for toggling profile
-    const profile = document.querySelector('.profile');
-    profile.classList.toggle('active');
-  }
+    console.log("Rooms Data", data);
+
+    const handleUserBtnClick = () => {                      // for toggling profile
+        const profile = document.querySelector('.profile');
+        profile.classList.toggle('active');
+    }
 
     return (
         <div>
@@ -33,7 +35,7 @@ const Rooms = () => {
                     <a href="./rooms" className="active">Rooms</a>
                     <a href="./contact">Contact</a>
                     <a href="./reviews">Reviews</a>
-                    <img src="/assets/images/user4.jpg" id="user-btn" alt="user"  onClick={handleUserBtnClick}/>
+                    <img src="/assets/images/user4.jpg" id="user-btn" alt="user" onClick={handleUserBtnClick} />
                     {/* <!-- <select id="dropdown">
                     <option value="" selected>Profile</option>
                     <option value="booking-history.html">Booking History</option>
@@ -64,7 +66,7 @@ const Rooms = () => {
                             <select name="adults" className="input" required>
                                 <option value="Malabalay">All</option>
                                 <option value="Malabalay">Malabalay</option>
-                                <option value="Valencia">Valecia</option>
+                                <option value="Valencia">Valencia</option>
                                 <option value="Maramag">Maramag</option>
                             </select>
                         </div>
@@ -76,12 +78,8 @@ const Rooms = () => {
 
                     </form>
                 </div>
-
-
                 {/* <!-- Create a dashed horizontal rule with a specific color --> */}
                 {/* <hr style="border-style: solid; border-color: white"/> */}
-
-
 
                 <div className="card-container">
 
@@ -89,7 +87,7 @@ const Rooms = () => {
                         <> <div className="card">
                             <img src="/assets/images/home-img-3.jpg" alt="" />
                             <div className="description">
-                                <h3>Room {data[0]} {data[1]} {data[2]}</h3>
+                                <h3>Room</h3>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe commodi, architecto mollitia necessitatibus sit cum nesciunt in sequi eius maxime soluta pariatur temporibus aliquam provident perferendis fugiat voluptatem suscipit incidunt.</p>
                                 <div className="detail">
                                     <h3 className="price">P750/Night</h3>
