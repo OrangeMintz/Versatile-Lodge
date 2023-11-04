@@ -26,14 +26,14 @@ function App() {
         {/* PUBLIC ROUTES */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/unauthorized" element={<About />} />
+        {/* <Route path="/unauthorized" element={<About />} />
         <Route path="/unauthorized" element={<Rooms />} />
         <Route path="/unauthorized" element={<RoomDetail />} />
         <Route path="/unauthorized" element={<Contact />} />
         <Route path="/unauthorized" element={<Reviews />} />
         <Route path="/unauthorized" element={<AccountSetting />} />
         <Route path="/unauthorized" element={<BookingHistory />} />
-        <Route path="/unauthorized" element={<ChangePassword />} />
+        <Route path="/unauthorized" element={<ChangePassword />} /> */}
 
 
 
