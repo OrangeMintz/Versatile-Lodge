@@ -12,7 +12,7 @@ const Rooms = () => {
     // const { data, loading, error } = useFetch("http://localhost:8000/api/branch/countByBranch?branches=valencia,malaybalay,maramag")
     const { data, loading, error } = useFetch("http://localhost:8000/api/room/")
 
-    console.log("Rooms Data", data);
+    // console.log("Rooms Data", data);
 
     const handleUserBtnClick = () => {                      // for toggling profile
         const profile = document.querySelector('.profile');
@@ -20,7 +20,7 @@ const Rooms = () => {
     }
 
     return (
-        <div>
+        <>
             {/* <!-- header section --> */}
             <section className="header">
                 <div className="flex">
@@ -35,7 +35,7 @@ const Rooms = () => {
                     <a href="./rooms" className="active">Rooms</a>
                     <a href="./contact">Contact</a>
                     <a href="./reviews">Reviews</a>
-                    <img src="/assets/images/user4.jpg" id="user-btn" alt="user" onClick={handleUserBtnClick} />
+                    <img src="/assets/images/user4.jpg " id="user-btn" alt="user" onClick={handleUserBtnClick} />
                     {/* <!-- <select id="dropdown">
                     <option value="" selected>Profile</option>
                     <option value="booking-history.html">Booking History</option>
@@ -73,7 +73,7 @@ const Rooms = () => {
                     </form>
 
                     <form action="" method="post" className="search-form">
-                        <input type="text" name="search_box" placeholder="search here..." required maxLength="100" />
+                        <input type="text" name="search_box" placeholder="Search..." required maxLength="100" />
                         <button type="submit" className="fas fa-search" name="search_box"></button>
 
                     </form>
@@ -82,74 +82,36 @@ const Rooms = () => {
                 {/* <hr style="border-style: solid; border-color: white"/> */}
 
                 <div className="card-container">
+                    {loading ? (
+                        <h1>Loading Please Wait</h1>
+                    ) : (
+                        data
+                            .slice() // Create a shallow copy of the data to avoid modifying the original array
+                            .sort((room1, room2) => {
+                                // Extract the room number from the room names
+                                const roomNumber1 = parseInt(room1.name.match(/\d+/)[0]);
+                                const roomNumber2 = parseInt(room2.name.match(/\d+/)[0]);
 
-                    {loading ? "Loading Please Wait" :
-                        <> <div className="card">
-                            <img src="/assets/images/home-img-3.jpg" alt="" />
-                            <div className="description">
-                                <h3>Room</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe commodi, architecto mollitia necessitatibus sit cum nesciunt in sequi eius maxime soluta pariatur temporibus aliquam provident perferendis fugiat voluptatem suscipit incidunt.</p>
-                                <div className="detail">
-                                    <h3 className="price">P750/Night</h3>
-                                    <a href="roomDetail">View Detail</a>
-                                </div>
-                            </div>
-                        </div>
-                            <div className="card">
-                                <img src="/assets/images/home-img-1.jpg" alt="" />
-                                <div className="description">
-                                    <h3>Room 2</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe commodi, architecto mollitia necessitatibus sit cum nesciunt in sequi eius maxime soluta pariatur temporibus aliquam provident perferendis fugiat voluptatem suscipit incidunt.</p>
-                                    <div className="detail">
-                                        <h3 className="price">P1050/Night</h3>
-                                        <a href="roomDetail">View Detail</a>
+                                // Compare the room numbers
+                                return roomNumber1 - roomNumber2;
+                            })
+                            .map((room, index) => (
+                                <div className="card" key={index}>
+                                    <img src={room.imageurls[0]} alt={room.name} />
+                                    <div className="description">
+                                        <div className="room-details">
+                                            <h3 className="room-name">{room.name}</h3>
+                                            <h2 className="room-branch">{room.branch}</h2>
+                                        </div>
+                                        <p>{room.desc}</p>
+                                        <div className="detail">
+                                            <h3 className="price">P{room.price}/Night</h3>
+                                            <a href={`roomDetail/${room._id}`}>View Detail</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="card">
-                                <img src="/assets/images/home-img-1.jpg" alt="" />
-                                <div className="description">
-                                    <h3>Room 3</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe commodi, architecto mollitia necessitatibus sit cum nesciunt in sequi eius maxime soluta pariatur temporibus aliquam provident perferendis fugiat voluptatem suscipit incidunt.</p>
-                                    <div className="detail">
-                                        <h3 className="price">P450/Night</h3>
-                                        <a href="roomDetail">View Detail</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="card">
-                                <img src="/assets/images/home-img-2.jpg" alt="" />
-                                <div className="description">
-                                    <h3>Room 4</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe commodi, architecto mollitia necessitatibus sit cum nesciunt in sequi eius maxime soluta pariatur temporibus aliquam provident perferendis fugiat voluptatem suscipit incidunt.</p>
-                                    <div className="detail">
-                                        <h3 className="price">P550/Night</h3>
-                                        <a href="roomDetail">View Detail</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="card">
-                                <img src="/assets/images/home-img-2.jpg" alt="" />
-                                <div className="description">
-                                    <h3>Room 5</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe commodi, architecto mollitia necessitatibus sit cum nesciunt in sequi eius maxime soluta pariatur temporibus aliquam provident perferendis fugiat voluptatem suscipit incidunt.</p>
-                                    <div className="detail">
-                                        <h3 className="price">P550/Night</h3>
-                                        <a href="roomDetail">View Detail</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="card">
-                                <img src="/assets/images/home-img-2.jpg" alt="" />
-                                <div className="description">
-                                    <h3>Room 6</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe commodi, architecto mollitia necessitatibus sit cum nesciunt in sequi eius maxime soluta pariatur temporibus aliquam provident perferendis fugiat voluptatem suscipit incidunt.</p>
-                                    <div className="detail">
-                                        <h3 className="price">P550/Night</h3>
-                                        <a href="roomDetail">View Detail</a>
-                                    </div>
-                                </div>
-                            </div></>}
+                            ))
+                    )}
                 </div>
 
 
@@ -192,7 +154,7 @@ const Rooms = () => {
                 <div className="credit">&copy; copyright @ 2023 by BSIT-3B | all rights reserved!</div>
 
             </section>
-        </div>
+        </>
     );
 };
 

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const reviewsschema = new mongoose.Schema({
 
-    customer: {
+    name: {
         type: Number,
         required: true
     },
@@ -11,6 +11,11 @@ const reviewsschema = new mongoose.Schema({
         type: String,
         required: true
     },
+
+    date: {
+        type: String,
+        required: true
+    }
 
 },
     { timestamps: true }
