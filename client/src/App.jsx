@@ -10,6 +10,7 @@ import Reviews from "./pages/reviews/Reviews";
 import AccountSetting from "./pages/accountSetting/AccountSetting";
 import BookingHistory from "./pages/bookingHistory/BookingHistory";
 import ChangePassword from "./pages/changePassword/ChangePassword";
+import BookNow from "./pages/bookNow/BookNow";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Layout from './component/layout';
@@ -47,6 +48,8 @@ function App() {
         <Route path="/accountSetting" element={<AccountSetting />} />
         <Route path="/bookingHistory" element={<BookingHistory />} />
         <Route path="/changePassword" element={<ChangePassword />} />
+        <Route path="/bookNow" element={<BookNow />} />
+        
 
 
         {/* PROTECT THESE ROUTES */}
