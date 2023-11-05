@@ -46,7 +46,8 @@ function App() {
         <Route path="/accountSetting" element={<AccountSetting />} />
         <Route path="/bookingHistory" element={<BookingHistory />} />
         <Route path="/changePassword" element={<ChangePassword />} />
-        <Route path="/bookNow" element={<BookNow />} />
+        <Route path="/booking/:id" element={<BookNow />} />
+
 
 
 
