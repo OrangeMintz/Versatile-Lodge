@@ -1,3 +1,4 @@
+import Footer from '../../component/footer';
 import './bookNow.css';
 
 const BookNow = () => {
@@ -12,7 +13,6 @@ const BookNow = () => {
             <section className="header">
                 <div className="flex">
                     <a href="#home" className="logo">Versatile Lodge</a>
-                    <a href="#availability" className="btn">Check availability</a>
                     <div className="menu fas fa-bars" id="menu-btn"></div>
                 </div>
 
@@ -63,8 +63,7 @@ const BookNow = () => {
                     </div>
                 </div>
             </div>
-
-
+            <Footer />
         </div>
 
 
