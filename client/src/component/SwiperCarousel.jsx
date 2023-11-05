@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import Swiper from 'swiper/bundle';
-import 'swiper/swiper-bundle.css';
 
 const SwiperCarousel = () => {
     useEffect(() => {
