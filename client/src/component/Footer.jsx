@@ -37,7 +37,7 @@ function Footer() {
                 </div>
 
                 <div className="credit">
-                    &copy; Copyright @ 2023 by Versatile-Lodge | All Rights Reserved!
+                    &copy; Copyright @ 2023 by Versatile-Lodge | All Rights Reserved
                 </div>
             </section>
         </div>

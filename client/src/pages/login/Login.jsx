@@ -99,7 +99,7 @@ export const Login = () => {
                     <h3>Log-in with</h3>
                     <div className="buttons">
                         <a className="btn" onClick={() => auth()}><i className="fab fa-google"></i>google</a>
-                        <a href="" className="btn"><i className="fab fa-facebook"></i>facebook</a>
+                        {/* <a href="" className="btn"><i className="fab fa-facebook"></i>facebook</a> */}
                     </div>
                     <form onSubmit={handleSubmit}>
 

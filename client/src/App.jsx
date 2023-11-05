@@ -40,7 +40,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/rooms" element={<Rooms />} />
-        {/* <Route path="/roomDetail" element={<RoomDetail />} /> */}
         <Route path="/roomDetail/:id" element={<RoomDetail />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/reviews" element={<Reviews />} />
@@ -48,7 +47,7 @@ function App() {
         <Route path="/bookingHistory" element={<BookingHistory />} />
         <Route path="/changePassword" element={<ChangePassword />} />
         <Route path="/bookNow" element={<BookNow />} />
-        
+
 
 
         {/* PROTECT THESE ROUTES */}

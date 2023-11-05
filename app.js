@@ -7,7 +7,11 @@ const authroute = require("./routes/auth.js");
 const usersroute = require("./routes/users.js");
 const roomsroute = require("./routes/rooms.js");
 const branchroute = require("./routes/branch.js");
+const bookhistoryroute = require("./routes/bookinghistory.js")
+const reviewsroute = require("./routes/reviews.js")
+const transactionroute = require("./routes/transaction.js")
 const cookieParser = require("cookie-parser");
+
 
 const oauthRouter = require("./routes/oauth.js");
 const requestRouter = require("./routes/request.js");
@@ -50,6 +54,14 @@ app.use("/api/auth", authroute);
 app.use("/api/users", usersroute);
 app.use("/api/branch", branchroute);
 app.use("/api/room", roomsroute);
+app.use("/api/booking/history", bookhistoryroute);
+app.use("/api/reviews", reviewsroute);
+app.use("/api/transaction", transactionroute);
+
+
+// app.use("/api/customer", bookhistoryroute);
+
+
 
 //GOOGLE OAUTH
 app.use("/oauth", oauthRouter);

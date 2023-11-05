@@ -24,7 +24,6 @@ const About = () => {
             <section className="header">
                 <div className="flex">
                     <a href="#home" className="logo">Versatile Lodge</a>
-                    <a href="#availability" className="btn">Check availability</a>
                     <div className="menu fas fa-bars" id="menu-btn"></div>
                 </div>
                 <nav className={`navbar ${navbarActive ? 'active' : ''}`}>

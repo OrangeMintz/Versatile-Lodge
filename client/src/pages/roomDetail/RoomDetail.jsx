@@ -27,7 +27,6 @@ const RoomDetail = () => {
                 <section className="header">
                     <div className="flex">
                         <a href="#home" className="logo">Versatile Lodge</a>
-                        <a href="#availability" className="btn">Check availability</a>
                         <div className="menu fas fa-bars" id="menu-btn"></div>
                     </div>
 
@@ -57,40 +56,38 @@ const RoomDetail = () => {
                     </nav>
                 </section>
 
-                {/* <!-- home section--> */}
-                {loading ? (
-                    <h1 style={{ paddingTop: '20vh' }}><Loader /></h1>
-                ) : (
-                    <section className="home" id="home">
-                        <div className="swiper home-slider">
-                            <div className="swiper-wrapper">
-                                {data && data.imageurls ? (
-                                    data.imageurls.map((imageUrl, index) => (
-                                        <div className="box swiper-slide" key={index}>
-                                            <img src={imageUrl} alt={`Image ${index + 1}`} />
-                                        </div>
-                                    ))
-                                ) : (
-                                    <p>No images available</p>
-                                )}
+                {loading ? (<h1 style={{ paddingTop: '20vh' }} ><Loader /></h1>) : error ? (<Error />)
+                    : (
+                        <section className="home" id="home">
+                            <div className="swiper home-slider">
+                                <div className="swiper-wrapper">
+                                    {data && data.imageurls ? (
+                                        data.imageurls.map((imageUrl, index) => (
+                                            <div className="box swiper-slide" key={index}>
+                                                <img src={imageUrl} alt={`Image ${index + 1}`} />
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <p>No images available</p>
+                                    )}
+                                </div>
+                                <div className="swiper-button-next"></div>
+                                <div className="swiper-button-prev"></div>
                             </div>
-                            <div className="swiper-button-next"></div>
-                            <div className="swiper-button-prev"></div>
-                        </div>
 
-                        <div className="availability" id="availability">
-                            <div className="flex">
-                                <div className="room-details">
-                                    <h3 className="room-name">{data.branch} {data.name}</h3>
-                                    <div className="room-price">
-                                        <h3 className="price">P{data.price}/Night</h3>
+                            <div className="availability" id="availability">
+                                <div className="flex">
+                                    <div className="room-details">
+                                        <h3 className="room-name">{data.branch} {data.name}</h3>
+                                        <div className="room-price">
+                                            <h3 className="price">P{data.price}/Night</h3>
+                                        </div>
                                     </div>
                                 </div>
+                                <p className="description"><h4>Description:</h4> {data.desc}</p>
                             </div>
-                            <p className="description"><h4>Description:</h4> {data.desc}</p>
-                        </div>
-                    </section>
-                )}
+                        </section>
+                    )}
 
                 <Footer />
             </div>

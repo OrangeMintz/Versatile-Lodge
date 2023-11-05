@@ -21,7 +21,7 @@ function Loader() {
                     color={color}
                     loading={loading}
                     cssOverride=""
-                    size={80}
+                    size={70}
                     aria-label="Loading Spinner"
                     data-testid="loader"
                 />

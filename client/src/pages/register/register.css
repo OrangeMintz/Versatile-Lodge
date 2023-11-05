@@ -1,7 +1,7 @@
 .register-container {
   max-width: 1200px;
   height: 600px;
-  margin: 3rem 5rem;
+  margin: 3rem 23rem;
   background-color: var(--branch-color);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
