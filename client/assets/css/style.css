@@ -34,7 +34,7 @@
 }
 
 html {
-    font-size: 62.5%;
+    font-size: 60%;
     overflow-x: hidden;
     scroll-behavior: smooth;
     scroll-padding-top: 2rem;
@@ -329,12 +329,11 @@ section {
 }
 
 .gallery img {
-    height: 40rem;
-    width: 60rem;
     border-radius: .5rem;
     object-fit: cover;
     margin-bottom: 4rem;
     user-select: none;
+    max-height: 400px;
 
 }
 
@@ -342,13 +341,10 @@ section {
     bottom: 0;
 }
 
-.swiper-pagination-bullet {
-    background-color: var(--branch-color);
-}
+.swiper-pagination-bullet:not(:last-child) {
+    background: white;
+  }
 
-.swiper-pagination-bullet-active {
-    background-color: var(--white);
-}
 
 .contact .row {
     display: flex;

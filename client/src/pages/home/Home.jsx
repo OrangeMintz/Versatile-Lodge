@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Footer from '../../component/footer';
 import SwiperCarousel from '../../component/SwiperCarousel'
+import SwiperGallery from '../../component/SwiperGallery';
 
 const Home = () => {
 
@@ -193,43 +194,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="gallery" id="gallery">
-        <div className="swiper gallery-slider">
-          <div className="swiper-wrapper">
-            <img
-              src="/assets/images/gallery-img-1.jpg"
-              className="swiper-slide"
-              alt=""
-            />
-            <img
-              src="/assets/images/gallery-img-2.webp"
-              className="swiper-slide"
-              alt=""
-            />
-            <img
-              src="/assets/images/gallery-img-3.webp"
-              className="swiper-slide"
-              alt=""
-            />
-            <img
-              src="/assets/images/gallery-img-4.webp"
-              className="swiper-slide"
-              alt=""
-            />
-            <img
-              src="/assets/images/gallery-img-5.webp"
-              className="swiper-slide"
-              alt=""
-            />
-            <img
-              src="/assets/images/gallery-img-6.webp"
-              className="swiper-slide"
-              alt=""
-            />
-          </div>
-          <div className="swiper-pagination"></div>
-        </div>
-      </section>
+      <SwiperGallery/>
 
       <section className="contact" id="contact">
         <div className="row">
