@@ -22,7 +22,7 @@ const BookNow = () => {
                     <a href="./rooms" className="active">Rooms</a>
                     <a href="./contact">Contact</a>
                     <a href="./reviews">Reviews</a>
-                    <img src="assets/images/user4.jpg" id="user-btn" alt="user" onClick={handleUserBtnClick} />
+                    <img src="../assets/images/user4.jpg" id="user-btn" alt="user" onClick={handleUserBtnClick} />
                     {/* <!-- <select id="dropdown">
                     <option value="" selected>Profile</option>
                     <option value="booking-history.html">Booking History</option>
@@ -30,7 +30,7 @@ const BookNow = () => {
                     <option value="login.html">Log out</option>
                 </select> --> */}
                     <div className="profile">
-                        <img src="assets/images/user4.jpg" alt="" />
+                        <img src="../assets/images/user4.jpg" alt="" />
                         <h3>Anzai Mitsuyoshi</h3>
                         <span>client</span>
                         <a href="accountSetting" className="btn">View Profile</a>
@@ -46,7 +46,7 @@ const BookNow = () => {
                 <div className="detailsWrapper">
                     <div className="imageContainer">
                         <p className="centered-text">Versatile Lodge</p>
-                        <img src="assets/images/home-img-1.jpg" alt="Lodge Logo" />
+                        <img src="../assets/images/home-img-1.jpg" alt="Lodge Logo" />
                     </div>
                     <div className="details">
                         <h1>Booking Details</h1>
