@@ -41,7 +41,8 @@ function App() {
         <Route path="/room" element={<List />} />
         <Route path="/about" element={<About />} />
         <Route path="/rooms" element={<Rooms />} />
-        <Route path="/roomDetail" element={<RoomDetail />} />
+        {/* <Route path="/roomDetail" element={<RoomDetail />} /> */}
+        <Route path="/roomDetail/:id" element={<RoomDetail />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/accountSetting" element={<AccountSetting />} />

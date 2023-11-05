@@ -115,10 +115,37 @@
 .rooms .card-container .card .description .detail a{           /*view detail*/
     background-color: var(--main-color);
     color: var(--branch-color);
+    border: 1px solid var(--main-color);
     padding: 7px 7px;
     font-size: 2.2rem;
     margin-bottom: 10px;
     border-radius: .7rem;
     font-size: 1.5rem;
+}
+
+.rooms .card-container .card .description .detail a:hover{    /*view detail hover*/
+    background-color: transparent ;
+    border: 1px solid var(--main-color);
+    color: var(--main-color);
+    transition-duration: .35s;
+}
+
+.room-details {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .room-name {
+    margin-right: auto; /* Pushes the room name to the left */
+  }
+  
+  .room-branch {
+    margin-left: auto; /* Pushes the room branch to the right */
+  }
+
+.room-details h2{
+    font-weight: 600;
+    color: var(--main-color);
+    font-size: 2.5rem;
 
 }
