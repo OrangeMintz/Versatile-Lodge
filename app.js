@@ -58,11 +58,6 @@ app.use("/api/booking/history", bookhistoryroute);
 app.use("/api/reviews", reviewsroute);
 app.use("/api/transaction", transactionroute);
 
-
-// app.use("/api/customer", bookhistoryroute);
-
-
-
 //GOOGLE OAUTH
 app.use("/oauth", oauthRouter);
 app.use("/request", requestRouter);
