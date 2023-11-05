@@ -30,14 +30,14 @@ const deleteRoom = async (req, res, next) => {
 
     try {
         const room = await Room.findByIdAndDelete(req.params.id);
-        try {
-            await Branch.findByIdAndUpdate(branchId,
-                {
-                    $pull: { rooms: req.params.id }
-                })
-        } catch (err) {
-            next(err)
-        }
+        // try {
+        //     await Branch.findByIdAndUpdate(branchId,
+        //         {
+        //             $pull: { rooms: req.params.id }
+        //         })
+        // } catch (err) {
+        //     next(err)
+        // }
         res.status(200).json("Room Has Been Deleted");
     } catch (err) {
         next(err);

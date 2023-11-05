@@ -14,7 +14,7 @@ router.post("/:branchId", createRoom);
 
 //Delete
 // router.delete("/:id", verifyAdmin, deleteRoom);
-router.delete("/:id/:branchId", verifyAdmin, deleteRoom);
+router.delete("/:id", verifyAdmin, deleteRoom);
 
 //Update
 router.put("/:id", verifyAdmin, updateRoom)

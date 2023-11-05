@@ -23,9 +23,6 @@ const Home = () => {
           <a href="#home" className="logo">
             Versatile Lodge
           </a>
-          <a href="#availability" className="btn">
-            Check availability
-          </a>
           <div
             className={`menu fas fa-bars ${navbarActive ? 'active' : ''}`}
             id="menu-btn"

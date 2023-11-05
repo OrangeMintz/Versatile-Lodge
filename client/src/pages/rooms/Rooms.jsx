@@ -3,6 +3,7 @@ import useFetch from "../../hooks/useFetch"
 import "./rooms.css";
 import Loader from '../../component/Loader';
 import Footer from '../../component/footer';
+import Error from '../../component/Error';
 
 const Rooms = () => {
     const [navbarActive, setNavbarActive] = useState(false);
@@ -10,8 +11,6 @@ const Rooms = () => {
     const toggleNavbar = () => {
         setNavbarActive(!navbarActive);
     };
-
-    // const { data, loading, error } = useFetch("http://localhost:8000/api/branch/countByBranch?branches=valencia,malaybalay,maramag")
     const { data, loading, error } = useFetch("http://localhost:8000/api/room/")
 
     // console.log("Rooms Data", data);
@@ -27,7 +26,6 @@ const Rooms = () => {
             <section className="header">
                 <div className="flex">
                     <a href="#home" className="logo">Versatile Lodge</a>
-                    <a href="#availability" className="btn">Check availability</a>
                     <div className="menu fas fa-bars" id="menu-btn"></div>
                 </div>
 
@@ -84,41 +82,39 @@ const Rooms = () => {
                 {/* <hr style="border-style: solid; border-color: white"/> */}
 
                 <div className="card-container">
-                    {loading ? (
-                        <h1><Loader /></h1>
-                    ) : (
-                        data
-                            .slice() // Create a shallow copy of the data to avoid modifying the original array
-                            .sort((room1, room2) => {
-                                // Extract the room number from the room names
-                                const roomNumber1 = parseInt(room1.name.match(/\d+/)[0]);
-                                const roomNumber2 = parseInt(room2.name.match(/\d+/)[0]);
+                    {loading ? (<h1><Loader /></h1>) : error ? (<Error />)
+                        : (
+                            data
+                                .slice() // Create a shallow copy of the data to avoid modifying the original array
+                                .sort((room1, room2) => {
+                                    // Extract the room number from the room names
+                                    const roomNumber1 = parseInt(room1.name.match(/\d+/)[0]);
+                                    const roomNumber2 = parseInt(room2.name.match(/\d+/)[0]);
+                                    // Compare the room numbers
+                                    return roomNumber1 - roomNumber2;
+                                })
+                                .map((room, index) => (
+                                    <div className="card" key={index}>
+                                        <img src={room.imageurls[0]} alt={room.name} />
+                                        <div className="description">
+                                            <div className="room-details">
+                                                <h3 className="room-name">{room.name}</h3>
+                                                <h2 className="price">P{room.price}/Night</h2>
 
-                                // Compare the room numbers
-                                return roomNumber1 - roomNumber2;
-                            })
-                            .map((room, index) => (
-                                <div className="card" key={index}>
-                                    <img src={room.imageurls[0]} alt={room.name} />
-                                    <div className="description">
-                                        <div className="room-details">
-                                            <h3 className="room-name">{room.name}</h3>
-                                            <h2 className="price">P{room.price}/Night</h2>
+                                            </div>
+                                            <div className="detail">
+                                                <h2 className="room-branch">{room.branch}</h2>
+                                            </div>
+                                            <p>{room.desc}</p>
 
-                                        </div>
-                                        <div className="detail">
-                                            <h2 className="room-branch">{room.branch}</h2>
-                                        </div>
-                                        <p>{room.desc}</p>
-
-                                        <div className="view-book">
-                                            <a href={`bookingDetail/${room._id}`}>Book Now</a>
-                                            <a href={`roomDetail/${room._id}`}>View Detail</a>
+                                            <div className="view-book">
+                                                <a href={`bookingDetail/${room._id}`}>Book Now</a>
+                                                <a href={`roomDetail/${room._id}`}>View Detail</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))
-                    )}
+                                ))
+                        )}
                 </div>
             </section>
             <Footer />

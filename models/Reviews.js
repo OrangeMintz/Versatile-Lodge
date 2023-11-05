@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const reviewsschema = new mongoose.Schema({
 
     name: {
-        type: Number,
+        type: String,
         required: true
     },
 
@@ -13,10 +13,9 @@ const reviewsschema = new mongoose.Schema({
     },
 
     date: {
-        type: String,
+        type: Date,
         required: true
     }
-
 },
     { timestamps: true }
 );
