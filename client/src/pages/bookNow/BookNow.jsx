@@ -58,7 +58,7 @@ const BookNow = () => {
                     <p className="totalDays">Total Days: <span>2</span></p>
                     <p className="totalDays">Rent Per Day: <span>1200</span></p>
                     <h1>Total Amount: 3000</h1>
-                    <button className='payBtn'>Pay Now</button>
+                    <button className='confirm'>Confirm</button>
 
                 </div>
             </div>
