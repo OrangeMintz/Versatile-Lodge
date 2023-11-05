@@ -6,6 +6,10 @@ import "./roomdetail.css";
 import Footer from "../../component/footer";
 import Loader from "../../component/Loader";
 
+import Swiper from 'swiper/bundle';
+import 'swiper/swiper-bundle.css';
+// import SwiperCarousel from "../../component/SwiperCarousel";
+
 const RoomDetail = () => {
     const [navbarActive, setNavbarActive] = useState(false);
 
@@ -20,6 +24,64 @@ const RoomDetail = () => {
     const { id } = useParams();
     const apiUrl = `http://localhost:8000/api/room/${id}`;
     const { data, loading, error } = useFetch(apiUrl)
+
+    // useEffect(() => {
+    //     const swiper = new Swiper(".home-slider", {
+    //     loop: true,
+    //     effect: "coverflow",
+    //     spaceBetween: 30,
+    //     grabCursor: true,
+    //     coverflowEffect: {
+    //         rotate: 50,
+    //         stretch: 0,
+    //         depth: 100,
+    //         modifier: 1,
+    //         slideShadows: true,
+    //     },
+    //     navigation: {
+    //         nextEl: ".swiper-button-next",
+    //         prevEl: ".swiper-button-prev",
+    //     },
+    //     });
+    // }, []); 
+
+    const photos = [
+        {
+            src: '/assets/images/thumb-1.png'
+        },
+        {
+            src: '/assets/images/thumb-2.png'
+        },
+        {
+            src: '/assets/images/thumb-3.png'
+        },
+        {
+            src: '/assets/images/thumb-4.png'
+        },
+        {
+            src: '/assets/images/thumb-5.png'
+        },
+        {
+            src: '/assets/images/thumb-6.png'
+        }
+    
+    ];
+
+
+    const [slideNumber, setSlideNumber] = useState(0);
+
+    const handleMove = (direction) => {
+        let newSlideNumber;
+
+        if(direction === "l") {
+            newSlideNumber = slideNumber === 0 ? 5 : slideNumber - 1;
+        } else {
+            newSlideNumber = slideNumber === 5 ? 0 : slideNumber + 1;
+        }
+
+        setSlideNumber(newSlideNumber)
+    }
+
 
     return (
         <>
@@ -37,12 +99,6 @@ const RoomDetail = () => {
                         <a href="../contact">Contact</a>
                         <a href="../reviews">Reviews</a>
                         <img src="/assets/images/user4.jpg" id="user-btn" alt="user" onClick={handleUserBtnClick} />
-                        {/* <!-- <select id="dropdown">
-                            <option value="" selected>Profile</option>
-                            <option value="booking-history.html">Booking History</option>
-                            <option value="account-setting.html">Account Settings</option>
-                            <option value="login.html">Log out</option>
-                        </select> --> */}
                         <div className="profile">
                             <img src="/assets/images/user4.jpg" alt="" />
                             <h3>Anzai Mitsuyoshi</h3>
@@ -56,6 +112,7 @@ const RoomDetail = () => {
                     </nav>
                 </section>
 
+
                 {loading ? (<h1 style={{ paddingTop: '20vh' }} ><Loader /></h1>) : error ? (<Error />)
                     : (
                         <section className="home" id="home">
@@ -64,15 +121,20 @@ const RoomDetail = () => {
                                     {data && data.imageurls ? (
                                         data.imageurls.map((imageUrl, index) => (
                                             <div className="box swiper-slide" key={index}>
-                                                <img src={imageUrl} alt={`Image ${index + 1}`} />
+                                                {/* <img src={imageUrl} alt={`Image ${index + 1}`} /> */}
+                                                <img src={photos[slideNumber].src} alt="" className="sliderImg" />
+
+                                                <div className="swiper-button-prev" onClick={()=>handleMove("l")}></div>
+                                                <div className="swiper-button-next" onClick={()=>handleMove("r")}></div>
+
+
+
                                             </div>
                                         ))
                                     ) : (
                                         <p>No images available</p>
                                     )}
                                 </div>
-                                <div className="swiper-button-next"></div>
-                                <div className="swiper-button-prev"></div>
                             </div>
 
                             <div className="availability" id="availability">
@@ -84,7 +146,8 @@ const RoomDetail = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <p className="description"><h4>Description:</h4> {data.desc}</p>
+                                <h4>Description:</h4>
+                                <p className="description"> {data.desc}</p>
                             </div>
                         </section>
                     )}
