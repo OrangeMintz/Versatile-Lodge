@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/home/Home";
-import List from "./pages/list/List";
 import About from "./pages/about/About";
 import Rooms from "./pages/rooms/Rooms";
 import RoomDetail from "./pages/roomDetail/RoomDetail";
@@ -38,7 +37,6 @@ function App() {
 
 
         <Route path="/" element={<Home />} />
-        <Route path="/room" element={<List />} />
         <Route path="/about" element={<About />} />
         <Route path="/rooms" element={<Rooms />} />
         {/* <Route path="/roomDetail" element={<RoomDetail />} /> */}

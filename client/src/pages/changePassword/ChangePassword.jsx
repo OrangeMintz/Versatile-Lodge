@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "./changePassword.css"
+import Footer from '../../component/footer';
 
 const ChangePassword = () => {
 
@@ -125,42 +126,8 @@ const ChangePassword = () => {
         </div>
       </section>
 
-      {/* Footer section */}
-      <section className="footer">
-        <div className="box-container">
-          <div className="box">
-            <a href="tel:1234567890">
-              <i className="fas fa-phone"></i>+123-456-7890
-            </a>
-            <a href="tel:1111122333">
-              <i className="fas fa-phone"></i>+111-226-3333
-            </a>
-            <a href="mailto:example@gmail.com">
-              <i className="fas fa-envelope"></i>example@gmail.com
-            </a>
-            <a href="#">
-              <i className="fas fa-map-marker-alt"></i>Malaybalay, Bukidnon - 8700
-            </a>
-          </div>
-          <div className="box">
-            <a href="#home">home</a>
-            <a href="#reservation">reservation</a>
-            <a href="#gallery">gallery</a>
-            <a href="#contact">contact</a>
-            <a href="#reviews">reviews</a>
-          </div>
-          <div className="box">
-            <a href="#">Facebook<i className="fab fa-facebook"></i></a>
-            <a href="#">Twitter<i className="fab fa-twitter"></i></a>
-            <a href="#">Instagram<i className="fab fa-instagram"></i></a>
-            <a href="#">LinkedIn<i className="fab fa-linkedin"></i></a>
-            <a href="#">Youtube<i className="fab fa-youtube"></i></a>
-          </div>
-        </div>
-        <div className="credit">
-          &copy; copyright @ 2023 by BSIT-3B | all rights reserved!
-        </div>
-      </section>
+      <Footer />
+
     </div>
   );
 };
