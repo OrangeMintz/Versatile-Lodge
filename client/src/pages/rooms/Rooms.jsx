@@ -73,7 +73,7 @@ const Rooms = () => {
                     </form>
 
                     <form action="" method="post" className="search-form">
-                        <input type="text" name="search_box" placeholder="search here..." required maxLength="100" />
+                        <input type="text" name="search_box" placeholder="Search..." required maxLength="100" />
                         <button type="submit" className="fas fa-search" name="search_box"></button>
 
                     </form>

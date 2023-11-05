@@ -81,12 +81,13 @@ const RoomDetail = () => {
 
                 {loading ? ("Loading Please Wait") : (
                     <section className="availability" id="availability">
-                        <div>
-                            <div className="flex">
-                                <h3>{data.branch} {data.name}</h3>
-                                <h4>{data.price}</h4>
+                        <div className="flex">
+                            <div className="room-details">
+                                <h3 className="room-name">{data.branch} {data.name}</h3>
+                                <div className="room-price">
+                                    <h3 className="price">P{data.price}/Night</h3>
+                                </div>
                             </div>
-
                         </div>
 
                         <form action="" method="post">
