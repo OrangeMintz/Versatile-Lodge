@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Footer from '../../component/footer';
-// import Header from '../../component/header';
+import SwiperCarousel from '../../component/SwiperCarousel'
 
 const Home = () => {
 
@@ -64,34 +64,7 @@ const Home = () => {
       </section>
 
 
-      <section className="home" id="home">
-        <div className="swiper home-slider">
-          <div className="swiper-wrapper">
-            <div className="box swiper-slide">
-              <img src="/assets/images/home-img-1.jpg" alt="" />
-              <div className="flex">
-                <h3>Malaybalay Room 1</h3>
-              </div>
-            </div>
-            <div className="box swiper-slide">
-              <img src="/assets/images/home-img-2.jpg" alt="" />
-              <div className="flex">
-                <h3>foods and drinks</h3>
-              </div>
-            </div>
-
-            <div className="box swiper-slide">
-              <img src="/assets/images/home-img-3.jpg" alt="" />
-              <div className="flex">
-                <h3>luxurious halls</h3>
-              </div>
-            </div>
-          </div>
-
-          <div className="swiper-button-next"></div>
-          <div className="swiper-button-prev"></div>
-        </div>
-      </section>
+      <SwiperCarousel/>
 
       <section className="availability" id="availability">
         <form action="" method="post">
