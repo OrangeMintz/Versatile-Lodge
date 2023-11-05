@@ -36,11 +36,11 @@ mongoose.connection.on("connected", () => {
 
 // app.use(cors());
 app.use(cors({
-    origin: "http://localhost:3000",
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    allowedHeaders: "Content-Type, Authorization",
-    credentials: true, // This enables credentials in CORS
-  })
+  origin: "http://localhost:3000",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  allowedHeaders: "Content-Type, Authorization",
+  credentials: true, // This enables credentials in CORS
+})
 );
 
 app.use(express.json());
@@ -59,20 +59,6 @@ app.get("/", (req, res) => {
   res.send("Route folder");
 });
 
-app.get("/user", (req, res) => {
-  res.send([
-    {
-      id: 1,
-      name: "John Doe",
-      age: 32,
-    },
-    {
-      id: 2,
-      name: "Doe John",
-      age: 35,
-    },
-  ]);
-});
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;

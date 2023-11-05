@@ -1,0 +1,22 @@
+.description{
+    text-align: justify;
+    font-size: 15px;
+    color: #ffffff;
+    margin: 2em 0;
+    line-height: 25px;
+}
+
+.description h4{
+    text-align: justify;
+    font-size: 16px;
+    color: #DCC69C;
+    margin: 1em 0;
+    line-height: 25px;
+}
+
+
+.availability h3{
+    font-size: 22px;
+    color: #DCC69C;
+    margin-bottom: 2em;
+}

@@ -138,15 +138,15 @@ function Register() {
                 aria-describedby="pwdnote"
                 onFocus={() => setPwdFocus(true)}
                 onBlur={() => setPwdFocus(false)}
+                autoComplete="false"
               />
               <p
                 id="pwdnote"
                 className={pwdFocus && !validPwd ? "instructions" : "offscreen"}
               >
-                3 to 20 characters.
+                8 to 20 characters.
                 <br />
-                First name must contain only letters and be between 3 and 20
-                characters.
+                Password must contain a mix of capital, non-capital letters, special characters, and numbers.
                 <br />
                 Allowed special characters:{" "}
                 <span aria-label="exclamation mark">!</span>{" "}
