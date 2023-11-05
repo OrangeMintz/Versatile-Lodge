@@ -1,0 +1,31 @@
+.description{
+    text-align: justify;
+    font-size: 15px;
+    color: #ffffff;
+    margin: 2em 0;
+    line-height: 25px;
+}
+
+.description h4{
+    text-align: justify;
+    font-size: 16px;
+    color: #DCC69C;
+    margin: 1em 0;
+    line-height: 25px;
+}
+
+
+.availability h3{
+    font-size: 22px;
+    color: #DCC69C;
+    margin-bottom: 2em;
+}
+
+.room-price .price{
+    background-color: var(--branch-color) ;
+    color: var(--main-color);
+    padding: 7px 7px;
+    border-radius: .7rem;
+    font-size: 20px;
+    font-style: italic;
+}
