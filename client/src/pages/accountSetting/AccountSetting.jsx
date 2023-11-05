@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "./accountSetting.css";
+import Footer from '../../component/footer';
 
 const AccountSetting = () => {
 
@@ -69,18 +70,18 @@ const AccountSetting = () => {
 
       <section className="account-settings">
 
-          <div className="account-menu">
-            <div className="profile-picture">
-              <img src="assets/images/user4.jpg" alt="Profile Picture"/>
-            </div>
-            <ul>
-              <li><a href="accountSetting"><i className="fas fa-user"></i> Account Details</a></li>
-              <li><a href="changePassword"><i className="fas fa-key"></i> Change Password</a></li>
-              <li><a href="login"><i className="fas fa-sign-out-alt"></i> Logout</a></li>
-            </ul>
+        <div className="account-menu">
+          <div className="profile-picture">
+            <img src="assets/images/user4.jpg" alt="Profile Picture" />
           </div>
-        
-          <div className="settings">
+          <ul>
+            <li><a href="accountSetting"><i className="fas fa-user"></i> Account Details</a></li>
+            <li><a href="changePassword"><i className="fas fa-key"></i> Change Password</a></li>
+            <li><a href="login"><i className="fas fa-sign-out-alt"></i> Logout</a></li>
+          </ul>
+        </div>
+
+        <div className="settings">
           <h2>Account Settings</h2>
           <form>
             <label htmlFor="email">Email Address:</label>
@@ -122,42 +123,9 @@ const AccountSetting = () => {
           </form>
         </div>
 
-      </section> 
-
-
-
-
-      {/* <!-- footer section--> */}
-
-      <section className="footer">
-
-          <div className="box-container">
-
-              <div className="box">
-                  <a href="tel:1234567890"><i className="fas fa-phone"></i>+123-456-7890</a>
-                  <a href="tel:1111122333"><i className="fas fa-phone"></i>+111-226-3333</a>
-                  <a href="mailto:example@gmail.com"><i className="fas fa-envelope"></i>example@gmail.com</a>
-                  <a href="#"><i className="fas fa-map-marker-alt"></i>Malaybalay, Bukidnon - 8700</a>
-              </div>
-              <div className="box">
-                  <a href="#home">home</a>
-                  <a href="#reservation">reservation</a>
-                  <a href="#gallery">gallery</a>
-                  <a href="#contact">contact</a>
-                  <a href="#reviews">reviews</a>
-              </div>
-              <div className="box">
-                  <a href="#">Facebook<i className='fab fa-facebook'></i></a>
-                  <a href="#">Twitter<i className="fab fa-twitter"></i></a>
-                  <a href="#">Instagram<i className="fab fa-instagram"></i></a>
-                  <a href="#">LinkedIn<i className="fab fa-linkedin"></i></a>
-                  <a href="#">Youtube<i className="fab fa-youtube"></i></a>
-              </div>
-          </div>
-
-          <div className="credit">&copy; copyright @ 2023 by BSIT-3B | all rights reserved!</div>
-
       </section>
+      <Footer />
+
     </div>
   );
 };

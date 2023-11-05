@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import useFetch from "../../hooks/useFetch"
 import "./rooms.css";
+import Loader from '../../component/Loader';
+import Footer from '../../component/footer';
 
 const Rooms = () => {
     const [navbarActive, setNavbarActive] = useState(false);
@@ -83,7 +85,7 @@ const Rooms = () => {
 
                 <div className="card-container">
                     {loading ? (
-                        <h1>Loading Please Wait</h1>
+                        <h1><Loader /></h1>
                     ) : (
                         data
                             .slice() // Create a shallow copy of the data to avoid modifying the original array
@@ -101,11 +103,16 @@ const Rooms = () => {
                                     <div className="description">
                                         <div className="room-details">
                                             <h3 className="room-name">{room.name}</h3>
+                                            <h2 className="price">P{room.price}/Night</h2>
+
+                                        </div>
+                                        <div className="detail">
                                             <h2 className="room-branch">{room.branch}</h2>
                                         </div>
                                         <p>{room.desc}</p>
-                                        <div className="detail">
-                                            <h3 className="price">P{room.price}/Night</h3>
+
+                                        <div className="view-book">
+                                            <a href={`bookingDetail/${room._id}`}>Book Now</a>
                                             <a href={`roomDetail/${room._id}`}>View Detail</a>
                                         </div>
                                     </div>
@@ -113,47 +120,8 @@ const Rooms = () => {
                             ))
                     )}
                 </div>
-
-
-
             </section>
-
-
-
-
-
-
-            {/* <!-- footer section--> */}
-
-            <section className="footer">
-
-                <div className="box-container">
-
-                    <div className="box">
-                        <a href="tel:1234567890"><i className="fas fa-phone"></i>+123-456-7890</a>
-                        <a href="tel:1111122333"><i className="fas fa-phone"></i>+111-226-3333</a>
-                        <a href="mailto:example@gmail.com"><i className="fas fa-envelope"></i>example@gmail.com</a>
-                        <a href="#"><i className="fas fa-map-marker-alt"></i>Malaybalay, Bukidnon - 8700</a>
-                    </div>
-                    <div className="box">
-                        <a href="#home">home</a>
-                        <a href="#reservation">reservation</a>
-                        <a href="#gallery">gallery</a>
-                        <a href="#contact">contact</a>
-                        <a href="#reviews">reviews</a>
-                    </div>
-                    <div className="box">
-                        <a href="#">Facebook<i className='fab fa-facebook'></i></a>
-                        <a href="#">Twitter<i className="fab fa-twitter"></i></a>
-                        <a href="#">Instagram<i className="fab fa-instagram"></i></a>
-                        <a href="#">LinkedIn<i className="fab fa-linkedin"></i></a>
-                        <a href="#">Youtube<i className="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-
-                <div className="credit">&copy; copyright @ 2023 by BSIT-3B | all rights reserved!</div>
-
-            </section>
+            <Footer />
         </>
     );
 };

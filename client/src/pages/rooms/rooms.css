@@ -100,19 +100,23 @@
 
 .rooms .card-container .card .description .detail {        /*price and view detail container*/
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
 }
 
-.rooms .card-container .card .description .detail .price{      /*price*/
-    background-color: var(--main-color);
-    color: var(--branch-color);
-    padding: 7px 7px;
-    border-radius: .7rem;
-    font-size: 1.5rem;
-    font-style: italic;
+.rooms .card-container .card .description .detail .room-branch{      /*room-branch*/
+    color: var(--main-color);
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+
 }
 
-.rooms .card-container .card .description .detail a{           /*view detail*/
+.rooms .card-container .card .description .view-book {        /*price and view detail container*/
+    display: flex;
+    justify-content: right;
+}
+
+.rooms .card-container .card .description .view-book a {
+    text-align: right; /* Add this line to align "Book Now" and "View Detail" to the right */
     background-color: var(--main-color);
     color: var(--branch-color);
     border: 1px solid var(--main-color);
@@ -123,7 +127,11 @@
     font-size: 1.5rem;
 }
 
-.rooms .card-container .card .description .detail a:hover{    /*view detail hover*/
+.rooms .card-container .card .description .view-book a:first-child {
+    margin-right: 5px; 
+}
+
+.rooms .card-container .card .description .view-book a:hover{    /*view detail hover*/
     background-color: transparent ;
     border: 1px solid var(--main-color);
     color: var(--main-color);
@@ -139,13 +147,16 @@
     margin-right: auto; /* Pushes the room name to the left */
   }
   
-  .room-branch {
+  .price {
     margin-left: auto; /* Pushes the room branch to the right */
   }
 
 .room-details h2{
     font-weight: 600;
-    color: var(--main-color);
-    font-size: 2.5rem;
+    color: var(--branch-color);
+    font-size: 1em;
+    background-color: var(--main-color);
+    padding: 3px 10px;
+    font-style: italic;
 
 }
