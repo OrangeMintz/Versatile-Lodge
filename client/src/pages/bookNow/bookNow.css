@@ -1,0 +1,71 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 50px;
+  }
+  
+  .detailsWrapper {
+    display: flex;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-height: 70vh;
+    position: relative;
+  }
+  
+  .imageContainer {
+    flex: 1;
+    padding: 20px;
+  }
+  
+
+  .imageContainer img {
+    max-width: 100%;
+    height: auto;
+    width: auto; /* Ensure the image maintains its aspect ratio */
+  }
+  
+  .details {
+    flex: 1;
+    text-align: right;
+    padding: 20px;
+    margin-bottom: 60px;
+    
+  }
+  
+  .centered-text {
+    text-align: center;
+  }
+
+  h1 {
+    margin: 20px 0;
+    font-size: 20px;
+  }
+  p {
+    margin: 14px 0;
+    font-size: 14px;
+  }
+
+  .details>button {
+    margin-top: 20px;
+    font-size: 15px;
+    padding: 10px;
+    color: var(--branch-color);
+    background: var(--main-color);
+    cursor: pointer;
+
+  }
+
+.centered-text {   /*Versatile Lodge*/
+    position: absolute;
+    margin: auto;
+    text-align: center;
+    color: var(--main-color);
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: rgba(220, 198, 156, 0.25);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add the box shadow */
+    border-radius: 15px;
+    padding: 15px;
+  }
