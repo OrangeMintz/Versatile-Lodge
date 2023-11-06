@@ -15,6 +15,7 @@ import Register from "./pages/register/Register";
 import Layout from './component/layout';
 
 import RequireAuth from './component/RequireAuth';
+import Staticpage from './pages/staticpage/staticpage';
 
 
 
@@ -39,9 +40,10 @@ function App() {
 
         {/* PROTECT THESE ROUTES */}
         <Route element={<RequireAuth />} >
-          <Route path="/protected/admin" element={<Home />} />
+          <Route path="/protected" element={<Staticpage />} />
         </Route>
 
+        {/* PROTECT THESE ROUTES WITH ROLE BASED */}
         <Route element={<RequireAuth allowedRoles={['employee']} />} >
           <Route path="/protected" element={<Home />} />
         </Route>
