@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
+
 import Footer from '../../component/footer';
 import SwiperCarousel from '../../component/SwiperCarousel'
 import SwiperGallery from '../../component/SwiperGallery';
@@ -21,9 +23,7 @@ const Home = () => {
     <div>
       <section className="header">
         <div className="flex">
-          <a href="#home" className="logo">
-            Versatile Lodge
-          </a>
+          <Link to="/" className="logo">Versatile Lodge</Link>
           <div
             className={`menu fas fa-bars ${navbarActive ? 'active' : ''}`}
             id="menu-btn"
@@ -32,13 +32,12 @@ const Home = () => {
         </div>
 
         <nav className={`navbar ${navbarActive ? 'active' : ''}`}>
-          <a href="./" className="active">
-            Home
-          </a>
-          <a href="./about">About</a>
-          <a href="./rooms">Rooms</a>
-          <a href="./contact">Contact</a>
-          <a href="./reviews">Reviews</a>
+          <Link to="#" className='active'>Home</Link>
+          <Link to="/about" >About</Link>
+          <Link to="/rooms" >Rooms</Link>
+          <Link to="/contact" >Contact</Link>
+          <Link to="/reviews" >Reviews</Link>
+
           <img
             src="assets/images/user4.jpg"
             id="user-btn"
@@ -49,9 +48,10 @@ const Home = () => {
             <img src="assets/images/user4.jpg" alt="" />
             <h3>Anzai Mitsuyoshi</h3>
             <span>client</span>
-            <a href="accountSetting" className="btn">
+            <Link to="/accountSetting" className='btn'>View Profile</Link>
+            {/* <a href="accountSetting" className="btn">
               View Profile
-            </a>
+            </a> */}
             <div className="flex-btn">
               <a href="bookingHistory" className="option-btn">
                 History
@@ -65,7 +65,7 @@ const Home = () => {
       </section>
 
 
-      <SwiperCarousel/>
+      <SwiperCarousel />
 
       <section className="availability" id="availability">
         <form action="" method="post">
@@ -91,20 +91,17 @@ const Home = () => {
                 <option value="2">2 Adults</option>
                 <option value="3">3 Adults</option>
                 <option value="4">4 Adults</option>
-                <option value="5">5 Adults</option>
               </select>
             </div>
             <div className="box">
               <p>
-                childs<span>*</span>
+                Childs<span>*</span>
               </p>
               <select name="childs" className="input" required>
-                <option value="-">0 Child</option>
+                <option value="">None</option>
                 <option value="1">1 Child</option>
                 <option value="2">2 Childs</option>
-                <option value="3">3 Childs</option>1
-                <option value="4">4 Childs</option>
-                <option value="5">5 Childs</option>
+                <option value="3">3 Childs</option>
               </select>
             </div>
             <div className="box">
@@ -194,7 +191,7 @@ const Home = () => {
         </div>
       </section>
 
-      <SwiperGallery/>
+      <SwiperGallery />
 
       <section className="contact" id="contact">
         <div className="row">
