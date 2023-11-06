@@ -37,9 +37,6 @@ function App() {
         <Route path="/changePassword" element={<ChangePassword />} />
         <Route path="/booking/:id" element={<BookNow />} />
 
-
-
-
         {/* PROTECT THESE ROUTES */}
         <Route element={<RequireAuth />} >
           <Route path="/protected/admin" element={<Home />} />
