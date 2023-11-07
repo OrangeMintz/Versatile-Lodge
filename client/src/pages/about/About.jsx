@@ -33,12 +33,6 @@ const About = () => {
                     <a href="./contact">Contact</a>
                     <a href="./reviews">Reviews</a>
                     <img src="assets/images/user4.jpg" id="user-btn" alt="user" onClick={handleUserBtnClick} />
-                    {/* <!-- <select id="dropdown">
-                  <option value="" selected>Profile</option>
-                  <option value="booking-history.html">Booking History</option>
-                  <option value="account-setting.html">Account Settings</option>
-                  <option value="login.html">Log out</option>
-              </select> --> */}
                     <div className="profile">
                         <img src="assets/images/user4.jpg" alt="" />
                         <h3>Anzai Mitsuyoshi</h3>

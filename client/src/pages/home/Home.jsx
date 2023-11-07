@@ -64,8 +64,12 @@ const Home = () => {
             <span>Client</span>
             <Link to="/accountSetting" className='btn'>View Profile</Link>
             <div className="flex-btn">
-              <Link to="/bookingHistory" className='option-btn'>History</Link>
-              <Link className='option-btn' onClick={logout}>Logout</Link>
+              <a href="bookingHistory" className="option-btn">
+                History
+              </a>
+              <a href="login" className="option-btn">
+                Logout
+              </a>
             </div>
           </div>
         </nav>

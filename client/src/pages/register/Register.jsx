@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import "./register.css";
+import { Link } from "react-router-dom";
 import axios from "../../api/axios";
 
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -84,7 +85,7 @@ function Register() {
         <section>
           <h1>Success!</h1>
           <p>
-            <a href="#">Sign In</a>
+            <Link to="/#">Sign In</Link>
           </p>
         </section>
       ) : (
@@ -201,9 +202,9 @@ function Register() {
               />
 
               <div className="btns">
-                <a href="/login" className="login-btn">
+                <Link to="/login" className="login-btn">
                   Login
-                </a>
+                </Link>
                 <button
                   disabled={!validPwd || !validMatch ? true : false}
                   className="register-btn"
