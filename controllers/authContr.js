@@ -118,8 +118,8 @@ const loginCust = async (req, res, next) => {
 
     // Save refreshToken with the current user
     user.refreshToken = refreshToken;
+    user.isEmployee = true; // Set the isEmployee field based on your business logic.
     const result = await user.save();
-    console.log(result);
 
     // Create a secure cookie with the refresh token
     res.cookie('jwt', refreshToken, {
@@ -129,8 +129,8 @@ const loginCust = async (req, res, next) => {
       maxAge: 24 * 60 * 60 * 1000,
     });
 
-    // Send access token to the user
-    res.json({ accessToken });
+    // Send access token and isEmployee to the user
+    res.json({ accessToken, isEmployee: user.isEmployee });
   } catch (err) {
     next(err);
   }
