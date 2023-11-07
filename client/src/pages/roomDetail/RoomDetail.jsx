@@ -5,6 +5,7 @@ import useFetch from "../../hooks/useFetch"
 import "./roomdetail.css";
 import Footer from "../../component/footer";
 import Loader from "../../component/Loader";
+
 import Swiper from 'swiper/bundle';
 import 'swiper/swiper-bundle.css';
 // import SwiperCarousel from "../../component/SwiperCarousel";
@@ -23,8 +24,6 @@ const RoomDetail = () => {
     const { id } = useParams();
     const apiUrl = `http://localhost:8000/api/room/${id}`;
     const { data, loading, error } = useFetch(apiUrl)
-
-
 
     const [slideNumber, setSlideNumber] = useState(0); // Current image index
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "./changePassword.css"
+import { Link } from "react-router-dom";
 import Footer from '../../component/footer';
 
 const ChangePassword = () => {
@@ -73,21 +74,9 @@ const ChangePassword = () => {
             <img src="assets/images/user4.jpg" alt="Profile Picture" />
           </div>
           <ul>
-            <li>
-              <a href="accountSetting">
-                <i className="fas fa-user"></i> Account Details
-              </a>
-            </li>
-            <li>
-              <a href="changePassword">
-                <i className="fas fa-key"></i> Change Password
-              </a>
-            </li>
-            <li>
-              <a href="login">
-                <i className="fas fa-sign-out-alt"></i> Logout
-              </a>
-            </li>
+            <li><Link to="/accountSetting"><i className="fas fa-user"></i> Account Details</Link></li>
+            <li><Link to="/changePassword"><i className="fas fa-key"></i> Change Password</Link></li>
+            <li><Link to="/login"><i className="fas fa-sign-out-alt"></i> Logout</Link></li>
           </ul>
         </div>
 

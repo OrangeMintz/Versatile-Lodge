@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
+
 import "./contact.css";
 
 
@@ -24,33 +26,41 @@ const Contact = () => {
             {/* <!-- header section --> */}
             <section className="header">
                 <div className="flex">
-                    <a href="#home" className="logo">Versatile Lodge</a>
-                    <div className="menu fas fa-bars" id="menu-btn"></div>
+                <Link to="/" className="logo">Versatile Lodge</Link>
+                <div
+                    className={`menu fas fa-bars ${navbarActive ? 'active' : ''}`}
+                    id="menu-btn"
+                    onClick={toggleNavbar}
+                ></div>
                 </div>
 
-                <nav className="navbar">
-                    <a href="/">Home</a>
-                    <a href="./about">About</a>
-                    <a href="./rooms">Rooms</a>
-                    <a href="./contact" className="active">Contact</a>
-                    <a href="./reviews">Reviews</a>
-                    <img src="assets/images/user4.jpg" id="user-btn" alt="user" onClick={handleUserBtnClick} />
-                    {/* <!-- <select id="dropdown">
-                    <option value="" selected>Profile</option>
-                    <option value="booking-history.html">Booking History</option>
-                    <option value="account-setting.html">Account Settings</option>
-                    <option value="login.html">Log out</option>
-                </select> --> */}
-                    <div className="profile">
-                        <img src="assets/images/user4.jpg" alt="" />
-                        <h3>Anzai Mitsuyoshi</h3>
-                        <span>client</span>
-                        <a href="accountSetting" className="btn">View Profile</a>
-                        <div className="flex-btn">
-                            <a href="bookingHistory" className="option-btn">History</a>
-                            <a href="login" className="option-btn">Logout</a>
-                        </div>
+                <nav className={`navbar ${navbarActive ? 'active' : ''}`}>
+                <Link to="/#">Home</Link>
+                <Link to="/about">About</Link>
+                <Link to="/rooms" >Rooms</Link>
+                <Link to="/contact" className='active'>Contact</Link>
+                <Link to="/reviews" >Reviews</Link>
+
+                <img
+                    src="assets/images/user4.jpg"
+                    id="user-btn"
+                    alt="user"
+                    onClick={handleUserBtnClick}
+                />
+                <div className="profile">
+                    <img src="assets/images/user4.jpg" alt="" />
+                    <h3>Anzai Mitsuyoshi</h3>
+                    <span>client</span>
+                    <Link to="/accountSetting" className='btn'>View Profile</Link>
+                    <div className="flex-btn">
+                    <Link to="bookingHistory" className="option-btn">
+                        History
+                    </Link>
+                    <Link to="login" className="option-btn">
+                        Logout
+                    </Link>
                     </div>
+                </div>
                 </nav>
             </section>
 

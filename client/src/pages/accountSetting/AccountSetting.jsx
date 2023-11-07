@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import "./accountSetting.css";
+import { Link } from "react-router-dom";
 import Footer from '../../component/footer';
 
 const AccountSetting = () => {
@@ -15,6 +16,18 @@ const AccountSetting = () => {
     const profile = document.querySelector('.profile');
     profile.classList.toggle('active');
   }
+
+  const fileInputRef = useRef();              //new profile input 
+  const profileImageRef = useRef();           //profile img 
+
+  const handleFileInputChange = (event) => {  //file selection 
+    const selectedFile = event.target.files[0];
+
+    if (selectedFile) {
+      const imageURL = URL.createObjectURL(selectedFile);
+      profileImageRef.current.src = imageURL;
+    }
+  };
 
   return (
     <div>
@@ -72,12 +85,21 @@ const AccountSetting = () => {
 
         <div className="account-menu">
           <div className="profile-picture">
-            <img src="assets/images/user4.jpg" alt="Profile Picture" />
+            <img src="assets/images/user4.jpg" alt="Profile Picture" ref={profileImageRef}/>
+            <label htmlFor="profile-picture-input" id="change-picture-label">Change Profile Picture</label>
+            <input
+              type="file"
+              id="profile-picture-input"
+              accept="image/*"
+              style={{ display: 'none' }}
+              ref={fileInputRef}
+              onChange={handleFileInputChange}
+            />
           </div>
           <ul>
-            <li><a href="accountSetting"><i className="fas fa-user"></i> Account Details</a></li>
-            <li><a href="changePassword"><i className="fas fa-key"></i> Change Password</a></li>
-            <li><a href="login"><i className="fas fa-sign-out-alt"></i> Logout</a></li>
+            <li><Link to="/accountSetting"><i className="fas fa-user"></i> Account Details</Link></li>
+            <li><Link to="/changePassword"><i className="fas fa-key"></i> Change Password</Link></li>
+            <li><Link to="/login"><i className="fas fa-sign-out-alt"></i> Logout</Link></li>
           </ul>
         </div>
 

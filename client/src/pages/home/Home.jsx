@@ -49,16 +49,13 @@ const Home = () => {
             <h3>Anzai Mitsuyoshi</h3>
             <span>client</span>
             <Link to="/accountSetting" className='btn'>View Profile</Link>
-            {/* <a href="accountSetting" className="btn">
-              View Profile
-            </a> */}
             <div className="flex-btn">
-              <a href="bookingHistory" className="option-btn">
+              <Link to="bookingHistory" className="option-btn">
                 History
-              </a>
-              <a href="login" className="option-btn">
+              </Link>
+              <Link to="login" className="option-btn">
                 Logout
-              </a>
+              </Link>
             </div>
           </div>
         </nav>
