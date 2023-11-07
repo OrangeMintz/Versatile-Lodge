@@ -1,13 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 import Footer from '../../component/footer';
 import SwiperCarousel from '../../component/SwiperCarousel'
 import SwiperGallery from '../../component/SwiperGallery';
+import { useContext } from 'react';
+import AuthContext from '../../context/AuthProvider';
 
 const Home = () => {
 
+  const { setAuth } = useContext(AuthContext)
+  const navigate = useNavigate()
+
+  // STIL PROBLEM IN LOGGING IN, OUT AND NAVIGATING
+  const logout = async () => {
+    // if used in more components, this should be in context 
+    // axios to /logout endpoint 
+    setAuth({});
+    navigate('/about');
+  }
+
   const [navbarActive, setNavbarActive] = useState(false);
+
 
   const toggleNavbar = () => {
     setNavbarActive(!navbarActive);
@@ -37,6 +50,7 @@ const Home = () => {
           <Link to="/rooms" >Rooms</Link>
           <Link to="/contact" >Contact</Link>
           <Link to="/reviews" >Reviews</Link>
+          <Link to="/protected" >Protected</Link>
 
           <img
             src="assets/images/user4.jpg"
@@ -47,18 +61,11 @@ const Home = () => {
           <div className="profile">
             <img src="assets/images/user4.jpg" alt="" />
             <h3>Anzai Mitsuyoshi</h3>
-            <span>client</span>
+            <span>Client</span>
             <Link to="/accountSetting" className='btn'>View Profile</Link>
-            {/* <a href="accountSetting" className="btn">
-              View Profile
-            </a> */}
             <div className="flex-btn">
-              <a href="bookingHistory" className="option-btn">
-                History
-              </a>
-              <a href="login" className="option-btn">
-                Logout
-              </a>
+              <Link to="/bookingHistory" className='option-btn'>History</Link>
+              <Link className='option-btn' onClick={logout}>Logout</Link>
             </div>
           </div>
         </nav>
