@@ -8,6 +8,7 @@ import Loader from "../../component/Loader";
 
 import Swiper from 'swiper/bundle';
 import 'swiper/swiper-bundle.css';
+import Navbar from "../../component/Navbar";
 // import SwiperCarousel from "../../component/SwiperCarousel";
 
 const RoomDetail = () => {
@@ -60,33 +61,7 @@ const RoomDetail = () => {
     return (
         <>
             <div>
-                <section className="header">
-                    <div className="flex">
-                        <a href="#home" className="logo">Versatile Lodge</a>
-                        <div className="menu fas fa-bars" id="menu-btn"></div>
-                    </div>
-
-                    <nav className="navbar">
-                        <a href="../">Home</a>
-                        <a href="../about">About</a>
-                        <a href="../rooms" className="active">Rooms</a>
-                        <a href="../contact">Contact</a>
-                        <a href="../reviews">Reviews</a>
-                        <img src="/assets/images/user4.jpg" id="user-btn" alt="user" onClick={handleUserBtnClick} />
-                        <div className="profile">
-                            <img src="/assets/images/user4.jpg" alt="" />
-                            <h3>Anzai Mitsuyoshi</h3>
-                            <span>client</span>
-                            <a href="accountSetting" className="btn">View Profile</a>
-                            <div className="flex-btn">
-                                <a href="bookingHistory" className="option-btn">History</a>
-                                <a href="login" className="option-btn">Logout</a>
-                            </div>
-                        </div>
-                    </nav>
-                </section>
-
-
+                <Navbar />
                 {loading ? (<h1 style={{ paddingTop: '20vh' }} ><Loader /></h1>) : error ? (<Error />)
                     : (
                         <section className="home" id="home">

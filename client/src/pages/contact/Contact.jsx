@@ -3,66 +3,15 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import "./contact.css";
-
-
 import axios from "axios";
 import Footer from "../../component/footer";
+import Navbar from "../../component/Navbar";
 
 const Contact = () => {
-    const [navbarActive, setNavbarActive] = useState(false);
-
-    const toggleNavbar = () => {
-        setNavbarActive(!navbarActive);
-    };
-
-    const handleUserBtnClick = () => {                      // for toggling profile
-        const profile = document.querySelector('.profile');
-        profile.classList.toggle('active');
-    }
 
     return (
         <div>
-
-            {/* <!-- header section --> */}
-            <section className="header">
-                <div className="flex">
-                <Link to="/" className="logo">Versatile Lodge</Link>
-                <div
-                    className={`menu fas fa-bars ${navbarActive ? 'active' : ''}`}
-                    id="menu-btn"
-                    onClick={toggleNavbar}
-                ></div>
-                </div>
-
-                <nav className={`navbar ${navbarActive ? 'active' : ''}`}>
-                <Link to="/#">Home</Link>
-                <Link to="/about">About</Link>
-                <Link to="/rooms" >Rooms</Link>
-                <Link to="/contact" className='active'>Contact</Link>
-                <Link to="/reviews" >Reviews</Link>
-
-                <img
-                    src="assets/images/user4.jpg"
-                    id="user-btn"
-                    alt="user"
-                    onClick={handleUserBtnClick}
-                />
-                <div className="profile">
-                    <img src="assets/images/user4.jpg" alt="" />
-                    <h3>Anzai Mitsuyoshi</h3>
-                    <span>client</span>
-                    <Link to="/accountSetting" className='btn'>View Profile</Link>
-                    <div className="flex-btn">
-                    <Link to="bookingHistory" className="option-btn">
-                        History
-                    </Link>
-                    <Link to="login" className="option-btn">
-                        Logout
-                    </Link>
-                    </div>
-                </div>
-                </nav>
-            </section>
+            <Navbar />
 
             {/* <!-- contact-heading section --> */}
             <section className="contact-heading">

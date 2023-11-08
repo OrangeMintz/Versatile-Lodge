@@ -4,6 +4,7 @@ import './about.css';
 
 import axios from "axios";
 import Footer from "../../component/footer";
+import Navbar from "../../component/Navbar";
 
 const About = () => {
     const [navbarActive, setNavbarActive] = useState(false);
@@ -20,31 +21,7 @@ const About = () => {
     return (
 
         <div className="About">
-            {/* <!-- header section --> */}
-            <section className="header">
-                <div className="flex">
-                    <a href="#home" className="logo">Versatile Lodge</a>
-                    <div className="menu fas fa-bars" id="menu-btn"></div>
-                </div>
-                <nav className={`navbar ${navbarActive ? 'active' : ''}`}>
-                    <a href="./">Home</a>
-                    <a href="./about" className="active">About</a>
-                    <a href="./rooms">Rooms</a>
-                    <a href="./contact">Contact</a>
-                    <a href="./reviews">Reviews</a>
-                    <img src="assets/images/user4.jpg" id="user-btn" alt="user" onClick={handleUserBtnClick} />
-                    <div className="profile">
-                        <img src="assets/images/user4.jpg" alt="" />
-                        <h3>Anzai Mitsuyoshi</h3>
-                        <span>client</span>
-                        <a href="accountSetting" className="btn">View Profile</a>
-                        <div className="flex-btn">
-                            <a href="bookingHistory" className="option-btn">History</a>
-                            <a href="login" className="option-btn">Logout</a>
-                        </div>
-                    </div>
-                </nav>
-            </section>
+            <Navbar />
 
             {/* <!-- about-us section --> */}
             <section className="about-us">

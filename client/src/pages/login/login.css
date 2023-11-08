@@ -1,10 +1,17 @@
 
 /*login starts=====>*/
 
+.login-container-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* 100% of the viewport height */
+}
+
 .login-container {
   max-width: 1220px;
   height: max-content;
-  margin: 3rem auto;
+  margin: 20rem 10%; /* Adjust the margin to make the container bigger on both sides */
   background-color: var(--branch-color);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 25px;
@@ -14,7 +21,7 @@
 
 .login-container .image {    /*image container */
   flex: 1; /* Occupy the left part, adjust as needed */
-  max-width: 600px; 
+  max-width: 1200px; 
   position: relative;
 }
 
@@ -126,16 +133,6 @@
   font-size: 20px;
 }
 
-.login-container .form .checkbox {     /*checkbox*/
-  text-align: left;
-  padding: 10px 0;
-}
-
-.login-container .form .checkbox label {   /*checkbox label*/
-  font-size: 17px;
-  color: #333;
-  cursor: pointer;
-}
 
 .login-container .form .input-box .buttons {
   text-align: center;
@@ -151,13 +148,12 @@
   background: var(--main-color);
   cursor: pointer;
   transition: .2s linear;
-
 }
 
 .login-container .form .log-in-btn:hover {  /*hover*/
-  font-weight: bold;
   border-radius: 10px;
   outline: 2px solid white;
+  color: var(--branch-color);
 
 }
 
@@ -165,7 +161,7 @@
   padding: 10px 40px;
   margin: 15px 0;
   font-size: 17px;
-  border-radius: 4px;
+  border-radius: 5px;
   border: 1px solid #2B1103;
   background: var(--branch-color);
   color: var(--main-color);
@@ -176,7 +172,6 @@
 .login-container .form .register-btn:hover {  
   color: var(--branch-color);
   background: var(--main-color);
-
   border-radius: 10px;
 }
 

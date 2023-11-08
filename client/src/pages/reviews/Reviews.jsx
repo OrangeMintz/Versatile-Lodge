@@ -1,53 +1,12 @@
 import React, { useState } from 'react';
 import "./reviews.css";
 import Footer from '../../component/footer';
+import Navbar from '../../component/Navbar';
 
 const Reviews = () => {
-    const [navbarActive, setNavbarActive] = useState(false);
-
-    const toggleNavbar = () => {
-        setNavbarActive(!navbarActive);
-    };
-
-    const handleUserBtnClick = () => {                      // for toggling profile
-        const profile = document.querySelector('.profile');
-        profile.classList.toggle('active');
-    }
-
     return (
         <div>
-            {/* <!-- header section --> */}
-            <section className="header">
-                <div className="flex">
-                    <a href="#home" className="logo">Versatile Lodge</a>
-                    <div className="menu fas fa-bars" id="menu-btn"></div>
-                </div>
-
-                <nav className="navbar">
-                    <a href="./">Home</a>
-                    <a href="./about">About</a>
-                    <a href="./rooms">Rooms</a>
-                    <a href="./contact">Contact</a>
-                    <a href="./reviews" className="active">Reviews</a>
-                    <img src="/assets/images/user4.jpg" id="user-btn" alt="user" onClick={handleUserBtnClick} />
-                    {/* <!-- <select id="dropdown">
-                    <option value="" selected>Profile</option>
-                    <option value="booking-history.html">Booking History</option>
-                    <option value="account-setting.html">Account Settings</option>
-                    <option value="login.html">Log out</option>
-                </select> --> */}
-                    <div className="profile">
-                        <img src="/assets/images/user4.jpg" alt="" />
-                        <h3>Anzai Mitsuyoshi</h3>
-                        <span>client</span>
-                        <a href="accountSetting" className="btn">View Profile</a>
-                        <div className="flex-btn">
-                            <a href="bookingHistory" className="option-btn">History</a>
-                            <a href="login" className="option-btn">Logout</a>
-                        </div>
-                    </div>
-                </nav>
-            </section>
+            <Navbar />
 
             {/* <!-- reviews-heading section --> */}
             <section className="reviews-heading">
