@@ -70,6 +70,24 @@ section {
     color: var(--main-color);
 }
 
+.btn2 {
+    display: inline-block;
+    cursor: pointer;
+    padding: 1rem 3rem;
+    font-size: 1.8rem;
+    color: var(--branch-color);
+    text-align: center;
+    text-transform: capitalize;
+    transition: .2s linear;
+    margin-top: 1rem;
+}
+
+.btn2:hover {
+    border-radius: 5rem;
+    color: wheat;
+    cursor: pointer;
+}
+
 .header {
     padding-bottom: 0;
 }
