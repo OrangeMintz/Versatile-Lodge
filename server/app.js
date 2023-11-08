@@ -46,7 +46,7 @@ app.use(express.urlencoded({ extended: false }))
 // app.use("/api/auth", authroute);
 
 app.use('/', require('./routes/authRoutes'))
-app.use("/api/users", usersroute);
+// app.use("/api/users", usersroute);
 app.use("/api/branch", branchroute);
 app.use("/api/room", roomsroute);
 app.use("/api/booking/history", bookhistoryroute);

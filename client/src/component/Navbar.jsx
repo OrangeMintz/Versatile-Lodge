@@ -1,12 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { UserContext } from "../context/userContext.jsx"
-import axios from 'axios'
-
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { UserContext } from "../context/userContext.jsx";
+import axios from 'axios';
 
 function Navbar() {
-
-    const { user, setUser } = useContext(UserContext)
+    const { user, setUser } = useContext(UserContext);
+    const location = useLocation();
 
     useEffect(() => {
         if (!user) {
@@ -23,30 +22,34 @@ function Navbar() {
     const handleLogout = () => {
         axios.get('/logout')
             .then(() => {
-                navigate('/login');
+                window.location.href = `${window.location.origin}/login`;
             })
             .catch((error) => {
                 console.error('Error during logout:', error);
             });
     };
 
-
-
     const [navbarActive, setNavbarActive] = useState(false);
+
     const toggleNavbar = () => {
         setNavbarActive(!navbarActive);
     };
 
-    const handleUserBtnClick = () => {                      // for toggling profile
+    const handleUserBtnClick = () => {
         const profile = document.querySelector('.profile');
         profile.classList.toggle('active');
-    }
+    };
+
+    const isLinkActive = (pathname) => {
+        return location.pathname === pathname ? 'active' : '';
+    };
 
     return (
         <div>
             <section className="header">
                 <div className="flex">
                     <Link to="/" className="logo">Versatile Lodge</Link>
+                    <Link to="/room" className="btn">Check Availability</Link>
                     <div
                         className={`menu fas fa-bars ${navbarActive ? 'active' : ''}`}
                         id="menu-btn"
@@ -55,13 +58,11 @@ function Navbar() {
                 </div>
 
                 <nav className={`navbar ${navbarActive ? 'active' : ''}`}>
-                    <Link to="#" className='active'>Home</Link>
-                    <Link to="/about" >About</Link>
-                    <Link to="/rooms" >Rooms</Link>
-                    <Link to="/contact" >Contact</Link>
-                    <Link to="/reviews" >Reviews</Link>
-                    <Link to="/protected" >Protected</Link>
-
+                    <Link to="/" className={isLinkActive('/')}>Home</Link>
+                    <Link to="/about" className={isLinkActive('/about')}>About</Link>
+                    <Link to="/room" className={isLinkActive('/room')}>Rooms</Link>
+                    <Link to="/contact" className={isLinkActive('/contact')}>Contact</Link>
+                    <Link to="/reviews" className={isLinkActive('/reviews')}>Reviews</Link>
                     <img
                         src="assets/images/user4.jpg"
                         id="user-btn"
@@ -77,15 +78,15 @@ function Navbar() {
                             <a href="bookingHistory" className="option-btn">
                                 History
                             </a>
-                            <a href="login" className="option-btn" onClick={handleLogout}>
+                            <Link className="option-btn" onClick={handleLogout}>
                                 Logout
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </nav>
             </section>
         </div>
-    )
+    );
 }
 
-export default Navbar
+export default Navbar;

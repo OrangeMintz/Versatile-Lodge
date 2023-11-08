@@ -10,40 +10,59 @@ const test = (req, res) => {
 const registerUser = async (req, res) => {
     try {
         const { name, email, password } = req.body;
-        // Check if name was entered
-        if (!name) {
-            return res.json({
-                error: 'name is required'
-            })
-        }
-        // Check is password is good
 
-        if (!password || password.length < 8) {
+        // Check if name was entered and does not contain leading/trailing spaces
+        if (!name || name.trim() !== name) {
             return res.json({
-                error: 'Password is required and should be at least 8 characters long'
-            })
+                error: 'Name is required and should not contain leading/trailing spaces'
+            });
+        }
+
+        // Check if name contains any special characters
+        const specialCharacters = /[!@#$%^&*()_+{}\[\]:;<>,?~\\|-]/;
+        if (specialCharacters.test(name)) {
+            return res.json({
+                error: 'Name should not contain special characters'
+            });
+        }
+
+        if (!email) {
+            return res.json({
+                error: 'Email is required'
+            });
+        }
+
+        // Check is password is good
+        const validPassword = /^[A-Za-z0-9!@#$%&?]+$/.test(password);
+        if (!password || password.length < 8 || !validPassword) {
+            return res.json({
+                error: `Password is required and should be at least 8 characters long.
+                containing only A-Z, a-z, 0-9, and the symbols: !@#$%&?`
+            });
         }
 
         // Check email
         const exist = await Customer.findOne({ email });
         if (exist) {
             return res.json({
-                error: 'Email is taken'
-            })
+                error: 'Email is already taken'
+            });
         }
 
-        const hashedPassword = await hashPassword(password)
+        const hashedPassword = await hashPassword(password);
 
         const user = await Customer.create({
-            name, email, password: hashedPassword
-        })
+            name,
+            email,
+            password: hashedPassword
+        });
+
         return res.json(user);
-
     } catch (error) {
-        console.log(error)
-
+        console.log(error);
     }
 }
+
 
 //Login Endpoint
 const loginUser = async (req, res) => {

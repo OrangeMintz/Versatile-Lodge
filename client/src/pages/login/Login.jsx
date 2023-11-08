@@ -13,12 +13,9 @@ async function auth() {
     const data = await response.json();
     console.log(data);
     navigate(data.url);
-
 }
 
-
 export const Login = () => {
-
     const navigate = useNavigate()
     const [data, setData] = useState({
         email: '',
@@ -48,36 +45,37 @@ export const Login = () => {
     };
 
     return (
-        <div className="login-container">
-            <div className="image">
-                <img src="assets/images/home-img-2.jpg" alt="Lodge Logo" />
-                <p className="centered-text">Versatile Lodge</p>
-            </div>
-            <div className="form">
-                <h3>Log-in with</h3>
-                <div className="buttons">
-                    <Link className="btn" onClick={() => auth()}><i className="fab fa-google"></i>google</Link>
-                    {/* <Link href="" className="btn"><i className="fab fa-facebook"></i>facebook</Link> */}
+        <div className="login-container-wrapper">
+            <div className="login-container">
+                <div className="image">
+                    <img src="assets/images/home-img-2.jpg" alt="Lodge Logo" />
+                    <p className="centered-text">Versatile Lodge</p>
                 </div>
-                <form onSubmit={loginUser}>
-                    <div className="input-box">
-                        <h3 className="title">or sign in with email</h3>
-                        <div className="input">
-                            <span className="far fa-envelope"></span>
-                            <input type="email" id="email" placeholder="Email" value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} />
-                        </div>
-                        <div className="input">
-                            <span className="fas fa-lock"></span>
-                            <input type='password' id="password" placeholder='Enter Password' value={data.password} onChange={(e) => setData({ ...data, password: e.target.value })} />
-
-                        </div>
-                        <div className="buttons">
-                            <input type="submit" value="Login" className="log-in-btn" />
-                            <h3 className="title2">Don't have an account?</h3>
-                            <Link to="/register" className="register-btn">Register</Link>
-                        </div>
+                <div className="form">
+                    <h3>Log-in with</h3>
+                    <div className="buttons">
+                        <Link className="btn" onClick={() => auth()}><i className="fab fa-google"></i>google</Link>
+                        {/* <Link href="" className="btn"><i className="fab fa-facebook"></i>facebook</Link> */}
                     </div>
-                </form>
+                    <form onSubmit={loginUser}>
+                        <div className="input-box">
+                            <h3 className="title">or sign in with email</h3>
+                            <div className="input">
+                                <span className="far fa-envelope"></span>
+                                <input type="email" id="email" placeholder="Email" value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} />
+                            </div>
+                            <div className="input">
+                                <span className="fas fa-lock"></span>
+                                <input type='password' id="password" placeholder='Enter Password' value={data.password} onChange={(e) => setData({ ...data, password: e.target.value })} />
+                            </div>
+                            <div className="buttons">
+                                <input type="submit" value="Login" className="log-in-btn" />
+                                <h3 className="title2">Don't have an account?</h3>
+                                <Link to="/register" className="register-btn">Register</Link>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     )
