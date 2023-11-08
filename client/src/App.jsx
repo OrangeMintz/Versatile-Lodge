@@ -15,17 +15,26 @@ import Staticpage from './pages/staticpage/staticpage';
 import BookNow from "./pages/bookNow/BookNow";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
+
+//Components
 import Layout from './component/layout';
-
-
 import RequireAuth from './component/RequireAuth';
+
+//
+import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
+import { UserContextProvider } from './context/userContext.jsx';
+
+axios.defaults.baseURL = 'http://localhost:8000'
+axios.defaults.withCredentials = true
 
 
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
+    <UserContextProvider>
+      <Toaster position='bottom-right' toastOptions={{ duration: 5000 }} />
+      <Routes>
         {/* PUBLIC ROUTES */}
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -43,12 +52,10 @@ function App() {
           <Route path="/bookingHistory" element={<BookingHistory />} />
           <Route path="/changePassword" element={<ChangePassword />} />
           <Route path="/booking/:id" element={<BookNow />} />
-
-          {/* Add other protected routes here */}
         </Route>
-        {/* Add other routes here */}
-      </Route>
-    </Routes>
+      </Routes>
+    </UserContextProvider>
+
   );
 }
 
