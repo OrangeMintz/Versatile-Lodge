@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import "./bookingHistory.css"
-import { Link } from "react-router-dom";
 import Footer from '../../component/footer';
 import Navbar from '../../component/Navbar';
 
@@ -13,7 +12,6 @@ const BookingHistory = () => {
       {/* Booking History section */}
       <section className="booking-history">
         <h1>---Booking History---</h1>
-
         <table>
           <tr>
             <th>Booking ID</th>
