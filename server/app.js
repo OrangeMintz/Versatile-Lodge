@@ -2,15 +2,16 @@ const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
-const authroute = require("./routes/auth.js");
+
+// const authroute = require("./routes/auth.js");
 const usersroute = require("./routes/users.js");
 const roomsroute = require("./routes/rooms.js");
 const branchroute = require("./routes/branch.js");
 const bookhistoryroute = require("./routes/bookinghistory.js")
 const reviewsroute = require("./routes/reviews.js")
 const transactionroute = require("./routes/transaction.js")
-const cookieParser = require("cookie-parser");
 
 
 const oauthRouter = require("./routes/oauth.js");
@@ -36,21 +37,15 @@ mongoose.connection.on("connected", () => {
   console.log("Connected to MongoDB");
 });
 
-//middlewares
-
-// app.use(cors());
-app.use(cors({
-  origin: "http://localhost:3000",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  allowedHeaders: "Content-Type, Authorization",
-  credentials: true, // This enables credentials in CORS
-})
-);
-
+//Middlewares
 app.use(express.json());
 app.use(cookieParser());
+app.use(express.urlencoded({ extended: false }))
 
-app.use("/api/auth", authroute);
+
+// app.use("/api/auth", authroute);
+
+app.use('/', require('./routes/authRoutes'))
 app.use("/api/users", usersroute);
 app.use("/api/branch", branchroute);
 app.use("/api/room", roomsroute);

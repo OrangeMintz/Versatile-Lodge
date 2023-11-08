@@ -29,58 +29,65 @@ const register = async (req, res, next) => {
   }
 };
 
+
 const registerCust = async (req, res, next) => {
   try {
-    var salt = bcrypt.genSaltSync(10);
-    var hash = bcrypt.hashSync(req.body.password, salt);
+    const { name, email, password, photo } = req.body;
+    // Check if name was entered
+    if (!name) {
+      return res.json({
+        error: 'name is required'
+      })
+    }
+    // Check is password is good
 
-    const newUserCust = new Customer({
-      name: req.body.name,
-      password: hash,
-      email: req.body.email,
-      photo: req.body.photo,
-    });
+    if (!password || password.length < 8) {
+      return res.json({
+        error: 'Password is required and should be at least 8 characters long'
+      })
+    }
 
-    const regUserCust = await newUserCust.save();
-    res.status(200).json(regUserCust);
-  } catch (err) {
-    next(err);
+    // Check email
+    const exist = await User.findOne({ email });
+    if (exist) {
+      return res.json({
+        error: 'Email is taken'
+      })
+    }
+
+    const hashedPassword = await hashPassword(password)
+
+    const user = await User.create({
+      name, email, password: hashedPassword, photo
+    })
+    return res.json(user);
+
+  } catch (error) {
+    console.log(error)
   }
 };
 
-// const loginCust = async (req, res, next) => {
+
+//OLD CUSTOMER REGISTER
+// const registerCust = async (req, res, next) => {
 //   try {
-//     const user = await Customer.findOne({
+//     var salt = bcrypt.genSaltSync(10);
+//     var hash = bcrypt.hashSync(req.body.password, salt);
+
+//     const newUserCust = new Customer({
+//       name: req.body.name,
+//       password: hash,
 //       email: req.body.email,
+//       photo: req.body.photo,
 //     });
-//     if (!user) return next(createError(404, "User not found!"));
 
-//     const isPasswordCorrect = await bcrypt.compare(
-//       req.body.password,
-//       user.password
-//     );
-//     if (!isPasswordCorrect)
-//       return next(createError(400, "Wrong Password or Email!"));
-
-//     // success
-//     const token = jwt.sign(
-//       {
-//         id: user._id,
-//       },
-//       process.env.JWT
-//     );
-
-//     const { password, ...otherDetails } = user._doc;
-//     res
-//       .cookie("access_token", token, {
-//         httpOnly: true,
-//       })
-//       .status(200)
-//       .json({ otherDetails });
+//     const regUserCust = await newUserCust.save();
+//     res.status(200).json(regUserCust);
 //   } catch (err) {
 //     next(err);
 //   }
 // };
+
 
 
 const loginCust = async (req, res, next) => {

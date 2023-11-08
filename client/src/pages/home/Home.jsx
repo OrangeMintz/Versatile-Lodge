@@ -5,77 +5,16 @@ import SwiperCarousel from '../../component/SwiperCarousel'
 import SwiperGallery from '../../component/SwiperGallery';
 import { useContext } from 'react';
 import AuthContext from '../../context/AuthProvider';
+import Navbar from '../../component/Navbar';
 
 const Home = () => {
 
   const { setAuth } = useContext(AuthContext)
   const navigate = useNavigate()
 
-  // STIL PROBLEM IN LOGGING IN, OUT AND NAVIGATING
-  const logout = async () => {
-    // if used in more components, this should be in context 
-    // axios to /logout endpoint 
-    setAuth({});
-    navigate('/about');
-  }
-
-  const [navbarActive, setNavbarActive] = useState(false);
-
-
-  const toggleNavbar = () => {
-    setNavbarActive(!navbarActive);
-  };
-
-
-  const handleUserBtnClick = () => {                      // for toggling profile
-    const profile = document.querySelector('.profile');
-    profile.classList.toggle('active');
-  }
-
   return (
     <div>
-      <section className="header">
-        <div className="flex">
-          <Link to="/" className="logo">Versatile Lodge</Link>
-          <div
-            className={`menu fas fa-bars ${navbarActive ? 'active' : ''}`}
-            id="menu-btn"
-            onClick={toggleNavbar}
-          ></div>
-        </div>
-
-        <nav className={`navbar ${navbarActive ? 'active' : ''}`}>
-          <Link to="#" className='active'>Home</Link>
-          <Link to="/about" >About</Link>
-          <Link to="/rooms" >Rooms</Link>
-          <Link to="/contact" >Contact</Link>
-          <Link to="/reviews" >Reviews</Link>
-          <Link to="/protected" >Protected</Link>
-
-          <img
-            src="assets/images/user4.jpg"
-            id="user-btn"
-            alt="user"
-            onClick={handleUserBtnClick}
-          />
-          <div className="profile">
-            <img src="assets/images/user4.jpg" alt="" />
-            <h3>Anzai Mitsuyoshi</h3>
-            <span>Client</span>
-            <Link to="/accountSetting" className='btn'>View Profile</Link>
-            <div className="flex-btn">
-              <a href="bookingHistory" className="option-btn">
-                History
-              </a>
-              <a href="login" className="option-btn">
-                Logout
-              </a>
-            </div>
-          </div>
-        </nav>
-      </section>
-
-
+      <Navbar />
       <SwiperCarousel />
 
       <section className="availability" id="availability">
