@@ -1,5 +1,5 @@
 const express = require('express');
-const { createBranch, deleteBranch, updateBranch, getBranch, getBranches} = require('../controllers/branchContr.js');
+const { createBranch, deleteBranch, updateBranch, getBranch, getBranches, countByBranch} = require('../controllers/branchContr.js');
 
 const Branch = require("../models/Branch.js");
 const { verifyAdmin } = require('../utils/verifyToken.js');
@@ -18,9 +18,12 @@ router.delete("/:id", verifyAdmin, deleteBranch);
 router.put("/:id", verifyAdmin, updateBranch)
 
 //Get
-router.get("/:id", getBranch);
+router.get("/find/:id", getBranch);
 
 //GetAll
 router.get("/", getBranches);
+
+
+router.get("/countByBranch", countByBranch);
 
 module.exports = router;
