@@ -6,7 +6,15 @@ import Navbar from '../../component/Navbar';
 
 const ChangePassword = () => {
 
-
+  const handleLogout = () => {
+    axios.get('/logout')
+      .then(() => {
+        window.location.href = `${window.location.origin}/`;
+      })
+      .catch((error) => {
+        console.error('Error during logout:', error);
+      });
+  };
 
   return (
     <div>
@@ -21,7 +29,7 @@ const ChangePassword = () => {
           <ul>
             <li><Link to="/accountSetting"><i className="fas fa-user"></i> Account Details</Link></li>
             <li><Link to="/changePassword"><i className="fas fa-key"></i> Change Password</Link></li>
-            <li><Link to="/login"><i className="fas fa-sign-out-alt"></i> Logout</Link></li>
+            <li><Link onClick={handleLogout}><i className="fas fa-sign-out-alt"></i> Logout</Link></li>
           </ul>
         </div>
 

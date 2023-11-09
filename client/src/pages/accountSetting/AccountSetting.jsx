@@ -24,7 +24,7 @@ const AccountSetting = () => {
   const handleLogout = () => {
     axios.get('/logout')
       .then(() => {
-        window.location.href = `${window.location.origin}/login`;
+        window.location.href = `${window.location.origin}/`;
       })
       .catch((error) => {
         console.error('Error during logout:', error);
