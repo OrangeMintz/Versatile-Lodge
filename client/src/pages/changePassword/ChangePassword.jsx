@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import "./changePassword.css"
 import { Link } from "react-router-dom";
 import Footer from '../../component/footer';
+import axios from 'axios';
 import Navbar from '../../component/Navbar';
 
 const ChangePassword = () => {
