@@ -9,7 +9,7 @@ const HeaderAdmin = () => {
     //menu icon beside Versatile Lodge
     const handleBarsIconClick = () => {  //when menu-btn is pressed,,
         const sideBar = document.querySelector('.side-bar');
-        const body = document.body;                                //html's body element
+        const body = document.querySelector('.body');                                //html's body element
         const menu_btn = document.querySelector('#menu-btn');     //selects outside menu-btn
         
         sideBar.classList.toggle('active');           //activate sidebar          
