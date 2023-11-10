@@ -1,19 +1,18 @@
-let navbar = document.querySelector('.header .navbar');
+// let navbar = document.querySelector('.header .navbar');
 
-document.querySelector('#menu-btn').onclick = () => { //to open side bar
-    navbar.classList.toggle('active');
-}
+// document.querySelector('#menu-btn').onClick = () => { //to open side bar
+//     navbar.classList.toggle('active');
+// }
 
-window.onscroll = () => {                         //close side bar automatically when scrolling
-    navbar.classList.remove('active');
-} 
+// window.onscroll = () => {                         //close side bar automatically when scrolling
+//     navbar.classList.remove('active');
+// } 
 
 document.querySelectorAll('.contact .row .faq .box h3').forEach(faqBox => {    //reveals the answers to FAQ
     faqBox.onclick = () => {
        faqBox.parentElement.classList.toggle('active');   
     }
 });
-
 
 var swiper = new Swiper(".home-slider", {         //swiper defined constructor - home
     loop:true,
