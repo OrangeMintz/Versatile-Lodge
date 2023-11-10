@@ -15,6 +15,12 @@ import BookNow from "./pages/bookNow/BookNow";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 
+
+
+// import Dashboard from "./admin/dashboard/Dashboard";
+import Dashboard from "./pages/dashboard/Dashboard";
+
+
 //Components
 import Layout from './component/layout';
 import RequireAuth from './component/RequireAuth';
@@ -58,6 +64,16 @@ function App() {
         <Route path="/room/roomDetail/:id" element={<RoomDetail />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/reviews" element={<Reviews />} />
+
+
+
+
+        {/* <Route path="/admin/dashboard" element={<Dashboard />} /> */}
+        <Route path="/dashboard" element={<Dashboard />} />
+        
+
+
+
 
         {/* PROTECT THESE ROUTES */}
         {/* <Route element={<RequireAuth />}> */}
