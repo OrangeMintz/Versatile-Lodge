@@ -4,7 +4,7 @@ import Sidebar from '../../component/Sidebar';
 
 const Employees = () => {
     return (
-        <div>
+        <div className="body">
             <HeaderAdmin />
             <Sidebar />
             <h1>Employees</h1>

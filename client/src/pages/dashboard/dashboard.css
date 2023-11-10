@@ -17,26 +17,8 @@
     outline: none;
     border: none;
     text-decoration: none;
-    color: white;         
 }
 
-*::selection {               /*selected text*/
-    background-color: var(--main-color);
-    color: #FFFFFF;
-}
-
-*::-webkit-scrollbar {      /*scrool bar*/
-    height: .5rem;
-    width: 1rem;
-}
-
-*::-webkit-scrollbar-track {
-    background-color: transparent;
-}
-
-*::-webkit-scrollbar-thumb {
-    background-color: var(--main-color);
-}
 
 html {                      /*default size*/
     font-size: 50%;         /*main font-size*/
@@ -44,8 +26,7 @@ html {                      /*default size*/
 }
 
 
-/*here*/
-
+/*huge diff here*/
 .body {
     /* background-color: var(--light-bg); */
     padding-left: 30rem;                 /*space for sidebar*/
@@ -649,7 +630,7 @@ section {                   /*header block*/
 
 
 
-.footer {                           /*footer values*/
+.footerAdmin {                           /*footer values*/
     position: sticky;
     bottom: 0; right: 0; left: 0;
     background-color: var(--white);
@@ -662,8 +643,8 @@ section {                   /*header block*/
     z-index: 1000;
 }
 
-.footer span {                      /*footer group name*/
-    color: var(--branch-color);
+.footerAdmin span {                      /*footer group name*/
+    color: var(--main-color);
 }
 
 

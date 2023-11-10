@@ -87,9 +87,9 @@ const Dashboard = () => {
         
         
         
-            <footer className="footer">
+            <footer className="footerAdmin">
             
-                &copy; copyright @ 2023 by <span>"the group name"</span> || all rights reserved!
+                &copy; copyright @ 2023 by <span>"BSIT-3B"</span> || all rights reserved!
             
             </footer>
         

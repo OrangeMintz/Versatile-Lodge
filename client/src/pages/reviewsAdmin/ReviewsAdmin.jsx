@@ -1,15 +1,15 @@
-import './aboutUs.css';
+import './reviewsAdmin.css';
 import HeaderAdmin from '../../component/HeaderAdmin';
 import Sidebar from '../../component/Sidebar';
 
-const AboutUs = () => {
+const ReviewsAdmin = () => {
     return (
-        <div>
+        <div className='body'>
             <HeaderAdmin />
             <Sidebar />
-            <h1>AboutUs</h1>
+            <h1>ReviewsADMIN</h1>
         </div>
     )
 }
 
-export default AboutUs;
+export default ReviewsAdmin;

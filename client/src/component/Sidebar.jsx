@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
 
@@ -23,16 +24,17 @@ const Sidebar = () => {
             <img src="assets/images/user4.jpg" alt="" />
             <h3>Anzai Mitsuyoshi</h3>
             <span>admin</span>
-            <a href="#" className="btn">view profile</a>
+            <Link to="#" className="btn">view profile</Link>
         </div>
 
         <nav className="navbar">
-            <a href="/dashboard"><i className="fas fa-home"></i><span>Home</span></a>
-            <a href="/aboutUs"><i className="fas fa-question"></i><span>About us</span></a>
-            <a href="/roomsAdmin"><i className="fas fa-graduation-cap"></i><span>Rooms</span></a>
-            <a href="/employees"><i className="fas fa-chalkboard-user"></i><span>Employees</span></a>
-            <a href="/contactUs"><i className="fas fa-phone"></i><span>Contact us</span></a>
-            <a href="/login"><i className="fas fa-power-off"></i><span>Log out</span></a>
+            <Link to="/dashboard"><i className="fas fa-home"></i><span>Home</span></Link>
+            <Link to="/reviewsAdmin"><i className="fas fa-question"></i><span>Reviews</span></Link>
+            <Link to="/employees"><i className="fas fa-chalkboard-user"></i><span>Employees</span></Link>
+            <Link to="/roomsAdmin"><i className="fas fa-graduation-cap"></i><span>Rooms</span></Link>
+            <Link to="/payroll"><i className="fas fa-graduation-cap"></i><span>Payroll</span></Link>
+            <Link to="/transaction"><i className="fas fa-phone"></i><span>Transaction</span></Link>
+            <Link to="/login"><i className="fas fa-power-off"></i><span>Log out</span></Link>
 
         </nav>
 
