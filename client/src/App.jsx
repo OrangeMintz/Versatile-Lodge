@@ -19,6 +19,10 @@ import Register from "./pages/register/Register";
 
 // import Dashboard from "./admin/dashboard/Dashboard";
 import Dashboard from "./pages/dashboard/Dashboard";
+import AboutUs from "./pages/aboutUs/AboutUs";
+import RoomsAdmin from "./pages/roomsAdmin/RoomsAdmin";
+import Employees from "./pages/employees/Employees";
+import ContactUs from "./pages/contactUs/ContactUs";
 
 
 //Components
@@ -70,8 +74,11 @@ function App() {
 
         {/* <Route path="/admin/dashboard" element={<Dashboard />} /> */}
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/aboutUs" element={<AboutUs />} />
+        <Route path="/roomsAdmin" element={<RoomsAdmin />} />
+        <Route path="/employees" element={<Employees />} />
+        <Route path="/contactUs" element={<ContactUs />} />
         
-
 
 
 

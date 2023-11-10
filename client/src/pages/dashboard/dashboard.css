@@ -9,7 +9,7 @@
 }
 
 
-*{                          /*default values*/
+*{                         /* default values */
     font-family: sans-serif;
     margin: 0;
     padding: 0;
@@ -43,131 +43,17 @@ html {                      /*default size*/
     /* overflow: hidden;       prevent vertical scrolling */
 }
 
-/*login starts========>*/
-.container {                    /*login container*/
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    padding-bottom: 70px;
-    background: var(--light-bg);
-    min-height: 100vh;              
-    padding-right: 30rem;           /*to compensate the 30rem taken by the sidebar*/     
-}
 
-.container form {               /*form container*/
-    width: 600px;
-    box-shadow: 0 10px 15px rgba(0,0,0,.1);
-    border-radius: 5px;
-    overflow: hidden;
-    text-align: center;
-}
+/*here*/
 
-.container form .links {        /*for google and facebook*/
-    background: #ffffff;
-    padding: 30px 15px;
-}
-
-.container form .title {        /*sign in with*/
-    font-size: 17px;
-    padding-bottom: 15px;
-    color: #666666; 
-}
-
-.container form .links .buttons .btn {  /*fb and google button*/
-    font-size: 17px;
-    margin: 5px;
-    display: inline-block;
-    background: var(--light-bg);
-    border: var(--border);
-    border-radius: 5px;
-    padding: 10px 30px;
-    color: #333;
-}
-
-.container form .links .buttons .btn i {    /*fb and google icon*/
-    color: #333;
-    padding-right: 5px;
-}
-
-.container form .links .buttons .btn:hover {    /*fb and google button hover*/
-    color: #fff;
-
-}
-
-.container form .links .buttons .btn:hover i{   /*fb and google icon hover*/
-    color: #fff;
-}
-
-.container form .input-box {        /*input container for email and password*/
-    padding: 30px;
-    background: var(--light-bg);
-}
-
-.container form .input-box .input {     /*every input*/
-    margin: 15px auto;
-    display: flex;
-    align-items: center;
-    height: 50px;
-    width: 100%;
-    border-radius: 5px;
-    background: #fff;
-    box-shadow: 0.5px 10px rgba(0,0,0,.1);
-    border: var(--border);   
-     
-}
-
-.container form .input-box .input input {  /*each input*/
-    height: 100%;
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    color: #333;
-    text-transform: none;
-}
-
-.container form .input-box .input span {    /*input icon*/
-    color: #999;
-    padding-right: 5px;
-    padding-left: 15px;
-    font-size: 20px;
-}
-
-.container form .checkbox {     /*checkbox*/
-    text-align: left;
-    padding: 10px 0;
-}
-
-.container form .checkbox label {   /*checkbox label*/
-    font-size: 17px;
-    color: #333;
-    cursor: pointer;
-}
-
-.container form .sign-in-btn {  /*sign in button*/
-    padding: 10px 40px;
-    margin-top: 10px;
-    font-size: 17px;
-    color: #fff;
-    border-radius: 5px;
-    background: var(--main-color);
-    cursor: pointer;
-    transition: .2s linear;
-}
-
-.container form .sign-in-btn:hover {  /*hover*/
-    background: var(--branch-color);
-    letter-spacing: 1px;
-}
-/*login ends=====>*/
-
-body {
-    background-color: var(--light-bg);
+.body {
+    /* background-color: var(--light-bg); */
     padding-left: 30rem;                 /*space for sidebar*/
     transition: .2s linear;              /*transition if sidebar toggled*/
+    background: var(--light-bg);
 }
 
-body.dark {                  /*body with the class dark*/
+.body.dark {                  /*body with the class dark*/
     --black: #ffffff;
     --white: #222222;
     --light-color: #aaaaaa; 
@@ -175,12 +61,11 @@ body.dark {                  /*body with the class dark*/
     --border: .1rem solid rgba(255,255,255,.2);
 }
 
-body.active {               /*expands when sidebar is closed*/
+.body.active {               /*expands when sidebar is closed*/
     padding-left: 0;
 }
 
 section {                   /*header block*/
-
     padding: 2rem;
     max-width: 1200px;      /*imaginary box for header*/
     margin:0 auto;
@@ -256,16 +141,16 @@ section {                   /*header block*/
 }
 
 
-.header {                   /*whole header*/
+.headerAdmin {                   /*whole headerAdmin*/
     background-color: var(--white);
     border-bottom: var(--border);
-    position: sticky;      /*for header to stick*/
+    position: sticky;      /*for headerAdmin to stick*/
     top: 0; left: 0; right: 0;
     z-index: 1000;         /*layering :)*/ 
 
 }
 
-.header .flex {            /*align header horizaontally*/
+.headerAdmin .flex {            /*align headerAdmin horizaontally*/
     /* border: 2px solid green; */
 
     padding: 1.5rem 2rem;
@@ -275,7 +160,7 @@ section {                   /*header block*/
     justify-content: space-between;  
 }
 
-.header .flex .logo {       /*logo*/
+.headerAdmin .flex .logo {       /*logo*/
     /* border: 2px solid blue; */
 
     font-size: 2.5rem;
@@ -283,7 +168,7 @@ section {                   /*header block*/
     font-weight: bolder;
 }
 
-.header .flex .search-form {  /*search bar*/
+.headerAdmin .flex .search-form {  /*search bar*/
     /* border: 2px solid red; */
 
     width: 50rem;
@@ -295,7 +180,7 @@ section {                   /*header block*/
     background-color: var(--light-bg);
 }
 
-.header .flex .search-form input { /*search bar input*/
+.headerAdmin .flex .search-form input { /*search bar input*/
     width: 100%;
     background: none;
     font-size: 1.5rem;
@@ -303,18 +188,18 @@ section {                   /*header block*/
 }
 
 
-.header .flex .search-form button { /*search bar button (icon)*/
+.headerAdmin .flex .search-form button { /*search bar button (icon)*/
     font-size: 2rem;
     color: var(--black);
     cursor: pointer;
     background: none;
 }
 
-.header .flex .search-form button:hover {
+.headerAdmin .flex .search-form button:hover {
     color: var(--branch-color);
 }
 
-.header .flex .icons div {        /*right icons*/
+.headerAdmin .flex .icons div {        /*right icons*/
     /* border: 2px solid cyan; */
 
     font-size: 2rem;
@@ -329,7 +214,7 @@ section {                   /*header block*/
     margin-left: .5rem;
 }
 
-.header .flex .icons div:hover {      /*icons when hovered*/
+.headerAdmin .flex .icons div:hover {      /*icons when hovered*/
     background-color: var(--main-color);
     color: var(--branch-color);
 }   
@@ -369,7 +254,7 @@ section {                   /*header block*/
     display: none;                 /*display only when width is below 450px*/
 }                       
 
-.header .flex .profile {           /*profile toggled*/
+.headerAdmin .flex .profile {           /*profile toggled*/
     position: absolute;
     top: 120%; right: 2rem;
     background-color: var(--white);
@@ -382,11 +267,11 @@ section {                   /*header block*/
     transition: .2s linear;         
 } 
 
-.header .flex .profile.active {     /*show profile after toggle*/
+.headerAdmin .flex .profile.active {     /*show profile after toggle*/
     transform: scale(1);
 }
 
-.header .flex .profile img {        /*header img, scaling of img*/
+.headerAdmin .flex .profile img {        /*headerAdmin img, scaling of img*/
     height: 10rem;
     width: 10rem;
     border-radius: 50%;
@@ -394,12 +279,12 @@ section {                   /*header block*/
     margin-bottom: .5rem;
 }
 
-.header .flex .profile h3 {         /*profile txt*/
+.headerAdmin .flex .profile h3 {         /*profile txt*/
     font-size: 2rem;
     color:var(--black);
 }
 
-.header .flex .profile span {
+.headerAdmin .flex .profile span {
     color: var(--light-color);
     font-size: 1.5rem;
 }
@@ -878,4 +763,4 @@ section {                   /*header block*/
 
 
 
-
+ 

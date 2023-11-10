@@ -58,7 +58,7 @@
 .login-container .form h3 {                  /*Login in with*/
   font-size: 17px;
   text-align: center;
-
+  color: var(--main-color);
 }
 
 

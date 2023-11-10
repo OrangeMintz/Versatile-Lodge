@@ -50,7 +50,7 @@ function Navbar() {
                 <div className="flex">
                     <Link to="/" className="logo">Versatile Lodge</Link>
                     <div className="right-buttons">
-                        <Link to="/room" className="btn">Check Availability</Link>
+                        <Link to="/room" className="btn1">Check Availability</Link>
                         {!user && (
                             <Link to="/login" className="btn2">Login/Register</Link>
                         )}

@@ -19,7 +19,7 @@ const HeaderAdmin = () => {
 
     return (
         <div>
-            <header className="header">
+            <header className="headerAdmin">
                 <section className="flex"> 
                     <div className="icons">
                         <div id="menu-btn" className="fas fa-bars" onClick={handleBarsIconClick}></div>
@@ -37,7 +37,7 @@ const HeaderAdmin = () => {
                         <div id="toggle-btn" className="fas fa-sun"></div>
                         <div id="question-btn" className="fas fa-question"></div>
                         <div id="user-btn" className="fas fa-user" onClick={handleUserIconClick}></div>
-                        <div id="drop-btn" className="fas fa-chevron-down"></div>
+                        {/* <div id="drop-btn" className="fas fa-chevron-down"></div> */}
 
                     </div>
                     
@@ -45,10 +45,10 @@ const HeaderAdmin = () => {
                         <img src="assets/images/user4.jpg"/>
                         <h3>Anzai Mitsuyoshi</h3>
                         <span>admin</span>
-                        <a href="profile.html" className="btn">view profile</a>
+                        <a href="#" className="btn">view profile</a>
                         <div className="flex-btn">
-                            <a href="login.html" className="option-btn">login</a>
-                            <a href="register.html" className="option-btn">register</a>
+                            <a href="#" className="option-btn">login</a>
+                            <a href="#" className="option-btn">register</a>
 
                         </div>
                     </div>

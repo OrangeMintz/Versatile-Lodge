@@ -1,11 +1,16 @@
+import React from 'react';
+
+// import styles from './dashboard.module.css';
 import './dashboard.css';
+
 import HeaderAdmin from '../../component/HeaderAdmin';
 import Sidebar from '../../component/Sidebar';
 
 const Dashboard = () => {
 
     return (
-        <div>
+        // <div className={styles.dashboard}>
+        <div className='body'>
             <HeaderAdmin />
             
             <Sidebar />

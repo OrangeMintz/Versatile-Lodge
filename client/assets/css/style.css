@@ -1,8 +1,9 @@
-:root {
+:root {                             /*main values for easy modification*/
     --main-color: #2B1103;
     --branch-color: #DCC69C;
     --black: #000000;
     --white: #FFFFFF;
+    --light-bg: #eeeeee;
     --border: .1rem solid rgba(220, 198, 156, .3);
 }
 
@@ -50,7 +51,7 @@ section {
     margin: 0 auto;
 }
 
-.btn {
+.btn1 {
     display: inline-block;
     cursor: pointer;
     padding: 1rem 3rem;
@@ -64,7 +65,7 @@ section {
     background-color: var(--main-color);
 }
 
-.btn:hover {
+.btn1:hover {
     border-radius: 5rem;
     background-color: var(--branch-color);
     color: var(--main-color);
