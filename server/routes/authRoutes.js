@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const cors = require('cors')
-const { registerUser, loginUser, getProfile } = require('../controllers/authController')
+const { registerUser, loginUser, getProfile, updateUser } = require('../controllers/authController');
+const authenticateUser = require('../middleware/authMiddleware');
 
 //middleware
 router.use(
@@ -11,9 +12,17 @@ router.use(
     })
 )
 
+
 router.post('/register/customer', registerUser)
+router.put('/update/:id', authenticateUser, updateUser)
 router.post('/login/customer', loginUser)
-router.get('/profile', getProfile)
+router.get('/profile/', getProfile)
+
+
+
+
+
+
 
 
 router.get('/logout', (req, res) => {
@@ -23,7 +32,6 @@ router.get('/logout', (req, res) => {
     res.clearCookie('token'); // Clear the token cookie
 
     // Handle additional logout actions here, such as clearing user sessions
-
     // Send a response indicating a successful logout
     res.status(200).json({ message: 'Logout successful' });
 });

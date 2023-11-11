@@ -20,7 +20,7 @@ const customerSchema = new Schema({
     type: String
   },
 
-  photo: {
+  image: {
     type: String
   }
 },
