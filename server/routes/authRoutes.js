@@ -18,13 +18,6 @@ router.put('/update/:id', authenticateUser, updateUser)
 router.post('/login/customer', loginUser)
 router.get('/profile/', getProfile)
 
-
-
-
-
-
-
-
 router.get('/logout', (req, res) => {
     // Clear the user session or remove the authentication cookie
     // You can also log the user out of your authentication system

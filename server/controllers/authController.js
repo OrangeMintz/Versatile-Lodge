@@ -201,7 +201,9 @@ const loginUser = async (req, res) => {
                     image: user.image,
                     address: user.address
                 },
-                process.env.JWT_SECRET, {}, (err, token) => {
+
+                // process.env.JWT_SECRET, {}, (err, token) => {
+                process.env.JWT_SECRET, { expiresIn: '1h' }, (err, token) => {
                     if (err) throw err;
                     res.cookie(`token`, token).json(userWithImage)
                 })

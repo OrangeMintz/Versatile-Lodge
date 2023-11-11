@@ -8,12 +8,12 @@ const customerSchema = new Schema({
   },
   email: {
     type: String,
-    unique: true
+    unique: true,
+    required: true
   },
 
   password: {
     type: String,
-    required: true
   },
 
   address: {
