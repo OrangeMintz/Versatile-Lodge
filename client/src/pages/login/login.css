@@ -1,0 +1,256 @@
+
+/*login starts=====>*/
+
+.login-container-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* 100% of the viewport height */
+}
+
+.login-container {
+  max-width: 1220px;
+  height: max-content;
+  margin: 20rem 10%; /* Adjust the margin to make the container bigger on both sides */
+  background-color: var(--branch-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+.login-container .image {    /*image container */
+  flex: 1; /* Occupy the left part, adjust as needed */
+  max-width: 1200px; 
+  position: relative;
+}
+
+
+.login-container .image img{  /*actual image*/
+  max-width: 100%;
+  height: 100%;
+  border-radius: 25px 0 0 25px;
+  object-fit: cover;
+
+}
+
+.login-container .image .centered-text { /*Versatile Lodge*/
+  position: absolute;
+  top: 0; bottom: 0; right: 0; left: 0;
+  margin: auto;
+  height: max-content;
+  width: max-content;
+  text-align: center;
+  color: var(--main-color);
+  font-size: 3rem;
+  font-weight: bold;
+  background-color: rgba(220, 198, 156, 0.25);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add the box shadow */
+  border-radius: 15px;
+  padding: 15px;
+}
+
+.login-container .form {     /*form container*/
+  flex: 1; /* Occupy the right part */
+  margin: 20px;
+}
+
+.login-container .form h3 {                  /*Login in with*/
+  font-size: 17px;
+  text-align: center;
+
+}
+
+
+
+.login-container .form .buttons i {        /*font-awesome icon*/
+  margin-right: 5px;
+  
+}
+.login-container .form .buttons .btn {      /*facebook & google btn */
+  display: inline-block;
+  width: 100%;
+  border-radius: 15px;
+}
+
+.login-container .form .buttons .btn:hover {
+  color: var(--main-color);
+  background-color: #e2e2e2;
+}
+
+
+
+.login-container .form .input-box .title {        /*or sign in with email */
+  font-size: 17px;
+  color: var(--main-color); 
+  text-align: center;
+  padding: 15px;
+  margin-top: 25px;
+}
+
+.login-container .form .input-box .title2 {        /*don't have an acc?*/
+  font-size: 17px;
+  color: var(--main-color); 
+  text-align: center;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+.login-container .form .input-box {        /*input login-container for email and password*/
+  background: var(--branch-color);
+  border-radius: 5px;
+
+}
+
+.login-container .form .input-box .input {     /*every input*/
+  margin: 10px auto;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0.5px 10px rgba(0,0,0,.1);
+  border: var(--border);   
+  
+   
+}
+
+.login-container .form .input-box .input input {  /*each input*/
+  height: 50px;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  color: #333;
+  text-transform: none;
+
+}
+
+.login-container .form .input-box .input span {    /*input icon*/
+  color: #999;
+  padding-right: 5px;
+  padding-left: 15px;
+  font-size: 20px;
+}
+
+
+.login-container .form .input-box .buttons {
+  text-align: center;
+  margin: 10px 0 30px 0;
+}
+
+.login-container .form .log-in-btn {  /*log in button*/
+  padding: 10px 40px;
+  margin: 15px 0 10px 0;
+  font-size: 17px;
+  color: white;   
+  border-radius: 5px;
+  background: var(--main-color);
+  cursor: pointer;
+  transition: .2s linear;
+}
+
+.login-container .form .log-in-btn:hover {  /*hover*/
+  border-radius: 10px;
+  outline: 2px solid white;
+  color: var(--branch-color);
+
+}
+
+.login-container .form .register-btn {  /*register button*/
+  padding: 10px 40px;
+  margin: 15px 0;
+  font-size: 17px;
+  border-radius: 5px;
+  border: 1px solid #2B1103;
+  background: var(--branch-color);
+  color: var(--main-color);
+  cursor: pointer;
+  transition: .2s linear;
+}
+
+.login-container .form .register-btn:hover {  
+  color: var(--branch-color);
+  background: var(--main-color);
+  border-radius: 10px;
+}
+
+
+/*login responsiveness*/
+
+@media screen and (max-width: 991px) {
+  .login-container {
+      height: auto; /* Adjust the container's height to fit its content */
+      margin-top: 0px;
+    }
+
+  .login-container .image {
+      flex: 1; /* Make the image occupy the full width in a stacked layout */
+      max-width: 100%; /* Ensure the image takes the entire width */
+      border-radius: 25px 25px 0 0; /* Adjust border-radius */
+  }
+
+
+}
+
+@media screen and (max-width: 768px) {      /* Styles will apply when the screen width is 450px or below */
+  .login-container {
+      flex-direction: column; /* Stack the elements vertically on smaller screens */
+      height: auto; /* Adjust the container's height to fit its content */
+      margin-top: 0;
+    }
+
+  .login-container .image {
+      flex: 1; /* Make the image occupy the full width in a stacked layout */
+      max-width: 100%; /* Ensure the image takes the entire width */
+      margin-right: 0; /* Remove the right margin */
+      border-radius: 25px 25px 0 0; /* Adjust border-radius */
+  }
+
+  .login-container .form {
+      flex: 1; /* The form occupies the full width in a stacked layout */
+      margin: 10px;
+  }
+
+  .login-container .form .buttons {              /*align facebook and google in row*/
+      display: flex;
+      flex-direction: row;
+  }
+
+  .login-container .form .btn {              /*margin*/
+      margin: 10px;
+  }
+
+  .login-container .image .centered-text {     /*versatile lodge*/
+    font-size: 2.5rem;
+  }
+
+  .login-container .form .input-box .buttons {              /*login and register column*/
+      text-align: center;
+      display: block;        
+  }
+
+  
+}
+
+  
+@media screen and (max-width: 450px) {
+  .login-container {
+    margin-top: 0px;
+}
+
+  .login-container .image img{
+      flex: 1; /* Make the image occupy the full width in a stacked layout */
+      max-width: 100%; /* Ensure the image takes the entire width */
+      border-radius: 15px; /* Adjust border-radius */
+  }
+
+  .login-container .image .centered-text {     /*versatile lodge*/
+    font-size: 2.2rem;
+  }
+
+
+}
+
+
+/*login ends=====>*/
