@@ -61,9 +61,9 @@ function App() {
 
         {/* PROTECT THESE ROUTES */}
         {/* <Route element={<RequireAuth />}> */}
-        <Route path="/accountSetting" element={<AccountSetting />} />
-        <Route path="/bookingHistory" element={<BookingHistory />} />
-        <Route path="/changePassword" element={<ChangePassword />} />
+        <Route path="/accountSetting/:id" element={<AccountSetting />} />
+        <Route path="/bookingHistory/:id" element={<BookingHistory />} />
+        <Route path="/changePassword/:id" element={<ChangePassword />} />
         <Route path="/room/booking/:id" element={<BookNow />} />
         {/* </Route> */}
       </Routes>
