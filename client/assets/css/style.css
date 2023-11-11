@@ -1,6 +1,7 @@
 :root {
     --main-color: #2B1103;
     --branch-color: #DCC69C;
+    --black: #000000;
     --white: #FFFFFF;
     --border: .1rem solid rgba(220, 198, 156, .3);
 }
@@ -33,7 +34,7 @@
 }
 
 html {
-    font-size: 62.5%;
+    font-size: 60%;
     overflow-x: hidden;
     scroll-behavior: smooth;
     scroll-padding-top: 2rem;
@@ -150,17 +151,20 @@ section {
 
 .home .swiper-button-prev {
     left: 0%;
+    top: 40%;
 }
 
 .home .swiper-button-next {
-    right: 0;
+    right: 0%;
+    top: 40%;
+
 }
+
 
 .swiper-button-next,
 .swiper-button-prev {
     padding: 1rem 2rem;
     background: var(--white);
-    top: 40%;
     opacity: .7;
 }
 
@@ -325,12 +329,11 @@ section {
 }
 
 .gallery img {
-    height: 40rem;
-    width: 60rem;
     border-radius: .5rem;
     object-fit: cover;
     margin-bottom: 4rem;
     user-select: none;
+    max-height: 400px;
 
 }
 
@@ -338,13 +341,10 @@ section {
     bottom: 0;
 }
 
-.swiper-pagination-bullet {
-    background-color: var(--branch-color);
-}
+.swiper-pagination-bullet:not(:last-child) {
+    background: white;
+  }
 
-.swiper-pagination-bullet-active {
-    background-color: var(--white);
-}
 
 .contact .row {
     display: flex;
@@ -557,19 +557,20 @@ section {
     margin-bottom: .5rem;
 }
 
-.header .navbar .profile h3 {         /*profile name*/
+.header .navbar .profile h3{         /*profile name*/
     font-size: 2rem;
     color:var(--black);
 }
 
 .header .navbar .profile span {     /*profile desc*/
-    color: var(--light-color);
+    color: var(--black);
     font-size: 1.5rem;
     display: block;
 }
 
 .header .navbar .btn {              /*view profile*/
     width: 100%;
+    background-color: var(--branch-color); 
 }
 
 .header .navbar .flex-btn {         /*container of buttons below viewe profile*/
@@ -666,4 +667,3 @@ section {
         width: 100%;
     }
 }
-

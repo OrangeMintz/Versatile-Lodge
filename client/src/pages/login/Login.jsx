@@ -1,9 +1,9 @@
-import React, { useRef, useState, useEffect } from "react";
-import useAuth from "../../hooks/useAuth";
-import axios from "../../api/axios";
-import './login.css'
+import { useState } from "react";
+import { toast } from 'react-hot-toast'
+import axios from 'axios'
+import { Link, useNavigate } from "react-router-dom";
+import './login.css';
 
-import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 
 function navigate(url) {
@@ -12,84 +12,46 @@ function navigate(url) {
 
 async function auth() {
     const response = await fetch('http://127.0.0.1:8000/request', { method: 'post' });
+    // const response = await fetch('http://localhost:3000/request', { method: 'post' });
 
     const data = await response.json();
     console.log(data);
     navigate(data.url);
 
+
 }
 
-const LOGIN_URL = '/api/auth/login/customer'
-
 export const Login = () => {
-    const { setAuth } = useAuth();
+    const navigate = useNavigate()
+    const [data, setData] = useState({
+        email: '',
+        password: '',
+    })
 
-    const navigate = useNavigate();
-
-    const location = useLocation();
-    const from = location.state?.from?.pathname || "/"
-
-
-    const userRef = useRef();
-    const errRef = useRef();
-
-    const [email, setEmail] = useState('');
-    const [pwd, setPwd] = useState('');
-    const [errMsg, setErrMsg] = useState('');
-    // const [success, setSuccess] = useState(false);
-
-
-    useEffect(() => {
-        userRef.current.focus();
-    }, [])
-
-
-    useEffect(() => {
-        setErrMsg('');
-    }, [email, pwd])
-
-    const handleSubmit = async (e) => {
+    const loginUser = async (e) => {
         e.preventDefault();
-        console.log(email, pwd);
+        const { email, password } = data;
+
         try {
-            const response = await axios.post(LOGIN_URL, JSON.stringify({ email, password: pwd }),
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
+            const response = await axios.post('/login/customer', {
+                email,
+                password
+            });
 
-                }
-            );
-            console.log(JSON.stringify(response?.data));
-            // console.log(JSON.stringify(response));
-            const accessToken = response?.data?.accessToken;
-            setAuth({ email, pwd, accessToken });
-            console.log(email, pwd);
-            setEmail('');
-            setPwd('');
-            navigate(from, { replace: true });
-            // setSuccess(true);
-        } catch (err) {
-            if (!err.response) {
-                setErrMsg('No Server Response')
+            if (response.data.error) {
+                toast.error(response.data.error);
+            } else {
+                setData({});
+                navigate('/');
             }
-            else if (err.response?.status === 400) {
-                setErrMsg('Missing Email or Password');
-            }
-            else if (err.response?.status === 401) {
-                setErrMsg('Unauthorized');
-            }
-            else {
-                setErrMsg('Login Failed');
-            }
-            errRef.current.focus();
+        } catch (error) {
+            // Handle the error appropriately, e.g., display an error message
+            toast.error('An error occurred. Please try again.');
         }
-
-    }
+    };
 
     return (
-
-        <section>
-
+        <div className="login-container-wrapper">
             <div className="login-container">
                 <div className="image">
                     <img src="assets/images/home-img-2.jpg" alt="Lodge Logo" />
@@ -98,55 +60,130 @@ export const Login = () => {
                 <div className="form">
                     <h3>Log-in with</h3>
                     <div className="buttons">
-                        <a className="btn" onClick={() => auth()}><i className="fab fa-google"></i>google</a>
-                        <a href="" className="btn"><i className="fab fa-facebook"></i>facebook</a>
+                        <Link className="btn" onClick={() => auth()}><i className="fab fa-google"></i>google</Link>
+                        {/* <Link href="" className="btn"><i className="fab fa-facebook"></i>facebook</Link> */}
                     </div>
-                    <form onSubmit={handleSubmit}>
-
+                    <form onSubmit={loginUser}>
                         <div className="input-box">
                             <h3 className="title">or sign in with email</h3>
-                            <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                             <div className="input">
                                 <span className="far fa-envelope"></span>
-                                {/* <input type="email" name="" placeholder="Email" id="" /> */}
-                                <input
-                                    type="email"
-                                    id="email"
-                                    placeholder="Email"
-                                    ref={userRef}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    value={email}
-                                    required
-                                />
+                                <input type="email" id="email" placeholder="Email" value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} />
                             </div>
                             <div className="input">
                                 <span className="fas fa-lock"></span>
-                                {/* <input type="password" name="" placeholder="Password" id="" /> */}
-                                <input
-                                    type="password"
-                                    id="password"
-                                    placeholder="Password"
-                                    onChange={(e) => setPwd(e.target.value)}
-                                    value={pwd}
-                                    required
-                                />
+                                <input type='password' id="password" placeholder='Enter Password' value={data.password} onChange={(e) => setData({ ...data, password: e.target.value })} />
                             </div>
-                            {/* <div className="checkbox">
-                                        <input type="checkbox" name="" id="remember" />
-                                        <label for="remember">remember me</label>
-                                    </div> */}
                             <div className="buttons">
                                 <input type="submit" value="Login" className="log-in-btn" />
                                 <h3 className="title2">Don't have an account?</h3>
-                                <a className="register-btn" href="/register">Register</a>
+                                <Link to="/register" className="register-btn">Register</Link>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
-
-        </section>
+        </div>
     )
 }
 
 export default Login;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import { useState } from "react";
+// import { toast } from 'react-hot-toast'
+// import axios from 'axios'
+// import { Link, useNavigate } from "react-router-dom";
+// import './login.css'
+
+// function navigate(url) {
+//     window.location.href = url
+// }
+
+// async function auth() {
+//     const response = await fetch('http://127.0.0.1:8000/request', { method: 'post' });
+//     const data = await response.json();
+//     console.log(data);
+//     navigate(data.url);
+// }
+
+// export const Login = () => {
+//     const navigate = useNavigate()
+//     const [data, setData] = useState({
+//         email: '',
+//         password: '',
+//     })
+
+//     const loginUser = async (e) => {
+//         e.preventDefault();
+//         const { email, password } = data;
+
+//         try {
+//             const response = await axios.post('/login/customer', {
+//                 email,
+//                 password
+//             });
+
+//             if (response.data.error) {
+//                 toast.error(response.data.error);
+//             } else {
+//                 setData({});
+//                 navigate('/');
+//             }
+//         } catch (error) {
+//             // Handle the error appropriately, e.g., display an error message
+//             toast.error('An error occurred. Please try again.');
+//         }
+//     };
+
+//     return (
+//         <div className="login-container-wrapper">
+//             <div className="login-container">
+//                 <div className="image">
+//                     <img src="assets/images/home-img-2.jpg" alt="Lodge Logo" />
+//                     <p className="centered-text">Versatile Lodge</p>
+//                 </div>
+//                 <div className="form">
+//                     <h3>Log-in with</h3>
+//                     <div className="buttons">
+//                         <Link className="btn" onClick={() => auth()}><i className="fab fa-google"></i>google</Link>
+//                         {/* <Link href="" className="btn"><i className="fab fa-facebook"></i>facebook</Link> */}
+//                     </div>
+//                     <form onSubmit={loginUser}>
+//                         <div className="input-box">
+//                             <h3 className="title">or sign in with email</h3>
+//                             <div className="input">
+//                                 <span className="far fa-envelope"></span>
+//                                 <input type="email" id="email" placeholder="Email" value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} />
+//                             </div>
+//                             <div className="input">
+//                                 <span className="fas fa-lock"></span>
+//                                 <input type='password' id="password" placeholder='Enter Password' value={data.password} onChange={(e) => setData({ ...data, password: e.target.value })} />
+//                             </div>
+//                             <div className="buttons">
+//                                 <input type="submit" value="Login" className="log-in-btn" />
+//                                 <h3 className="title2">Don't have an account?</h3>
+//                                 <Link to="/register" className="register-btn">Register</Link>
+//                             </div>
+//                         </div>
+//                     </form>
+//                 </div>
+//             </div>
+//         </div>
+//     )
+// }
+
+// export default Login;

@@ -1,222 +1,129 @@
-import React, { useRef, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useState } from 'react'
+import axios from 'axios'
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+
 import "./register.css";
-import axios from "../../api/axios";
-
-const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const NAME_REGEX = /^(?! )[A-Z][A-Za-z ]{5,50}(?<! )$/;
-
-const REGISTER_URL = "/api/auth/register/customer";
+// import Images from "../../component/Images";
 
 function Register() {
-  const userRef = useRef();
-  const errRef = useRef();
+  const navigate = useNavigate();
 
-  const [name, setname] = useState("");
-  const [validname, setValidname] = useState(false);
-  const [nameFocus, setnameFocus] = useState(false);
 
-  const [pwd, setPwd] = useState("");
-  const [validPwd, setValidPwd] = useState(false);
-  const [pwdFocus, setPwdFocus] = useState(false);
+  const [file, setFile] = useState("")
+  const [image, setImage] = useState("")
+  const [uploadedImage, setUploadedImage] = useState("")
 
-  const [matchPwd, setMatchPwd] = useState("");
-  const [validMatch, setValidMatch] = useState(false);
-  const [matchFocus, setMatchFocus] = useState(false);
+  function previewFiles(file) {
+    const reader = new FileReader
+    reader.readAsDataURL(file)
 
-  const [errMsg, setErrMsg] = useState("");
-  const [success, setSuccess] = useState(false);
+    reader.onloadend = () => {
+      setImage(reader.result)
+      console.log(image)
+    }
+  }
 
-  const [email, setEmail] = useState("");
-  const [photo, setPhoto] = useState("");
+  const handleChange = (e) => {
+    const file = e.target.files[0];
+    setFile(file);
+    previewFiles(file);
 
-  useEffect(() => {
-    userRef.current.focus();
-  }, []);
+  }
 
-  useEffect(() => {
-    setValidname(NAME_REGEX.test(name));
-  }, [name]);
+  const [data, setData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '', // New state variable for confirm password
+  });
 
-  useEffect(() => {
-    setValidPwd(PWD_REGEX.test(pwd));
-    setValidMatch(pwd === matchPwd);
-  }, [pwd, matchPwd]);
-
-  useEffect(() => {
-    setErrMsg("");
-  }, [pwd, matchPwd]);
-
-  const handleSubmit = async (e) => {
+  const registerUser = async (e) => {
     e.preventDefault();
-    const v1 = NAME_REGEX.test(name);
-    const v2 = PWD_REGEX.test(pwd);
 
-    if (!v1 || !v2) {
-      setErrMsg("Invalid Entry");
+    //file
+    console.log(e.target.files)
+
+    const { name, email, password, confirmPassword } = data;
+
+    if (password !== confirmPassword) {
+      // Check if password and confirm password match
+      toast.error('Password and Confirm Password do not match');
       return;
     }
 
     try {
-      const response = await axios.post(
-        REGISTER_URL,
-        JSON.stringify({ name, password: pwd, email, photo }),
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      const { data } = await axios.post('/register/customer', {
+        name,
+        email,
+        password,
+        image: image
+      });
 
-      setSuccess(true);
-    } catch (err) {
-      if (!err?.response) {
-        setErrMsg("No Server Response");
-      } else if (err.response?.status === 409) {
-        setErrMsg("Email Taken");
-      } else {
-        setErrMsg("Registration Failed");
+      //
+      try {
+        // console.log(data)
+        const uploadedImage =
+          setUploadedImage(uploadedImage)
+      } catch (error) {
+        console.log(error)
       }
-      errRef.current.focus();
+      // 
+      if (data.error) {
+        toast.error(data.error);
+      } else {
+        setData({
+          name: '',
+          email: '',
+          password: '',
+          confirmPassword: '', // Clear the input fields, including confirm password
+        });
+
+        toast.success('Registration Successful');
+        navigate('/login');
+
+      }
+    } catch (error) {
+      toast.error('An error occurred. Please try again.');
     }
   };
 
   return (
     <div>
-      {success ? (
-        <section>
-          <h1>Success!</h1>
-          <p>
-            <a href="#">Sign In</a>
-          </p>
-        </section>
-      ) : (
-        <div>
-
-          <div className="register-container">
-            <div className="image">
-              {/* <img src="/assets/images/gallery-img-1.jpg" alt="Lodge Logo" /> */}
-              <p className="centered-text">Versatile Lodge</p>
-            </div>
-            <form onSubmit={handleSubmit} className="form">
-              <h1>Registration Form</h1>
-              <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive"> {errMsg} </p>
-              <label htmlFor="name">Full Name:</label>
-              <input
-                type="text"
-                id="name"
-                ref={userRef}
-                autoComplete="off"
-                onChange={(e) => setname(e.target.value)}
-                value={name}
-                required
-                aria-invalid={validname ? "false" : "true"}
-                aria-describedby="fidnote"
-                placeholder="Full Name"
-                onFocus={() => setnameFocus(true)}
-                onBlur={() => setnameFocus(false)}
-              />
-              <p
-                id="namenote"
-                className={
-                  nameFocus && name && !validname ? "instructions" : "offscreen"
-                }
-              >
-                5 and 50 characters
-                <br />
-                Name must start with a capital letter and contain only letters.
-                <br />
-                No Leading and Trailing spaces
-              </p>
-
-              <label htmlFor="password">Password:</label>
-              <input
-                type="password"
-                id="password"
-                onChange={(e) => setPwd(e.target.value)}
-                value={pwd}
-                required
-                placeholder="Password"
-                aria-invalid={validPwd ? "false" : "true"}
-                aria-describedby="pwdnote"
-                onFocus={() => setPwdFocus(true)}
-                onBlur={() => setPwdFocus(false)}
-                autoComplete="false"
-              />
-              <p
-                id="pwdnote"
-                className={pwdFocus && !validPwd ? "instructions" : "offscreen"}
-              >
-                8 to 20 characters.
-                <br />
-                Password must contain a mix of capital, non-capital letters, special characters, and numbers.
-                <br />
-                Allowed special characters:{" "}
-                <span aria-label="exclamation mark">!</span>{" "}
-                <span aria-label="at symbol">@</span>{" "}
-                <span aria-label="hashtag">#</span>{" "}
-                <span aria-label="dollar sign">$</span>{" "}
-                <span aria-label="percent">%</span>
-              </p>
-
-              <label htmlFor="confirmpassword">Confirm Password:</label>
-              <input
-                type="password"
-                id="confirmpassword"
-                onChange={(e) => setMatchPwd(e.target.value)}
-                value={matchPwd}
-                required
-                placeholder="Confirm Password"
-                aria-invalid={validMatch ? "false" : "true"}
-                aria-describedby="confirmnote"
-                onFocus={() => setMatchFocus(true)}
-                onBlur={() => setMatchFocus(false)}
-              />
-              <p
-                id="confirmnote"
-                className={
-                  matchFocus && !validMatch ? "instructions" : "offscreen"
-                }
-              >
-                Must match the first password input field.
-              </p>
-
-              <label htmlFor="email">Email:</label>
-              <input
-                type="email"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-                id="email"
-                name="email"
-                placeholder="Email"
-                required
-              />
-
-              <label htmlFor="photo">Photo:</label>
-              <input
-                type="file"
-                id="photo"
-                onChange={(e) => setPhoto(e.target.value)}
-                value={photo}
-                name="photo"
-                placeholder="Address"
-                accept="image/*"
-              />
-
-              <div className="btns">
-                <a href="/login" className="login-btn">
-                  Login
-                </a>
-                <button
-                  disabled={!validPwd || !validMatch ? true : false}
-                  className="register-btn"
-                  type="submit"
-                >
-                  Register
-                </button>
-              </div>
-            </form>
-          </div>
+      <div className="register-container">
+        <div className="image">
+          <p className="centered-text">Versatile Lodge</p>
         </div>
-      )}
+        <form onSubmit={registerUser} className="form">
+          <h1>Registration Form</h1>
+          <label className="label">Full Name:</label>
+          <input type='text' placeholder='Enter Name' value={data.name} onChange={(e) => setData({ ...data, name: e.target.value })} />
+          <label className='label'>Email:</label>
+          <input type='email' placeholder='Enter Email' value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} />
+          <label className='label'>Password:</label>
+          <input type='password' placeholder='Enter Password' value={data.password} onChange={(e) => setData({ ...data, password: e.target.value })} />
+          <label className='label'>Confirm Password:</label>
+          <input type='password' placeholder='Confirm Password' value={data.confirmPassword} onChange={(e) => setData({ ...data, confirmPassword: e.target.value })} />
+          <label className='label' htmlFor="fileInput" >Profile Picture:</label>
+          <input type='file' accept="image/png, image/jpeg, image/jpg" onChange={e => handleChange(e)} />
+
+          <div className="btns">
+            <Link to="/login" className="login-btn">
+              Login
+            </Link>
+            <button type='submit' className="register-btn">Register</button>
+          </div>
+        </form>
+      </div>
+
+      {/* <div key={image._id}>
+        <img src={image} alt="" />
+        <Images uploadedImage={uploadedImage} />
+        <Images publicId={image.image} />
+      </div> */}
     </div>
+
   );
 }
 
