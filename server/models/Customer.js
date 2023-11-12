@@ -22,6 +22,11 @@ const customerSchema = new Schema({
 
   image: {
     type: String
+  },
+
+  googleSign: {
+    type: Boolean,
+    default: "false"
   }
 },
   { timestamps: true }

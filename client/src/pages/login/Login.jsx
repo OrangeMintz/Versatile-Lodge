@@ -18,6 +18,7 @@ async function auth() {
     console.log(data);
     navigate(data.url);
 
+
 }
 
 export const Login = () => {

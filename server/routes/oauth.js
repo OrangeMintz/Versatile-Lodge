@@ -36,6 +36,7 @@ router.get('/', async function (req, res, next) {
         name: googleUser.name,
         email: googleUser.email,
         image: googleUser.picture,
+        googleSign: true
         // ... other properties you want to save
       });
     }
@@ -46,7 +47,8 @@ router.get('/', async function (req, res, next) {
         id: user._id,
         name: user.name,
         image: user.image,
-        address: user.address
+        address: user.address,
+        googleSign: true
       },
       process.env.JWT_SECRET,
       { expiresIn: '1h' }
