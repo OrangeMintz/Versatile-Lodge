@@ -23,6 +23,7 @@ import RequireAuth from './component/RequireAuth';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import { UserContextProvider } from './context/userContext.jsx';
+import Unauthorized from './pages/unauthorized/unauthorized.jsx';
 
 axios.defaults.baseURL = 'http://localhost:8000'
 axios.defaults.withCredentials = true
@@ -58,6 +59,9 @@ function App() {
         <Route path="/room/roomDetail/:id" element={<RoomDetail />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/reviews" element={<Reviews />} />
+
+        <Route path="/unauthorized" element={<Unauthorized />} />
+
 
         {/* PROTECT THESE ROUTES */}
         {/* <Route element={<RequireAuth />}> */}

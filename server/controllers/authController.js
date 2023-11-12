@@ -3,11 +3,6 @@ const { hashPassword, comparePassword } = require('../helpers/auth');
 const jwt = require('jsonwebtoken');
 const cloudinary = require('../cloudinary/cloudinary')
 
-
-const test = (req, res) => {
-    res.json('test is working');
-}
-
 const registerUser = async (req, res) => {
     try {
         const { name, email, password, image } = req.body;
@@ -207,6 +202,7 @@ const loginUser = async (req, res) => {
                     if (err) throw err;
                     res.cookie(`token`, token).json(userWithImage)
                 })
+
         } else {
             res.json({
                 error: 'Password does not match'
@@ -233,11 +229,22 @@ const getProfile = (req, res) => {
     }
 }
 
+const getUser = (req, res) => {
+
+}
+
+const updateUserInformation = (req, res) => {
+
+}
+
+
+
 
 module.exports = {
-    test,
     registerUser,
     loginUser,
     getProfile,
-    updateUser
+    updateUser,
+    getUser,
+    updateUserInformation
 }

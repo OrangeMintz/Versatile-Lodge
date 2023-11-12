@@ -17,7 +17,9 @@ const authenticateUser = (req, res, next) => {
         req.user = decoded; // Attach user information to the request object
         next();
     } catch (error) {
-        return res.status(401).json({ message: 'Unauthorized' });
+        // return res.status(401).json({ message: 'Unauthorized' });
+        return res.redirect('/unauthorized');
+
     }
 };
 
