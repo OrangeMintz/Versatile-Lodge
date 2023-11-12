@@ -22,20 +22,20 @@ const Sidebar = () => {
         <div className="icons">
             <div id="close-btn" className="fas fa-times" onClick={handleCloseIconClick}></div>
         </div>
-            <img src="assets/images/chizuru.jpg" alt="" />
+            <img src="https://th.bing.com/th/id/OIP.edPmh_52ubwjIDT2YIBjkAAAAA?pid=ImgDet&rs=1" alt="" />
             <h3>Anzai Mitsuyoshi</h3>
             <span>admin</span>
             <Link to="#" className="btn">view profile</Link>
         </div>
 
         <nav className="navbar">
-            <Link to="/dashboard"><i className="fas fa-home"></i><span>Home</span></Link>
+            <Link to="../"><i className="fas fa-home"></i><span>Home</span></Link>
             <Link to="/reviewsAdmin"><i className="fas fa-question"></i><span>Reviews</span></Link>
             <Link to="/employees"><i className="fas fa-users"></i><span>Employees</span></Link>
             <Link to="/roomsAdmin"><i className="fas fa-bed"></i><span>Rooms</span></Link>
             <Link to="/payroll"><i className="fas fa-dollar-sign"></i><span>Payroll</span></Link>
             <Link to="/transaction"><i className="fas fa-code-branch"></i><span>Transaction</span></Link>
-            <Link to="/login"><i className="fas fa-power-off"></i><span>Log out</span></Link>
+            <Link to="/loginAdmin"><i className="fas fa-power-off"></i><span>Log out</span></Link>
 
         </nav>
 
