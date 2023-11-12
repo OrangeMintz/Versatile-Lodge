@@ -3,6 +3,10 @@ const { hashPassword, comparePassword } = require('../helpers/auth');
 const jwt = require('jsonwebtoken');
 const cloudinary = require('../cloudinary/cloudinary')
 
+
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+
 const registerUser = async (req, res) => {
     try {
         const { name, email, password, image } = req.body;
@@ -36,6 +40,13 @@ const registerUser = async (req, res) => {
             });
         }
 
+        const nameRegex = /^[a-zA-Z]+$/;
+        if (!nameRegex.test(name)) {
+            return res.json({
+                error: 'Name should not contain numbers and special characters'
+            });
+        }
+
         // ... (rest of your validation logic)
 
         // Check email
@@ -45,6 +56,25 @@ const registerUser = async (req, res) => {
                 error: 'Email is already taken'
             });
         }
+
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            return res.json({
+                error: 'Invalid email format'
+            });
+
+        }
+
+        // Validate password format using regex
+        if (!passwordRegex.test(password)) {
+            return res.json({
+                error: 'Password must contain at least 1 lowercase letter, 1 uppercase letter, a number, and special character. It should be at least 8 characters long'
+            });
+        }
+
+        // Validate name format
+
 
         const hashedPassword = await hashPassword(password);
 
@@ -106,6 +136,9 @@ const registerUser = async (req, res) => {
 //     }
 // };
 
+
+
+
 // Update User Endpoint
 const updateUser = async (req, res) => {
     try {
@@ -163,6 +196,69 @@ const updateUser = async (req, res) => {
         });
     }
 };
+
+
+
+// Update Password Endpoint
+const updatePassword = async (req, res) => {
+    try {
+        const { currentPassword, newPassword, confirmNewPassword } = req.body;
+
+        // Validate current password
+        const user = await Customer.findById(req.user.id);
+
+        // Check if the user signed in with Google
+        if (user.googleSign) {
+            return res.status(400).json({ error: 'Cannot update password for users signed in with Google' });
+        }
+
+        const match = await comparePassword(currentPassword, user.password);
+        if (!match) {
+            return res.status(400).json({ error: 'Current password is incorrect' });
+        }
+
+        // Validate new password and confirm new password
+        if (newPassword !== confirmNewPassword) {
+            return res.status(400).json({ error: 'New password and confirm new password do not match' });
+        }
+
+        // Validate the new password using a regex
+        if (!passwordRegex.test(newPassword)) {
+            return res.status(400).json({
+                error: 'New password must contain at least 1 lowercase letter, 1 uppercase letter, a number, and special character. It should be at least 8 characters long.',
+            });
+        }
+
+        // Hash the new password
+        const hashedPassword = await hashPassword(newPassword);
+
+        // Update user password
+        const updatedUser = await Customer.findByIdAndUpdate(
+            req.user.id,
+            { $set: { password: hashedPassword } },
+            { new: true }
+        );
+
+        res.json(updatedUser);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            error: 'Internal server error',
+        });
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -245,6 +341,7 @@ module.exports = {
     loginUser,
     getProfile,
     updateUser,
+    updatePassword,
     getUser,
     updateUserInformation
 }

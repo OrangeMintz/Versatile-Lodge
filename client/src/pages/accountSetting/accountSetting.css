@@ -1,3 +1,5 @@
+
+  
 .account-settings {
     width: 100%;
     max-width: 1160px;
@@ -97,6 +99,22 @@
 } */
 
 
+/* Button hover effect */
+.btn-update{
+    background-color: var(--main-color) !important;
+    font-size: 1.5rem !important;
+    border: 1px solid transparent !important;
+
+}
+.btn-update:hover{
+    border-radius: 10px;
+    transition: 0.5s;
+    border: 1px solid var(--main-color) !important;
+    background-color: var(--branch-color) !important;
+    color:  var(--main-color);
+  }
+
+
 
   /* Add CSS for profile picture and change link */
   .profile-picture {
@@ -137,3 +155,5 @@
   .profile-picture:hover label {
     display: block;
   }
+
+ 
