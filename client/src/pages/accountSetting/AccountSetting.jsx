@@ -49,6 +49,13 @@ const AccountSetting = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+
+
+    if (user.googleSign && name === 'email') {
+      toast.error('You cannot change your email if you signed in with Google.');
+      return;
+    }
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -206,6 +213,8 @@ const AccountSetting = () => {
                   placeholder={user.email}
                   value={formData.email}
                   onChange={handleInputChange}
+                  disabled={user.googleSign} // Disable the input if googleSign is true
+
                 />
 
                 <label htmlFor="address">Address:</label>
