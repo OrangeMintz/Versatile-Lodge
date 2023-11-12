@@ -62,7 +62,7 @@ app.use("/api/booking/history", bookhistoryroute);
 app.use("/api/reviews", reviewsroute);
 app.use("/api/transaction", transactionroute);
 
-//GOOGLE OAUTH
+//GOOGLE OAUTH WITHOUT PASSPORT
 app.use("/oauth", oauthRouter);
 app.use("/request", requestRouter);
 
