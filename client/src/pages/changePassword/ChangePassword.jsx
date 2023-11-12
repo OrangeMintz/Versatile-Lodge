@@ -28,8 +28,6 @@ const ChangePassword = () => {
     }
   }, [user, setUser]);
 
-
-
   const [formData, setFormData] = useState({
     currentPassword: '',
     newPassword: '',
@@ -80,6 +78,18 @@ const ChangePassword = () => {
     }
   };
 
+
+  const handleLogout = () => {
+    axios
+      .get('/logout')
+      .then(() => {
+        window.location.href = `${window.location.origin}/`;
+      })
+      .catch((error) => {
+        console.error('Error during logout:', error);
+      });
+  };
+
   return (
     <div>
       <Navbar />
@@ -103,7 +113,7 @@ const ChangePassword = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link >
+                  <Link onClick={handleLogout}>
                     <i className="fas fa-sign-out-alt"></i> Logout
                   </Link>
                 </li>
