@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import useFetch from "../../hooks/useFetch"
 import "./rooms.css";
 import Loader from '../../component/Loader';
@@ -6,9 +6,27 @@ import Footer from '../../component/footer';
 import Error from '../../component/Error';
 import Navbar from '../../component/Navbar';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../../context/userContext';
+import axios from 'axios';
+
 
 
 const Rooms = () => {
+    const { user, setUser } = useContext(UserContext);
+    useEffect(() => {
+        if (!user) {
+            axios
+                .get('/profile')
+                .then(({ data }) => {
+                    setUser(data);
+                })
+                .catch((error) => {
+                    console.error('Error fetching user profile:', error);
+                });
+        }
+    }, [user, setUser]);
+
+
     const [navbarActive, setNavbarActive] = useState(false);
 
     const toggleNavbar = () => {
@@ -77,10 +95,11 @@ const Rooms = () => {
                                                 <h2 className="room-branch">{room.branch}</h2>
                                             </div>
                                             <p>{room.desc}</p>
-
                                             <div className="view-book">
-                                                <Link to={`/room/bookingDetail/${room._id}`} className={(`/bookingDetail/${room._id}`)}>Book Now</Link>
-                                                <Link to={`/room/roomDetail/${room._id}`} className={(`/bookingDetail/${room._id}`)}>View Details</Link>
+                                                {user && user.id && (
+                                                    <Link to={`/room/booking/${room._id}`}>Book Now</Link>
+                                                )}
+                                                <Link to={`/room/roomDetail/${room._id}`} >View Details</Link>
                                             </div>
                                         </div>
                                     </div>

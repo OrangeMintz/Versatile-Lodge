@@ -1,3 +1,4 @@
+import Navbar from '../../component/Navbar';
 import Footer from '../../component/footer';
 import './bookNow.css';
 
@@ -10,38 +11,7 @@ const BookNow = () => {
 
     return (
         <div>
-            <section className="header">
-                <div className="flex">
-                    <a href="#home" className="logo">Versatile Lodge</a>
-                    <div className="menu fas fa-bars" id="menu-btn"></div>
-                </div>
-
-                <nav className="navbar">
-                    <a href="./">Home</a>
-                    <a href="./about">About</a>
-                    <a href="./rooms" className="active">Rooms</a>
-                    <a href="./contact">Contact</a>
-                    <a href="./reviews">Reviews</a>
-                    <img src="../assets/images/user4.jpg" id="user-btn" alt="user" onClick={handleUserBtnClick} />
-                    {/* <!-- <select id="dropdown">
-                    <option value="" selected>Profile</option>
-                    <option value="booking-history.html">Booking History</option>
-                    <option value="account-setting.html">Account Settings</option>
-                    <option value="login.html">Log out</option>
-                </select> --> */}
-                    <div className="profile">
-                        <img src="../assets/images/user4.jpg" alt="" />
-                        <h3>Anzai Mitsuyoshi</h3>
-                        <span>client</span>
-                        <a href="accountSetting" className="btn">View Profile</a>
-                        <div className="flex-btn">
-                            <a href="bookingHistory" className="option-btn">History</a>
-                            <a href="login" className="option-btn">Logout</a>
-                        </div>
-                    </div>
-                </nav>
-            </section>
-
+            <Navbar />
             <div className="container">
                 <div className="detailsWrapper">
                     <div className="imageContainer">
