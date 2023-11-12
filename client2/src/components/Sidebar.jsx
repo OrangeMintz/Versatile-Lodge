@@ -30,7 +30,7 @@ const Sidebar = () => {
 
         <nav className="navbar">
             <Link to="../"><i className="fas fa-home"></i><span>Home</span></Link>
-            <Link to="/reviewsAdmin"><i className="fas fa-question"></i><span>Reviews</span></Link>
+            <Link to="/reviewsAdmin"><i className="fas fa-star"></i><span>Reviews</span></Link>
             <Link to="/employees"><i className="fas fa-users"></i><span>Employees</span></Link>
             <Link to="/roomsAdmin"><i className="fas fa-bed"></i><span>Rooms</span></Link>
             <Link to="/payroll"><i className="fas fa-dollar-sign"></i><span>Payroll</span></Link>
