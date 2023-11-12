@@ -1,163 +1,247 @@
-import React, { useState } from 'react';
-import "./accountSetting.css";
+import React, { useState, useRef, useContext, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
+import axios from 'axios';
+import Navbar from '../../component/Navbar';
+import Footer from '../../component/footer';
+import { UserContext } from '../../context/userContext';
+import './accountSetting.css';
 
 const AccountSetting = () => {
+  const { user, setUser } = useContext(UserContext);
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const [navbarActive, setNavbarActive] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    address: '',
+  });
 
-  const toggleNavbar = () => {
-    setNavbarActive(!navbarActive);
+  const [file, setFile] = useState(null);
+  const [image, setImage] = useState('');
+
+  useEffect(() => {
+    if (!user) {
+      axios
+        .get('/profile')
+        .then(({ data }) => {
+          setUser(data);
+        })
+        .catch((error) => {
+          console.error('Error fetching user profile:', error);
+        });
+    }
+  }, [user, setUser]);
+
+  const fileInputRef = useRef();
+  const profileImageRef = useRef();
+
+  const handleFileInputChange = (event) => {
+    const selectedFile = event.target.files[0];
+
+    if (selectedFile) {
+      const imageURL = URL.createObjectURL(selectedFile);
+      profileImageRef.current.src = imageURL;
+      setFile(selectedFile);
+    }
   };
 
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
 
-  const handleUserBtnClick = () => {                      // for toggling profile
-    const profile = document.querySelector('.profile');
-    profile.classList.toggle('active');
-  }
+
+    if (user.googleSign && name === 'email') {
+      toast.error('You cannot change your email if you signed in with Google.');
+      return;
+    }
+
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleUpdateProfile = async (event) => {
+    event.preventDefault();
+
+    // Validation
+    if (formData.name && formData.name.trim() !== formData.name) {
+      toast.error('Name should not contain leading/trailing spaces');
+      return;
+    }
+
+    if (formData.name && formData.name.length < 3) {
+      toast.error('Invalid Name');
+      return;
+    }
+
+    const nameRegex = /^[a-zA-Z\s.]*$/; // This regex allows letters, spaces, and dots
+    if (formData.name && !nameRegex.test(formData.name)) {
+      toast.error('Name should only contain letters');
+      return;
+    }
+
+    if (formData.address && formData.address.length < 10) {
+      toast.error('Invalid Address');
+      return;
+    }
+
+    // Similar validation for email and address
+
+    // Extract user ID from the URL
+    const userId = location.pathname.split('/').pop();
+
+    // Check if userId is available
+    if (!userId) {
+      console.error('User ID is undefined.');
+      return;
+    }
+
+    try {
+      // Check if a new file is selected
+      if (file) {
+        const formData = new FormData();
+        formData.append('name', formData.name);
+        formData.append('email', formData.email);
+        formData.append('address', formData.address);
+        formData.append('image', file);  // Append the file to formData
+
+        const response = await axios.put(`/update/${userId}`, formData);
+
+        const updatedUser = response.data;
+        setUser(updatedUser);
+
+        const updatedTokenCookie = response.headers['set-cookie'];
+        document.cookie = updatedTokenCookie;
+
+        console.log('User updated:', updatedUser);
+        toast.success('Account Details Change Successfully');
+        navigate('/');
+      } else {
+        // If no new file, just update text fields
+        const response = await axios.put(`/update/${userId}`, formData);
+
+        const updatedUser = response.data;
+        setUser(updatedUser);
+
+        const updatedTokenCookie = response.headers['set-cookie'];
+        document.cookie = updatedTokenCookie;
+
+        console.log('User updated:', updatedUser);
+        toast.success('Account Details Change Successfully');
+        navigate('/');
+      }
+    } catch (error) {
+      console.error('Error updating user:', error);
+      toast.error('An error occurred. Please try again.');
+    }
+  };
+
+  const handleLogout = () => {
+    axios
+      .get('/logout')
+      .then(() => {
+        window.location.href = `${window.location.origin}/`;
+      })
+      .catch((error) => {
+        console.error('Error during logout:', error);
+      });
+  };
 
   return (
     <div>
-      {/* Header section */}
-      <section className="header">
-        <div className="flex">
-          <a href="#home" className="logo">
-            Versatile Lodge
-          </a>
-          <a href="#availability" className="btn">
-            Check availability
-          </a>
-          <div
-            className={`menu fas fa-bars ${navbarActive ? 'active' : ''}`}
-            id="menu-btn"
-            onClick={toggleNavbar}
-          ></div>
-        </div>
-
-        <nav className={`navbar ${navbarActive ? 'active' : ''}`}>
-          <a href="./">Home</a>
-          <a href="./about">About</a>
-          <a href="./rooms">Rooms</a>
-          <a href="./contact">Contact</a>
-          <a href="./reviews">Reviews</a>
-          <img
-            src="assets/images/user4.jpg"
-            id="user-btn"
-            alt="user"
-            onClick={handleUserBtnClick}
-            className="active"
-          />
-          <div className="profile">
-            <img src="assets/images/user4.jpg" alt="" />
-            <h3>Anzai Mitsuyoshi</h3>
-            <span>client</span>
-            <a href="accountSetting" className="btn">
-              View Profile
-            </a>
-            <div className="flex-btn">
-              <a href="bookingHistory" className="option-btn">
-                History
-              </a>
-              <a href="login" className="option-btn">
-                Logout
-              </a>
-            </div>
-          </div>
-        </nav>
-      </section>
-
-      {/* <!-- account-settings section --> */}
-
+      <Navbar />
       <section className="account-settings">
-
-          <div className="account-menu">
-            <div className="profile-picture">
-              <img src="assets/images/user4.jpg" alt="Profile Picture"/>
-            </div>
-            <ul>
-              <li><a href="accountSetting"><i className="fas fa-user"></i> Account Details</a></li>
-              <li><a href="changePassword"><i className="fas fa-key"></i> Change Password</a></li>
-              <li><a href="login"><i className="fas fa-sign-out-alt"></i> Logout</a></li>
-            </ul>
+        <div className="account-menu">
+          <div className="profile-picture">
+            {!!user && <img src={user.image} alt="Profile Picture" ref={profileImageRef} />}
+            {/* <label htmlFor="profile-picture-input" id="change-picture-label">
+              Change Profile Picture
+            </label>
+            <input
+              type="file"
+              id="profile-picture-input"
+              accept="image/*"
+              style={{ display: 'none' }}
+              ref={fileInputRef}
+              onChange={handleFileInputChange}
+            /> */}
           </div>
-        
-          <div className="settings">
+          <ul>
+            {!!user && (
+              <>
+                <li>
+                  <Link to={`/accountSetting/${user.id}`}>
+                    <i className="fas fa-user"></i> Account Details
+                  </Link>
+                </li>
+                <li>
+                  <Link to={`/changePassword/${user.id}`}>
+                    <i className="fas fa-key"></i> Change Password
+                  </Link>
+                </li>
+                <li>
+                  <Link onClick={handleLogout}>
+                    <i className="fas fa-sign-out-alt"></i> Logout
+                  </Link>
+                </li>
+              </>
+            )}
+          </ul>
+        </div>
+        <div className="settings">
           <h2>Account Settings</h2>
-          <form>
-            <label htmlFor="email">Email Address:</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="JohnDoe@student.buksu.edu.ph"
-              required
-            />
+          <form onSubmit={handleUpdateProfile}>
+            {!!user && (
+              <>
+                <label htmlFor="first-name">Full Name:</label>
+                <input
+                  type="text"
+                  id="first-name"
+                  name="name"
+                  placeholder={user.name}
+                  value={formData.name}
+                  onChange={handleInputChange}
+                />
 
-            <label htmlFor="first-name">First Name:</label>
-            <input
-              type="text"
-              id="first-name"
-              name="first-name"
-              placeholder="John"
-              required
-            />
+                <label htmlFor="email">Email Address:</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder={user.email}
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  disabled={user.googleSign} // Disable the input if googleSign is true
 
-            <label htmlFor="last-name">Last Name:</label>
-            <input
-              type="text"
-              id="last-name"
-              name="last-name"
-              placeholder="Doe"
-              required
-            />
+                />
 
-            <label htmlFor="address">Address:</label>
-            <input
-              type="text"
-              id="address"
-              name="address"
-              placeholder="Malaybalay, Bukidnon"
-            />
+                <label htmlFor="address">Address:</label>
+                <input
+                  type="text"
+                  id="address"
+                  name="address"
+                  placeholder={user.address}
+                  value={formData.address}
+                  onChange={handleInputChange}
+                />
+                <label htmlFor="address">Profile Picture:</label>
+                <input type='file' accept="image/png, image/jpeg, image/jpg" onChange={handleInputChange} />
+              </>
+            )}
 
-            <button type="submit">Update Profile</button>
+            <button className='btn-update' type="submit">Update Profile</button>
           </form>
+
+          <div key={image._id}>
+            <img src={image} alt="" />
+          </div>
+
         </div>
 
-      </section> 
-
-
-
-
-      {/* <!-- footer section--> */}
-
-      <section className="footer">
-
-          <div className="box-container">
-
-              <div className="box">
-                  <a href="tel:1234567890"><i className="fas fa-phone"></i>+123-456-7890</a>
-                  <a href="tel:1111122333"><i className="fas fa-phone"></i>+111-226-3333</a>
-                  <a href="mailto:example@gmail.com"><i className="fas fa-envelope"></i>example@gmail.com</a>
-                  <a href="#"><i className="fas fa-map-marker-alt"></i>Malaybalay, Bukidnon - 8700</a>
-              </div>
-              <div className="box">
-                  <a href="#home">home</a>
-                  <a href="#reservation">reservation</a>
-                  <a href="#gallery">gallery</a>
-                  <a href="#contact">contact</a>
-                  <a href="#reviews">reviews</a>
-              </div>
-              <div className="box">
-                  <a href="#">Facebook<i className='fab fa-facebook'></i></a>
-                  <a href="#">Twitter<i className="fab fa-twitter"></i></a>
-                  <a href="#">Instagram<i className="fab fa-instagram"></i></a>
-                  <a href="#">LinkedIn<i className="fab fa-linkedin"></i></a>
-                  <a href="#">Youtube<i className="fab fa-youtube"></i></a>
-              </div>
-          </div>
-
-          <div className="credit">&copy; copyright @ 2023 by BSIT-3B | all rights reserved!</div>
-
       </section>
+      <Footer />
     </div>
   );
 };
