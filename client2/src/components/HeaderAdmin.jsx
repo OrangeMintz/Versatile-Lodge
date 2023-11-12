@@ -43,7 +43,7 @@ const HeaderAdmin = () => {
                     </div>
                     
                     <div className="profile">
-                        <img src="assets/images/chizuru.jpg"/>
+                        <img src="https://th.bing.com/th/id/OIP.edPmh_52ubwjIDT2YIBjkAAAAA?pid=ImgDet&rs=1"/>
                         <h3>Anzai Mitsuyoshi</h3>
                         <span>admin</span>
                         <a href="#" className="btn">view profile</a>
