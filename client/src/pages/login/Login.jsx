@@ -18,7 +18,6 @@ async function auth() {
     console.log(data);
     navigate(data.url);
 
-
 }
 
 export const Login = () => {
@@ -43,6 +42,7 @@ export const Login = () => {
             } else {
                 setData({});
                 navigate('/');
+                toast.success('Login Successful')
             }
         } catch (error) {
             // Handle the error appropriately, e.g., display an error message
