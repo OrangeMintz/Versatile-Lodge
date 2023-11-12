@@ -5,6 +5,7 @@ import './dashboard.css';
 
 import HeaderAdmin from '../../components/HeaderAdmin';
 import Sidebar from '../../components/Sidebar';
+import Footer from '../../components/Footer';
 
 const Dashboard = () => {
 
@@ -98,21 +99,8 @@ const Dashboard = () => {
             </section>
             
             {/* <!-- overview section ends --> */}
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-            <footer className="footerAdmin">
             
-                &copy; copyright @ 2023 by <span>"BSIT-3B"</span> || all rights reserved!
-            
-            </footer>
+            <Footer />        
         
         </div>
     )
