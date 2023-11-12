@@ -3,22 +3,15 @@ const express = require('express');
 const router = express.Router();
 const { OAuth2Client } = require('google-auth-library');
 const Customer = require('../models/Customer');
-const cors = require('cors');  // Import cors module
 
-// Set cors options
-const corsOptions = {
-  credentials: true,
-  origin: 'http://localhost:3000',
-};
-
-// Use cors middleware
-router.use(cors(corsOptions));
 
 router.get('/', async function (req, res, next) {
   const code = req.query.code;
 
   try {
-    const redirectURL = "http://127.0.0.1:8000/oauth"
+    // const redirectURL = "http://127.0.0.1:8000/oauth"\
+    const redirectURL = "http://localhost:8000/oauth"
+
     const oAuth2Client = new OAuth2Client(
       process.env.CLIENT_ID,
       process.env.CLIENT_SECRET,

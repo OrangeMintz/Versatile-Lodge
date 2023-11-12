@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { UserContext } from "../context/userContext.jsx";
 import axios from 'axios';
-
 import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from "@cloudinary/url-gen";
 import { Transformation } from "@cloudinary/url-gen";
@@ -26,11 +25,22 @@ function Navbar() {
     const handleLogout = () => {
         axios.get('/logout')
             .then(() => {
+                // Set the new location
                 window.location.href = `${window.location.origin}/`;
+                // Reload the page
+                window.location.reload();
             })
             .catch((error) => {
                 console.error('Error during logout:', error);
             });
+    };
+
+    const navigate = useNavigate();
+    const handleLoginClick = () => {
+        // Navigate to the login page
+        navigate('/login');
+        // Reload the page
+        window.location.reload();
     };
 
     const [navbarActive, setNavbarActive] = useState(false);
@@ -56,7 +66,10 @@ function Navbar() {
                     <div className="right-buttons">
                         <Link to="/room" className="btn">Check Availability</Link>
                         {!user && (
-                            <Link to="/login" className="btn" style={{ marginLeft: '10px', border: '0px' }}>Login/Register</Link>
+                            // <Link to="/login" className="btn" style={{ marginLeft: '10px', border: '0px' }}>Login/Register</Link>
+                            <p className="btn" style={{ marginLeft: '10px', border: '0px' }} onClick={handleLoginClick}>
+                                Login/Register
+                            </p>
                         )}
                     </div>
 
