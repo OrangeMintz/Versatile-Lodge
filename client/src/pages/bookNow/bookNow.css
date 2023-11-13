@@ -21,7 +21,7 @@
   
 
   .imageContainer img {
-    max-width: 100%;
+    max-width: 1200px;
     height: auto;
     width: auto; /* Ensure the image maintains its aspect ratio */
   }
@@ -47,7 +47,7 @@
     font-size: 14px;
   }
 
-  .details>button {
+  .details>a {
     margin-top: 20px;
     font-size: 15px;
     padding: 10px;
@@ -56,6 +56,23 @@
     cursor: pointer;
 
   }
+
+
+  .details .payBtn{
+    background-color: var(--main-color) !important;
+    font-size: 1.5rem !important;
+    border: 1px solid transparent !important;
+    border-radius: 4px;
+
+}
+  .details .payBtn:hover{
+    border-radius: 10px;
+    transition: 0.5s;
+    border: 1px solid var(--main-color) !important;
+    background-color: var(--branch-color) !important;
+    color:  var(--main-color);
+  }
+
 
 .centered-text {   /*Versatile Lodge*/
     position: absolute;

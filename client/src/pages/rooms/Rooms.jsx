@@ -5,13 +5,30 @@ import Loader from '../../component/Loader';
 import Footer from '../../component/footer';
 import Error from '../../component/Error';
 import Navbar from '../../component/Navbar';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { UserContext } from '../../context/userContext';
 import axios from 'axios';
 
 
+import { DatePicker, Space, Button } from 'antd'
+// import 'antd/dist/reset.css'
 
 const Rooms = () => {
+    const { RangePicker } = DatePicker;
+    const [fromDate, setfromDate] = useState()
+    const [toDate, settoDate] = useState()
+
+
+    function filterByDate(dates) {
+        console.log((dates[0].format('MM-DD-YYYY')))
+        console.log((dates[1].format('MM-DD-YYYY')))
+        setfromDate((dates[0].format('MM-DD-YYYY')))
+        settoDate((dates[1].format('MM-DD-YYYY')))
+
+
+    }
+
+
     const { user, setUser } = useContext(UserContext);
     useEffect(() => {
         if (!user) {
@@ -53,20 +70,22 @@ const Rooms = () => {
                     <form action="">
                         <div className="box">
                             <select name="adults" className="input" required>
-                                <option value="Malabalay">All</option>
+                                <option value="All">All</option>
                                 <option value="Malabalay">Malabalay</option>
                                 <option value="Valencia">Valencia</option>
                                 <option value="Maramag">Maramag</option>
                             </select>
                         </div>
                     </form>
-
+                    <div className='box'>
+                        <RangePicker className='range-picker' format='MM-DD-YYYY' onChange={filterByDate} />
+                    </div>
                     <form action="" method="post" className="search-form">
                         <input type="text" name="search_box" placeholder="Search..." required maxLength="100" />
                         <button type="submit" className="fas fa-search" name="search_box"></button>
-
                     </form>
                 </div>
+
                 {/* <!-- Create a dashed horizontal rule with a specific color --> */}
                 {/* <hr style="border-style: solid; border-color: white"/> */}
 
@@ -96,10 +115,10 @@ const Rooms = () => {
                                             </div>
                                             <p>{room.desc}</p>
                                             <div className="view-book">
-                                                {user && user.id && (
-                                                    <Link to={`/room/booking/${room._id}`}>Book Now</Link>
+                                                {user && user.id && fromDate && toDate && (
+                                                    <Link to={`/room/booking/${room._id}/${fromDate}/${toDate}`}>Book Now</Link>
                                                 )}
-                                                <Link to={`/room/roomDetail/${room._id}`} >View Details</Link>
+                                                <Link to={`/room/roomDetail/${room._id}`}>View Details</Link>
                                             </div>
                                         </div>
                                     </div>

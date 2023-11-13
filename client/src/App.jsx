@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 //Pages
 import Home from "./pages/home/Home";
@@ -15,10 +15,11 @@ import BookNow from "./pages/bookNow/BookNow";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 
+import Unauthorized from "./pages/unauthorized/Unauthorized.jsx"
+
 //Components
 import Layout from './component/layout';
 import RequireAuth from './component/RequireAuth';
-
 //
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
@@ -59,12 +60,16 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/reviews" element={<Reviews />} />
 
+        <Route path="/404" element={<Unauthorized />} />
+        <Route path="*" element={<Navigate to="/404" />} />
+
         {/* PROTECT THESE ROUTES */}
         {/* <Route element={<RequireAuth />}> */}
         <Route path="/accountSetting/:id" element={<AccountSetting />} />
         <Route path="/bookingHistory/:id" element={<BookingHistory />} />
         <Route path="/changePassword/:id" element={<ChangePassword />} />
-        <Route path="/room/booking/:id" element={<BookNow />} />
+        <Route path="/room/booking/:id/:fromDate/:toDate" element={<BookNow />} />
+
         {/* </Route> */}
       </Routes>
     </UserContextProvider>

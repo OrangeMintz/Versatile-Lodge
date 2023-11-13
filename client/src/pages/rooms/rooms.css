@@ -30,7 +30,7 @@
     margin: 1rem 0;
 }
 
-.rooms .flex .search-form {  /*ROOMS search bar*/
+.search-form {  /*ROOMS search bar*/
     height: 4rem;
     width: 25rem;
     margin-top: 10px;
@@ -40,19 +40,19 @@
     background-color: var(--branch-color);
 }
 
-.rooms .flex .search-form input { /*search bar input*/
+.search-form input { /*search bar input*/
     width: 100%;
     background: none;
 }
 
-.rooms .flex .search-form button { /*search bar button (icon)*/
+.search-form button { /*search bar button (icon)*/
     font-size: 2rem;
     color: var(--main-color);
     cursor: pointer;
     background: none;
 }
 
-.rooms .flex .search-form button:hover {
+.search-form button:hover {
     color: var(--white);
 }
 
@@ -159,4 +159,15 @@
     padding: 3px 10px;
     font-style: italic;
 
+}
+
+
+/* Date-Range  */
+ .box .range-picker {
+    width: 100%;
+    padding: .65rem 0;
+    font-size: 1.8rem;
+    /* background-color: #DCC69C; */
+    border-bottom: var(--border);
+    margin: 1.2rem 0;
 }

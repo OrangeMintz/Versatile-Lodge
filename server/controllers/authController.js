@@ -325,14 +325,6 @@ const getProfile = (req, res) => {
     }
 }
 
-const getUser = (req, res) => {
-
-}
-
-const updateUserInformation = (req, res) => {
-
-}
-
 
 
 
@@ -342,6 +334,4 @@ module.exports = {
     getProfile,
     updateUser,
     updatePassword,
-    getUser,
-    updateUserInformation
 }

@@ -1,27 +1,18 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-
-import useFetch from "../../hooks/useFetch"
-import "./roomdetail.css";
+import Navbar from "../../component/Navbar";
 import Footer from "../../component/footer";
 import Loader from "../../component/Loader";
-
 import Swiper from 'swiper/bundle';
 import 'swiper/swiper-bundle.css';
-import Navbar from "../../component/Navbar";
+import "./roomdetail.css";
+
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import useFetch from "../../hooks/useFetch"
+
 // import SwiperCarousel from "../../component/SwiperCarousel";
 
 const RoomDetail = () => {
-    const [navbarActive, setNavbarActive] = useState(false);
 
-    const toggleNavbar = () => {
-        setNavbarActive(!navbarActive);
-    };
-
-    const handleUserBtnClick = () => {                      // for toggling profile
-        const profile = document.querySelector('.profile');
-        profile.classList.toggle('active');
-    }
     const { id } = useParams();
     const apiUrl = `http://localhost:8000/api/room/${id}`;
     const { data, loading, error } = useFetch(apiUrl)
