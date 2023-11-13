@@ -152,16 +152,16 @@
 }
 
 .overview .box-container .box .title {      /*titles inside boxes of overview*/
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: var(--black);
 }
 
 .overview .box-container .box p {           /*percentage*/       
     line-height: 1.5;
     color: var(--main-color);
-    font-size: 10rem;
+    font-size: 6rem;
     text-align: center;
-    font-weight: 700;
+    font-weight: 400;
 }                       
 
 
