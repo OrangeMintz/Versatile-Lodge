@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 function Footer() {
     return (
         <div>
@@ -20,16 +20,16 @@ function Footer() {
                         </a>
                     </div>
                     <div className="box">
-                        <a href="#home">Home</a>
-                        <a href="#about">About</a>
-                        <a href="#reservation">Rooms</a>
-                        <a href="#gallery">Contact</a>
-                        <a href="#reviews">Reviews</a>
+                        <Link to="/">Home</Link>
+                        <Link to="/about">About</Link>
+                        <Link to="/room">Rooms</Link>
+                        <Link to="/reviews">Contact</Link>
+                        <Link to="/reviews">Reviews</Link>
                     </div>
                     <div className="box">
-                        <a href="#">
+                        <Link to="https://web.facebook.com/people/Versatile-Lodging-House/100063942217887/?_rdc=1&_rdr">
                             Facebook<i className="fab fa-facebook"></i>
-                        </a>
+                        </Link>
                         <a href="#">
                             Youtube<i className="fab fa-youtube"></i>
                         </a>

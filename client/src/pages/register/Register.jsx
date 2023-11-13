@@ -3,6 +3,8 @@ import { useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import Loader from "../../component/Loader";
+
 
 import "./register.css";
 // import Images from "../../component/Images";
