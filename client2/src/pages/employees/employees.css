@@ -61,6 +61,26 @@
         font-size: 1.5rem;
     }
 
+    #search-btn {
+        display: inline-block;
+    }
+
+    .headerAdmin .flex .search-form {
+        position: absolute;
+        top:90%; left: 0; right: 0;
+        width: auto;
+        border-top: var(--border);
+        background-color: var(--white);
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        transition: .2s linear;
+    }
+
+
+    .headerAdmin .flex .search-form.active {                    /*employee*/
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+
+    }
+
 
 
 

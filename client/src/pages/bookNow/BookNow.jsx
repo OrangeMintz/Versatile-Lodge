@@ -12,11 +12,11 @@ const BookNow = () => {
     return (
         <div>
             <Navbar />
-            <div className="container">
+            <div className="detailsContainer">
                 <div className="detailsWrapper">
                     <div className="imageContainer">
-                        <p className="centered-text">Versatile Lodge</p>
-                        <img src="../assets/images/home-img-1.jpg" alt="Lodge Logo" />
+                        <p className="centeredText">Versatile Lodge</p>
+                        <img src="https://th.bing.com/th/id/OIP.uiD9Urkzzjor_6Yjwrx86wHaFP?pid=ImgDet&rs=1" alt="Lodge Logo" />
                     </div>
                     <div className="details">
                         <h1>Booking Details</h1>
