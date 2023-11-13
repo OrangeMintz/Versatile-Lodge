@@ -1,0 +1,86 @@
+/* employees part */
+/*identical to quick options part*/
+
+.reviews .heading {
+    border-bottom: 1px solid #000;
+}
+
+.reviews .box-container {       /*container of ENTIRE employees*/
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
+    gap: 1.5rem;
+    align-items: flex-start;
+    justify-content: center;
+}
+.reviews .box-container .box {      /*white boxes inside container of employees*/
+    border-radius: .5rem;
+    background-color: var(--white);
+    padding: 2rem;
+    width: 1000;
+    margin: 10px 0;
+}
+
+.reviews .box-container .box .customer {   /*person description inside every box*/
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.reviews .box-container .box .customer img {   /*person image inside every box*/
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.reviews .box-container .box .customer h3 {    /*person name inside every box*/
+    font-size: 2rem;
+    color: var(--black);
+    margin-bottom: .2rem;
+}
+
+.reviews .box-container .box .customer span {  /*date*/
+    font-size: 1.5rem;
+    color: var(--light-color);  
+}
+
+.reviews .box-container .box .stars {       /*stars*/
+    font-size: 14px;    
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.reviews .box-container .box p {   /*comment below every persons image inside boxes*/
+    font-size: 14px;
+    height: 20rem;
+    
+}
+
+/* .reviews .box-container .box .title {   image title
+    font-size: 2rem;
+    color: var(--black);
+    margin-top: .5rem;
+    padding: .5rem 0;
+}
+*/
+
+.reviews .more-btn {    /*view more botton*/
+    margin-top: 2rem;
+    text-align: center;
+} 
+
+.reviews .more-btn .inline-option-btn {
+    width: max-content;
+    box-shadow: 3px 3px 15px rgba(0,0,0,0.3);
+}
+
+.reviews .more-btn .inline-option-btn:hover {
+    margin-bottom: 3px;
+    border: 1px solid #3b230d;
+}
+
+.reviews .more-btn .inline-option-btn:active {
+    margin: 3px 0px 0px 3px;
+    box-shadow: none;
+}
