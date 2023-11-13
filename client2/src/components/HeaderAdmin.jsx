@@ -12,11 +12,19 @@ const HeaderAdmin = () => {
         const sideBar = document.querySelector('.side-bar');
         const body = document.body;                              //html's body element
         const menu_btn = document.querySelector('#menu-btn');     //selects outside menu-btn
-        
+
         sideBar.classList.toggle('active');           //activate sidebar          
         body.classList.toggle('active');              //adjust for sidebar appearance
         menu_btn.classList.remove('active');          //remove sidebar icon 
+        
     }
+
+    const handleSearchIconClick = () => {
+        const searchForm = document.querySelector('.search-form');
+
+        searchForm.classList.toggle('active');
+    }
+
 
     return (
         <div>
@@ -28,13 +36,13 @@ const HeaderAdmin = () => {
                     </div>
                     
                     <form action="" method="post" className="search-form">
-                        <input type="text" name="search_box" placeholder="search here..." required maxLength="100"/>
+                        <input className="search-box" type="text" name="search_box" placeholder="search here..." required maxLength="100"/>
                         <button type="submit" className="fas fa-search" name="search_box"></button>
                     </form>
                     
                     <div className="icons">
 
-                        <div id="search-btn" className="fas fa-search"></div>
+                        <div id="search-btn" className="fas fa-search" onClick={handleSearchIconClick}></div>
                         <div id="toggle-btn" className="fas fa-sun"></div>
                         <div id="question-btn" className="fas fa-question"></div>
                         <div id="user-btn" className="fas fa-user" onClick={handleUserIconClick}></div>

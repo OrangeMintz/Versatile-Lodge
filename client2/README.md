@@ -7,4 +7,6 @@
     -reviews responsiveness in client
     -dashboard
     -blank pages
-    -reviewsAdmin
+    -reviewsAdmin page
+    -employees page
+    
