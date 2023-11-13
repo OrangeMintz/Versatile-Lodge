@@ -188,7 +188,13 @@ const updateUser = async (req, res) => {
             { expiresIn: '1h' } // Set an appropriate expiration time
         );
 
-        res.cookie('token', updatedToken).json(updatedUser);
+        // res.cookie('token', updatedToken).json(updatedUser);
+        res.cookie('token', updatedToken, {
+            secure: true,
+            httpOnly: true,
+            sameSite: 'strict',
+        }).json(updatedUser);
+
     } catch (error) {
         console.log(error);
         return res.status(500).json({
@@ -296,7 +302,14 @@ const loginUser = async (req, res) => {
                 // process.env.JWT_SECRET, {}, (err, token) => {
                 process.env.JWT_SECRET, { expiresIn: '1h' }, (err, token) => {
                     if (err) throw err;
-                    res.cookie(`token`, token).json(userWithImage)
+                    // res.cookie(`token`, token,).json(userWithImage)
+                    res.cookie(`token`, token, {
+                        secure: true,
+                        httpOnly: true,
+                        sameSite: 'strict',
+                    }).json(userWithImage)
+
+
                 })
 
         } else {

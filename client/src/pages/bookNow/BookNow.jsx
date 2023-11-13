@@ -24,7 +24,6 @@ const BookNow = () => {
 
     // Total Days
     const totalDays = moment(toDate).diff(moment(fromDate), 'days') + 1;
-
     const totalAmount = totalDays * data.price;
 
 
@@ -57,7 +56,8 @@ const BookNow = () => {
                         </div>
                         <div className="details">
                             <h1>Booking Detail:</h1>
-                            <h2 className='name'>Name: {user.name}</h2>
+                            {/* <h2 className='name'>Name: {user.name}</h2> */}
+                            <p className='name'>Name: {user && user.name}</p>
                             <p className='name'>Room: {data.name} </p>
                             <p className='name'>Branch: {data.branch} </p>
                             <p className='fromDate'>From Date: <span>{fromDate}</span></p>
