@@ -11,19 +11,22 @@
     cursor: pointer;
 }
 
+
 .employeesTable {
     margin: auto;
-    border-collapse: collapse
-
+    border-collapse: collapse;
+    width: 100%;
 }
 
 
 .employeesTable td, th {
     border: 1px solid black;
-    font-size: 2rem;
-    padding: 20px 40px;
-
+    font-size: 1.8rem;
+    padding: 20px 25px;
+    text-align: center;
 }
+
+
 
 .employeesTable td .option-btn:hover {
     outline: 1px solid rgb(55, 36, 13);
@@ -32,4 +35,53 @@
 }
 
 
+@media (max-width:991px) {
+    .employeesTable td, th {
+        font-size: 1.4rem;
+        padding: 10px 20px;
+    }
 
+    .employeesTable td .option-btn {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width:771px) {
+    .employeesTable td, th {
+        font-size: 10px;
+        padding: 5px 8px;
+        
+    }
+    .employeesTable td .option-btn {
+        font-size: 8px;
+        padding: 4px 5px;
+    }
+
+    .employees .addEmployee {
+        font-size: 1.5rem;
+    }
+
+
+
+
+
+    /* .employeesContainer {
+        overflow-y: auto;
+        max-height: 400px;
+    } */
+
+
+}
+
+@media (max-width:500px) {
+    .employeesTable td, th {
+        font-size: 9px;
+        padding: 3px;
+    }
+
+    .employeesContainer {       /*vertical scrolling*/
+        overflow-y: auto;
+        max-height: 400px;
+    }
+
+}

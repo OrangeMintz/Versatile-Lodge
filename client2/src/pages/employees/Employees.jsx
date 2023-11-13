@@ -29,14 +29,14 @@ const Employees = () => {
                         <tbody>
                             <tr>
                                 <td>Ramon</td>
-                                <td>example@gmail.com</td>
+                                <td>exampleexampleexample@gmail.com</td>
                                 <td>Sumpon</td>
                                 <td>May 14, 2023</td>
                                 <td>09123465789</td>
                                 <td><a href="#" className='option-btn'>Option</a></td>
                             </tr>
                             <tr>
-                                <td>Ramon</td>
+                                <td>Mr Boy Alucardo</td>
                                 <td>example@gmail.com</td>
                                 <td>Sumpon</td>
                                 <td>May 14, 2023</td>
