@@ -7,7 +7,7 @@ import Footer from '../../components/Footer';
 
 const Transaction = () => {
     return (
-        <div>
+        <div className='transaction'>
             <HeaderAdmin />
             <Sidebar />
             Transaction of the Versatile Lodge

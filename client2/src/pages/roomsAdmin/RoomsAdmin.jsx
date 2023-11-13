@@ -7,7 +7,7 @@ import Footer from '../../components/Footer';
 
 const RoomsAdmin = () => {
     return (
-        <div>
+        <div className='roomsAdmin'>
             <HeaderAdmin />
             <Sidebar />
             Rooms of the Versatile Lodge

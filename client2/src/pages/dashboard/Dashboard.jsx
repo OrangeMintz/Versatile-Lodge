@@ -20,7 +20,7 @@ const Dashboard = () => {
             
             <section className="overview">
             
-                <h1 className="heading">overview</h1>
+                <h1 className="heading">Overview</h1>
             
                 <div className="box-container">
             

@@ -10,7 +10,60 @@ const Employees = () => {
         <div>
             <HeaderAdmin />
             <Sidebar />
-            Employees
+
+            <section className="employees">
+                <h1 className="heading">Our Employees</h1>
+                <span className="addEmployee">+ Add Employees</span>
+                <div className="employeesContainer">
+                    <table className="employeesTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>Birthday</th>
+                                <th>Number</th>
+                                <th>    </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Ramon</td>
+                                <td>example@gmail.com</td>
+                                <td>Sumpon</td>
+                                <td>May 14, 2023</td>
+                                <td>09123465789</td>
+                                <td><a href="#" className='option-btn'>Option</a></td>
+                            </tr>
+                            <tr>
+                                <td>Ramon</td>
+                                <td>example@gmail.com</td>
+                                <td>Sumpon</td>
+                                <td>May 14, 2023</td>
+                                <td>09123465789</td>
+                                <td><a href="#" className='option-btn'>Option</a></td>
+                            </tr>
+                            <tr>
+                                <td>Ramon</td>
+                                <td>example@gmail.com</td>
+                                <td>Sumpon</td>
+                                <td>May 14, 2023</td>
+                                <td>09123465789</td>
+                                <td><a href="#" className='option-btn'>Option</a></td>
+                            </tr>
+                            <tr>
+                                <td>Ramon</td>
+                                <td>example@gmail.com</td>
+                                <td>Sumpon</td>
+                                <td>May 14, 2023</td>
+                                <td>09123465789</td>
+                                <td><a href="#" className='option-btn'>Option</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
             <Footer />
         </div>
     )

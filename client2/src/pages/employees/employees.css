@@ -1,0 +1,35 @@
+/* .employees {
+
+} */
+.employees .addEmployee{
+    font-size: 2rem;
+    position: absolute;
+    right: 3%;
+    top: 13%;
+    text-decoration: none;
+    color: var(--main-color);
+    cursor: pointer;
+}
+
+.employeesTable {
+    margin: auto;
+    border-collapse: collapse
+
+}
+
+
+.employeesTable td, th {
+    border: 1px solid black;
+    font-size: 2rem;
+    padding: 20px 40px;
+
+}
+
+.employeesTable td .option-btn:hover {
+    outline: 1px solid rgb(55, 36, 13);
+    font-weight: 300;
+    background-color: var(--branch-color);
+}
+
+
+

@@ -7,7 +7,7 @@ import Footer from '../../components/Footer';
 
 const Payroll = () => {
     return (
-        <div>
+        <div className='payroll'>
             <HeaderAdmin />
             <Sidebar />
             Payroll
