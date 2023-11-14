@@ -9,43 +9,68 @@ import { Link, useParams } from 'react-router-dom';
 import { UserContext } from '../../context/userContext';
 import axios from 'axios';
 import moment from 'moment';
-import { DatePicker } from 'antd';
+
+
+
+import { DatePicker, Space, Button } from 'antd'
+// import 'antd/dist/reset.css'
 
 const Rooms = () => {
-    const { RangePicker } = DatePicker;
-    const { data, loading, error, reFetch } = useFetch("http://localhost:8000/api/room/");
-    const { user, setUser } = useContext(UserContext);
-    const [fromDate, setfromDate] = useState();
-    const [toDate, settoDate] = useState();
-    const [originalData, setOriginalData] = useState([]); // Keep the original data
-    const [duplicateroom, setduplicateroom] = useState([]);
 
-    useEffect(() => {
-        // Set both originalData and duplicateroom when the main data changes
-        setOriginalData(data);
-        setduplicateroom(data);
-    }, [data]);
+    const { data, loading, error } = useFetch("http://localhost:8000/api/room/")
+    console.log("Rooms Data", data);
+
+
+    const [allrooms, setallrooms] = useState()
+    const [duplicateroom, setduplicateroom] = useState([])
+    const [fromDate, setfromDate] = useState()
+    const [toDate, settoDate] = useState()
+    const { RangePicker } = DatePicker;
+
+    // setallrooms(data)
+    // setduplicateroom(data)
+
 
     function filterByDate(dates) {
-        const fromDate = dates[0].format('MM-DD-YYYY');
-        const toDate = dates[1].format('MM-DD-YYYY');
+        console.log((dates[0].format('MM-DD-YYYY')))
+        console.log((dates[1].format('MM-DD-YYYY')))
         setfromDate((dates[0].format('MM-DD-YYYY')))
         settoDate((dates[1].format('MM-DD-YYYY')))
 
-        const availableRooms = originalData.filter(room => {
-            if (room.currentbookings.length > 0) {
-                return !room.currentbookings.some(booking =>
-                    moment(fromDate).isBetween(booking.fromDate, booking.toDate, null, '[]') ||
-                    moment(toDate).isBetween(booking.fromDate, booking.toDate, null, '[]')
-                );
-            } else {
-                return true;
-            }
-        });
 
-        setduplicateroom(availableRooms);
+        // var temprooms = []
+        // var availability = false
+        // for (const data of duplicateroom) {
+        //     for (const booking of data.currentbookings) {
+        //         if (!moment((dates[0].format('MM-DD-YYYY'))).isBetween(booking.fromDate, booking.toDate) &&
+        //             !moment((dates[0].format('MM-DD-YYYY'))).isBetween(booking.fromDate, booking.toDate)) {
+        //             if (
+        //                 (dates[0].format('MM-DD-YYYY')) !== booking.fromDate &&
+        //                 (dates[0].format('MM-DD-YYYY')) !== booking.toDate &&
+        //                 (dates[1].format('MM-DD-YYYY')) !== booking.fromDate &&
+        //                 (dates[1].format('MM-DD-YYYY')) !== booking.toDate
+
+        //             ) {
+        //                 availability = true;
+        //             }
+        //         }
+
+        //     }
+
+        //     if (availability == true || room.currentbookings.length == 0) {
+        //         temprooms.push(room)
+        //     }
+        // }
     }
 
+
+
+    const handleUserBtnClick = () => {                      // for toggling profile
+        const profile = document.querySelector('.profile');
+        profile.classList.toggle('active');
+    }
+
+    const { user, setUser } = useContext(UserContext);
     useEffect(() => {
         if (!user) {
             axios
@@ -59,11 +84,24 @@ const Rooms = () => {
         }
     }, [user, setUser]);
 
+
+    const [navbarActive, setNavbarActive] = useState(false);
+
+    const toggleNavbar = () => {
+        setNavbarActive(!navbarActive);
+    };
+
     return (
         <>
             <Navbar />
+            {/* <!-- rooms section --> */}
             <section className="rooms">
+
                 <h1>--- Explore Our Rooms ---</h1>
+                <h1>{allrooms}</h1>
+
+
+
                 <div className="flex">
                     <form action="">
                         <div className="box">
@@ -83,14 +121,20 @@ const Rooms = () => {
                         <button type="submit" className="fas fa-search" name="search_box"></button>
                     </form>
                 </div>
+
+                {/* <!-- Create a dashed horizontal rule with a specific color --> */}
+                {/* <hr style="border-style: solid; border-color: white"/> */}
+
                 <div className="card-container">
                     {loading ? (<h1><Loader /></h1>) : error ? (<Error />)
                         : (
-                            duplicateroom
-                                .slice()
+                            data
+                                .slice() // Create a shallow copy of the data to avoid modifying the original array
                                 .sort((room1, room2) => {
+                                    // Extract the room number from the room names
                                     const roomNumber1 = parseInt(room1.name.match(/\d+/)[0]);
                                     const roomNumber2 = parseInt(room2.name.match(/\d+/)[0]);
+                                    // Compare the room numbers
                                     return roomNumber1 - roomNumber2;
                                 })
                                 .map((room, index) => (
@@ -100,6 +144,7 @@ const Rooms = () => {
                                             <div className="room-details">
                                                 <h3 className="room-name">{room.name}</h3>
                                                 <h2 className="price">P{room.price}/Night</h2>
+
                                             </div>
                                             <div className="detail">
                                                 <h2 className="room-branch">{room.branch}</h2>
