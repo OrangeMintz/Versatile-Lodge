@@ -1,20 +1,19 @@
 import React from 'react';
-import './roomsAdmin.css';
+import './payroll.css';
 import HeaderAdmin from '../../components/HeaderAdmin';
 import Sidebar from '../../components/Sidebar';
 import Footer from '../../components/Footer';
 
 
-const RoomsAdmin = () => {
+const Payroll = () => {
     return (
-        <div className='roomsAdmin'>
+        <div className='payroll'>
             <HeaderAdmin />
             <Sidebar />
-            Rooms of the Versatile Lodge
+            Payroll
             <Footer />
-
         </div>
     )
 }
 
-export default RoomsAdmin;
+export default Payroll;

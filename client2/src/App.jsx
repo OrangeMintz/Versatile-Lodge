@@ -7,7 +7,8 @@ import Employees from "./pages/employees/Employees.jsx";
 import LoginAdmin from "./pages/loginAdmin/LoginAdmin.jsx";
 import Payroll from "./pages/payroll/Payroll.jsx";
 import ReviewsAdmin from "./pages/reviewsAdmin/ReviewsAdmin.jsx";
-import RoomsAdmin from "./pages/roomsAdmin/RoomsAdmin.jsx";
+import RoomsAvailable from "./pages/roomsAvailable/RoomsAvailable.jsx";
+import RoomsOccupied from "./pages/roomsOccupied/RoomsOccupied.jsx";
 import Transaction from "./pages/transaction/Transaction.jsx";
 
 
@@ -23,7 +24,8 @@ function App() {
         <Route path="/loginAdmin" element={<LoginAdmin />} />
         <Route path="/payroll" element={<Payroll />} />
         <Route path="/reviewsAdmin" element={<ReviewsAdmin />} />
-        <Route path="/roomsAdmin" element={<RoomsAdmin />} />
+        <Route path="/roomsAvailable" element={<RoomsAvailable />} />
+        <Route path="/roomsOccupied" element={<RoomsOccupied />} />
         <Route path="/transaction" element={<Transaction />} />
 
       </Routes>
