@@ -33,8 +33,8 @@ const Sidebar = () => {
             <Link to="/reviewsAdmin"><i className="fas fa-star"></i><span>Reviews</span></Link>
             <Link to="/employees"><i className="fas fa-users"></i><span>Employees</span></Link>
             <Link to="/roomsAvailable"><i className="fas fa-bed"></i><span>Rooms</span></Link>
+            <Link to="/roomsReserved"><i className="fas fa-code-branch"></i><span>Transactions</span></Link>
             <Link to="/payroll"><i className="fas fa-dollar-sign"></i><span>Payroll</span></Link>
-            <Link to="/transaction"><i className="fas fa-code-branch"></i><span>Transaction</span></Link>
             <Link to="/loginAdmin"><i className="fas fa-power-off"></i><span>Log out</span></Link>
 
         </nav>

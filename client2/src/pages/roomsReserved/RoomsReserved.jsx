@@ -1,22 +1,34 @@
 import React from 'react';
-import './roomsOccupied.css';
+import './roomsReserved.css';
 import HeaderAdmin from '../../components/HeaderAdmin';
 import Sidebar from '../../components/Sidebar';
 import Footer from '../../components/Footer';
 
 
-const RoomsOccupied = () => {
+const RoomsReserved = () => {
     return (
         <div>
             <HeaderAdmin />
             <Sidebar />
             
-                <section className="roomsOccupied">
-                    <h1 className="heading">Occupied Rooms</h1>
+                <section className="roomsReserved">
+                    <h1 className="heading">Reserved Rooms (Booked)</h1>
                     <div className="roomState">
-                        <a href="./roomsAvailable">Available Rooms</a>
-                        <a className="stateBtn state">Occupied Rooms</a>
-                        {/* <span className="addRoom">+ Add Room</span> */}
+                        <a className="stateBtn state">Reserved</a>
+                        <a href="./roomsBooking">Booking</a>
+                    </div>
+                    <div className="roomsRow">
+                        <div className="roomsRowWrapper">
+                            <img src="https://th.bing.com/th/id/OIP.KW6xLZGZcpwJjQgXnkI35QHaFD?pid=ImgDet&rs=1" alt="" />
+                             <div className="roomDetails">
+                                <p>Malaybalay</p>
+                                <p>Room #1</p>
+                             </div>
+                             <div className="roomButtons">
+                                <button className="roomBtn">Update</button>
+                                <button className="roomBtn">Unavailable</button>
+                             </div>
+                        </div>
                     </div>
                     <div className="roomsRow">
                         <div className="roomsRowWrapper">
@@ -36,19 +48,6 @@ const RoomsOccupied = () => {
                             <img src="https://th.bing.com/th/id/OIP.KW6xLZGZcpwJjQgXnkI35QHaFD?pid=ImgDet&rs=1" alt="" />
                              <div className="roomDetails">
                                 <p>Maramag</p>
-                                <p>Room #1</p>
-                             </div>
-                             <div className="roomButtons">
-                                <button className="roomBtn">Update</button>
-                                <button className="roomBtn">Unavailable</button>
-                             </div>
-                        </div>
-                    </div>
-                    <div className="roomsRow">
-                        <div className="roomsRowWrapper">
-                            <img src="https://th.bing.com/th/id/OIP.KW6xLZGZcpwJjQgXnkI35QHaFD?pid=ImgDet&rs=1" alt="" />
-                             <div className="roomDetails">
-                                <p>Malaybalay</p>
                                 <p>Room #1</p>
                              </div>
                              <div className="roomButtons">
@@ -105,4 +104,4 @@ const RoomsOccupied = () => {
     )
 }
 
-export default RoomsOccupied;
+export default RoomsReserved;
