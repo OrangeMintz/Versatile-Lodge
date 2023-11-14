@@ -14,6 +14,7 @@ const bookhistoryroute = require("./routes/bookinghistory.js")
 const reviewsroute = require("./routes/reviews.js")
 const transactionroute = require("./routes/transaction.js")
 const customerroute = require('./routes/authRoutes.js')
+const bookingroute = require('./routes/booking.js')
 
 
 const oauthRouter = require("./routes/oauth.js");
@@ -61,6 +62,8 @@ app.use("/api/room", roomsroute);
 app.use("/api/booking/history", bookhistoryroute);
 app.use("/api/reviews", reviewsroute);
 app.use("/api/transaction", transactionroute);
+app.use("/api/booking", bookingroute);
+
 
 //GOOGLE OAUTH WITHOUT PASSPORT
 app.use("/oauth", oauthRouter);
