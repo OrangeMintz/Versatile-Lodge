@@ -1,3 +1,94 @@
-.payroll {
-    background-color: green;
+
+.payrollTable {
+    margin: auto;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+
+.payrollTable td, th {
+    border: 1px solid black;
+    font-size: 1.8rem;
+    padding: 20px 25px;
+    text-align: center;
+}
+
+
+
+.payrollTable td .option-btn:hover {        /*overriding default .option-btn;*/
+    outline: 1px solid rgb(55, 36, 13);
+    font-weight: 300;
+    background-color: var(--branch-color);
+}
+
+
+@media (max-width:991px) {
+    .payrollTable td, th {
+        font-size: 1.4rem;
+        padding: 10px 20px;
+    }
+
+    .payrollTable td .option-btn {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width:771px) {
+    .payrollTable td, th {
+        font-size: 10px;
+        padding: 5px 8px;
+        
+    }
+    .payrollTable td .option-btn {
+        font-size: 8px;
+        padding: 4px 5px;
+    }
+
+    .payroll .addEmployee {
+        font-size: 1.5rem;
+    }
+
+    #search-btn {
+        display: inline-block;
+    }
+
+    .headerAdmin .flex .search-form {
+        position: absolute;
+        top:90%; left: 0; right: 0;
+        width: auto;
+        border-top: var(--border);
+        background-color: var(--white);
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        transition: .2s linear;
+    }
+
+
+    .headerAdmin .flex .search-form.active {                    /*employee*/
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+
+    }
+
+
+
+
+
+    /* .payrollContainer {
+        overflow-y: auto;
+        max-height: 400px;
+    } */
+
+
+}
+
+@media (max-width:500px) {
+    .payrollTable td, th {
+        font-size: 9px;
+        padding: 3px;
+    }
+
+    .payrollContainer {       /*vertical scrolling*/
+        overflow-y: auto;
+        max-height: 400px;
+    }
+
 }
