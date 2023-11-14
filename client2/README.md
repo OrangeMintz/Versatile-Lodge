@@ -12,8 +12,12 @@
     -booking responsiveness / client
 
 11-14-2023
-    -roomsAvailable page
-    -roomsOccupied page
+    rooms
+        -roomsAvailable page
+        -roomsOccupied page
+    transactions
+        -roomsReserved page
+        -roomsBooking page
     
 
     

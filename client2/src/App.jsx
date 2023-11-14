@@ -9,7 +9,9 @@ import Payroll from "./pages/payroll/Payroll.jsx";
 import ReviewsAdmin from "./pages/reviewsAdmin/ReviewsAdmin.jsx";
 import RoomsAvailable from "./pages/roomsAvailable/RoomsAvailable.jsx";
 import RoomsOccupied from "./pages/roomsOccupied/RoomsOccupied.jsx";
-import Transaction from "./pages/transaction/Transaction.jsx";
+import RoomsReserved from "./pages/roomsReserved/RoomsReserved.jsx";
+import RoomsBooking from "./pages/roomsBooking/RoomsBooking.jsx";
+
 
 
 
@@ -24,9 +26,10 @@ function App() {
         <Route path="/loginAdmin" element={<LoginAdmin />} />
         <Route path="/payroll" element={<Payroll />} />
         <Route path="/reviewsAdmin" element={<ReviewsAdmin />} />
-        <Route path="/roomsAvailable" element={<RoomsAvailable />} />
-        <Route path="/roomsOccupied" element={<RoomsOccupied />} />
-        <Route path="/transaction" element={<Transaction />} />
+        <Route path="/roomsAvailable" element={<RoomsAvailable />} />   {/*rooms*/}
+        <Route path="/roomsOccupied" element={<RoomsOccupied />} />     {/*rooms*/}
+        <Route path="/roomsReserved" element={<RoomsReserved />} />         {/*transaction*/}
+        <Route path="/roomsBooking" element={<RoomsBooking />} />         {/*transaction*/}
 
       </Routes>
 
