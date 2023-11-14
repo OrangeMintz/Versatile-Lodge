@@ -46,7 +46,7 @@
 
 .roomsAvailable .roomsRow .roomsRowWrapper img {
     width: 15%;
-    
+    aspect-ratio: 3/2;
 }
 
 .roomsAvailable .roomsRow .roomsRowWrapper .roomDetails {
