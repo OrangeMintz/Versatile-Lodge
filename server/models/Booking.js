@@ -8,12 +8,12 @@ const bookingSchema = new mongoose.Schema({
     },
 
     room_id: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     },
 
     user_id: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     },
 
@@ -39,7 +39,6 @@ const bookingSchema = new mongoose.Schema({
 
     transaction_id: {
         type: String,
-        required: true
     },
 
     status: {

@@ -1,18 +1,18 @@
 const express = require('express');
-const { createBookHistory, deleteBookHistory, getBookHistory } = require('../controllers/bookHistoryContr.js');
+const { createBooking, deleteBooking, getBooking } = require('../controllers/bookingContr.js');
 
 const BookingHistory = require("../models/BookingHistory.js");
-const { verifyAdmin, verifyUser } = require('../utils/verifyToken.js');
+// const { verifyAdmin, verifyUser } = require('../utils/verifyToken.js');
 
 const router = express.Router();
 
 //Create
-router.post("/", createBookHistory);
+router.post("/", createBooking);
 
 //Delete
-router.delete("/:id", verifyAdmin, deleteBookHistory);
+router.delete("/:id", deleteBooking);
 
 //GetAll
-router.get("/", getBookHistory);
+router.get("/", getBooking);
 
 module.exports = router;
