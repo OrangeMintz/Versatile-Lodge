@@ -83,7 +83,7 @@ const BookNow = () => {
                         <div className="details">
                             <h1>Booking Detail:</h1>
                             {/* <h2 className='name'>Name: {user.name}</h2> */}
-                            <h2 className='name'>Name: {user && user.name}</h2>
+                            <p className='name'><b>Name:</b> {user && user.name}</p>
                             <p className='name'><b>Room:</b> {data.name} </p>
                             <p className='name'><b>Branch:</b> {data.branch} </p>
                             <p className='fromDate'><b>From Date:</b> <span>{fromDate}</span></p>
