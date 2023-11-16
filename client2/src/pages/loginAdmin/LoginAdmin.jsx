@@ -5,7 +5,7 @@ import Sidebar from '../../components/Sidebar';
 
 const LoginAdmin = () => {
     return (
-        <div>
+        <div className="loginAdmin">
             <div className="loginAdminContainer">
                 <h1 className='heading'>Login as Admin</h1>
                 <form action="../">
