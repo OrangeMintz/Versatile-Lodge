@@ -1,21 +1,21 @@
 import React from 'react';
-import './roomsOccupied.css';
+import './roomsUnavailable.css';
 import HeaderAdmin from '../../components/HeaderAdmin';
 import Sidebar from '../../components/Sidebar';
 import Footer from '../../components/Footer';
 
 
-const RoomsOccupied = () => {
+const RoomsUnavailable = () => {
     return (
         <div>
             <HeaderAdmin />
             <Sidebar />
             
-                <section className="roomsOccupied">
+                <section className="roomsUnavailable">
                     <h1 className="heading">Occupied Rooms</h1>
                     <div className="roomState">
                         <a href="./roomsAvailable">Available Rooms</a>
-                        <a className="stateBtn state">Occupied Rooms</a>
+                        <a className="stateBtn state">Unavailable Rooms</a>
                         {/* <span className="addRoom">+ Add Room</span> */}
                     </div>
                     <div className="roomsRow">
@@ -105,4 +105,4 @@ const RoomsOccupied = () => {
     )
 }
 
-export default RoomsOccupied;
+export default RoomsUnavailable;
