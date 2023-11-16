@@ -26,17 +26,20 @@ const Rooms = () => {
         setduplicateroom(data);
     }, [data]);
 
+
     function filterByDate(dates) {
         const fromDate = dates[0].format('MM-DD-YYYY');
         const toDate = dates[1].format('MM-DD-YYYY');
-        setfromDate((dates[0].format('MM-DD-YYYY')))
-        settoDate((dates[1].format('MM-DD-YYYY')))
+        setfromDate(fromDate);
+        settoDate(toDate);
 
-        const availableRooms = originalData.filter(room => {
+        const availableRooms = data.filter(room => {
             if (room.currentbookings.length > 0) {
                 return !room.currentbookings.some(booking =>
                     moment(fromDate).isBetween(booking.fromDate, booking.toDate, null, '[]') ||
-                    moment(toDate).isBetween(booking.fromDate, booking.toDate, null, '[]')
+                    moment(toDate).isBetween(booking.fromDate, booking.toDate, null, '[]') ||
+                    moment(booking.fromDate).isBetween(fromDate, toDate, null, '[]') ||
+                    moment(booking.toDate).isBetween(fromDate, toDate, null, '[]')
                 );
             } else {
                 return true;
@@ -45,6 +48,31 @@ const Rooms = () => {
 
         setduplicateroom(availableRooms);
     }
+
+
+
+    // function filterByDate(dates) {
+    //     const fromDate = dates[0].format('MM-DD-YYYY');
+    //     const toDate = dates[1].format('MM-DD-YYYY');
+    //     setfromDate(fromDate);
+    //     settoDate(toDate);
+
+    //     const availableRooms = originalData.filter(room => {
+    //         if (room.currentbookings.length > 0) {
+    //             return !room.currentbookings.some(booking =>
+    //                 moment(fromDate).isBetween(booking.fromDate, booking.toDate, null, '[]') ||
+    //                 moment(toDate).isBetween(booking.fromDate, booking.toDate, null, '[]') ||
+    //                 moment(booking.fromDate).isBetween(fromDate, toDate, null, '[]') ||
+    //                 moment(booking.toDate).isBetween(fromDate, toDate, null, '[]')
+    //             );
+    //         } else {
+    //             return true;
+    //         }
+    //     });
+
+    //     setduplicateroom(availableRooms);
+    // }
+
 
     useEffect(() => {
         if (!user) {
