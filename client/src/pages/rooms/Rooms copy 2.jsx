@@ -11,8 +11,6 @@ import axios from 'axios';
 import moment from 'moment';
 import { DatePicker } from 'antd';
 
-
-
 const Rooms = () => {
     const { RangePicker } = DatePicker;
     const { data, loading, error, reFetch } = useFetch("http://localhost:8000/api/room/");
@@ -35,64 +33,20 @@ const Rooms = () => {
         setfromDate(fromDate);
         settoDate(toDate);
 
-        const selectedBranch = document.querySelector('[name="branch"]').value;
-
-        const availableRooms = originalData.filter(room => {
-            const isDateAvailable = (
-                room.currentbookings.length === 0 ||
-                !room.currentbookings.some(booking =>
+        const availableRooms = data.filter(room => {
+            if (room.currentbookings.length > 0) {
+                return !room.currentbookings.some(booking =>
                     moment(fromDate).isBetween(booking.fromDate, booking.toDate, null, '[]') ||
                     moment(toDate).isBetween(booking.fromDate, booking.toDate, null, '[]') ||
                     moment(booking.fromDate).isBetween(fromDate, toDate, null, '[]') ||
                     moment(booking.toDate).isBetween(fromDate, toDate, null, '[]')
-                )
-            );
-
-            const isBranchMatched = selectedBranch === 'All' || room.branch === selectedBranch;
-
-            return isDateAvailable && isBranchMatched;
+                );
+            } else {
+                return true;
+            }
         });
 
         setduplicateroom(availableRooms);
-    }
-
-
-    // function filterByDate(dates) {
-    //     const fromDate = dates[0].format('MM-DD-YYYY');
-    //     const toDate = dates[1].format('MM-DD-YYYY');
-    //     setfromDate(fromDate);
-    //     settoDate(toDate);
-
-    //     // Call the filterByDateAndBranch function with both date range and selected branch
-    //     filterByDateAndBranch([moment(fromDate), moment(toDate)], document.querySelector('[name="branch"]').value);
-
-
-    //     const availableRooms = data.filter(room => {
-    //         if (room.currentbookings.length > 0) {
-    //             return !room.currentbookings.some(booking =>
-    //                 moment(fromDate).isBetween(booking.fromDate, booking.toDate, null, '[]') ||
-    //                 moment(toDate).isBetween(booking.fromDate, booking.toDate, null, '[]') ||
-    //                 moment(booking.fromDate).isBetween(fromDate, toDate, null, '[]') ||
-    //                 moment(booking.toDate).isBetween(fromDate, toDate, null, '[]')
-    //             );
-    //         } else {
-    //             return true;
-    //         }
-    //     });
-
-    //     setduplicateroom(availableRooms);
-    // }
-
-    function filterByBranch(branch) {
-        // Reset date values
-        setfromDate(null);
-        settoDate(null);
-
-        const filteredRooms = originalData.filter(room => {
-            return branch === 'All' || room.branch === branch;
-        });
-
-        setduplicateroom(filteredRooms);
     }
 
 
@@ -141,9 +95,9 @@ const Rooms = () => {
                 <div className="flex">
                     <form action="">
                         <div className="box">
-                            <select name="branch" className="input" required onChange={(e) => filterByBranch(e.target.value)}>
+                            <select name="adults" className="input" required>
                                 <option value="All">All</option>
-                                <option value="Malaybalay">Malaybalay</option>
+                                <option value="Malabalay">Malabalay</option>
                                 <option value="Valencia">Valencia</option>
                                 <option value="Maramag">Maramag</option>
                             </select>
