@@ -15,7 +15,7 @@ const RoomsAvailable = () => {
                     <h1 className="heading">Available Rooms</h1>
                     <div className="roomState">
                         <a className="stateBtn state">Available Rooms</a>
-                        <a href="./roomsOccupied">Occupied Rooms</a>
+                        <a href="./roomsUnavailable">Unavailable Rooms</a>
                         <span className="addRoom">+ Add Room</span>
                     </div>
                     <div className="roomsRow">

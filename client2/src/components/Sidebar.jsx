@@ -25,7 +25,7 @@ const Sidebar = () => {
             <img src="https://th.bing.com/th/id/OIP.edPmh_52ubwjIDT2YIBjkAAAAA?pid=ImgDet&rs=1" alt="" />
             <h3>Anzai Mitsuyoshi</h3>
             <span>admin</span>
-            <Link to="#" className="btn">view profile</Link>
+            <Link to="/profileAdmin" className="btn">view profile</Link>
         </div>
 
         <nav className="navbar">
