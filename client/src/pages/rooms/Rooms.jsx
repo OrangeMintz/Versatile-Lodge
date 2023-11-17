@@ -13,8 +13,10 @@ import { DatePicker } from 'antd';
 
 
 
+
 const Rooms = () => {
     const { RangePicker } = DatePicker;
+    const [searchTerm, setSearchTerm] = useState("");
     const { data, loading, error, reFetch } = useFetch("http://localhost:8000/api/room/");
     const { user, setUser } = useContext(UserContext);
     const [fromDate, setfromDate] = useState();
@@ -28,10 +30,9 @@ const Rooms = () => {
         setduplicateroom(data);
     }, [data]);
 
-
     function filterByDate(dates) {
-        const fromDate = dates[0].format('MM-DD-YYYY');
-        const toDate = dates[1].format('MM-DD-YYYY');
+        const fromDate = dates[0]?.format('MM-DD-YYYY');
+        const toDate = dates[1]?.format('MM-DD-YYYY');
         setfromDate(fromDate);
         settoDate(toDate);
 
@@ -56,37 +57,13 @@ const Rooms = () => {
         setduplicateroom(availableRooms);
     }
 
-
-    // function filterByDate(dates) {
-    //     const fromDate = dates[0].format('MM-DD-YYYY');
-    //     const toDate = dates[1].format('MM-DD-YYYY');
-    //     setfromDate(fromDate);
-    //     settoDate(toDate);
-
-    //     // Call the filterByDateAndBranch function with both date range and selected branch
-    //     filterByDateAndBranch([moment(fromDate), moment(toDate)], document.querySelector('[name="branch"]').value);
-
-
-    //     const availableRooms = data.filter(room => {
-    //         if (room.currentbookings.length > 0) {
-    //             return !room.currentbookings.some(booking =>
-    //                 moment(fromDate).isBetween(booking.fromDate, booking.toDate, null, '[]') ||
-    //                 moment(toDate).isBetween(booking.fromDate, booking.toDate, null, '[]') ||
-    //                 moment(booking.fromDate).isBetween(fromDate, toDate, null, '[]') ||
-    //                 moment(booking.toDate).isBetween(fromDate, toDate, null, '[]')
-    //             );
-    //         } else {
-    //             return true;
-    //         }
-    //     });
-
-    //     setduplicateroom(availableRooms);
-    // }
-
     function filterByBranch(branch) {
         // Reset date values
         setfromDate(null);
         settoDate(null);
+
+        // Reset the search input field to an empty string whenever the branch is changed
+        setSearchTerm("");
 
         const filteredRooms = originalData.filter(room => {
             return branch === 'All' || room.branch === branch;
@@ -95,30 +72,32 @@ const Rooms = () => {
         setduplicateroom(filteredRooms);
     }
 
+    function filterBySearch(value) {
+        // Reset the branch to 'All' whenever a keyword is typed in the search input
+        const branchSelect = document.querySelector('[name="branch"]');
+        branchSelect.value = 'All';
 
+        const filteredRooms = originalData.filter(room => {
+            const isNameMatched = room.name.toLowerCase().includes(value.toLowerCase());
+            const isPriceMatched = room.price.toString().includes(value);
 
-    // function filterByDate(dates) {
-    //     const fromDate = dates[0].format('MM-DD-YYYY');
-    //     const toDate = dates[1].format('MM-DD-YYYY');
-    //     setfromDate(fromDate);
-    //     settoDate(toDate);
+            // Check if the room is booked during the selected date range
+            const isBookedDuringDateRange = (
+                fromDate &&
+                toDate &&
+                room.currentbookings.some(booking =>
+                    moment(fromDate).isBetween(booking.fromDate, booking.toDate, null, '[]') ||
+                    moment(toDate).isBetween(booking.fromDate, booking.toDate, null, '[]') ||
+                    moment(booking.fromDate).isBetween(fromDate, toDate, null, '[]') ||
+                    moment(booking.toDate).isBetween(fromDate, toDate, null, '[]')
+                )
+            );
 
-    //     const availableRooms = originalData.filter(room => {
-    //         if (room.currentbookings.length > 0) {
-    //             return !room.currentbookings.some(booking =>
-    //                 moment(fromDate).isBetween(booking.fromDate, booking.toDate, null, '[]') ||
-    //                 moment(toDate).isBetween(booking.fromDate, booking.toDate, null, '[]') ||
-    //                 moment(booking.fromDate).isBetween(fromDate, toDate, null, '[]') ||
-    //                 moment(booking.toDate).isBetween(fromDate, toDate, null, '[]')
-    //             );
-    //         } else {
-    //             return true;
-    //         }
-    //     });
+            return (isNameMatched || isPriceMatched) && !isBookedDuringDateRange;
+        });
 
-    //     setduplicateroom(availableRooms);
-    // }
-
+        setduplicateroom(filteredRooms);
+    }
 
     useEffect(() => {
         if (!user) {
@@ -152,13 +131,23 @@ const Rooms = () => {
                     <div className='box'>
                         <RangePicker className='range-picker' format='MM-DD-YYYY' onChange={filterByDate} />
                     </div>
-                    <form action="" method="post" className="search-form">
-                        <input type="text" name="search_box" placeholder="Search..." required maxLength="100" />
-                        <button type="submit" className="fas fa-search" name="search_box"></button>
+                    <form className="search-form">
+                        <input
+                            type="text"
+                            name="search_box"
+                            placeholder="Search..."
+                            value={searchTerm}
+                            onChange={(e) => {
+                                setSearchTerm(e.target.value);
+                                filterBySearch(e.target.value);
+                            }}
+                        />
+                        {/* Remove the submit button */}
                     </form>
                 </div>
                 <div className="card-container">
                     {loading ? (<h1><Loader /></h1>) : error ? (<Error />)
+
                         : (
                             duplicateroom
                                 .slice()

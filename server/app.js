@@ -59,7 +59,7 @@ app.use("/", customerroute);
 // app.use('/', require('./routes/authRoutes'))
 app.use("/api/branch", branchroute);
 app.use("/api/room", roomsroute);
-app.use("/api/booking/history", bookhistoryroute);
+app.use("/api/bookingHistory", bookhistoryroute);
 app.use("/api/reviews", reviewsroute);
 app.use("/api/transaction", transactionroute);
 app.use("/api/booking", bookingroute);
