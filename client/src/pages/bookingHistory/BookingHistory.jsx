@@ -60,77 +60,32 @@ const BookingHistory = () => {
           <table>
             <thead>
               <tr>
-                <th>Booking ID</th>
-                <th>Date</th>
-                <th>Time</th>
+                <th>Reserved</th>
                 <th>Room</th>
                 <th>Branch</th>
+                <th>Start Date</th>
+                <th>End Date</th>
                 <th>Amount</th>
                 <th>Status</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
               {bookingHistory.map((booking) => (
                 <tr key={booking._id}>
-                  <td>{booking._id}</td>
-                  <td>{moment(booking.bookingDate).format('MM-DD-YYYY')}</td>
-                  <td>{moment(booking.bookingDate).format('HH:mm:ss')}</td>
+                  <td>{moment(booking.bookingDate).format('MM-DD-YYYY:HH:mm:ss')}</td>
                   <td>{booking.roomName}</td>
                   <td>{booking.branch}</td>
+                  <td>{moment(booking.checkInDate).format('MM-DD-YYYY')}</td>
+                  <td>{moment(booking.checkOutDate).format('MM-DD-YYYY')}</td>
                   <td>{`₱${booking.price}`}</td>
                   <td>{booking.status}</td>
+                  <td><a href="/bookingHistoryDetails" className='btnDetail'>Cancel</a></td>
                 </tr>
               ))}
             </tbody>
           </table>
         )}
-        <table>
-          <tr>
-            <th>Booking ID</th>
-            <th>Date</th>
-            <th>Room#</th>
-            <th>Branch</th>
-            <th>Amount</th>
-            <th>Status</th>
-            <th></th>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>2023-10-15</td>
-            <td>101</td>
-            <td>Branch A</td>
-            <td>$150.00</td>
-            <td className='status green'>Accepted</td>
-            <td><a href="/bookingHistoryDetails" className='btnDetail'>View Details</a></td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>2023-10-16</td>
-            <td>203</td>
-            <td>Branch B</td>
-            <td>$200.00</td>
-            <td className='status yellow'>Pending</td>
-            <td><a href="/bookingHistoryDetails" className='btnDetail'>View Details</a></td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>2023-10-17</td>
-            <td>305</td>
-            <td>Branch C</td>
-            <td>$200.00</td>
-            <td className='status red'>Rejected</td>
-            <td><a href="/bookingHistoryDetails" className='btnDetail'>View Details</a></td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>2023-10-17</td>
-            <td>305</td>
-            <td>Branch C</td>
-            <td>$200.00</td>
-            <td className='status grey'>Canceled</td>
-            <td><a href="/bookingHistoryDetails" className='btnDetail'>View Details</a></td>
-          </tr>
-        </table>
       </section>
 
       <Footer />
