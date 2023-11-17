@@ -32,6 +32,24 @@ const BookingHistory = () => {
     fetchBookingHistory();
   }, [id]);
 
+
+
+
+  const handleCancelBooking = async (bookingId) => {
+    try {
+      await axios.delete(`/api/bookingHistory/${bookingId}`);
+      // Update the bookingHistory state to reflect the removal of the canceled booking
+      setBookingHistory((prevBookingHistory) =>
+        prevBookingHistory.filter((booking) => booking._id !== bookingId)
+      );
+    } catch (error) {
+      console.error('Error canceling booking:', error);
+      // Handle error
+    }
+  };
+
+
+
   useEffect(() => {
     if (!user) {
       axios
@@ -80,7 +98,7 @@ const BookingHistory = () => {
                   <td>{moment(booking.checkOutDate).format('MM-DD-YYYY')}</td>
                   <td>{`₱${booking.price}`}</td>
                   <td>{booking.status}</td>
-                  <td><a href="/bookingHistoryDetails" className='btnDetail'>Cancel</a></td>
+                  <td><button className='btnDetail' onClick={() => handleCancelBooking(booking._id)}>Cancel</button></td>
                 </tr>
               ))}
             </tbody>

@@ -17,6 +17,11 @@ const bookingSchema = new mongoose.Schema({
         required: true
     },
 
+    branch: {
+        type: String,
+        required: true
+    },
+
     fromDate: {
         type: String,
         required: true
@@ -37,9 +42,11 @@ const bookingSchema = new mongoose.Schema({
         required: true
     },
 
+    //Remove if not needed
     transaction_id: {
         type: String,
     },
+    //Remove if not needed
 
     status: {
         type: String,
