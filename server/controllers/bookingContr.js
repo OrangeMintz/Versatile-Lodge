@@ -21,7 +21,7 @@ const createBooking = async (req, res, next) => {
         });
 
         await roomTemp.save()
-        console.log(roomTemp);
+        // console.log(roomTemp);
 
         console.log(savedBooking)
 
