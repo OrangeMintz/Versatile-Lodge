@@ -1,3 +1,10 @@
+.booking-history {
+    width: 100vw;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
 .booking-history h1 {                                  /*booking history section - BOOKING HISTORY */
     color: var(--branch-color);
     font-size: 4rem;
@@ -9,12 +16,13 @@
     background-color: var(--branch-color);
     border-collapse: collapse;
     width: 100%;
+    
 }
 
 .booking-history table th, td {
     text-align: center;
     padding: 30px;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .booking-history table th {
