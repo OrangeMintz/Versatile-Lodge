@@ -30,6 +30,14 @@
     font-weight: 700;
     color: red;
 }
+.booking-history table .yellow {
+    font-weight: 700;
+    color: yellow;
+}
+.booking-history table .grey {
+    font-weight: 700;
+    color: grey;
+}
 
 .booking-history table .btnDetail {
     display: inline-block;
