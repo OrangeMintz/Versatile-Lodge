@@ -14,6 +14,7 @@ import { toast } from 'react-hot-toast'
 
 const BookNow = () => {
     const navigate = useNavigate();
+
     const { id, fromDate, toDate } = useParams();
     const apiUrl = `http://localhost:8000/api/room/${id}`;
     const { data, loading, error } = useFetch(apiUrl);
@@ -33,32 +34,23 @@ const BookNow = () => {
             toDate,
             totalAmount,
             totalDays,
-            transaction_id: 124131,
+            transaction_id: 124131
         }
 
         try {
-            // Create a booking entry
-            const result = await axios.post('/api/booking/', bookingDetails);
-            console.log(result);
-            toast.success('Reserved Successfully');
+            const result = await axios.post('/api/booking/', bookingDetails)
+            console.log(result)
+            toast.success('Reserved Successfully')
+            navigate('/');
 
-            // Create a booking history entry
-            await axios.post('/api/bookingHistory/', {
-                user_id: user.id,
-                reservation_id: result.data._id,
-                fromDate,
-                toDate,
-                roomName: data.name,
-                branch: data.branch,
-                price: data.price,
-            });
 
-            navigate('/'); // Redirect to the homepage after booking
 
         } catch (error) {
-            // Handle error
-            console.error(error);
+
         }
+
+
+        // Implement your booking logic here
     }
 
     useEffect(() => {

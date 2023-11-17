@@ -2,9 +2,20 @@ const BookingHistory = require("../models/BookingHistory.js");
 
 const createError = require('../utils/error.js');
 
-const createBookHistory = async (req, res, next) => {
-    const newHistory = new BookingHistory(req.body);
+const createBookingHistory = async (req, res, next) => {
+    const { user_id, reservation_id, fromDate, toDate, roomName, branch, price } = req.body;
+
     try {
+        const newHistory = new BookingHistory({
+            userId: user_id,
+            reservationId: reservation_id,
+            checkInDate: new Date(fromDate),
+            checkOutDate: new Date(toDate),
+            roomName: roomName,
+            branch: branch,
+            price: price,
+        });
+
         const savedHistory = await newHistory.save();
         res.status(200).json(savedHistory);
     } catch (err) {
@@ -30,11 +41,23 @@ const getBookHistory = async (req, res, next) => {
     }
 };
 
+const getBookHistoryByUserId = async (req, res, next) => {
+    const user_id = req.params.id; // Assuming you are passing the user_id as a parameter in the URL
+
+    try {
+        const history = await BookingHistory.find({ userId: user_id });
+        res.status(200).json(history);
+    } catch (err) {
+        next(err);
+    }
+};
+
 
 
 
 module.exports = {
-    createBookHistory,
+    createBookingHistory,
     deleteBookHistory,
     getBookHistory,
+    getBookHistoryByUserId
 };
