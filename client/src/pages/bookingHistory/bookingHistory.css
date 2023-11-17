@@ -11,14 +11,59 @@
     width: 100%;
 }
 
-.booking-history th, td {
+.booking-history table th, td {
     text-align: center;
     padding: 30px;
     font-size: 2rem;
 }
 
-@media (max-width:768px) {          /*width half the screen*/
+.booking-history table th {
+    border-bottom: 1px solid black;
+}
 
+.booking-history table .green {
+    font-weight: 700;
+    color: limegreen;
+}
+
+.booking-history table .red {
+    font-weight: 700;
+    color: red;
+}
+
+.booking-history table .btnDetail {
+    display: inline-block;
+    font-size: 1.6rem;
+    padding: 1rem 3rem;
+    color: var(--branch-color);
+    text-transform: capitalize;
+    text-align: center;
+    margin-top: 1rem;
+    transition: .2s linear;
+    margin-top: 1rem;
+    background-color: var(--main-color);
+    border-radius: 5px;
+
+}
+
+.booking-history table .btnDetail:hover {
+    border-radius: 5rem;
+    color: var(--main-color);
+    background-color: var(--branch-color);
+    outline: 1px solid var(--main-color);
+    box-shadow: 4px 4px 15px rgba(0,0,0,.4);
+}
+
+
+
+
+
+@media (max-width:888px) {          /*width half the screen*/
+
+    .booking-history{
+        height: 80vh;
+        overflow-y: auto;
+    }
 
     .booking-history h1 {
         font-size: 4rem;
@@ -27,18 +72,26 @@
         font-size: 1.7rem;
         padding: 18px;
       }
+    .booking-history table .btnDetail {
+        font-size: 1.2rem;
+        text-align: center;
+        padding: 1rem 2.5rem;
+        width: max-content;
+    }
 
 
 }
 
+
+
 @media (max-width:450px) {          /*width 1/4 the screen closest to android phone (380px)*/
 
-    .booking-history h1 {
+    /* .booking-history h1 {
         font-size: 3rem;
     }
     .booking-history  th, td {
         font-size: 1.5rem;
         padding: 8px;
-      }
+      } */
 
 }

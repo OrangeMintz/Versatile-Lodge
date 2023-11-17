@@ -33,7 +33,7 @@ const Employees = () => {
                                 <td>Sumpon</td>
                                 <td>May 14, 2023</td>
                                 <td>09123465789</td>
-                                <td><a href="/profileEmployee" className='option-btn'>Option</a></td>
+                                <td><a href="#" className='option-btn'>Option</a></td>
                             </tr>
                             <tr>
                                 <td>Mr Boy Alucardo</td>

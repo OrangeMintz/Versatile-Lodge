@@ -21,6 +21,8 @@ const BookingHistory = () => {
             <th>Room#</th>
             <th>Branch</th>
             <th>Amount</th>
+            <th>Status</th>
+            <th></th>
           </tr>
           <tr>
             <td>1</td>
@@ -28,6 +30,8 @@ const BookingHistory = () => {
             <td>101</td>
             <td>Branch A</td>
             <td>$150.00</td>
+            <td className='status green'>Accepted</td>
+            <td><a href="/bookingHistoryDetails" className='btnDetail'>View Details</a></td>
           </tr>
           <tr>
             <td>2</td>
@@ -35,13 +39,17 @@ const BookingHistory = () => {
             <td>203</td>
             <td>Branch B</td>
             <td>$200.00</td>
+            <td className='status green'>Accepted</td>
+            <td><a href="/bookingHistoryDetails" className='btnDetail'>View Details</a></td>
           </tr>
           <tr>
             <td>3</td>
             <td>2023-10-17</td>
             <td>305</td>
             <td>Branch C</td>
-            <td>$175.00</td>
+            <td>$200.00</td>
+            <td className='status red'>Rejected</td>
+            <td><a href="/bookingHistoryDetails" className='btnDetail'>View Details</a></td>
           </tr>
         </table>
       </section>
