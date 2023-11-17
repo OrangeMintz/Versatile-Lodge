@@ -43,7 +43,7 @@ const deleteBookHistory = async (req, res, next) => {
         const roomId = bookingHistory.roomId;
         const reservationId = bookingHistory.reservationId;
 
-        console.log("roomId:", roomId);
+        // console.log("roomId:", roomId);
 
         // Delete the booking history entry
         await BookingHistory.findByIdAndDelete(bookingId);

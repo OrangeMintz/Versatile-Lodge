@@ -87,47 +87,6 @@ const BookingHistory = () => {
                 <th>Status</th>
                 <th></th>
               </tr>
-              <tr>
-                <td>Reserved</td>
-                <td>Room</td>
-                <td>Branch</td>
-                <td>Start Date</td>
-                <td>End Date</td>
-                <td>Amount</td>
-                <td>Status</td>
-                <td>button</td>
-              </tr>
-              <tr>
-                <td>Reserved</td>
-                <td>Room</td>
-                <td>Branch</td>
-                <td>Start Date</td>
-                <td>End Date</td>
-                <td>Amount</td>
-                <td>Status</td>
-                <td>button</td>
-              </tr>
-              <tr>
-                <td>Reserved</td>
-                <td>Room</td>
-                <td>Branch</td>
-                <td>Start Date</td>
-                <td>End Date</td>
-                <td>Amount</td>
-                <td>Status</td>
-                <td>cancel</td>
-              </tr>
-              <tr>
-                <td>Reserved</td>
-                <td>Room</td>
-                <td>Branch</td>
-                <td>Start Date</td>
-                <td>End Date</td>
-                <td>Amount</td>
-                <td>Status</td>
-                <td>cancel</td>
-              </tr>
-              
             </thead>
             <tbody>
               {bookingHistory.map((booking) => (

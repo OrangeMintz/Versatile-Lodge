@@ -39,7 +39,7 @@ const BookNow = () => {
         try {
             // Create a booking entry
             const result = await axios.post('/api/booking/', bookingDetails);
-            console.log(result);
+            // console.log(result);
             toast.success('Reserved Successfully');
 
             // Create a booking history entry
