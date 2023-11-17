@@ -12,6 +12,7 @@ import AccountSetting from "./pages/accountSetting/AccountSetting";
 import BookingHistory from "./pages/bookingHistory/BookingHistory";
 import ChangePassword from "./pages/changePassword/ChangePassword";
 import BookNow from "./pages/bookNow/BookNow";
+import BookingHistoryDetails from "./pages/bookingHistoryDetails/BookingHistoryDetails";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 
@@ -59,6 +60,7 @@ function App() {
         <Route path="/room/roomDetail/:id" element={<RoomDetail />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/reviews" element={<Reviews />} />
+        <Route path="/bookingHistoryDetails" element={<BookingHistoryDetails />} />
 
         <Route path="/404" element={<Unauthorized />} />
         <Route path="*" element={<Navigate to="/404" />} />

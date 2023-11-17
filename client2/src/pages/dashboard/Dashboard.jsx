@@ -86,13 +86,13 @@ const Dashboard = () => {
                     </div>
 
                     <div className="box">
-                        <h3 className="title">likes and comments:</h3>
+                        <h3 className="title">stars and comments:</h3>
                         <p className="stat">total likes : <span>14</span></p>
-                        <a href="#" className="inline-btn">view likes</a>
+                        <a href="/reviewsAdmin" className="inline-btn">view stars</a>
                         <p className="stat">total comments : <span>5</span></p>
-                        <a href="#" className="inline-btn">view comments</a>
+                        <a href="/reviewsAdmin" className="inline-btn">view comments</a>
                         <p className="stat">available rooms : <span>2</span></p>
-                        <a href="#" className="inline-btn">view rooms</a>
+                        <a href="/roomsAvailable" className="inline-btn">view rooms</a>
                     </div>
                 </div>
             
