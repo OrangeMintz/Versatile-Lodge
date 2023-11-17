@@ -16,6 +16,8 @@
     background-color: var(--branch-color);
     border-collapse: collapse;
     width: 100%;
+    text-align: center;
+    align-items: center;
     
 }
 
@@ -23,46 +25,60 @@
     text-align: center;
     padding: 30px;
     font-size: 1.5rem;
+    border: 1px solid black;
+
 }
 
 .booking-history table th {
     border-bottom: 1px solid black;
 }
 
+
 .booking-history table .green {
     font-weight: 700;
     color: limegreen;
+    border: 1px solid green;
+    padding: .5rem 1.2rem;
+    border-radius: 5px;
 }
 
 .booking-history table .red {
     font-weight: 700;
     color: red;
+    border: 1px solid red;
+    padding: .5rem 1.2rem;
+    border-radius: 5px;
 }
 .booking-history table .yellow {
     font-weight: 700;
     color: yellow;
+    border: 1px solid yellow;
+    padding: .5rem 1.2rem;
+    border-radius: 5px;
 }
 .booking-history table .grey {
     font-weight: 700;
     color: grey;
+    border: 1px solid grey;
+    padding: .5rem 1.2rem;
+    border-radius: 5px;
 }
 
-.booking-history table .btnDetail {
-    display: inline-block;
-    font-size: 1.6rem;
-    padding: 1rem 3rem;
+.booking-history table .btnCancel {
+    /* display: inline-block; */
+    font-size: 1.4rem;
+    padding: 1rem 2rem;
     color: var(--branch-color);
     text-transform: capitalize;
     text-align: center;
-    margin-top: 1rem;
     transition: .2s linear;
-    margin-top: 1rem;
+    margin: 2rem 0;
     background-color: var(--main-color);
     border-radius: 5px;
 
 }
 
-.booking-history table .btnDetail:hover {
+.booking-history table .btnCancel:hover {
     border-radius: 5rem;
     color: var(--main-color);
     background-color: var(--branch-color);
