@@ -29,11 +29,11 @@ const BookNow = () => {
             room: data.name,
             room_id: data._id,
             user_id: user && user.id,
+            branch: data.branch,
             fromDate,
             toDate,
             totalAmount,
             totalDays,
-            transaction_id: 124131,
         }
 
         try {
@@ -46,6 +46,7 @@ const BookNow = () => {
             await axios.post('/api/bookingHistory/', {
                 user_id: user.id,
                 reservation_id: result.data._id,
+                room_id: data._id,
                 fromDate,
                 toDate,
                 roomName: data.name,

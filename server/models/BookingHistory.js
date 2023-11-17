@@ -11,6 +11,13 @@ const bookingHistorySchema = new mongoose.Schema({
     ref: 'Booking',
     required: true,
   },
+
+  roomId: {  // Added this field to store the room ID
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Room',
+    required: true,
+  },
+
   checkInDate: {
     type: Date,
     required: true,
