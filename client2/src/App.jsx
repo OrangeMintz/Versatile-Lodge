@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 //Pages
 import Dashboard from "./pages/dashboard/Dashboard.jsx";
@@ -14,15 +14,37 @@ import RoomsBooking from "./pages/roomsBooking/RoomsBooking.jsx";
 import ProfileAdmin from "./pages/profileAdmin/ProfileAdmin.jsx";
 import ProfileEmployee from "./pages/profileEmployee/ProfileEmployee.jsx";
 
+//Components
+
+import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
+import { UserContextProvider } from './components/userContext.jsx';
 
 
+axios.defaults.baseURL = 'http://localhost:8000'
+axios.defaults.withCredentials = true
 
 
 function App() {
   return (
+    <UserContextProvider>
+      <Toaster position='bottom-right' gutter={12} toastOptions={{
+        style: {
+          background: '#DCC69C',
+          color: '#363636',
+          fontSize: "12px"
+        },
 
+        // Default options for specific types
+        success: {
+          duration: 3500,
+          theme: {
+            primary: '#DCC69C',
+            secondary: 'black',
+          },
+        },
+      }} />
       <Routes>
-
         <Route path="/" element={<Dashboard />} />
         <Route path="/employees" element={<Employees />} />
         <Route path="/loginAdmin" element={<LoginAdmin />} />
@@ -32,10 +54,10 @@ function App() {
         <Route path="/roomsUnavailable" element={<RoomsUnavailable />} />     {/*rooms*/}
         <Route path="/roomsReserved" element={<RoomsReserved />} />         {/*transaction*/}
         <Route path="/roomsBooking" element={<RoomsBooking />} />         {/*transaction*/}
-        <Route path="/profileAdmin" element={<ProfileAdmin />} />        
-        <Route path="/profileEmployee" element={<ProfileEmployee />} />    
-    
+        <Route path="/profileAdmin" element={<ProfileAdmin />} />
+        <Route path="/profileEmployee" element={<ProfileEmployee />} />
       </Routes>
+    </UserContextProvider>
 
   );
 }
