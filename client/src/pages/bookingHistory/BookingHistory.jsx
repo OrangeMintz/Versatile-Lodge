@@ -8,6 +8,8 @@ import { UserContext } from '../../context/userContext';
 import axios from 'axios';
 import moment from 'moment'; // Import moment library
 import './bookingHistory.css';
+import { toast } from 'react-hot-toast'
+
 
 const BookingHistory = () => {
   const { id } = useParams();
@@ -15,6 +17,10 @@ const BookingHistory = () => {
   const [bookingHistory, setBookingHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [bookingIdToCancel, setBookingIdToCancel] = useState(null); // State to store the booking ID to cancel
+
+
 
   useEffect(() => {
     const fetchBookingHistory = async () => {
@@ -33,21 +39,50 @@ const BookingHistory = () => {
   }, [id]);
 
 
-
+  // const handleCancelBooking = async (bookingId) => {
+  //   try {
+  //     await axios.delete(`/api/bookingHistory/${bookingId}`);
+  //     // Update the bookingHistory state to reflect the removal of the canceled booking
+  //     setBookingHistory((prevBookingHistory) =>
+  //       prevBookingHistory.filter((booking) => booking._id !== bookingId)
+  //     );
+  //   } catch (error) {
+  //     console.error('Error canceling booking:', error);
+  //     // Handle error
+  //   }
+  // };
 
   const handleCancelBooking = async (bookingId) => {
+    // Show the confirmation modal and set the booking ID to cancel
+    setShowModal(true);
+    setBookingIdToCancel(bookingId);
+  };
+
+  const handleConfirmCancel = async () => {
     try {
-      await axios.delete(`/api/bookingHistory/${bookingId}`);
+      // Cancel the booking using the stored booking ID
+      await axios.delete(`/api/bookingHistory/${bookingIdToCancel}`);
+      toast.success('Reservation Cancelled Successfully')
+
       // Update the bookingHistory state to reflect the removal of the canceled booking
       setBookingHistory((prevBookingHistory) =>
-        prevBookingHistory.filter((booking) => booking._id !== bookingId)
+        prevBookingHistory.filter((booking) => booking._id !== bookingIdToCancel)
       );
+
+      // Close the modal
+      setShowModal(false);
     } catch (error) {
       console.error('Error canceling booking:', error);
+      toast.error('Error canceling reservation')
+
       // Handle error
     }
   };
 
+  const handleCancel = () => {
+    // Close the modal without canceling the booking
+    setShowModal(false);
+  };
 
 
   useEffect(() => {
@@ -62,6 +97,7 @@ const BookingHistory = () => {
         });
     }
   }, [user, setUser]);
+
 
   return (
     <div>
@@ -98,13 +134,30 @@ const BookingHistory = () => {
                   <td>{moment(booking.checkOutDate).format('MM-DD-YYYY')}</td>
                   <td>{`₱${booking.price}`}</td>
                   <td>{booking.status}</td>
-                  <td><span className='btnCancel' onClick={() => handleCancelBooking(booking._id)}>Cancel</span></td>
+                  {/* <td><span className='btnCancel' onClick={() => handleCancelBooking(booking._id)}>Cancel</span></td> */}
+                  <td>
+                    <span className='btnCancel' onClick={() => handleCancelBooking(booking._id)}>
+                      Cancel
+                    </span>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         )}
       </section>
+
+      {/* Confirmation Modal */}
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <p>Are you sure you want to cancel your booking?</p>
+            <button onClick={handleCancel}>No</button>
+            <button onClick={handleConfirmCancel}>Yes</button>
+
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>
