@@ -1,3 +1,7 @@
+.profileEmployeeContainer {
+    height: 80vh;
+}
+
 .profileEmployee {
     background: var(--white);
     text-align: center;
@@ -30,6 +34,13 @@
     gap: 3rem;
     padding: 1rem 2rem;
 }
+
+    @media (max-width: 666px) {
+        .profileEmployee .profileBtns {
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+        }
+    }
 
 .profileEmployee .profileBtns .profileBtn {
     font-size: 1.5rem;
