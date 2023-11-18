@@ -73,9 +73,9 @@
     text-transform: capitalize;
     text-align: center;
     transition: .2s linear;
-    margin: 2rem 0;
     background-color: var(--main-color);
     border-radius: 5px;
+    
 
 }
 

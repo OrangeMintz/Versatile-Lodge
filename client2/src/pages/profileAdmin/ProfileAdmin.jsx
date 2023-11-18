@@ -16,9 +16,9 @@ const ProfileAdmin = () => {
                     <h1 className="heading">Admin Profile Details</h1>
                     <div className="profileAdminGrid">
 
-                        <div className="profileAdminCalendar">
+                        {/* <div className="profileAdminCalendar">
                             <img src="https://www.clker.com/cliparts/t/J/l/4/A/7/calendar-larger-hi.png" alt="" />
-                        </div>
+                        </div> */}
 
                         <div className="profileAdminDetails">
                             <img src="https://th.bing.com/th/id/OIP.edPmh_52ubwjIDT2YIBjkAAAAA?pid=ImgDet&rs=1" alt="" />
