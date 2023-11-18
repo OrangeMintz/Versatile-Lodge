@@ -1,7 +1,11 @@
+.profileAdminContainer {
+
+}
 .profileAdminGrid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
+    height: 70vh;
 }
 
 .profileAdminGrid .profileAdminCalendar {
@@ -12,7 +16,6 @@
     width: 100%;
     background: var(--white);
     padding: 1em;
-
 }
 
 .profileAdminGrid .profileAdminDetails {
