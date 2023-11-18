@@ -41,6 +41,7 @@ const loginAdmin = async (req, res) => {
         const match = await comparePassword(password, admin.password);
 
         if (match) {
+
             // Password matches, you can proceed with user authentication here.
             const imageUrl = `https://res.cloudinary.com/dl0qncxjh/image/upload/${admin.image}`;
             const adminWithImage = { ...admin.toObject() };
@@ -48,6 +49,7 @@ const loginAdmin = async (req, res) => {
             jwt.sign(
                 {
                     email: admin.email,
+                    username: admin.username,
                     id: admin._id,
                     name: admin.name,
                     image: admin.image,

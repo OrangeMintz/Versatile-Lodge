@@ -38,7 +38,9 @@ function App() {
         style: {
           background: '#DCC69C',
           color: '#363636',
-          fontSize: "12px"
+          fontSize: "12px",
+          boxShadow: "10px 10px 15px rgba(0,0,0,.4)"
+
         },
 
         // Default options for specific types

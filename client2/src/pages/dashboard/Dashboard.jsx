@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 
 // import styles from './dashboard.module.css';
 import './dashboard.css';
@@ -6,30 +6,50 @@ import './dashboard.css';
 import HeaderAdmin from '../../components/HeaderAdmin';
 import Sidebar from '../../components/Sidebar';
 import Footer from '../../components/Footer';
+import { Link, Navigate } from 'react-router-dom';
+import axios from 'axios';
+import { UserContext } from '../../components/userContext';
 
 const Dashboard = () => {
+
+    //GET PROFILE START
+    const { user, setUser } = useContext(UserContext);
+    useEffect(() => {
+        if (!user) {
+            axios.get('/profile')
+                .then(({ data }) => {
+                    setUser(data);
+                })
+                .catch((error) => {
+                    console.error('Error fetching user profile:', error);
+                });
+        }
+    }, [user, setUser]);
+
+
+    //GET PROFILE END
+
 
     return (
         // <div className={styles.dashboard}>
         <div>
             <HeaderAdmin />
-            
             <Sidebar />
 
-             {/* <!-- overview section starts --> */}
-            
+            {/* <!-- overview section starts --> */}
+
             <section className="overview">
-            
+
                 <h1 className="heading">Overview</h1>
-            
+
                 <div className="box-container">
-            
+
                     <div className="box">
                         <span>Occupancy</span>
                         <h3 className="title">Malaybalay:</h3>
                         <p>50%</p>
                     </div>
-            
+
                     <div className="box">
                         <span>Occupancy</span>
                         <h3 className="title">Maramag:</h3>
@@ -47,7 +67,7 @@ const Dashboard = () => {
                         <h3 className="title">Total:</h3>
                         <p>50%</p>
                     </div>
-            
+
                     <div className="box">
                         <h3 className="title">Occupancy Statistics:</h3>
                         <div className="monthly"><i className='fas fa-calendar'></i> Monthly</div>
@@ -86,22 +106,22 @@ const Dashboard = () => {
                     </div>
 
                     <div className="box">
-                        <h3 className="title">stars and comments:</h3>
+                        {/* <h3 className="title">stars and comments:</h3>
                         <p className="stat">total likes : <span>14</span></p>
-                        <a href="/reviewsAdmin" className="inline-btn">view stars</a>
+                        <a href="/reviewsAdmin" className="inline-btn">view stars</a> */}
                         <p className="stat">total comments : <span>5</span></p>
                         <a href="/reviewsAdmin" className="inline-btn">view comments</a>
                         <p className="stat">available rooms : <span>2</span></p>
                         <a href="/roomsAvailable" className="inline-btn">view rooms</a>
                     </div>
                 </div>
-            
+
             </section>
-            
+
             {/* <!-- overview section ends --> */}
-            
-            <Footer />        
-        
+
+            <Footer />
+
         </div>
     )
 }
