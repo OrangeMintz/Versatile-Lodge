@@ -55,11 +55,11 @@ const HeaderAdmin = () => {
                         <h3>Anzai Mitsuyoshi</h3>
                         <span>admin</span>
                         <a href="#" className="btn">view profile</a>
-                        <div className="flex-btn">
+                        {/* <div className="flex-btn">
                             <a href="#" className="option-btn">login</a>
                             <a href="#" className="option-btn">register</a>
 
-                        </div>
+                        </div> */}
                     </div>
                 </section>
             </header>
