@@ -98,7 +98,7 @@ const BookingHistory = () => {
                   <td>{moment(booking.checkOutDate).format('MM-DD-YYYY')}</td>
                   <td>{`₱${booking.price}`}</td>
                   <td>{booking.status}</td>
-                  <td><p className='btnCancel' onClick={() => handleCancelBooking(booking._id)}>Cancel</p></td>
+                  <td><span className='btnCancel' onClick={() => handleCancelBooking(booking._id)}>Cancel</span></td>
                 </tr>
               ))}
             </tbody>
