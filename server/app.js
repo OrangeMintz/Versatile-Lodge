@@ -14,6 +14,8 @@ const bookhistoryroute = require("./routes/bookinghistory.js")
 const reviewsroute = require("./routes/reviews.js")
 const transactionroute = require("./routes/transaction.js")
 const customerroute = require('./routes/authRoutes.js')
+const adminroute = require('./routes/adminRoutes.js')
+
 const bookingroute = require('./routes/booking.js')
 
 
@@ -43,9 +45,12 @@ mongoose.connection.on("connected", () => {
 
 //Middlewares
 
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: false }))
+const corsOptions = {
+  origin: ["http://localhost:3000", "http://localhost:3001"],
+  credentials: true,
+};
 
+app.use(cors(corsOptions));
 app.use(express.json({ limit: '50mb' }));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false, limit: '50m' }))
@@ -55,6 +60,8 @@ app.use(express.urlencoded({ extended: false, limit: '50m' }))
 
 // app.use("/api/users", usersroute);
 app.use("/", customerroute);
+app.use("/admin", adminroute);
+
 
 // app.use('/', require('./routes/authRoutes'))
 app.use("/api/branch", branchroute);
@@ -65,13 +72,10 @@ app.use("/api/transaction", transactionroute);
 app.use("/api/booking", bookingroute);
 
 
+
 //GOOGLE OAUTH WITHOUT PASSPORT
 app.use("/oauth", oauthRouter);
 app.use("/request", requestRouter);
-
-app.get("/", (req, res) => {
-  res.send("Route folder");
-});
 
 
 app.use((err, req, res, next) => {

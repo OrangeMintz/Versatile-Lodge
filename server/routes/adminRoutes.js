@@ -1,13 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const { registerUser, loginUser, getProfile, updateUser, updatePassword } = require('../controllers/authController');
+const { loginAdmin, getProfile, createAdmin } = require('../controllers/adminController');
+
 const authenticateUser = require('../middleware/authMiddleware');
 
 
-router.post('/register/customer', registerUser)
-router.put('/update/:id', authenticateUser, updateUser)
-router.put('/updatepassword/:id', authenticateUser, updatePassword)
-router.post('/login/customer', loginUser)
+router.post('/register', createAdmin)
+router.post('/login', loginAdmin)
 router.get('/profile/', getProfile)
 
 
