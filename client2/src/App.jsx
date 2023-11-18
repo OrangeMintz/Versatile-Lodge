@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 //Pages
 import Dashboard from "./pages/dashboard/Dashboard.jsx";
@@ -13,6 +13,7 @@ import RoomsReserved from "./pages/roomsReserved/RoomsReserved.jsx";
 import RoomsBooking from "./pages/roomsBooking/RoomsBooking.jsx";
 import ProfileAdmin from "./pages/profileAdmin/ProfileAdmin.jsx";
 import ProfileEmployee from "./pages/profileEmployee/ProfileEmployee.jsx";
+import Unauthorized from "./pages/unauthorized/unauthorized.jsx"
 
 //Components
 
@@ -32,7 +33,10 @@ function App() {
         style: {
           background: '#DCC69C',
           color: '#363636',
-          fontSize: "12px"
+          fontSize: "12px",
+          boxShadow: "10px 10px 15px rgba(0,0,0,.4)"
+
+
         },
 
         // Default options for specific types
@@ -54,8 +58,14 @@ function App() {
         <Route path="/roomsUnavailable" element={<RoomsUnavailable />} />     {/*rooms*/}
         <Route path="/roomsReserved" element={<RoomsReserved />} />         {/*transaction*/}
         <Route path="/roomsBooking" element={<RoomsBooking />} />         {/*transaction*/}
-        <Route path="/profileAdmin" element={<ProfileAdmin />} />
-        <Route path="/profileEmployee" element={<ProfileEmployee />} />
+        <Route path="/profile" element={<ProfileAdmin />} />
+
+
+        <Route path="/404" element={<Unauthorized />} />
+        <Route path="*" element={<Navigate to="/404" />} />
+
+
+        {/* <Route path="/profileEmployee" element={<ProfileEmployee />} /> */}
       </Routes>
     </UserContextProvider>
 

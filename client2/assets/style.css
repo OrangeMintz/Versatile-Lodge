@@ -369,6 +369,14 @@ section {                   /*header block*/
     color: var(--main-color);
 }
 
+.side-bar .navbar a.active {         /*hover grey color*/
+    background-color: var(--light-bg);
+}
+
+.side-bar .navbar a.active i {       /*hover move*/
+    margin-right: 2.5rem;
+}
+
 .side-bar .navbar a:hover {         /*hover grey color*/
     background-color: var(--light-bg);
 }

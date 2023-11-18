@@ -1,6 +1,37 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { UserContext } from "../components/userContext";
+import axios from 'axios';
+
 
 const HeaderAdmin = () => {
+    const { user, setUser } = useContext(UserContext);
+
+    useEffect(() => {
+        if (!user) {
+            axios.get('/profile')
+                .then(({ data }) => {
+                    setUser(data);
+                })
+                .catch((error) => {
+                    console.error('Error fetching user profile:', error);
+                });
+        }
+    }, [user, setUser]);
+
+    const handleLogout = () => {
+        axios.get('/logout')
+            .then(() => {
+                // Set the new location
+                window.location.href = `${window.location.origin}/loginAdmin`;
+                toast.success("Logout Successful")
+                // Reload the page
+                // window.location.reload();
+            })
+            .catch((error) => {
+                console.error('Error during logout:', error);
+            });
+    };
 
     const handleUserIconClick = () => {
         const profile = document.querySelector('.profile');
@@ -16,12 +47,10 @@ const HeaderAdmin = () => {
         sideBar.classList.toggle('active');           //activate sidebar          
         body.classList.toggle('active');              //adjust for sidebar appearance
         menu_btn.classList.remove('active');          //remove sidebar icon 
-        
-    }
 
+    }
     const handleSearchIconClick = () => {
         const searchForm = document.querySelector('.search-form');
-
         searchForm.classList.toggle('active');
     }
 
@@ -29,38 +58,39 @@ const HeaderAdmin = () => {
     return (
         <div>
             <header className="headerAdmin">
-                <section className="flex"> 
+                <section className="flex">
                     <div className="icons">
                         <div id="menu-btn" className="fas fa-bars" onClick={handleBarsIconClick}></div>
-                        <a href="home.html" className="logo">Versatile Lodge</a>
+                        <Link to="/" className="logo">Versatile Lodge</Link>
                     </div>
-                    
-                    <form action="" method="post" className="search-form">
-                        <input className="search-box" type="text" name="search_box" placeholder="search here..." required maxLength="100"/>
+
+                    {/* <form action="" method="post" className="search-form">
+                        <input className="search-box" type="text" name="search_box" placeholder="search here..." required maxLength="100" />
                         <button type="submit" className="fas fa-search" name="search_box"></button>
-                    </form>
-                    
+                    </form> */}
+
                     <div className="icons">
 
-                        <div id="search-btn" className="fas fa-search" onClick={handleSearchIconClick}></div>
+                        {/* <div id="search-btn" className="fas fa-search" onClick={handleSearchIconClick}></div> */}
                         <div id="toggle-btn" className="fas fa-sun"></div>
                         <div id="question-btn" className="fas fa-question"></div>
                         <div id="user-btn" className="fas fa-user" onClick={handleUserIconClick}></div>
                         {/* <div id="drop-btn" className="fas fa-chevron-down"></div> */}
 
                     </div>
-                    
-                    <div className="profile">
-                        <img src="https://th.bing.com/th/id/OIP.edPmh_52ubwjIDT2YIBjkAAAAA?pid=ImgDet&rs=1"/>
-                        <h3>Anzai Mitsuyoshi</h3>
-                        <span>admin</span>
-                        <a href="#" className="btn">view profile</a>
-                        {/* <div className="flex-btn">
-                            <a href="#" className="option-btn">login</a>
-                            <a href="#" className="option-btn">register</a>
-
-                        </div> */}
-                    </div>
+                    {user && (
+                        <div className="profile">
+                            <img src={user.image} />
+                            <h3>{user.name}</h3>
+                            <span>{user.isAdmin && 'Admin'}</span>
+                            <span>{user.isManager && 'Manager'}</span>
+                            <span>{user.isEmployee && 'Employee'}</span>
+                            <Link to="/profile" className="btn">View profile</Link>
+                            <div className="flex-btn">
+                                <Link onClick={handleLogout} className="option-btn">Logout</Link>
+                            </div>
+                        </div>
+                    )}
                 </section>
             </header>
         </div>
