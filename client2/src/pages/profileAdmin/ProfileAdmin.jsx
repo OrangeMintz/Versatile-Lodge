@@ -1,44 +1,79 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import './profileAdmin.css';
 import HeaderAdmin from '../../components/HeaderAdmin';
 import Sidebar from '../../components/Sidebar';
 import Footer from '../../components/Footer';
+import { Link, Navigate } from 'react-router-dom';
 
+import { UserContext } from "../../components/userContext";
+import axios from 'axios';
 
 const ProfileAdmin = () => {
+    const { user, setUser } = useContext(UserContext);
+
+    useEffect(() => {
+        if (!user) {
+            axios.get('/profile')
+                .then(({ data }) => {
+                    setUser(data);
+                })
+                .catch((error) => {
+                    console.error('Error fetching user profile:', error);
+                });
+        }
+    }, [user, setUser]);
+
+    const handleLogout = () => {
+        axios.get('/logout')
+            .then(() => {
+                // Set the new location
+                window.location.href = `${window.location.origin}/loginAdmin`;
+                toast.success("Logout Successful")
+                // Reload the page
+                // window.location.reload();
+            })
+            .catch((error) => {
+                console.error('Error during logout:', error);
+            });
+    };
+
     return (
-        <div>
+        <>
+            {user && (
 
-            <HeaderAdmin />
-            <Sidebar />
+                <div>
+                    <HeaderAdmin />
 
-            <section className="heading">
-                <h1 className="heading">Admin Profile Details</h1>
-                <div className="profileAdminGrid">
+                    <Sidebar />
 
-                    {/* <div className="profileAdminCalendar">
-                            <img src="https://www.clker.com/cliparts/t/J/l/4/A/7/calendar-larger-hi.png" alt="" />
-                        </div> */}
+                    <section className="heading">
+                        <h1 className="heading">
+                            {user.isAdmin && 'Admin Profile Details'}
+                            {user.isEmployee && 'Employee Profile Details'}
+                            {user.isManager && 'Manager Profile Details'}
+                        </h1>
+                        <div className="profileAdminGrid">
 
-                    <div className="profileAdminDetails">
-                        <img src="https://th.bing.com/th/id/OIP.edPmh_52ubwjIDT2YIBjkAAAAA?pid=ImgDet&rs=1" alt="" />
-                        <h3>Anzai Mitsuyoshi</h3>
-                        <span>admin</span>
-                        <div className="profileBtns">
-                            <a href="#" className="profileBtn">Account Settings</a>
-                            <a href="#" className="profileBtn">Change Password</a>
-                            <a href="/loginAdmin" className="profileBtn">Log out</a>
+                            <div className="profileAdminDetails">
+                                <img src={user.image} alt="" />
+                                <h3>{user.name}</h3>
+                                <span>{user.isAdmin && 'Admin'} {user.isManager && 'Manager'} {user.isEmployee && 'Employee'}</span>
+
+                                <div className="profileBtns">
+                                    <Link to="#" className="profileBtn">Account Settings</Link>
+                                    <Link to="#" className="profileBtn">Change Password</Link>
+                                    <Link onClick={handleLogout} className="profileBtn">Log out</Link>
+                                </div>
+                            </div>
+
+
+
                         </div>
-                    </div>
-
-
-
+                    </section>
+                    <Footer />
                 </div>
-            </section>
-
-            <Footer />
-
-        </div>
+            )}
+        </>
     )
 }
 
