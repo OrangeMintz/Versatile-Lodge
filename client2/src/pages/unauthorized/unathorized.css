@@ -1,0 +1,27 @@
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #DCC69C;
+    padding: 100px 100px;
+    margin: 65px 125px;
+    border-radius: 10px;
+}
+
+.wrapper button {
+    padding: 15px 20px;
+    background-color: #2B1103;
+    color: #DCC69C;
+    font-size: 15rem;
+    border: 1px solid #2B1103;
+}
+
+.wrapper button:hover {
+    transition: 0.5s;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #2B1103;
+    font-size: 15rem;
+    border: 1px solid #2B1103;
+}

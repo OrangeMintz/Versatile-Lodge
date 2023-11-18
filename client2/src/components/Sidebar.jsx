@@ -1,46 +1,92 @@
-import React from 'react';
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { UserContext } from "../components/userContext";
+import axios from 'axios';
 
 const Sidebar = () => {
+    const { user, setUser } = useContext(UserContext);
 
+    useEffect(() => {
+        if (!user) {
+            axios.get('/profile')
+                .then(({ data }) => {
+                    setUser(data);
+                })
+                .catch((error) => {
+                    console.error('Error fetching user profile:', error);
+                });
+        }
+    }, [user, setUser]);
 
-    //close button INSIDE Sidebar
-    const handleCloseIconClick = () => {                        //close sidebar     
+    const handleLogout = () => {
+        axios.get('/logout')
+            .then(() => {
+                // Set the new location
+                window.location.href = `${window.location.origin}/loginAdmin`;
+                toast.success("Logout Successful")
+                // Reload the page
+                // window.location.reload();
+            })
+            .catch((error) => {
+                console.error('Error during logout:', error);
+            });
+    };
+
+    const handleCloseIconClick = () => {
         const sideBar = document.querySelector('.side-bar');
-        const body = document.body;                                //html's body element
-        const menu_btn = document.querySelector('#menu-btn');     //selects outside menu-btn
+        const body = document.body;
+        const menu_btn = document.querySelector('#menu-btn');
 
-        sideBar.classList.toggle('active');        //remove sidebar          
-        body.classList.toggle('active');           //occupy the sidebar
-        menu_btn.classList.add('active');          //activate sidebar icon 
-    }
+        sideBar.classList.toggle('active');
+        body.classList.toggle('active');
+        menu_btn.classList.add('active');
+    };
+
+
+
+
+
 
     return (
         <div className="side-bar">
-
-            <div className="profile">
-                <div className="icons">
-                    <div id="close-btn" className="fas fa-times" onClick={handleCloseIconClick}></div>
+            {user && (
+                <div className="profile">
+                    <div className="icons">
+                        <div id="close-btn" className="fas fa-times" onClick={handleCloseIconClick}></div>
+                    </div>
+                    <img src={user.image} alt="" />
+                    <h3>{user.name}</h3>
+                    <span>{user.isAdmin && 'Admin'}</span>
+                    <span>{user.isManager && 'Manager'}</span>
+                    <span>{user.isEmployee && 'Employee'}</span>
+                    <Link to="/profile" className="btn">View profile</Link>
                 </div>
-                <img src="https://th.bing.com/th/id/OIP.edPmh_52ubwjIDT2YIBjkAAAAA?pid=ImgDet&rs=1" alt="" />
-                <h3>Anzai Mitsuyoshi</h3>
-                <span>admin</span>
-                <Link to="/profileAdmin" className="btn">view profile</Link>
-            </div>
+            )}
 
-            <nav className="navbar">
-                <Link to="../"><i className="fas fa-home"></i><span>Home</span></Link>
-                <Link to="/reviewsAdmin"><i className="fas fa-star"></i><span>Reviews</span></Link>
-                <Link to="/employees"><i className="fas fa-users"></i><span>Employees</span></Link>
-                <Link to="/roomsAvailable"><i className="fas fa-bed"></i><span>Rooms</span></Link>
-                <Link to="/roomsReserved"><i className="fas fa-code-branch"></i><span>Transactions</span></Link>
-                <Link to="/payroll"><i className="fas fa-dollar-sign"></i><span>Payroll</span></Link>
-                <Link to="/loginAdmin"><i className="fas fa-power-off"></i><span>Log out</span></Link>
+            {user && user.isAdmin && (
+                <nav className="navbar">
+                    <Link to="/" className={location.pathname === '/' ? 'active' : ''}><i className="fas fa-home"></i><span>Home</span></Link>
+                    <Link to="/reviewsAdmin" className={location.pathname === '/reviewsAdmin' ? 'active' : ''}><i className="fas fa-star"></i><span>Reviews</span></Link>
+                    <Link to="/employees" className={location.pathname === '/employees' ? 'active' : ''}><i className="fas fa-users"></i><span>Employees</span></Link>
+                    <Link to="/roomsAvailable" className={location.pathname === '/roomsAvailable' ? 'active' : ''}><i className="fas fa-bed"></i><span>Rooms</span></Link>
+                    <Link to="/roomsReserved" className={location.pathname === '/roomsReserved' ? 'active' : ''}><i className="fas fa-code-branch"></i><span>Transactions</span></Link>
+                    <Link to="/payroll" className={location.pathname === '/payroll' ? 'active' : ''}><i className="fas fa-dollar-sign"></i><span>Payroll</span></Link>
+                    <Link onClick={handleLogout}><i className="fas fa-power-off"></i><span>Log out</span></Link>
+                </nav>
+            )}
 
-            </nav>
+            {user && user.isManager && (
+                <nav className="navbar">
+                    <Link to="/" className={location.pathname === '/' ? 'active' : ''}><i className="fas fa-home"></i><span>Home</span></Link>
+                    <Link to="/roomsAvailable" className={location.pathname === '/roomsAvailable' ? 'active' : ''}><i className="fas fa-bed"></i><span>Rooms</span></Link>
+                    <Link to="/roomsReserved" className={location.pathname === '/roomsReserved' ? 'active' : ''}><i className="fas fa-code-branch"></i><span>Transactions</span></Link>
+                    <Link to="/payroll" className={location.pathname === '/payroll' ? 'active' : ''}><i className="fas fa-dollar-sign"></i><span>Payroll</span></Link>
+                    <Link onClick={handleLogout}><i className="fas fa-power-off"></i><span>Log out</span></Link>
 
+                </nav>
+            )}
         </div>
-    )
-}
+    );
+};
 
 export default Sidebar;
