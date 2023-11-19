@@ -61,6 +61,8 @@ body.dark {                  /*body with the class dark*/
     --light-color: #aaaaaa; 
     --light-bg: #333;
     --border: .1rem solid rgba(255,255,255,.2);
+    --main-color: #DCC69C;
+    --branch-color: #2B1103;
 }
 
 body.active {               /*expands when sidebar is closed*/
@@ -82,7 +84,7 @@ section {                   /*header block*/
     border-radius: .5rem;
     padding: 1rem 3rem;
     font-size: 1.8rem;
-    color: #FFFFFF;
+    color: var(--white);
     margin-top: 1rem;
     text-transform: capitalize;
     cursor: pointer;
@@ -303,7 +305,7 @@ section {                   /*header block*/
     width: 4.5rem;
     line-height: 4.4rem;
     font-size: 2.5rem;
-    color: #FFFFFF;
+    color: var(--white);
     cursor: pointer;
     background-color: var(--main-color);
     text-align: center;

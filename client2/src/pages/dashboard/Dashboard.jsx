@@ -106,13 +106,13 @@ const Dashboard = () => {
                     </div>
 
                     <div className="box">
-                        {/* <h3 className="title">stars and comments:</h3>
-                        <p className="stat">total likes : <span>14</span></p>
+                       <h3 className="title">rooms and comments:</h3>
+                         {/* <p className="stat">total likes : <span>14</span></p>
                         <a href="/reviewsAdmin" className="inline-btn">view stars</a> */}
-                        <p className="stat">total comments : <span>5</span></p>
-                        <a href="/reviewsAdmin" className="inline-btn">view comments</a>
                         <p className="stat">available rooms : <span>2</span></p>
                         <a href="/roomsAvailable" className="inline-btn">view rooms</a>
+                        <p className="stat">total comments : <span>5</span></p>
+                        <a href="/reviewsAdmin" className="inline-btn">view comments</a>
                     </div>
                 </div>
 

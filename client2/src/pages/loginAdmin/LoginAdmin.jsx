@@ -31,8 +31,8 @@ const LoginAdmin = () => {
                     password: '',
                 });
                 // Redirect or navigate to the desired page
-                window.location.href = `${window.location.origin}/`;
-
+                navigate('/');
+                toast.success('Login Successful')
             }
         } catch (error) {
             // Handle the error appropriately, e.g., display an error message
@@ -41,7 +41,7 @@ const LoginAdmin = () => {
     };
 
     return (
-        <div>
+        <div className='loginAdmin'>
             <div className="loginAdminContainer">
                 <h1 className='heading'>Login as Admin</h1>
                 <form onSubmit={loginAdmin}>
@@ -53,12 +53,7 @@ const LoginAdmin = () => {
                         onChange={(e) => setData({ ...data, username: e.target.value })}
                     />
                     <label htmlFor="">Password:</label>
-                    <input
-                        placeholder="Enter Password"
-                        type="password"
-                        value={data.password}
-                        onChange={(e) => setData({ ...data, password: e.target.value })}
-                    />
+                    <input placeholder="Enter Password" type="password" name="" id="" />
                     <input type="submit" className='loginAdminBtn' value="Login" />
                 </form>
             </div>
