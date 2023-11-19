@@ -31,7 +31,7 @@ const LoginAdmin = () => {
                     password: '',
                 });
                 // Redirect or navigate to the desired page
-                navigate('/');
+                navigate('/dashboard');
                 toast.success('Login Successful')
             }
         } catch (error) {

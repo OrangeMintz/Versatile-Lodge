@@ -22,7 +22,7 @@ const Sidebar = () => {
         axios.get('/logout')
             .then(() => {
                 // Set the new location
-                window.location.href = `${window.location.origin}/loginAdmin`;
+                window.location.href = `${window.location.origin}/`;
                 toast.success("Logout Successful")
                 // Reload the page
                 // window.location.reload();
@@ -65,7 +65,7 @@ const Sidebar = () => {
 
             {user && user.isAdmin && (
                 <nav className="navbar">
-                    <Link to="/" className={location.pathname === '/' ? 'active' : ''}><i className="fas fa-home"></i><span>Home</span></Link>
+                    <Link to="/dashboard" className={location.pathname === '/' ? 'active' : ''}><i className="fas fa-home"></i><span>Home</span></Link>
                     <Link to="/reviewsAdmin" className={location.pathname === '/reviewsAdmin' ? 'active' : ''}><i className="fas fa-star"></i><span>Reviews</span></Link>
                     <Link to="/employees" className={location.pathname === '/employees' ? 'active' : ''}><i className="fas fa-users"></i><span>Employees</span></Link>
                     <Link to="/roomsAvailable" className={location.pathname === '/roomsAvailable' ? 'active' : ''}><i className="fas fa-bed"></i><span>Rooms</span></Link>
