@@ -17,7 +17,7 @@ const Home = () => {
       <Navbar />
       <SwiperCarousel />
 
-      <section className="availability" id="availability">
+      {/* <section className="availability" id="availability">
         <form action="" method="post">
           <div className="flex">
             <div className="box">
@@ -72,7 +72,7 @@ const Home = () => {
             className="btn"
           />
         </form>
-      </section>
+      </section> */}
 
       <br />
       <br />
