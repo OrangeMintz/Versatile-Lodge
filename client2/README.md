@@ -27,6 +27,15 @@
 11-16-2023
     -loginAdmin page
     -profileAdmin page
+
+11-17-2023
+    -bookingHistoryDetails page
+
+11-18-2023
+    -minor css fix e.g(footer, 404, login, +addEmployee)
     
+11-19-2023
+    -empoyee datatable
+    -darkmode    
 
     

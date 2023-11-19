@@ -13,14 +13,14 @@
 
 .roomsBooking .roomState a:hover {
     background: var(--main-color);
-    color: #fff;
+    color: var(--white);
     border-radius: 5px;
     
 }
 
 .roomsBooking .roomState a.state {
     background: var(--main-color);
-    color: #fff;
+    color: var(--white);
     border-radius: 5px;
 }
 
@@ -53,6 +53,7 @@
 .roomsBooking .roomsRow .roomsRowWrapper .roomDetails p {
     font-size: 2rem;
     padding: 1rem 2rem;
+    color: var(--black);
 }
 
 .roomsBooking .roomsRow .roomsRowWrapper .roomButtons {
@@ -67,7 +68,7 @@
 .roomsBooking .roomsRow .roomsRowWrapper .roomButtons .roomBtn {
     padding: 1.3rem 2rem;
     background: var(--main-color);
-    color: #FFF;
+    color: var(--white);
     font-size: 1.5rem;
     margin: 1rem;
     border-radius: 5px;

@@ -50,6 +50,7 @@
     gap: 20px;
     font-size: 2rem;
     opacity: 80%;
+    color: var(--black);
 }
 
 .overview .box-container .box:nth-child(5) .months {
@@ -59,6 +60,8 @@
     justify-content: space-between;
     width: 90%;
     margin: 1.5% 8%;
+    color: var(--black);
+
 
 }
 
@@ -67,10 +70,11 @@
     font-size: 2rem;
     top: 6%; right: 2%;
     padding: 10px;
-    border: 1px solid #000;
+    border: 1px solid var(--black);
     border-radius: 12px;
     font-weight: 700;
     cursor: pointer;
+    color: var(--black);
 }
 
 .overview .box-container .box:nth-child(5) .monthly:hover {
@@ -174,6 +178,7 @@
 
 .overview .box-container .box .inline-btn {     /*button*/
     margin: 0;
+    color: var(--white);
     outline: 1px solid var(--black);
 }
 

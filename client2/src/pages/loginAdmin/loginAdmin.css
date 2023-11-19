@@ -1,16 +1,33 @@
+.loginAdmin {
+    position: absolute;
+    top: 50%;
+    left:50%;
+    margin: auto;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background: url(https://wallpapercave.com/wp/wp6723982.jpg) center ;
+}
+
 .loginAdminContainer {
     font-size: 2em;
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    background: var(--branch-color);
+    /* background: var(--branch-color); */
     /* background: 
         linear-gradient(to bottom right, var(--main-color) 50%, var(--branch-color) 80%, var(--white)100%); */
     max-width: 90vw;
     padding: 4%;
     border-radius: 5px;
+    font-weight: 700;
     color: var(--black);
     box-shadow: 12px 12px 15px rgba(43, 26, 2, 0.6);
+    backdrop-filter: blur(10px); 
+    background: rgba(255, 255, 255, 0.5);
 }
 
 @media (max-width: 1000px) {
@@ -24,6 +41,7 @@
     padding: 10px;
     border-radius: 5px;
     color: var(--black);
+    font-weight: 700;
 
 }
 
