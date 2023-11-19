@@ -53,7 +53,12 @@ const LoginAdmin = () => {
                         onChange={(e) => setData({ ...data, username: e.target.value })}
                     />
                     <label htmlFor="">Password:</label>
-                    <input placeholder="Enter Password" type="password" name="" id="" />
+                    <input
+                        placeholder="Enter Password"
+                        type="password"
+                        value={data.password}
+                        onChange={(e) => setData({ ...data, password: e.target.value })}
+                    />
                     <input type="submit" className='loginAdminBtn' value="Login" />
                 </form>
             </div>
