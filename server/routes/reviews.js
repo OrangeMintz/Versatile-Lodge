@@ -10,7 +10,7 @@ const router = express.Router();
 router.post("/", createReviews);
 
 //Delete
-router.delete("/:id", verifyAdmin, deleteReviews);
+router.delete("/:id", deleteReviews);
 
 //GetAll
 router.get("/", getReviews);
