@@ -30,9 +30,23 @@ const getReviews = async (req, res, next) => {
     }
 };
 
+const updateReview = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const updatedReview = await Reviews.findByIdAndUpdate(id, req.body, { new: true });
+        if (!updatedReview) {
+            return res.status(404).json({ message: 'Review not found' });
+        }
+        res.status(200).json(updatedReview);
+    } catch (err) {
+        next(err);
+    }
+};
+
 
 module.exports = {
     createReviews,
     deleteReviews,
     getReviews,
+    updateReview
 };

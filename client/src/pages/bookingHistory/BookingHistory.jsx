@@ -123,9 +123,9 @@ const BookingHistory = () => {
                       <td>{booking.branch}</td>
                       <td>{moment(booking.checkInDate).format('MM-DD-YYYY')}</td>
                       <td>{moment(booking.checkOutDate).format('MM-DD-YYYY')}</td>
-                      <td>{`₱${booking.price}`}</td>
+                      <td>{`₱${Math.max(1, moment(booking.checkOutDate).diff(moment(booking.checkInDate), 'days')) * booking.price}`}</td>
+
                       <td>{booking.status}</td>
-                      {/* <td><span className='btnCancel' onClick={() => handleCancelBooking(booking._id)}>Cancel</span></td> */}
                       <td>
                         <span className='btnCancel' onClick={() => handleCancelBooking(booking._id)}>
                           Cancel

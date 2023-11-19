@@ -260,7 +260,7 @@ const loginUser = async (req, res) => {
                 },
 
                 // process.env.JWT_SECRET, {}, (err, token) => {
-                process.env.JWT_SECRET, { expiresIn: '1h' }, (err, token) => {
+                process.env.JWT_SECRET, { expiresIn: '2h' }, (err, token) => {
                     if (err) throw err;
                     // res.cookie(`token`, token,).json(userWithImage)
                     res.cookie(`token`, token, {
