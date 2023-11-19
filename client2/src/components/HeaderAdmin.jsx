@@ -23,7 +23,7 @@ const HeaderAdmin = () => {
         axios.get('/logout')
             .then(() => {
                 // Set the new location
-                window.location.href = `${window.location.origin}/loginAdmin`;
+                window.location.href = `${window.location.origin}/`;
                 toast.success("Logout Successful")
                 // Reload the page
                 // window.location.reload();
@@ -70,19 +70,19 @@ const HeaderAdmin = () => {
             toggle_btn.classList.replace('fa-moon', 'fa-sun');
             body.classList.remove('dark');
             localStorage.setItem('dark-mode', 'disabled');
-            
+
         }
 
-        if(dark_mode === 'enabled') {
+        if (dark_mode === 'enabled') {
             enableDarkMode();
         }
 
-        if(dark_mode === 'disabled') {
+        if (dark_mode === 'disabled') {
             enableDarkMode();
         } else {
             disableDarkMode();
         }
-        
+
     };
 
 

@@ -59,10 +59,12 @@ const Contact = () => {
                     />
                     {locations.map((location, index) => (
                         <Marker key={index} position={location}>
-                            <Popup>
-                                {index === 0 && 'Valencia'}
-                                {index === 1 && 'Malaybalay'}
-                                {index === 2 && 'Maramag'}
+                            <Popup >
+                                <p style={{ fontSize: "15px" }}>
+                                    {index === 0 && 'Valencia Branch'}
+                                    {index === 1 && 'Malaybalay Branch'}
+                                    {index === 2 && 'Maramag Branch'}</p>
+
                             </Popup>
                         </Marker>
                     ))}

@@ -7,11 +7,11 @@ import Footer from '../../components/Footer';
 
 
 const columns = [
-    { Header: 'Name', accessor: 'name',},
-    { Header: 'Email', accessor: 'email',},
-    { Header: 'Address', accessor: 'address',},
-    { Header: 'Birthday', accessor: 'birthday',},
-    { Header: 'Number', accessor: 'number',},
+    { Header: 'Name', accessor: 'name', },
+    { Header: 'Email', accessor: 'email', },
+    { Header: 'Address', accessor: 'address', },
+    { Header: 'Birthday', accessor: 'birthday', },
+    { Header: 'Number', accessor: 'number', },
     { Header: 'Options', accessor: 'options', Cell: ({ row }) => <a href="#" className='option-btn'>Option</a>, disableSortBy: true, },
 ];
 
@@ -36,38 +36,38 @@ const Employees = () => {
                 <h1 className="heading">Our Employees</h1>
                 <span className="addEmployee">+ Add Employees</span>
                 <div className="employeesContainer">
-                <table {...getTableProps()} className="employeesTable">
-                    <thead>
-                        {headerGroups.map(headerGroup => (
-                            <tr {...headerGroup.getHeaderGroupProps()}>
-                                {headerGroup.headers.map(column => (
-                                    <th className='theaderMain' {...column.getHeaderProps(column.getSortByToggleProps())}>
-                                        <span className='theader'>
+                    <table {...getTableProps()} className="employeesTable">
+                        <thead>
+                            {headerGroups.map(headerGroup => (
+                                <tr {...headerGroup.getHeaderGroupProps()}>
+                                    {headerGroup.headers.map(column => (
+                                        <th className='theaderMain' {...column.getHeaderProps(column.getSortByToggleProps())}>
+                                            <span className='theader'>
 
-                                            {column.id !== 'options' ? (
-                                                <>
-                                                    {column.render('Header')}
-                                                    <span className='arrows'>
-                                                        {' '}
-                                                        {column.isSorted ? (column.isSortedDesc ? 
-                                                            <i className='fas fa-chevron-down'></i> :
-                                                            <i className='fas fa-chevron-up'></i> ) : 
-                                                            <span>
-                                                                <i className='fas fa-chevron-down'></i>
-                                                                <i className='fas fa-chevron-up'></i>
-                                                            </span>
+                                                {column.id !== 'options' ? (
+                                                    <>
+                                                        {column.render('Header')}
+                                                        <span className='arrows'>
+                                                            {' '}
+                                                            {column.isSorted ? (column.isSortedDesc ?
+                                                                <i className='fas fa-chevron-down'></i> :
+                                                                <i className='fas fa-chevron-up'></i>) :
+                                                                <span>
+                                                                    <i className='fas fa-chevron-down'></i>
+                                                                    <i className='fas fa-chevron-up'></i>
+                                                                </span>
                                                             }
-                                                    </span>
-                                                </>
-                                            ) : (
-                                                column.render('Header')
+                                                        </span>
+                                                    </>
+                                                ) : (
+                                                    column.render('Header')
                                                 )}
-                                        </span>
-                                    </th>
-                                ))}
-                            </tr>
-                        ))}
-                    </thead>
+                                            </span>
+                                        </th>
+                                    ))}
+                                </tr>
+                            ))}
+                        </thead>
                         <tbody {...getTableBodyProps()}>
                             {rows.map(row => {
                                 prepareRow(row);
