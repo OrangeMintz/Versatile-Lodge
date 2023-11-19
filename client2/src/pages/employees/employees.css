@@ -1,11 +1,11 @@
-/* .employees {
-
-} */
+.employees {
+    position: relative;
+}
 .employees .addEmployee{
     font-size: 2rem;
     position: absolute;
     right: 3%;
-    top: 13%;
+    top: 10%;
     text-decoration: none;
     color: var(--main-color);
     cursor: pointer;
@@ -13,7 +13,7 @@
 
 
 .employeesTable {
-    margin: auto;
+    margin: 5rem auto;
     border-collapse: collapse;
     width: 100%;
 }

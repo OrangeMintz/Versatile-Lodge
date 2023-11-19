@@ -51,6 +51,8 @@ body {
     padding-left: 30rem;                 /*space for sidebar*/
     transition: .2s linear;              /*transition if sidebar toggled*/
     background: var(--light-bg);
+    height: 100vh;
+
 }
 
 body.dark {                  /*body with the class dark*/
@@ -391,11 +393,16 @@ section {                   /*header block*/
 
 
 
-
+.footerContainer {
+    position: sticky;
+    background-color: grey;
+    bottom: 0; /* Stick it to the bottom */
+    z-index: 1000;
+}
 
 .footerAdmin {                           /*footer values*/
-    position: sticky;
-    bottom: 0; right: 0; left: 0;
+    /* position: sticky; */
+    /* bottom: 0; right: 0; left: 0; */
     background-color: var(--white);
     border-top: var(--border);
     padding: 2.5rem 2rem;
