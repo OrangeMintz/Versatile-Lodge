@@ -38,9 +38,35 @@ const deleteBooking = async (req, res, next) => {
     }
 };
 
+// const getBooking = async (req, res, next) => {
+//     try {
+//         const booking = await Booking.find();
+//         res.status(200).json(booking)
+//     } catch (err) {
+//         next(err)
+//     }
+// };
+
 const getBooking = async (req, res, next) => {
     try {
-        const booking = await Booking.find();
+        const { user_id } = req.query;
+        let query = {};
+
+        // If user_id is provided, filter bookings by user_id
+        if (user_id) {
+            query.user_id = user_id;
+        }
+
+        const bookings = await Booking.find(query);
+        res.status(200).json(bookings);
+    } catch (err) {
+        next(err);
+    }
+};
+
+const getSpecificBooking = async (req, res, next) => {
+    try {
+        const booking = await Booking.findById(req.params.id);
         res.status(200).json(booking)
     } catch (err) {
         next(err)
@@ -50,8 +76,10 @@ const getBooking = async (req, res, next) => {
 
 
 
+
 module.exports = {
     createBooking,
     deleteBooking,
     getBooking,
+    getSpecificBooking
 };

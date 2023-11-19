@@ -1,9 +1,80 @@
-import React, { useState } from 'react';
+// import React, { useState, useEffect } from 'react';
+// import "./reviews.css";
+// import Footer from '../../component/footer';
+// import Navbar from '../../component/Navbar';
+// import axios from 'axios';
+
+// const Reviews = () => {
+//     const [userBookingDone, setUserBookingDone] = useState(false);
+
+//     useEffect(() => {
+//         const checkBookingStatus = async () => {
+//             try {
+//                 const response = await axios.get('/profile');
+//                 const userId = response.data.id;
+
+//                 // Fetch the user's current bookings directly
+//                 const bookingResponse = await axios.get(`/api/booking?user_id=${userId}`);
+//                 const currentbookings = bookingResponse.data;
+
+//                 if (currentbookings && currentbookings.length > 0) {
+//                     const currentDate = new Date();
+//                     const toDate = new Date(currentbookings[0].toDate);
+
+//                     // Check if the current date is after the booking's toDate
+//                     if (currentDate > toDate) {
+//                         setUserBookingDone(true);
+//                         // Show an alert here or perform other actions
+//                         alert("Your booking has been completed. Please leave a review.");
+//                     }
+//                 }
+//             } catch (error) {
+//                 console.error('Error checking booking status:', error);
+//             }
+//         };
+
+//         checkBookingStatus();
+//     }, []);
+
+
+import React, { useState, useEffect } from 'react';
 import "./reviews.css";
 import Footer from '../../component/footer';
 import Navbar from '../../component/Navbar';
+import axios from 'axios';
 
 const Reviews = () => {
+    const [userBookingDone, setUserBookingDone] = useState(false);
+
+    const checkBookingStatus = async () => {
+        try {
+            const response = await axios.get('/profile');
+            const userId = response.data.id;
+
+            // Fetch the user's current bookings directly
+            const bookingResponse = await axios.get(`/api/booking?user_id=${userId}`);
+            const currentbookings = bookingResponse.data;
+
+            if (currentbookings && currentbookings.length > 0) {
+                const currentDate = new Date();
+                const toDate = new Date(currentbookings[0].toDate);
+
+                // Check if the current date is after the booking's toDate
+                if (currentDate > toDate) {
+                    setUserBookingDone(true);
+                    // Show an alert here or perform other actions
+                    alert("Your booking has been completed. Please leave a review.");
+                }
+            }
+        } catch (error) {
+            console.error('Error checking booking status:', error);
+        }
+    };
+
+    useEffect(() => {
+        checkBookingStatus();
+    }, []);
+
     return (
         <div>
             <Navbar />

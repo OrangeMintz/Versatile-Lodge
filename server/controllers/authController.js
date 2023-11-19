@@ -40,7 +40,7 @@ const registerUser = async (req, res) => {
             });
         }
 
-        const nameRegex = /^[a-zA-Z]+$/;
+        const nameRegex = /^[a-zA-Z ]+$/;
         if (!nameRegex.test(name)) {
             return res.json({
                 error: 'Name should not contain numbers and special characters'
@@ -96,46 +96,6 @@ const registerUser = async (req, res) => {
         });
     }
 }
-
-// Update User Endpoint COMMENTED UPDATE USER FUNCTION
-// const updateUser = async (req, res) => {
-//     try {
-//         const { name, email, address } = req.body;
-
-//         // Build the update object dynamically
-//         const updateObject = {};
-//         if (name) updateObject.name = name;
-//         if (email) updateObject.email = email;
-//         if (address) updateObject.address = address;
-
-//         // Assuming 'updatedUser' contains the updated user information
-//         const updatedUser = await Customer.findByIdAndUpdate(
-//             req.user.id,
-//             { $set: updateObject },
-//             { new: true }
-//         );
-
-//         const updatedToken = jwt.sign(
-//             {
-//                 email: updatedUser.email,
-//                 id: updatedUser._id,
-//                 name: updatedUser.name,
-//                 image: updatedUser.image,
-//                 // ... (include other fields)
-//             },
-//             process.env.JWT_SECRET,
-//             { expiresIn: '1h' } // Set an appropriate expiration time
-//         );
-
-//         res.cookie('token', updatedToken).json(updatedUser);
-//     } catch (error) {
-//         console.log(error);
-//         return res.status(500).json({
-//             error: 'Internal server error'
-//         });
-//     }
-// };
-
 
 
 

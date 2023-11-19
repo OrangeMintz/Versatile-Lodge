@@ -93,11 +93,11 @@ function Navbar() {
                                 <img src={user.image} alt="" />
                                 {!!user && <h3>{user.name}</h3>}
                                 <span>Client</span>
-                                <Link to={`/accountSetting/${user.id}`} className='btn'>View Profile</Link>
+                                <Link to={`/accountSetting`} className='btn'>View Profile</Link>
                                 <div className="flex-btn">
-                                    <a href={`/bookingHistory/${user.id}`} className="option-btn">
+                                    <Link to={`/bookingHistory`} className="option-btn">
                                         History
-                                    </a>
+                                    </Link>
                                     <Link className="option-btn" onClick={handleLogout}>
                                         Logout
                                     </Link>

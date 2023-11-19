@@ -7,8 +7,6 @@ import Footer from '../../component/footer';
 import { UserContext } from '../../context/userContext';
 import './changePassword.css';
 
-
-
 const ChangePassword = () => {
 
 
@@ -103,12 +101,12 @@ const ChangePassword = () => {
             {!!user && (
               <>
                 <li>
-                  <Link to={`/accountSetting/${user.id}`}>
+                  <Link to={`/accountSetting`}>
                     <i className="fas fa-user"></i> Account Details
                   </Link>
                 </li>
                 <li>
-                  <Link to={`/changePassword/${user.id}`}>
+                  <Link to={`/changePassword`}>
                     <i className="fas fa-key"></i> Change Password
                   </Link>
                 </li>
