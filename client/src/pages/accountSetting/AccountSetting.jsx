@@ -172,12 +172,12 @@ const AccountSetting = () => {
             {!!user && (
               <>
                 <li>
-                  <Link to={`/accountSetting/${user.id}`}>
+                  <Link to={`/accountSetting`}>
                     <i className="fas fa-user"></i> Account Details
                   </Link>
                 </li>
                 <li>
-                  <Link to={`/changePassword/${user.id}`}>
+                  <Link to={`/changePassword`}>
                     <i className="fas fa-key"></i> Change Password
                   </Link>
                 </li>
