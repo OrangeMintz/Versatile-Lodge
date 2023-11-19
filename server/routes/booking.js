@@ -1,5 +1,5 @@
 const express = require('express');
-const { createBooking, deleteBooking, getBooking } = require('../controllers/bookingContr.js');
+const { createBooking, deleteBooking, getBooking, getSpecificBooking } = require('../controllers/bookingContr.js');
 
 const BookingHistory = require("../models/BookingHistory.js");
 // const { verifyAdmin, verifyUser } = require('../utils/verifyToken.js');
@@ -14,5 +14,8 @@ router.delete("/:id", deleteBooking);
 
 //GetAll
 router.get("/", getBooking);
+
+router.get("/:id", getSpecificBooking);
+
 
 module.exports = router;

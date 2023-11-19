@@ -9,6 +9,7 @@ import axios from 'axios';
 import moment from 'moment'; // Import moment library
 import './bookingHistory.css';
 import { toast } from 'react-hot-toast'
+import { Navigate } from 'react-router-dom';
 
 
 const BookingHistory = () => {
@@ -18,39 +19,42 @@ const BookingHistory = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [bookingIdToCancel, setBookingIdToCancel] = useState(null); // State to store the booking ID to cancel
+  const [bookingIdToCancel, setBookingIdToCancel] = useState(null);
 
-
-
+  // Fetch user data on component mount
   useEffect(() => {
-    const fetchBookingHistory = async () => {
-      try {
-        const response = await axios.get(`/api/bookingHistory/${id}`);
-        setBookingHistory(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching booking history:', error);
-        setError('Error fetching booking history. Please try again.');
-        setLoading(false);
-      }
-    };
+    if (!user) {
+      axios
+        .get('/profile')
+        .then(({ data }) => {
+          setUser(data);
+        })
+        .catch((error) => {
+          console.error('Error fetching user profile:', error);
+        });
+    }
+  }, [user, setUser]);
 
-    fetchBookingHistory();
-  }, [id]);
+  // Fetch booking history once user data is available
+  useEffect(() => {
+    // Ensure user is available and has an 'id'
+    if (user && user.id) {
+      const fetchBookingHistory = async () => {
+        try {
+          const response = await axios.get(`/api/bookingHistory/${user.id}`);
+          setBookingHistory(response.data);
+          setLoading(false);
+        } catch (error) {
+          console.error('Error fetching booking history:', error);
+          setError('Error fetching booking history. Please try again.');
+          setLoading(false);
+        }
+      };
 
+      fetchBookingHistory();
+    }
+  }, [user]);
 
-  // const handleCancelBooking = async (bookingId) => {
-  //   try {
-  //     await axios.delete(`/api/bookingHistory/${bookingId}`);
-  //     // Update the bookingHistory state to reflect the removal of the canceled booking
-  //     setBookingHistory((prevBookingHistory) =>
-  //       prevBookingHistory.filter((booking) => booking._id !== bookingId)
-  //     );
-  //   } catch (error) {
-  //     console.error('Error canceling booking:', error);
-  //     // Handle error
-  //   }
-  // };
 
   const handleCancelBooking = async (bookingId) => {
     // Show the confirmation modal and set the booking ID to cancel
@@ -84,84 +88,74 @@ const BookingHistory = () => {
     setShowModal(false);
   };
 
-
-  useEffect(() => {
-    if (!user) {
-      axios
-        .get('/profile')
-        .then(({ data }) => {
-          setUser(data);
-        })
-        .catch((error) => {
-          console.error('Error fetching user profile:', error);
-        });
-    }
-  }, [user, setUser]);
-
-
   return (
-    <div>
-      <Navbar />
+    <>
+      {user && (
 
-      {/* Booking History section */}
-      <section className="booking-history">
-        <h1>---Booking History---</h1>
+        <div>
+          <Navbar />
 
-        {loading && <Loader />}
-        {error && <Error />}
+          {/* Booking History section */}
+          <section className="booking-history">
+            <h1>---Booking History---</h1>
+            {loading && <Loader />}
+            {error && <Error />}
 
-        {!loading && !error && (
-          <table>
-            <thead>
-              <tr>
-                <th>Reserved</th>
-                <th>Room</th>
-                <th>Branch</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Amount</th>
-                <th>Status</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {bookingHistory.map((booking) => (
-                <tr key={booking._id}>
-                  <td>{moment(booking.bookingDate).format('MM-DD-YYYY:HH:mm:ss')}</td>
-                  <td>{booking.roomName}</td>
-                  <td>{booking.branch}</td>
-                  <td>{moment(booking.checkInDate).format('MM-DD-YYYY')}</td>
-                  <td>{moment(booking.checkOutDate).format('MM-DD-YYYY')}</td>
-                  <td>{`₱${booking.price}`}</td>
-                  <td>{booking.status}</td>
-                  {/* <td><span className='btnCancel' onClick={() => handleCancelBooking(booking._id)}>Cancel</span></td> */}
-                  <td>
-                    <span className='btnCancel' onClick={() => handleCancelBooking(booking._id)}>
-                      Cancel
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </section>
+            {!loading && !error && (
+              <table>
+                <thead>
+                  <tr>
+                    <th>Reserved</th>
+                    <th>Room</th>
+                    <th>Branch</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {bookingHistory.map((booking) => (
+                    <tr key={booking._id}>
+                      <td>{moment(booking.bookingDate).format('MM-DD-YYYY:HH:mm:ss')}</td>
+                      <td>{booking.roomName}</td>
+                      <td>{booking.branch}</td>
+                      <td>{moment(booking.checkInDate).format('MM-DD-YYYY')}</td>
+                      <td>{moment(booking.checkOutDate).format('MM-DD-YYYY')}</td>
+                      <td>{`₱${booking.price}`}</td>
+                      <td>{booking.status}</td>
+                      {/* <td><span className='btnCancel' onClick={() => handleCancelBooking(booking._id)}>Cancel</span></td> */}
+                      <td>
+                        <span className='btnCancel' onClick={() => handleCancelBooking(booking._id)}>
+                          Cancel
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </section>
 
-      {/* Confirmation Modal */}
-      {showModal && (
-        <div className="modal-overlay">
-          <div className="modal">
-            <p>Are you sure you want to cancel your booking?</p>
-            <button onClick={handleCancel}>No</button>
-            <button onClick={handleConfirmCancel}>Yes</button>
+          {/* Confirmation Modal */}
+          {showModal && (
+            <div className="modal-overlay">
+              <div className="modal">
+                <p>Are you sure you want to cancel your booking?</p>
+                <button onClick={handleCancel}>No</button>
+                <button onClick={handleConfirmCancel}>Yes</button>
 
-          </div>
+              </div>
+            </div>
+          )}
+
+          <Footer />
         </div>
       )}
-
-      <Footer />
-    </div>
+    </>
   );
 };
+
 
 export default BookingHistory;
