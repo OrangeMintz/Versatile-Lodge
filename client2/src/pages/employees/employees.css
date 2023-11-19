@@ -1,5 +1,6 @@
 .employees {
     position: relative;
+    height: 100vh;
 }
 .employees .addEmployee{
     font-size: 2rem;
@@ -12,6 +13,11 @@
 }
 
 
+.employeesContainer {               /*horizontal scrholling*/
+    overflow-x: auto; 
+}
+
+
 .employeesTable {
     margin: 5rem auto;
     border-collapse: collapse;
@@ -20,34 +26,87 @@
 
 
 .employeesTable td, th {
-    border: 1px solid black;
     font-size: 1.8rem;
-    padding: 20px 25px;
+    padding: 20px 35px;
     text-align: center;
+    white-space: nowrap;
+    min-width: 150px; 
+    color: var(--black);
+    border-collapse: collapse;
+    border: 1px solid var(--black);
+
+    
 }
 
+.employeesTable th:hover {              /*hover entire cell of th*/
+    background-color: var(--white);
+}
 
+.employeesTable th:hover:last-child {       /*option*/
+    background-color: var(--light-bg);
+}
+
+.employeesTable .theader {
+    margin: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+    margin: auto;
+    gap: 1.5rem;
+    font-size: 1.8rem;
+}
+
+.employeesTable .theaderMain {
+    border: 1px solid var(--black);
+}
+
+.employeesTable td .option-btn {
+    background-color: var(--main-color);
+    color: var(--branch-color);
+}
 
 .employeesTable td .option-btn:hover {
     outline: 1px solid rgb(55, 36, 13);
     font-weight: 300;
     background-color: var(--branch-color);
+    color: var(--main-color);
+}
+
+.employeesTable .arrows {
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    margin: auto;
+}
+
+.employeesTable .fas {
+    padding: .5rem;
+    margin: .2rem;
+    background: var(--branch-color);
+    color: var(--main-color);
+    border-radius: 5px;
+
+
 }
 
 
 @media (max-width:991px) {
-    .employeesTable td, th {
+   
+
+    }
+    /* .employeesTable td, th {
         font-size: 1.4rem;
         padding: 10px 20px;
     }
 
     .employeesTable td .option-btn {
         font-size: 1rem;
-    }
-}
+    } */
+    
 
-@media (max-width:771px) {
-    .employeesTable td, th {
+/* @media (max-width:771px) { */
+    /* .employeesTable td, th {
         font-size: 10px;
         padding: 5px 8px;
         
@@ -59,9 +118,9 @@
 
     .employees .addEmployee {
         font-size: 1.5rem;
-    }
+    } */
 
-    #search-btn {
+    /* #search-btn {
         display: inline-block;
     }
 
@@ -73,17 +132,17 @@
         background-color: var(--white);
         clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
         transition: .2s linear;
-    }
+    } */
 
 
-    .headerAdmin .flex .search-form.active {                    /*employee*/
+    /* .headerAdmin .flex .search-form.active {                    
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 
     }
 
     .employeesTable {
         min-height: 300px;
-    }
+    } */
 
 
 
@@ -92,20 +151,20 @@
     /* .employeesContainer {
         overflow-y: auto;
         max-height: 400px;
-    } */
+    } 
 
 
-}
+} */
 
-@media (max-width:500px) {
+/* @media (max-width:500px) {
     .employeesTable td, th {
         font-size: 9px;
         padding: 3px;
     }
 
-    .employeesContainer {       /*vertical scrolling*/
+    .employeesContainer {       
         overflow-y: auto;
         max-height: 400px;
     }
 
-}
+} */
