@@ -54,6 +54,37 @@ const HeaderAdmin = () => {
         searchForm.classList.toggle('active');
     }
 
+    const handleSunIconClick = () => {                      //darkmode
+        const toggle_btn = document.querySelector('#toggle-btn');
+        const dark_mode = localStorage.getItem('dark-mode');
+        const body = document.body;                              //html's body element
+
+
+        const enableDarkMode = () => {
+            toggle_btn.classList.replace('fa-sun', 'fa-moon');
+            body.classList.add('dark');
+            localStorage.setItem('dark-mode', 'enabled');
+
+        }
+        const disableDarkMode = () => {
+            toggle_btn.classList.replace('fa-moon', 'fa-sun');
+            body.classList.remove('dark');
+            localStorage.setItem('dark-mode', 'disabled');
+            
+        }
+
+        if(dark_mode === 'enabled') {
+            enableDarkMode();
+        }
+
+        if(dark_mode === 'disabled') {
+            enableDarkMode();
+        } else {
+            disableDarkMode();
+        }
+        
+    };
+
 
     return (
         <div>
@@ -72,7 +103,7 @@ const HeaderAdmin = () => {
                     <div className="icons">
 
                         {/* <div id="search-btn" className="fas fa-search" onClick={handleSearchIconClick}></div> */}
-                        <div id="toggle-btn" className="fas fa-sun"></div>
+                        <div id="toggle-btn" className="fas fa-sun" onClick={handleSunIconClick}></div>
                         <div id="question-btn" className="fas fa-question"></div>
                         <div id="user-btn" className="fas fa-user" onClick={handleUserIconClick}></div>
                         {/* <div id="drop-btn" className="fas fa-chevron-down"></div> */}
