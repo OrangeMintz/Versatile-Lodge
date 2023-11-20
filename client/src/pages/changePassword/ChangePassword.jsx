@@ -13,6 +13,9 @@ const ChangePassword = () => {
   const navigate = useNavigate();
   const { user, setUser } = useContext(UserContext);
 
+
+  // Check LOGON
+  const [operationsComplete, setOperationsComplete] = useState(false);
   useEffect(() => {
     if (!user) {
       axios
@@ -22,9 +25,19 @@ const ChangePassword = () => {
         })
         .catch((error) => {
           console.error('Error fetching user profile:', error);
+        })
+        .finally(() => {
+          // Set operationsComplete to true after data fetching is complete
+          setOperationsComplete(true);
         });
     }
   }, [user, setUser]);
+
+  useEffect(() => {
+    if (operationsComplete && !user) {
+      navigate('/login');
+    }
+  }, [user, operationsComplete, navigate]);
 
   const [formData, setFormData] = useState({
     currentPassword: '',
@@ -88,6 +101,15 @@ const ChangePassword = () => {
       });
   };
 
+
+  // Add state variable for input/button disabled status
+  const [isFormDisabled, setIsFormDisabled] = useState(user?.googleSign === true);
+
+  // Update disabled status when user.googleSign changes
+  useEffect(() => {
+    setIsFormDisabled(user?.googleSign === true);
+  }, [user]);
+
   return (
     <div>
       <Navbar />
@@ -130,7 +152,7 @@ const ChangePassword = () => {
               name="currentPassword"
               placeholder="********"
               onChange={handleInputChange}
-              disabled={user.googleSign} // Disable the input if googleSign is true
+              disabled={isFormDisabled} // Use state variable
             />
 
             <label htmlFor="new-password">New Password:</label>
@@ -140,20 +162,19 @@ const ChangePassword = () => {
               name="newPassword"
               placeholder="********"
               onChange={handleInputChange}
-              disabled={user.googleSign} // Disable the input if googleSign is true
+              disabled={isFormDisabled} // Use state variable
             />
 
             <label htmlFor="confirm-new-password">Confirm New Password:</label>
-
             <input
               type="password"
               id="confirm-new-password"
               name="confirmNewPassword"
               placeholder="********"
               onChange={handleInputChange}
-              disabled={user.googleSign} // Disable the input if googleSign is true
+              disabled={isFormDisabled} // Use state variable
             />
-            <button className='btn-update' type="submit" disabled={user.googleSign} >Update Password</button>
+            <button className='btn-update' type="submit"  >Update Password</button>
           </form>
         </div>
       </section>
@@ -164,78 +185,3 @@ const ChangePassword = () => {
 };
 
 export default ChangePassword;
-
-
-
-
-
-
-// import React, { useState } from 'react';
-// import "./changePassword.css"
-// import { Link } from "react-router-dom";
-// import Footer from '../../component/footer';
-// import Navbar from '../../component/Navbar';
-
-// const ChangePassword = () => {
-
-
-
-//   return (
-//     <div>
-//       <Navbar />
-
-//       {/* Account Settings section */}
-//       <section className="account-settings">
-//         <div className="account-menu">
-//           <div className="profile-picture">
-//             <img src="assets/images/user4.jpg" alt="Profile Picture" />
-//           </div>
-//           <ul>
-//             <li><Link to="/accountSetting"><i className="fas fa-user"></i> Account Details</Link></li>
-//             <li><Link to="/changePassword"><i className="fas fa-key"></i> Change Password</Link></li>
-//             <li><Link to="/login"><i className="fas fa-sign-out-alt"></i> Logout</Link></li>
-//           </ul>
-//         </div>
-
-//         <div className="settings">
-//           <h2>Change Password</h2>
-//           <form>
-//             <label htmlFor="current-password">Current Password:</label>
-//             <input
-//               type="password"
-//               id="current-password"
-//               name="current-password"
-//               placeholder="********"
-//               required
-//             />
-
-//             <label htmlFor="new-password">New Password:</label>
-//             <input
-//               type="password"
-//               id="new-password"
-//               name="new-password"
-//               placeholder="********"
-//               required
-//             />
-
-//             <label htmlFor="confirm-new-password">Confirm New Password:</label>
-//             <input
-//               type="password"
-//               id="confirm-new-password"
-//               name="confirm-new-password"
-//               placeholder="********"
-//               required
-//             />
-
-//             <button type="submit">Update Password</button>
-//           </form>
-//         </div>
-//       </section>
-
-//       <Footer />
-
-//     </div>
-//   );
-// };
-
-// export default ChangePassword;

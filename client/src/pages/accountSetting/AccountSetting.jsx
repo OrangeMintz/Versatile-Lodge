@@ -21,6 +21,8 @@ const AccountSetting = () => {
   const [file, setFile] = useState(null);
   const [image, setImage] = useState('');
 
+  // Check LOGON
+  const [operationsComplete, setOperationsComplete] = useState(false);
   useEffect(() => {
     if (!user) {
       axios
@@ -30,9 +32,22 @@ const AccountSetting = () => {
         })
         .catch((error) => {
           console.error('Error fetching user profile:', error);
+        })
+        .finally(() => {
+          // Set operationsComplete to true after data fetching is complete
+          setOperationsComplete(true);
         });
     }
   }, [user, setUser]);
+
+  useEffect(() => {
+    if (operationsComplete && !user) {
+      navigate('/login');
+    }
+  }, [user, operationsComplete, navigate]);
+
+
+
 
   const fileInputRef = useRef();
   const profileImageRef = useRef();
