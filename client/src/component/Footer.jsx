@@ -23,7 +23,7 @@ function Footer() {
                         <Link to="/">Home</Link>
                         <Link to="/about">About</Link>
                         <Link to="/room">Rooms</Link>
-                        <Link to="/reviews">Contact</Link>
+                        <Link to="/contact">Contact</Link>
                         <Link to="/reviews">Reviews</Link>
                     </div>
                     <div className="box">

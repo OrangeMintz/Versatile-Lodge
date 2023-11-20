@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const { OAuth2Client } = require('google-auth-library');
 const Customer = require('../models/Customer');
+const cloudinary = require('../cloudinary/cloudinary')
 
 
 router.get('/', async function (req, res, next) {
@@ -10,8 +11,7 @@ router.get('/', async function (req, res, next) {
 
   try {
     // const redirectURL = "http://127.0.0.1:8000/oauth"\
-    const redirectURL = "http://localhost:8000/oauth"
-
+    const redirectURL = "http://localhost:8000/oauth";
     const oAuth2Client = new OAuth2Client(
       process.env.CLIENT_ID,
       process.env.CLIENT_SECRET,
@@ -32,13 +32,27 @@ router.get('/', async function (req, res, next) {
 
     if (!user) {
       // If user does not exist, create a new user
-      user = await Customer.create({
-        name: googleUser.name,
-        email: googleUser.email,
-        image: googleUser.picture,
-        googleSign: true
-        // ... other properties you want to save
-      });
+      try {
+        let uploadedImage;
+
+        // If image is provided, upload the image to Cloudinary
+        uploadedImage = await cloudinary.uploader.upload(googleUser.picture, {
+          upload_preset: 'unsigned_upload',
+          public_id: `${googleUser.email}avatar`,
+          allowed_formats: ['png', 'jpg', 'jpeg', 'svg', 'ico', 'jfif', 'webp']
+        });
+        user = await Customer.create({
+          name: googleUser.name,
+          email: googleUser.email,
+          image: `https://res.cloudinary.com/dl0qncxjh/image/upload/${uploadedImage.public_id}`,
+          googleSign: true
+        });
+
+      } catch (error) {
+        console.error('Error creating new user:', error);
+        res.status(500).json({ error: 'Error creating new user' });
+        return;
+      }
     }
 
     const token = jwt.sign(
@@ -58,8 +72,6 @@ router.get('/', async function (req, res, next) {
     // res.cookie('token', token, { domain: 'localhost', httpOnly: true });
     res.cookie('token', token, { httpOnly: true });
 
-
-
     // Redirect to your frontend application
     res.redirect('http://localhost:3000/');
 
@@ -72,6 +84,85 @@ router.get('/', async function (req, res, next) {
 });
 
 module.exports = router;
+
+
+
+
+
+// const jwt = require('jsonwebtoken');
+// const express = require('express');
+// const router = express.Router();
+// const { OAuth2Client } = require('google-auth-library');
+// const Customer = require('../models/Customer');
+
+
+// router.get('/', async function (req, res, next) {
+//   const code = req.query.code;
+
+//   try {
+//     // const redirectURL = "http://127.0.0.1:8000/oauth"\
+//     const redirectURL = "http://localhost:8000/oauth"
+
+//     const oAuth2Client = new OAuth2Client(
+//       process.env.CLIENT_ID,
+//       process.env.CLIENT_SECRET,
+//       redirectURL
+//     );
+//     const tokens = await oAuth2Client.getToken(code);
+
+//     // Verify the id token to get user information
+//     const ticket = await oAuth2Client.verifyIdToken({
+//       idToken: tokens.tokens.id_token,
+//       audience: process.env.CLIENT_ID,
+//     });
+
+//     const googleUser = ticket.getPayload();
+
+//     // Check if the user already exists in your database
+//     let user = await Customer.findOne({ email: googleUser.email });
+
+//     if (!user) {
+//       // If user does not exist, create a new user
+//       user = await Customer.create({
+//         name: googleUser.name,
+//         email: googleUser.email,
+//         image: googleUser.picture,
+//         googleSign: true
+//         // ... other properties you want to save
+//       });
+//     }
+
+//     const token = jwt.sign(
+//       {
+//         email: user.email,
+//         id: user._id,
+//         name: user.name,
+//         image: user.image,
+//         address: user.address,
+//         googleSign: true
+//       },
+//       process.env.JWT_SECRET,
+//       { expiresIn: '1h' }
+//     );
+
+//     // Set the token as a cookie in the response with domain set to localhost
+//     // res.cookie('token', token, { domain: 'localhost', httpOnly: true });
+//     res.cookie('token', token, { httpOnly: true });
+
+
+
+//     // Redirect to your frontend application
+//     res.redirect('http://localhost:3000/');
+
+//   } catch (err) {
+//     console.log('Error logging in with OAuth2 user', err);
+//     res.status(500).json({
+//       error: 'Internal server error',
+//     });
+//   }
+// });
+
+// module.exports = router;
 
 
 
