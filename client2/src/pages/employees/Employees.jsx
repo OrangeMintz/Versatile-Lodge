@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState }, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTable, useSortBy, useGlobalFilter, usePagination } from 'react-table';
 import EmployeeEditModal from '../../components/EmployeeEditModal';
 import './employees.css';

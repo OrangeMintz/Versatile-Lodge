@@ -5,7 +5,7 @@ import Sidebar from '../../components/Sidebar';
 import Footer from '../../components/Footer';
 import { UserContext } from '../../components/userContext';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 
@@ -55,10 +55,10 @@ const RoomsReserved = () => {
             <Sidebar />
 
             <section className="roomsReserved">
-                <h1 className="heading">Reserved Rooms (Booked)</h1>
+                <h1 className="heading">Reserved Rooms (Reserved)</h1>
                 <div className="roomState">
-                    <a className="stateBtn state">Reserved</a>
-                    <a href="./roomsBooking">Booking</a>
+                    <Link className="stateBtn state">Reserved</Link>
+                    <Link to="/roomsBooking">Booked</Link>
                 </div>
                 <div className="roomsRow">
                     <div className="roomsRowWrapper">
