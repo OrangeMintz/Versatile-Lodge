@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTable, useSortBy, useGlobalFilter, usePagination } from 'react-table';
 import './employees.css';
 import HeaderAdmin from '../../components/HeaderAdmin';
 import Sidebar from '../../components/Sidebar';
 import Footer from '../../components/Footer';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../components/userContext';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const columns = [
     { Header: 'Name', accessor: 'name' },
@@ -28,6 +32,51 @@ const data = [
 ];
 
 const Employees = () => {
+
+    const navigate = useNavigate()
+
+    // Check LOGON
+    const { user, setUser } = useContext(UserContext);
+    const [operationsComplete, setOperationsComplete] = useState(false);
+    useEffect(() => {
+        if (!user) {
+            axios
+                .get('/profile')
+                .then(({ data }) => {
+                    setUser(data);
+                })
+                .catch((error) => {
+                    console.error('Error fetching user profile:', error);
+                })
+                .finally(() => {
+                    // Set operationsComplete to true after data fetching is complete
+                    setOperationsComplete(true);
+                });
+        }
+    }, [user, setUser]);
+
+    useEffect(() => {
+        if (operationsComplete && !user) {
+            navigate('/401');
+            toast.error("Unauthorized Access")
+
+        }
+        if (operationsComplete && user && user.isEmployee == true) {
+            toast.error("Unauthorized Access")
+            navigate('/dashboard');
+
+        }
+
+        if (operationsComplete && user && user.isManager == true) {
+            toast.error("Unauthorized Access")
+            navigate('/dashboard');
+
+        }
+    }, [user, operationsComplete, navigate]);
+    // Check LOGON
+
+
+
     const {
         getTableProps,
         getTableBodyProps,
@@ -50,6 +99,8 @@ const Employees = () => {
     const { pageIndex, globalFilter } = state;
 
     return (
+
+
         <div>
             <HeaderAdmin />
             <Sidebar />

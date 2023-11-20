@@ -1,11 +1,53 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './payroll.css';
 import HeaderAdmin from '../../components/HeaderAdmin';
 import Sidebar from '../../components/Sidebar';
 import Footer from '../../components/Footer';
+import { UserContext } from '../../components/userContext';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 
 const Payroll = () => {
+
+    const navigate = useNavigate()
+    // Check LOGON
+    const { user, setUser } = useContext(UserContext);
+    const [operationsComplete, setOperationsComplete] = useState(false);
+    useEffect(() => {
+        if (!user) {
+            axios
+                .get('/profile')
+                .then(({ data }) => {
+                    setUser(data);
+                })
+                .catch((error) => {
+                    console.error('Error fetching user profile:', error);
+                })
+                .finally(() => {
+                    // Set operationsComplete to true after data fetching is complete
+                    setOperationsComplete(true);
+                });
+        }
+    }, [user, setUser]);
+
+    useEffect(() => {
+        if (operationsComplete && !user) {
+            toast.error("Unauthorized Access")
+            navigate('/');
+        }
+        // if (operationsComplete && user && user.isEmployee == true) {
+        //     navigate('/401');
+        // }
+
+        // if (operationsComplete && user && user.isManager == true) {
+        //     navigate('/401');
+        // }
+    }, [user, operationsComplete, navigate]);
+    // Check LOGON
+
+
     return (
         <div>
             <HeaderAdmin />

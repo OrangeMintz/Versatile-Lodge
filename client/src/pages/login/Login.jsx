@@ -3,8 +3,9 @@ import { toast } from 'react-hot-toast'
 import axios from 'axios'
 import { Link, useNavigate } from "react-router-dom";
 import './login.css';
-
-
+import { UserContext } from "../../context/userContext";
+import { useEffect } from "react";
+import { useContext } from "react";
 
 function navigate(url) {
     window.location.href = url
@@ -27,6 +28,31 @@ export const Login = () => {
         email: '',
         password: '',
     })
+
+
+    const { user, setUser } = useContext(UserContext);
+    useEffect(() => {
+        if (!user) {
+            axios
+                .get('/profile')
+                .then(({ data }) => {
+                    setUser(data);
+                })
+                .catch((error) => {
+                    console.error('Error fetching user profile:', error);
+                })
+        }
+    }, [user, setUser]);
+
+    useEffect(() => {
+        if (user) {
+            navigate('/');
+            toast.error("You're Already Logged in")
+        }
+    }, [user, navigate]);
+    // Check LOGON
+
+
 
     const loginUser = async (e) => {
         e.preventDefault();

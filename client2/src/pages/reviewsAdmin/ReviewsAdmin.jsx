@@ -1,132 +1,131 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './reviewsAdmin.css';
 import HeaderAdmin from '../../components/HeaderAdmin';
 import Sidebar from '../../components/Sidebar';
 import Footer from '../../components/Footer';
 
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { UserContext } from '../../components/userContext';
+import toast from 'react-hot-toast';
+import Error from '../../components/Error';
+import Loader from '../../components/Loader';
+import moment from 'moment';
 
 
 const ReviewsAdmin = () => {
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [reviews, setReviews] = useState([]);
+    const [comment, setComment] = useState('');
+    const [userReview, setUserReview] = useState(null);
+    const [userBooking, setUserBooking] = useState(null);
 
 
-    //GET PROFILE START
+    const navigate = useNavigate()
+
+    // Check LOGON
     const { user, setUser } = useContext(UserContext);
+    const [operationsComplete, setOperationsComplete] = useState(false);
     useEffect(() => {
         if (!user) {
-            axios.get('/profile')
+            axios
+                .get('/profile')
                 .then(({ data }) => {
                     setUser(data);
                 })
                 .catch((error) => {
                     console.error('Error fetching user profile:', error);
+                })
+                .finally(() => {
+                    // Set operationsComplete to true after data fetching is complete
+                    setOperationsComplete(true);
                 });
         }
     }, [user, setUser]);
 
+    useEffect(() => {
+        if (operationsComplete && !user) {
+            navigate('/401');
+            toast.error("Unauthorized Access")
 
-    //GET PROFILE END
+        }
+        if (operationsComplete && user && user.isEmployee == true) {
+            toast.error("Unauthorized Access")
+            navigate('/dashboard');
+
+        }
+
+        if (operationsComplete && user && user.isManager == true) {
+            toast.error("Unauthorized Access")
+            navigate('/dashboard');
+
+        }
+    }, [user, operationsComplete, navigate]);
+    // Check LOGON
+
+
+    // FETCHED REVIEWS
+    const fetchReviews = async () => {
+        try {
+            const response = await axios.get('/api/reviews');
+            // Sort reviews by the most recent date
+            const sortedReviews = response.data.sort((a, b) => moment(b.date) - moment(a.date));
+            setReviews(sortedReviews);
+            setLoading(false);
+        } catch (error) {
+            console.error('Error fetching reviews:', error);
+            setError('Error fetching reviews. Please try again.');
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchReviews();
+    }, []);
 
 
     return (
-
         <>
-            {user && user.isAdmin && (
-                <div>
-                    <HeaderAdmin />
-                    <Sidebar />
+            <div>
+                <HeaderAdmin />
+                <Sidebar />
 
-                    <section className="reviews">
+                <section className="reviews">
+                    <h1 className="heading">Customer's Reviews</h1>
 
-                        <h1 className="heading">Customer's Reviews</h1>
+                    <div className="box-container">
+                        {loading && <Loader />}
+                        {error && <Error />}
 
-                        <div className="box-container">
+                        {!loading &&
+                            !error &&
+                            reviews.map((review) => (
+                                <div className="box" key={review._id}>
+                                    <div className="customer">
+                                        <img src={review.image} alt="" />
+                                        <div>
+                                            <h3>{review.name}</h3>
+                                            <span>{moment(review.date).format('MMMM DD YYYY HH:mm:ss')}</span>
 
-                            <div className="box">
-                                <div className="customer">
-                                    <img src="./assets/images/chizuru.jpg" alt="" />
-                                    <div>
-                                        <h3>Lizl Conception</h3>
-                                        <span>09-16-2023</span>
+                                        </div>
+                                    </div>
+                                    <p>{review.comment}</p>
+                                    <div className="more-btn">
+                                        <Link to="#" className="inline-option-btn">
+                                            View more
+                                        </Link>
                                     </div>
                                 </div>
-                                {/* <span className='stars'>⭐⭐⭐⭐⭐</span> */}
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti perspiciatis velit nobis dignissimos architecto id recusandae a vitae harum enim ut repudiandae, explicabo esse aspernatur quidem quaerat similique. Nisi, soluta.</p>
-                            </div>
+                            ))}
+                    </div>
 
-                            <div className="box">
-                                <div className="customer">
-                                    <img src="./assets/images/chizuru.jpg" alt="" />
-                                    <div>
-                                        <h3>Raygie Gante</h3>
-                                        <span>09-16-2023</span>
-                                    </div>
-                                </div>
-                                {/* <span className='stars'>⭐⭐⭐⭐⭐</span> */}
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti perspiciatis velit nobis dignissimos architecto id recusandae a vitae harum enim ut repudiandae, explicabo esse aspernatur quidem quaerat similique. Nisi, soluta.</p>
-                            </div>
 
-                            <div className="box">
-                                <div className="customer">
-                                    <img src="./assets/images/chizuru.jpg" alt="" />
-                                    <div>
-                                        <h3>Djukeije Gacus</h3>
-                                        <span>09-16-2023</span>
-                                    </div>
-                                </div>
-                                {/* <span className="stars">⭐⭐⭐⭐⭐</span> */}
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti perspiciatis velit nobis dignissimos architecto id recusandae a vitae harum enim ut repudiandae, explicabo esse aspernatur quidem quaerat similique. Nisi, soluta.</p>
-                            </div>
+                </section>
 
-                            <div className="box">
-                                <div className="customer">
-                                    <img src="./assets/images/chizuru.jpg" alt="" />
-                                    <div>
-                                        <h3>Ramonito Caumban</h3>
-                                        <span>09-16-2023</span>
-                                    </div>
-                                </div>
-                                {/* <span className="stars">⭐⭐⭐⭐⭐</span> */}
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti perspiciatis velit nobis dignissimos architecto id recusandae a vitae harum enim ut repudiandae, explicabo esse aspernatur quidem quaerat similique. Nisi, soluta.</p>
-                            </div>
 
-                            <div className="box">
-                                <div className="customer">
-                                    <img src="./assets/images/chizuru.jpg" alt="" />
-                                    <div>
-                                        <h3>John Doe</h3>
-                                        <span>09-16-2023</span>
-                                    </div>
-                                </div>
-                                {/* <span className="stars">⭐⭐⭐⭐⭐</span> */}
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti perspiciatis velit nobis dignissimos architecto id recusandae a vitae harum enim ut repudiandae, explicabo esse aspernatur quidem quaerat similique. Nisi, soluta.</p>
-                            </div>
-
-                            <div className="box">
-                                <div className="customer">
-                                    <img src="./assets/images/chizuru.jpg" alt="" />
-                                    <div>
-                                        <h3>Brigitte Deehay</h3>
-                                        <span>09-16-2023</span>
-                                    </div>
-                                </div>
-                                {/* <span className="stars">⭐⭐⭐⭐⭐</span> */}
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti perspiciatis velit nobis dignissimos architecto id recusandae a vitae harum enim ut repudiandae, explicabo esse aspernatur quidem quaerat similique. Nisi, soluta.</p>
-                            </div>
-
-                        </div>
-
-                        <div className="more-btn">
-                            <Link href="#" className="inline-option-btn">view more</Link>
-                        </div>
-
-                    </section>
-
-                    <Footer />
-                </div>
-            )}
+                <Footer />
+            </div>
         </>
     )
 }
