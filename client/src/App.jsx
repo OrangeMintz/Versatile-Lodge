@@ -38,8 +38,9 @@ function App() {
         style: {
           background: '#DCC69C',
           color: '#363636',
-          fontSize: "12px",
-          boxShadow: "10px 10px 15px rgba(0,0,0,.4)"
+          fontSize: "15px",
+          boxShadow: "10px 10px 15px rgba(0,0,0,.4)",
+          border: "1px solid #363636"
 
         },
 
