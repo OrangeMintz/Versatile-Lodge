@@ -11,8 +11,7 @@ import RoomsAvailable from "./pages/roomsAvailable/RoomsAvailable.jsx";
 import RoomsUnavailable from "./pages/roomsUnavailable/RoomsUnavailable.jsx";
 import RoomsReserved from "./pages/roomsReserved/RoomsReserved.jsx";
 import RoomsBooking from "./pages/roomsBooking/RoomsBooking.jsx";
-import ProfileAdmin from "./pages/profileAdmin/ProfileAdmin.jsx";
-import ProfileEmployee from "./pages/profileEmployee/ProfileEmployee.jsx";
+import Profile from "./pages/profile/Profile.jsx";
 import Error404 from "./pages/404/404.jsx"
 import Error401 from "./pages/401/401.jsx"
 //Components
@@ -49,25 +48,25 @@ function App() {
         },
       }} />
       <Routes>
+
+        <Route path="/" element={<LoginAdmin />} />
+
+        {/* REQUIRED AUTHENTICATION */}
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/employees" element={<Employees />} />
-        <Route path="/" element={<LoginAdmin />} />
         <Route path="/payroll" element={<Payroll />} />
         <Route path="/reviewsAdmin" element={<ReviewsAdmin />} />
         <Route path="/roomsAvailable" element={<RoomsAvailable />} />   {/*rooms*/}
         <Route path="/roomsUnavailable" element={<RoomsUnavailable />} />     {/*rooms*/}
         <Route path="/roomsReserved" element={<RoomsReserved />} />         {/*transaction*/}
         <Route path="/roomsBooking" element={<RoomsBooking />} />         {/*transaction*/}
-        <Route path="/profile" element={<ProfileAdmin />} />
+        <Route path="/profile" element={<Profile />} />
 
-
+        {/* INVALID ACCESS */}
         <Route path="/404" element={<Error404 />} />
         <Route path="/401" element={<Error401 />} />
 
         <Route path="*" element={<Navigate to="/404" />} />
-
-
-        {/* <Route path="/profileEmployee" element={<ProfileEmployee />} /> */}
       </Routes>
     </UserContextProvider>
 

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import './profileAdmin.css';
+import './profile.css';
 import HeaderAdmin from '../../components/HeaderAdmin';
 import Sidebar from '../../components/Sidebar';
 import Footer from '../../components/Footer';
