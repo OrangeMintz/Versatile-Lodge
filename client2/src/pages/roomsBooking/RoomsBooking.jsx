@@ -3,7 +3,7 @@ import './roomsBooking.css';
 import HeaderAdmin from '../../components/HeaderAdmin';
 import Sidebar from '../../components/Sidebar';
 import Footer from '../../components/Footer';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../components/userContext';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -55,10 +55,10 @@ const RoomsBooking = () => {
             <Sidebar />
 
             <section className="roomsBooking">
-                <h1 className="heading">Occupied Rooms (Booking)</h1>
+                <h1 className="heading">Occupied Rooms (Booked)</h1>
                 <div className="roomState">
-                    <a href="./roomsReserved">Reserved</a>
-                    <a className="stateBtn state">Booking</a>
+                    <Link to="/roomsReserved">Reserved</Link>
+                    <Link className="stateBtn state">Booked</Link>
                 </div>
                 <div className="roomsRow">
                     <div className="roomsRowWrapper">
