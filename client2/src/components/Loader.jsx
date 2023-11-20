@@ -1,33 +1,24 @@
-import { React, useState } from 'react'
-import HashLoader from "react-spinners/HashLoader";
-// import PropagateLoader from "react-spinners/PropagateLoader";
-
-// const override: css = {
-//     display: "block",
-//     margin: "0 auto",
-//     borderColor: "red",
-// };
+import React, { useState } from 'react';
+import PulseLoader from 'react-spinners/PulseLoader';
 
 function Loader() {
-
-    let [loading, setLoading] = useState(true);
-    let [color, setColor] = useState("#ffffff");
-
+    const [loading, setLoading] = useState(true);
+    const [color, setColor] = useState('#2B1103');
 
     return (
-        <div style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '10vh' }}>
+        <div style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh' }}>
             <div className="sweet-loading">
-                <HashLoader
+                <PulseLoader
                     color={color}
                     loading={loading}
                     cssOverride=""
-                    size={70}
+                    size={15}
                     aria-label="Loading Spinner"
                     data-testid="loader"
                 />
             </div>
         </div>
-    )
+    );
 }
 
-export default Loader
+export default Loader;

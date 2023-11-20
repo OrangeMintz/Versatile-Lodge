@@ -83,13 +83,9 @@
 .employeesTable .fas {
     padding: .5rem;
     margin: .2rem;
-    background: var(--branch-color);
     color: var(--main-color);
     border-radius: 5px;
-
-
 }
-
 
 @media (max-width:991px) {
    

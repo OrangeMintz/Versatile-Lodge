@@ -1,27 +1,54 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './profileAdmin.css';
 import HeaderAdmin from '../../components/HeaderAdmin';
 import Sidebar from '../../components/Sidebar';
 import Footer from '../../components/Footer';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 import { UserContext } from "../../components/userContext";
 import axios from 'axios';
 
 const ProfileAdmin = () => {
-    const { user, setUser } = useContext(UserContext);
+    const navigate = useNavigate()
 
+    // Check LOGON
+    const { user, setUser } = useContext(UserContext);
+    const [operationsComplete, setOperationsComplete] = useState(false);
     useEffect(() => {
         if (!user) {
-            axios.get('/profile')
+            axios
+                .get('/profile')
                 .then(({ data }) => {
                     setUser(data);
                 })
                 .catch((error) => {
                     console.error('Error fetching user profile:', error);
+                })
+                .finally(() => {
+                    // Set operationsComplete to true after data fetching is complete
+                    setOperationsComplete(true);
                 });
         }
     }, [user, setUser]);
+
+    useEffect(() => {
+        if (operationsComplete && !user) {
+            navigate('/');
+        }
+    }, [user, operationsComplete, navigate]);
+    // Check LOGON
+
+    // useEffect(() => {
+    //     if (!user) {
+    //         axios.get('/profile')
+    //             .then(({ data }) => {
+    //                 setUser(data);
+    //             })
+    //             .catch((error) => {
+    //                 console.error('Error fetching user profile:', error);
+    //             });
+    //     }
+    // }, [user, setUser]);
 
     const handleLogout = () => {
         axios.get('/logout')
@@ -65,9 +92,6 @@ const ProfileAdmin = () => {
                                     <Link onClick={handleLogout} className="profileBtn">Log out</Link>
                                 </div>
                             </div>
-
-
-
                         </div>
                     </section>
                     <Footer />

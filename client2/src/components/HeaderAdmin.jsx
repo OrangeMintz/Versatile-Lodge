@@ -92,7 +92,7 @@ const HeaderAdmin = () => {
                 <section className="flex">
                     <div className="icons">
                         <div id="menu-btn" className="fas fa-bars" onClick={handleBarsIconClick}></div>
-                        <Link to="/" className="logo">Versatile Lodge</Link>
+                        <Link to="/dashboard" className="logo">Versatile Lodge</Link>
                     </div>
 
                     {/* <form action="" method="post" className="search-form">

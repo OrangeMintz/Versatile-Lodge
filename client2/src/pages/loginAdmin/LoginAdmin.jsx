@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { toast } from 'react-hot-toast'
 import axios from 'axios'
 import { Link, useNavigate } from "react-router-dom";
 import './loginAdmin.css';
-
+import { UserContext } from "../../components/userContext";
 
 const LoginAdmin = () => {
     const navigate = useNavigate()
@@ -12,7 +12,32 @@ const LoginAdmin = () => {
         password: '',
     })
 
+    const { user, setUser } = useContext(UserContext);
+    useEffect(() => {
+        if (!user) {
+            axios
+                .get('/profile')
+                .then(({ data }) => {
+                    setUser(data);
+                })
+                .catch((error) => {
+                    console.error('Error fetching user profile:', error);
+                })
+        }
+    }, [user, setUser]);
+
+    useEffect(() => {
+        if (user) {
+            navigate('/dashboard');
+            toast.error("You're Already Logged in")
+        }
+    }, [user, navigate]);
+    // Check LOGON
+
+
     const loginAdmin = async (e) => {
+
+
         e.preventDefault();
         const { username, password } = data;
 

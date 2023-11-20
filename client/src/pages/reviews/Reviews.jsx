@@ -103,8 +103,6 @@ const Reviews = () => {
                 // toast.success("Review Submitted")
                 window.location.href = `${window.location.origin}/reviews`;
 
-
-
                 // Fetch the updated list of reviews
                 fetchReviews();
             }

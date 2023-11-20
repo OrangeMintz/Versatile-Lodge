@@ -13,8 +13,8 @@ import RoomsReserved from "./pages/roomsReserved/RoomsReserved.jsx";
 import RoomsBooking from "./pages/roomsBooking/RoomsBooking.jsx";
 import ProfileAdmin from "./pages/profileAdmin/ProfileAdmin.jsx";
 import ProfileEmployee from "./pages/profileEmployee/ProfileEmployee.jsx";
-import Unauthorized from "./pages/unauthorized/unauthorized.jsx"
-
+import Error404 from "./pages/404/404.jsx"
+import Error401 from "./pages/401/401.jsx"
 //Components
 
 import axios from 'axios';
@@ -61,7 +61,9 @@ function App() {
         <Route path="/profile" element={<ProfileAdmin />} />
 
 
-        <Route path="/404" element={<Unauthorized />} />
+        <Route path="/404" element={<Error404 />} />
+        <Route path="/401" element={<Error401 />} />
+
         <Route path="*" element={<Navigate to="/404" />} />
 
 
