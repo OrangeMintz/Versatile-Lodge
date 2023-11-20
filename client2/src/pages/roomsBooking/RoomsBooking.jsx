@@ -68,6 +68,8 @@ const RoomsBooking = () => {
                         <div className="roomDetails">
                             <p>Malaybalay</p>
                             <p>Room #1</p>
+                            <span>From: 11-20-2023</span>
+                            <span>To: 11-29-2023</span>
                         </div>
                         <div className="roomButtons">
                             <button className="roomBtn">Update</button>
@@ -81,6 +83,8 @@ const RoomsBooking = () => {
                         <div className="roomDetails">
                             <p>Valencia</p>
                             <p>Room #1</p>
+                            <span>From: 11-20-2023</span>
+                            <span>To: 11-29-2023</span>
                         </div>
                         <div className="roomButtons">
                             <button className="roomBtn">Update</button>
@@ -94,6 +98,8 @@ const RoomsBooking = () => {
                         <div className="roomDetails">
                             <p>Maramag</p>
                             <p>Room #1</p>
+                            <span>From: 11-20-2023</span>
+                            <span>To: 11-29-2023</span>
                         </div>
                         <div className="roomButtons">
                             <button className="roomBtn">Update</button>
@@ -107,6 +113,8 @@ const RoomsBooking = () => {
                         <div className="roomDetails">
                             <p>Maramag</p>
                             <p>Room #2</p>
+                            <span>From: 11-20-2023</span>
+                            <span>To: 11-29-2023</span>
                         </div>
                         <div className="roomButtons">
                             <button className="roomBtn">Update</button>
@@ -120,6 +128,8 @@ const RoomsBooking = () => {
                         <div className="roomDetails">
                             <p>Malaybalay</p>
                             <p>Room #3</p>
+                            <span>From: 11-20-2023</span>
+                            <span>To: 11-29-2023</span>
                         </div>
                         <div className="roomButtons">
                             <button className="roomBtn">Update</button>
@@ -133,6 +143,8 @@ const RoomsBooking = () => {
                         <div className="roomDetails">
                             <p>Valencia</p>
                             <p>Room #3</p>
+                            <span>From: 11-20-2023</span>
+                            <span>To: 11-29-2023</span>
                         </div>
                         <div className="roomButtons">
                             <button className="roomBtn">Update</button>
