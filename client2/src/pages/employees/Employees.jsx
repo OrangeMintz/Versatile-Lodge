@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTable, useSortBy, useGlobalFilter, usePagination } from 'react-table';
+import EmployeeEditModal from '../../components/EmployeeEditModal';
 import './employees.css';
 import HeaderAdmin from '../../components/HeaderAdmin';
 import Sidebar from '../../components/Sidebar';
@@ -14,7 +15,7 @@ const columns = [
     {
         Header: 'Options',
         accessor: 'options',
-        Cell: ({ row }) => <a href="#" className='option-btn'>Option</a>,
+        Cell: ({ row }) => (<button className='option-btn' onClick={() => setOpenModal(true)}>Option</button>),
         disableSortBy: true,
     },
 ];
@@ -49,16 +50,42 @@ const Employees = () => {
 
     const { pageIndex, globalFilter } = state;
 
+    
+    const [openModal, setOpenModal] = useState(false);  
+
+
+    // const openModalHandler = () => {
+    //     setOpenModal(true);
+    // };
+
+    // const columnsWithActions = columns.concat({
+    //     Header: 'Options',
+    //     accessor: 'options',
+    //     Cell: ({ row, cell }) => (
+    //         <button {...cell.getCellProps()} className='option-btn' onClick={openModalHandler}>
+    //             Option
+    //         </button>
+    //     ),
+    //     disableSortBy: true,
+    // });
+
     return (
         <div>
             <HeaderAdmin />
             <Sidebar />
+            <button style={{ backgroundColor: 'wheat', padding: '1rem', margin: '1rem' }} onClick={() => setOpenModal(true)}>
+                Modal
+            </button>
+
+
+            <EmployeeEditModal open={openModal}/>
 
             <section className="employees">
                 <h1 className="heading">Our Employees</h1>
                 <div className="search-container">
-                    <label htmlFor="search">Search: </label>
                     <input
+                        className='searchInput'
+                        placeholder='serach here..'
                         id="search"
                         type="text"
                         value={globalFilter || ''}
@@ -109,15 +136,16 @@ const Employees = () => {
                     <button onClick={() => previousPage()} disabled={!canPreviousPage}>
                         Previous
                     </button>{' '}
-                    <button onClick={() => nextPage()} disabled={!canNextPage}>
-                        Next
-                    </button>{' '}
                     <span>
                         Page{' '}
                         <strong>
                             {pageIndex + 1} of {Math.ceil(data.length / state.pageSize)}
                         </strong>{' '}
                     </span>
+                    <button onClick={() => nextPage()} disabled={!canNextPage}>
+                        Next
+                    </button>{' '}
+
                 </div>
             </section>
 
