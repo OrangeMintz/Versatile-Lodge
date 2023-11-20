@@ -65,17 +65,16 @@ function App() {
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/bookingHistoryDetails" element={<BookingHistoryDetails />} />
 
-        <Route path="/404" element={<Unauthorized />} />
-        <Route path="*" element={<Navigate to="/404" />} />
-
-        {/* PROTECT THESE ROUTES */}
-        {/* <Route element={<RequireAuth />}> */}
+        {/* REQUIRED AUTHENTICATION */}
         <Route path="/accountSetting" element={<AccountSetting />} />
         <Route path="/bookingHistory" element={<BookingHistory />} />
         <Route path="/changePassword" element={<ChangePassword />} />
         <Route path="/room/booking/:id/:fromDate/:toDate" element={<BookNow />} />
 
-        {/* </Route> */}
+        {/* INVALID ACCESS */}
+        <Route path="/404" element={<Unauthorized />} />
+        <Route path="*" element={<Navigate to="/404" />} />
+
       </Routes>
     </UserContextProvider>
 
