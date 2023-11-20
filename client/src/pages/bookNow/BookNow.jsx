@@ -83,6 +83,31 @@ const BookNow = () => {
         }
     }, [user, setUser, fromDate, toDate]);
 
+    // Check LOGON
+    const [operationsComplete, setOperationsComplete] = useState(false);
+    useEffect(() => {
+        if (!user) {
+            axios
+                .get('/profile')
+                .then(({ data }) => {
+                    setUser(data);
+                })
+                .catch((error) => {
+                    console.error('Error fetching user profile:', error);
+                })
+                .finally(() => {
+                    // Set operationsComplete to true after data fetching is complete
+                    setOperationsComplete(true);
+                });
+        }
+    }, [user, setUser]);
+
+    useEffect(() => {
+        if (operationsComplete && !user) {
+            navigate('/login');
+        }
+    }, [user, operationsComplete, navigate]);
+
     return (
         <div>
             <Navbar />

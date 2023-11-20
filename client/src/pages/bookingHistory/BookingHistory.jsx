@@ -3,7 +3,7 @@ import Footer from '../../component/footer';
 import Loader from '../../component/Loader';
 import Error from '../../component/Error';
 import React, { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { UserContext } from '../../context/userContext';
 import axios from 'axios';
 import moment from 'moment'; // Import moment library
@@ -19,8 +19,10 @@ const BookingHistory = () => {
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [bookingIdToCancel, setBookingIdToCancel] = useState(null);
+  const navigate = useNavigate()
 
-  // Fetch user data on component mount
+  // Check LOGON
+  const [operationsComplete, setOperationsComplete] = useState(false);
   useEffect(() => {
     if (!user) {
       axios
@@ -30,9 +32,20 @@ const BookingHistory = () => {
         })
         .catch((error) => {
           console.error('Error fetching user profile:', error);
+        })
+        .finally(() => {
+          // Set operationsComplete to true after data fetching is complete
+          setOperationsComplete(true);
         });
     }
   }, [user, setUser]);
+
+  useEffect(() => {
+    if (operationsComplete && !user) {
+      navigate('/login');
+    }
+  }, [user, operationsComplete, navigate]);
+  // Check LOGON
 
   // Fetch booking history once user data is available
   useEffect(() => {
@@ -122,8 +135,9 @@ const BookingHistory = () => {
                       <td>{booking.branch}</td>
                       <td>{moment(booking.checkInDate).format('MM-DD-YYYY')}</td>
                       <td>{moment(booking.checkOutDate).format('MM-DD-YYYY')}</td>
-                      <td>{`₱${Math.max(1, moment(booking.checkOutDate).diff(moment(booking.checkInDate), 'days')) * booking.price}`}</td>
-
+                      <td>
+                        {`₱${Math.max(1, moment(booking.checkOutDate).diff(moment(booking.checkInDate), 'days') + 1) * booking.price}`}
+                      </td>
                       <td>{booking.status}</td>
                       <td>
                         <span className='btnCancel' onClick={() => handleCancelBooking(booking._id)}>
