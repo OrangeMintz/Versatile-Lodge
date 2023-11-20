@@ -1,3 +1,7 @@
+.payroll {
+    height: 100vh;
+
+}
 
 .payrollTable {
     margin: auto;
@@ -7,10 +11,11 @@
 
 
 .payrollTable td, th {
-    border: 1px solid black;
+    border: 1px solid var(--black);
     font-size: 1.8rem;
     padding: 20px 25px;
     text-align: center;
+    color: var(--black);
 }
 
 

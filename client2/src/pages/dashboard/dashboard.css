@@ -1,5 +1,9 @@
 /* overview part*/
 
+.overview {
+    height: 100vh;
+}
+
 .overview .box-container {      /*container of ENTIRE overview*/
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));

@@ -16,6 +16,7 @@ const columns = [
     { Header: 'Address', accessor: 'address' },
     { Header: 'Birthday', accessor: 'birthday' },
     { Header: 'Number', accessor: 'number' },
+    { Header: 'Sex', accessor: 'sex' },
     {
         Header: 'Options',
         accessor: 'options',
@@ -25,10 +26,10 @@ const columns = [
 ];
 
 const data = [
-    { name: 'ccc', email: 'ccccccc@gmail.com', address: 'aaaaaaaaaaaaaaaaaa', birthday: 'August 14, 2023', number: '3333333333' },
-    { name: 'bbbb', email: 'bbbbbbbbbbb@gmail.com', address: 'ddd', birthday: 'September 14, 2023', number: '2222222222' },
-    { name: 'aaa', email: 'aaaaaaaaaaaaaa@gmail.com', address: 'ccc', birthday: 'Culling 13, 2023', number: '11111111' },
-    { name: 'ddd', email: 'dddddddddddd@gmail.com', address: 'bbb', birthday: 'Grrr 14, 2023', number: '44444444444' },
+    { name: 'ccc', email: 'ccccccc@gmail.com', address: 'aaaaaaaaaaaaaaaaaa', birthday: 'August 14, 2023', number: '3333333333', sex: 'Male'},
+    { name: 'bbbb', email: 'bbbbbbbbbbb@gmail.com', address: 'ddd', birthday: 'September 14, 2023', number: '2222222222', sex: 'Male' },
+    { name: 'aaa', email: 'aaaaaaaaaaaaaa@gmail.com', address: 'ccc', birthday: 'Culling 13, 2023', number: '11111111', sex: 'Female' },
+    { name: 'ddd', email: 'dddddddddddd@gmail.com', address: 'bbb', birthday: 'Grrr 14, 2023', number: '44444444444', sex: 'Male' },
     // Add more data as needed
 ];
 
@@ -124,15 +125,15 @@ const Employees = () => {
         <div>
             <HeaderAdmin />
             <Sidebar />
-            <button style={{ backgroundColor: 'wheat', padding: '1rem', margin: '1rem' }} onClick={() => setOpenModal(true)}>
-                Modal
-            </button>
-
-
-            <EmployeeEditModal open={openModal} />
 
             <section className="employees">
                 <h1 className="heading">Our Employees</h1>
+                
+                <button style={{ backgroundColor: 'wheat', padding: '1rem', margin: '1rem', cursor: 'pointer'}} onClick={() => setOpenModal(true)}>
+                    Modal
+                </button>
+                <EmployeeEditModal open={openModal} onClose={()=> setOpenModal(false)}/>
+                
                 <div className="search-container">
                     <input
                         className='searchInput'
@@ -143,6 +144,7 @@ const Employees = () => {
                         onChange={(e) => setGlobalFilter(e.target.value)}
                     />
                 </div>
+                
                 <span className="addEmployee">+ Add Employees</span>
                 <div className="employeesContainer">
                     <table {...getTableProps()} className="employeesTable">
@@ -183,6 +185,7 @@ const Employees = () => {
                         </tbody>
                     </table>
                 </div>
+
                 <div className="pagination">
                     <button onClick={() => previousPage()} disabled={!canPreviousPage}>
                         Previous
@@ -198,6 +201,7 @@ const Employees = () => {
                     </button>{' '}
 
                 </div>
+
             </section>
 
             <Footer />
