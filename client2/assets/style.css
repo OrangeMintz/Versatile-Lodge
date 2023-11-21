@@ -519,4 +519,162 @@ section {                   /*header block*/
 
 
 
+.overlay {
+    background-color: rgba(0,0,0,0.5);
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 1000;
+}
+
+.modalContainer {
+    max-width: 500px;
+    width: 100%;
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    background: #fff;
+    box-shadow: 0px 0px 18px 0px rgba(0,0,0,0.75);
+
+}
+
+.modalBox {
+    width: 100%;
+    background:var(--white);
+
+}
+
+.modalBox .closeBtn {
+    position: fixed;
+    top: 5%;
+    right: 5%; 
+    font-size: 2rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--black);
+}
+
+.modalBox .closeBtn:hover {
+    background: var(--main-color);
+    color: var(--white);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin: 1rem;
+    padding: 1rem 1rem;
+    background-color: var(--branch-color);
+    border-radius: 5px;
+}
+
+.content form {
+    display: grid;
+    gap: 0.5rem;
+    padding: 2rem;
+}
+
+.content form label {
+    color: var(--black);
+    text-align: left;
+    font-size: 1.7rem;
+    width: 100%;
+    margin: .4rem 0;
+}
+
+.content form input {
+    width: 100%;
+    padding: .8rem;
+    font-size: 1.7rem;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+.content form .radioBtns {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.content form .radioBtns span {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.4rem;
+    color: var(--black);
+}
+
+.content form .radioBtn {
+    width: 20px;
+    height: 20px;
+}
+
+.btnContainer {
+    display: flex;
+    padding: 1rem;
+}
+
+form .btnContainer {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+    padding: 0;
+}
+
+form .btnContainer .updateBtn {
+    width: max-content;
+    background-color: var(--main-color);
+    color: var(--white);
+    cursor: pointer;
+    margin-top: 1rem;
+    padding: 1.2rem 2rem;
+   
+}
+
+form .btnContainer .updateBtn:hover {
+    background-color: var(--branch-color);
+    color: var(--black);
+    box-shadow: 4px 4px 15px rgba(0,0,0,0.4);
+}
+
+form .btnContainer .updateBtn:active {
+    margin-top: 5px;
+    margin-left: 5px;
+    box-shadow: none;
+}
+
+form .btnContainer .deleteBtn {
+    width: max-content;
+    background-color: var(--main-color);
+    color: var(--white);
+    cursor: pointer;
+    margin-top: 1rem;
+    padding: 1.2rem 2rem;
+}
+
+form .btnContainer .deleteBtn:hover {
+    background-color: var(--branch-color);
+    color: var(--black);
+    box-shadow: 4px 4px 15px rgba(0,0,0,0.4);
+}
+
+form .btnContainer .deleteBtn:active {
+    margin-top: 5px;
+    margin-right: 5px;
+    box-shadow: none;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+
+
+
+
  

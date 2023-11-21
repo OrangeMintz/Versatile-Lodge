@@ -111,11 +111,11 @@ const ReviewsAdmin = () => {
                                         </div>
                                     </div>
                                     <p>{review.comment}</p>
-                                    <div className="more-btn">
+                                    {/* <div className="more-btn">
                                         <Link to="#" className="inline-option-btn">
                                             View more
                                         </Link>
-                                    </div>
+                                    </div> */}
                                 </div>
                             ))}
                     </div>
