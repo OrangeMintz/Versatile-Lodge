@@ -83,10 +83,33 @@ const RoomsAvailable = () => {
         return () => clearInterval(intervalId);
     }, [reFetch]);
 
-
-
+    // State for search term
     const [searchTerm, setSearchTerm] = useState('');
+    // State for selected location
     const [selectedLocation, setSelectedLocation] = useState('all'); // 'all' or initial default value
+
+    //FILTER BY BRANCHES
+    const filterRoomsByLocation = (rooms, location) => {
+        if (location.toLowerCase() === 'all') {
+            return rooms;
+        } else {
+            return rooms.filter(room => room.branch.toLowerCase() === location.toLowerCase());
+        }
+    };
+
+    // Move filteredRooms after selectedLocation is defined
+    const filteredRooms = availableRooms
+        .filter(room => {
+            const branchMatch = selectedLocation.toLowerCase() === 'all' || room.branch.toLowerCase() === selectedLocation.toLowerCase();
+            const nameMatch = room.name.toLowerCase().includes(searchTerm.toLowerCase());
+            const maxPeopleMatch = room.maxPeople.toString().includes(searchTerm);
+            const priceMatch = room.price.toString().includes(searchTerm);
+
+            return branchMatch && (nameMatch || maxPeopleMatch || priceMatch);
+        });
+
+
+
 
     const handleSearch = (e) => {
         setSearchTerm(e.target.value);
@@ -96,35 +119,31 @@ const RoomsAvailable = () => {
         setSelectedLocation(e.target.value);
     };
 
-    // const filteredRooms = yourRoomsArray.filter((room) => {
-    //     const locationMatch = selectedLocation === 'all' || room.location.toLowerCase().includes(selectedLocation.toLowerCase());
-    //     const searchTermMatch = room.name.toLowerCase().includes(searchTerm.toLowerCase());
-
-    //     return locationMatch && searchTermMatch;
-    // });
-
     return (
         <div>
             <HeaderAdmin />
             <Sidebar />
-
             <section className="roomsAvailable">
                 <h1 className="heading">Available Rooms</h1>
                 <div className="roomState">
                     <Link className="stateBtn state">Available Rooms</Link>
                     <Link to="/roomsUnavailable">Unavailable Rooms</Link>
+
                     <select value={selectedLocation} onChange={handleLocationChange}>
-                        <option value="all">All Locations</option>
-                        <option value="malaybalay">Malaybalay</option>
-                        <option value="valencia">Valencia</option>
-                        <option value="maramag">Maramag</option>
+                        <option value="all">All</option>
+                        <option value="Malaybalay">Malaybalay</option>
+                        <option value="Valencia">Valencia</option>
+                        <option value="Maramag">Maramag</option>
                     </select>
                     <div className="searchNadd">
-                        <span className="addRoom">+ Add Room</span>
-                        <input className="searchRoom" type="text" placeholder="Search here" value={searchTerm} onChange={handleSearch} />
+                        <input className="searchRoom" type="text" placeholder="Search here..." value={searchTerm} onChange={handleSearch} />
                     </div>
                 </div>
-                {availableRooms.map(room => (
+                <div className="addRoom">
+                    <span>+ Add Room</span>
+                </div>
+                {/* {availableRooms.map(room => ( */}
+                {filteredRooms.map(room => (
                     <div key={room._id} className="roomsRow">
                         <div className="roomsRowWrapper">
                             <img src={room.imageurls[0]} alt="" />
@@ -132,7 +151,7 @@ const RoomsAvailable = () => {
                                 <p className='sub-heading'>{room.branch}</p>
                                 <p>{room.name}</p>
                                 <p className='sub'>Per Day: {room.price}</p>
-                                <p className='sub'>Max People:{room.maxPeople}</p>
+                                <p className='sub'>Max People: {room.maxPeople}</p>
                             </div>
                             <div className="roomButtons">
                                 <button className="roomBtn">Update</button>
@@ -141,6 +160,8 @@ const RoomsAvailable = () => {
                         </div>
                     </div>
                 ))}
+
+
             </section>
 
             <Footer />
