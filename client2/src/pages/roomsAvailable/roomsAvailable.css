@@ -61,7 +61,7 @@
 }
 
 .roomsAvailable .searchRoom {
-    padding: 0.3rem 1rem;
+    padding: 1rem 1rem;
     border-radius: 5px;
     outline: 1px solid var(--main-color);
     margin-right: 20px;
