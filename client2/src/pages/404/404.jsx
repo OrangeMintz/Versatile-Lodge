@@ -14,7 +14,7 @@ const handleGoBack = () => {
 const Error404 = () => {
 
     return (
-        <>
+        <div className="fourOfour">
             <div className="wrapper">
                 <div style={{ textAlign: 'center', maxWidth: '600px' }}>
                     <h1 style={{ fontSize: '13em', color: '#2B1103' }}>404</h1>
@@ -28,7 +28,7 @@ const Error404 = () => {
                     </button>
                 </div>
             </div>
-        </>
+        </div>
 
     );
 };

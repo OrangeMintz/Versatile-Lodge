@@ -1,5 +1,6 @@
-/* employees part */
-/*identical to quick options part*/
+.reviews {
+    height: 100vh;
+}
 
 .reviews .heading {
     border-bottom: 1px solid #000;
