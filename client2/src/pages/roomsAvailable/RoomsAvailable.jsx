@@ -103,9 +103,6 @@ const RoomsAvailable = () => {
     //     return locationMatch && searchTermMatch;
     // });
 
-
-
-
     return (
         <div>
             <HeaderAdmin />
@@ -144,7 +141,6 @@ const RoomsAvailable = () => {
                         </div>
                     </div>
                 ))}
-
             </section>
 
             <Footer />
