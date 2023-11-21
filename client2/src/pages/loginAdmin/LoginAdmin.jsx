@@ -72,6 +72,7 @@ const LoginAdmin = () => {
                 <form onSubmit={loginAdmin}>
                     <label htmlFor="">Username:</label>
                     <input
+                        className="inputUserAdmin"
                         placeholder="Enter Username"
                         type="text"
                         value={data.username}
@@ -79,6 +80,7 @@ const LoginAdmin = () => {
                     />
                     <label htmlFor="">Password:</label>
                     <input
+                        className="inputPasswordAdmin"
                         placeholder="Enter Password"
                         type="password"
                         value={data.password}
