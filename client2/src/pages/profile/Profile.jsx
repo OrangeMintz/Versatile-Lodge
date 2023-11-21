@@ -54,7 +54,7 @@ const ProfileAdmin = () => {
         axios.get('/logout')
             .then(() => {
                 // Set the new location
-                window.location.href = `${window.location.origin}/loginAdmin`;
+                window.location.href = `${window.location.origin}/`;
                 toast.success("Logout Successful")
                 // Reload the page
                 // window.location.reload();
