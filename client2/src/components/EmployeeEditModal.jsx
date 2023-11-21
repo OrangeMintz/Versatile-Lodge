@@ -12,19 +12,27 @@ const EmployeeEditModal = ({open, onClose}) => {
                     <p className="closeBtn" onClick={onClose}>X</p>
                     <div className="content">
                         <form action="#">
-                            <label htmlFor="">Name:</label>
+                            {/* <label htmlFor="">Name:</label> */}
                             <input type="text" placeholder='enter a name...' />
-                            <label htmlFor="">Email:</label>
+                            {/* <label htmlFor="">Email:</label> */}
                             <input type="email" placeholder='enter an email...'/>
-                            <label htmlFor="">Address:</label>
+                            {/* <label htmlFor="">Address:</label> */}
                             <input type="text" placeholder='enter an address...' />
-                            <label htmlFor="">Birthday:</label>
+                            {/* <label htmlFor="">Birthday:</label> */}
                             <input type="datetime" placeholder='enter a birthday...' />
-                            <label htmlFor="">Number:</label>
+                            {/* <label htmlFor="">Number:</label> */}
                             <input type="number" placeholder='enter a phone #...' />
                             <div className='radioBtns'>
                                 <span>Male: <input type="radio" name="" className='radioBtn' /></span>
                                 <span>FeMale: <input type="radio" name="" className='radioBtn' /></span>
+                            </div>
+                            <div className="notInTable">
+                                <label htmlFor="imageInput">Picture:</label>
+                                <input type="file" id="imageInput" accept="image/*" />
+                                <label htmlFor="username">Username:</label>
+                                <input type="text" />
+                                <label htmlFor="password">Password:</label>
+                                <input type="passowrd" />
                             </div>
                             <div className="btnContainer">
                                 <input type="submit" value="Update" className='updateBtn'/>

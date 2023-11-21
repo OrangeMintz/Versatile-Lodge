@@ -551,8 +551,8 @@ section {                   /*header block*/
 
 .modalBox .closeBtn {
     position: fixed;
-    top: 5%;
-    right: 5%; 
+    top: 3%;
+    right: 3%; 
     font-size: 2rem;
     font-weight: 700;
     cursor: pointer;
@@ -591,10 +591,13 @@ section {                   /*header block*/
 
 .content form input {
     width: 100%;
-    padding: 1.4rem 1.2rem;
+    padding: 1.2rem 1rem;
+    margin: .5rem 0;
     font-size: 2rem;
     border-radius: 5px;
     box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    background: var(--white);
+    color: var(--black);
 }
 
 .content form .radioBtns {
@@ -614,6 +617,22 @@ section {                   /*header block*/
 .content form .radioBtn {
     width: 20px;
     height: 20px;
+}
+
+.content form .notInTable {
+    height: 80%;
+    margin-top: 3rem;
+    text-align: left;
+}
+
+.content form .notInTable * {
+    padding: .7rem;
+    margin: .7rem;
+    width: 70%;
+}
+
+.content form .notInTable input {
+    display: flex;
 }
 
 .btnContainer {

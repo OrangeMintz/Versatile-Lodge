@@ -12,7 +12,7 @@
     gap: 1.5rem;
     align-items: flex-start;
     justify-content: center;
-    height: 80vh;
+    height: 70vh;
 }
 .reviews .box-container .box {      /*white boxes inside container of employees*/
     border-radius: .5rem;
