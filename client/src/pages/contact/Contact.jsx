@@ -52,7 +52,7 @@ const Contact = () => {
 
                 <h1>--- Contact Us ---</h1>
 
-                <MapContainer center={center} zoom={19} style={{ width: '100%', height: '600px' }}>
+                <MapContainer center={center} zoom={19} style={{ width: '100%', height: '700px' }}>
                     <TileLayer
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
