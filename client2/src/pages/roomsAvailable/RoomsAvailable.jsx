@@ -127,32 +127,24 @@ const RoomsAvailable = () => {
                         <input className="searchRoom" type="text" placeholder="Search here" value={searchTerm} onChange={handleSearch} />
                     </div>
                 </div>
-                <div className="roomsRow">
-                    <div className="roomsRowWrapper">
-                        <img src="https://th.bing.com/th/id/OIP.KW6xLZGZcpwJjQgXnkI35QHaFD?pid=ImgDet&rs=1" alt="" />
-                        <div className="roomDetails">
-                            <p>Malaybalay</p>
-                            <p>Room #1</p>
-                        </div>
-                        <div className="roomButtons">
-                            <button className="roomBtn">Update</button>
-                            <button className="roomBtn">Unavailable</button>
-                        </div>
-                    </div>
-                </div>
-                <div className="roomsRow">
-                    <div className="roomsRowWrapper">
-                        <img src="https://th.bing.com/th/id/OIP.KW6xLZGZcpwJjQgXnkI35QHaFD?pid=ImgDet&rs=1" alt="" />
-                        <div className="roomDetails">
-                            <p>Valencia</p>
-                            <p>Room #1</p>
-                        </div>
-                        <div className="roomButtons">
-                            <button className="roomBtn">Update</button>
-                            <button className="roomBtn">Unavailable</button>
+                {availableRooms.map(room => (
+                    <div key={room._id} className="roomsRow">
+                        <div className="roomsRowWrapper">
+                            <img src={room.imageurls[0]} alt="" />
+                            <div className="roomDetails">
+                                <p className='sub-heading'>{room.branch}</p>
+                                <p>{room.name}</p>
+                                <p className='sub'>Per Day: {room.price}</p>
+                                <p className='sub'>Max People:{room.maxPeople}</p>
+                            </div>
+                            <div className="roomButtons">
+                                <button className="roomBtn">Update</button>
+                                <p className="roomAvailability">{room.unavailable ? "Unavailable" : "Available"}</p>
+                            </div>
                         </div>
                     </div>
                 ))}
+
             </section>
 
             <Footer />
