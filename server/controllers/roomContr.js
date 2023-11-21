@@ -6,24 +6,26 @@ const createError = require('../utils/error.js');
 
 const createRoom = async (req, res, next) => {
 
-    const branchId = req.params.branchId;
+    // const branchId = req.params.branchId;
     const newRoom = new Room(req.body);
 
     try {
         const savedRoom = await newRoom.save();
-        try {
-            await Branch.findByIdAndUpdate(branchId,
-                {
-                    $push: { rooms: savedRoom._id }
-                })
-        } catch (err) {
-            next(err)
-        }
+        // try {
+        //     await Branch.findByIdAndUpdate(branchId,
+        //         {
+        //             $push: { rooms: savedRoom._id }
+        //         })
+        // } catch (err) {
+        //     next(err)
+        // }
         res.status(200).json(savedRoom);
     } catch (err) {
         next(err)
     }
 };
+
+
 
 const deleteRoom = async (req, res, next) => {
     const branchId = req.params.branchId;
