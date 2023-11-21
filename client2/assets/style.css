@@ -152,6 +152,7 @@ section {                   /*header block*/
     top: 0; left: 0; right: 0;
     z-index: 1000;         /*layering :)*/ 
 
+
 }
 
 .headerAdmin .flex {            /*align headerAdmin horizaontally*/
@@ -324,7 +325,7 @@ section {                   /*header block*/
     background-color:var(--branch-color);
     border-right: var(--border);
     transition: .2s linear;         /*transition if toggled*/
-    z-index: 1200;                  /*appear in front of header*/
+    z-index: 1100;                  /*appear in front of header*/
 }
 
 .side-bar .profile {                /*sidebar*/
@@ -523,21 +524,22 @@ section {                   /*header block*/
     background-color: rgba(0,0,0,0.5);
     width: 100vw;
     height: 100vh;
-    position: absolute;
+    position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    z-index: 1000;
+    z-index: 1200;
 }
 
 .modalContainer {
-    max-width: 500px;
+    max-width: 600px;
     width: 100%;
     position: fixed;
-    top: 45%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
-    background: #fff;
+    background: var(--white);
     box-shadow: 0px 0px 18px 0px rgba(0,0,0,0.75);
+    /* z-index: 1000; */
 
 }
 
@@ -576,21 +578,21 @@ section {                   /*header block*/
 .content form {
     display: grid;
     gap: 0.5rem;
-    padding: 2rem;
+    padding: 2rem 4rem;
 }
 
 .content form label {
     color: var(--black);
     text-align: left;
-    font-size: 1.7rem;
+    font-size: 2rem;
     width: 100%;
     margin: .4rem 0;
 }
 
 .content form input {
     width: 100%;
-    padding: .8rem;
-    font-size: 1.7rem;
+    padding: 1.4rem 1.2rem;
+    font-size: 2rem;
     border-radius: 5px;
     box-shadow: 0 0 15px rgba(0,0,0,0.3);
 }

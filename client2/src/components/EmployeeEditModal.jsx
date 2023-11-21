@@ -12,19 +12,19 @@ const EmployeeEditModal = ({open, onClose}) => {
                     <p className="closeBtn" onClick={onClose}>X</p>
                     <div className="content">
                         <form action="#">
-                            <label htmlFor="">Name</label>
-                            <input type="text" />
-                            <label htmlFor="">Email</label>
-                            <input type="email" name="" id="" />
-                            <label htmlFor="">address</label>
-                            <input type="text" name="" id="" />
-                            <label htmlFor="">Birthday</label>
-                            <input type="datetime" name="" id="" />
-                            <label htmlFor="">Number</label>
-                            <input type="number" />
+                            <label htmlFor="">Name:</label>
+                            <input type="text" placeholder='enter a name...' />
+                            <label htmlFor="">Email:</label>
+                            <input type="email" placeholder='enter an email...'/>
+                            <label htmlFor="">Address:</label>
+                            <input type="text" placeholder='enter an address...' />
+                            <label htmlFor="">Birthday:</label>
+                            <input type="datetime" placeholder='enter a birthday...' />
+                            <label htmlFor="">Number:</label>
+                            <input type="number" placeholder='enter a phone #...' />
                             <div className='radioBtns'>
-                                <span>Male <input type="radio" name="" className='radioBtn' /></span>
-                                <span>FeMale <input type="radio" name="" className='radioBtn' /></span>
+                                <span>Male: <input type="radio" name="" className='radioBtn' /></span>
+                                <span>FeMale: <input type="radio" name="" className='radioBtn' /></span>
                             </div>
                             <div className="btnContainer">
                                 <input type="submit" value="Update" className='updateBtn'/>
