@@ -1,3 +1,27 @@
+ /* For Chrome, Safari, and newer versions of Edge */
+ input[type="number"]::-webkit-inner-spin-button,
+ input[type="number"]::-webkit-outer-spin-button {
+     -webkit-appearance: none;
+     margin: 0;
+ }
+ 
+ /* For Opera and Opera GX */
+ input[type="number"]::-webkit-inner-spin-button,
+ input[type="number"]::-webkit-outer-spin-button {
+     -webkit-appearance: none;
+     margin: 0;
+ }
+ 
+ /* Additional styles for Opera */
+ @supports (-webkit-appearance: none) and (not (-ms-ime-align: auto)) {
+     input[type="number"] {
+         -webkit-appearance: none;
+         margin: 0;
+     }
+ }
+
+
+
 :root {                     /*main values for easy modification*/
     --black: #000000;
     --white: #FFFFFF;
@@ -694,8 +718,3 @@ form .btnContainer .deleteBtn:active {
     font-weight: 600;
 }
 
-
-
-
-
- 

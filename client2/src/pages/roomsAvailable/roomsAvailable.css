@@ -49,15 +49,30 @@
 
 
 .roomsAvailable .addRoom{
+    padding: 2px 8px;
+    margin-right: 10px;
+    display: block;
+    direction: rtl;
+}
+
+.roomsAvailable .addRoom span{
     font-size: 2rem;
-    /* position: absolute; */
-    /* right: 4%; */
-    /* top: 5%; */
     text-decoration: none;
     color: var(--main-color);
     cursor: pointer;
-    padding: 2px 8px;
-    margin-right: 20px;
+    padding: 8px 15px;
+    border-radius: 3px;
+    border:1px solid #eeeeee;
+
+}
+
+.roomsAvailable .addRoom span:hover{
+    cursor: pointer;
+    transition: 0.5s;
+    color: var(--main-color);
+    border:1px solid var(--main-color);
+
+
 }
 
 .roomsAvailable .searchRoom {

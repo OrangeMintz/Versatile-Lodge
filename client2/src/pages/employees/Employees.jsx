@@ -27,7 +27,7 @@ const columns = [
 ];
 
 const data = [
-    { name: 'ccc', email: 'ccccccc@gmail.com', address: 'aaaaaaaaaaaaaaaaaa', birthday: 'August 14, 2023', number: '3333333333', sex: 'Male'},
+    { name: 'ccc', email: 'ccccccc@gmail.com', address: 'aaaaaaaaaaaaaaaaaa', birthday: 'August 14, 2023', number: '3333333333', sex: 'Male' },
     { name: 'bbbb', email: 'bbbbbbbbbbb@gmail.com', address: 'ddd', birthday: 'September 14, 2023', number: '2222222222', sex: 'Male' },
     { name: 'aaa', email: 'aaaaaaaaaaaaaa@gmail.com', address: 'ccc', birthday: 'Culling 13, 2023', number: '11111111', sex: 'Female' },
     { name: 'ddd', email: 'dddddddddddd@gmail.com', address: 'bbb', birthday: 'Grrr 14, 2023', number: '44444444444', sex: 'Male' },
@@ -130,25 +130,25 @@ const Employees = () => {
 
             <section className="employees">
                 <h1 className="heading">Our Employees</h1>
-                
-                <button style={{ backgroundColor: 'wheat', padding: '1rem', margin: '1rem', cursor: 'pointer'}} onClick={() => setOpenEditModal(true)}>
+
+                <button style={{ backgroundColor: 'wheat', padding: '1rem', margin: '1rem', cursor: 'pointer' }} onClick={() => setOpenEditModal(true)}>
                     Modal
                 </button>
 
-                <EmployeeEditModal open={openEditModal} onClose={()=> setOpenEditModal(false)}/>
-                <EmployeeAddModal open={openAddModal} onClose={()=> setOpenAddModal(false)}/>
-                
+                <EmployeeEditModal open={openEditModal} onClose={() => setOpenEditModal(false)} />
+                <EmployeeAddModal open={openAddModal} onClose={() => setOpenAddModal(false)} />
+
                 <div className="search-container">
                     <input
                         className='searchInput'
-                        placeholder='serach here..'
+                        placeholder='Search here...'
                         id="search"
                         type="text"
                         value={globalFilter || ''}
                         onChange={(e) => setGlobalFilter(e.target.value)}
                     />
                 </div>
-                
+
                 <span className="addEmployee" onClick={() => setOpenAddModal(true)}>+ Add Employees</span>
                 <div className="employeesContainer">
                     <table {...getTableProps()} className="employeesTable">
