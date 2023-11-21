@@ -10,7 +10,7 @@ const router = express.Router();
 
 //Create
 // router.post("/", createRoom);
-router.post("/:branchId", createRoom);
+router.post("/", verifyAdmin, createRoom);
 
 //Delete
 // router.delete("/:id", verifyAdmin, deleteRoom);
