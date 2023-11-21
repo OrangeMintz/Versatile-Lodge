@@ -8,13 +8,17 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
+import Loader from '../../components/Loader';
+import Error from '../../components/Error';
+import moment from 'moment';
+
 const RoomsUnavailable = () => {
+    const navigate = useNavigate();
 
-
-    const navigate = useNavigate()
     // Check LOGON
     const { user, setUser } = useContext(UserContext);
     const [operationsComplete, setOperationsComplete] = useState(false);
+
     useEffect(() => {
         if (!user) {
             axios
@@ -35,17 +39,52 @@ const RoomsUnavailable = () => {
     useEffect(() => {
         if (operationsComplete && !user) {
             navigate('/401');
-            toast.error("Unauthorized Access")
-
+            toast.error("Unauthorized Access");
         }
-        if (operationsComplete && user && user.isEmployee == true) {
-            toast.error("Unauthorized Access")
+        if (operationsComplete && user && user.isEmployee === true) {
+            toast.error("Unauthorized Access");
             navigate('/dashboard');
-
         }
-
     }, [user, operationsComplete, navigate]);
     // Check LOGON
+
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get("http://localhost:8000/api/room/");
+                setData(response.data);
+                setLoading(false);
+            } catch (error) {
+                setError(error);
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    const currentDate = moment().format('MM/DD/YYYY');
+
+    // Filter out rooms with overlapping bookings on the current date
+    const filteredRooms = data.filter(room => {
+        if (!room.currentbookings || room.currentbookings.length === 0) {
+            return false; // Room has no current bookings, exclude from the list
+        }
+
+        // Check if any booking overlaps with the current date (today)
+        return room.currentbookings.some(booking => {
+            const bookingStartDate = moment(booking.fromDate, 'MM-DD-YYYY').format('MM/DD/YYYY');
+            const bookingEndDate = moment(booking.toDate, 'MM-DD-YYYY').format('MM/DD/YYYY');
+
+            // Check if the current date is within the booking range
+            return moment(currentDate).isBetween(bookingStartDate, bookingEndDate, null, '[]');
+        });
+    });
+
 
 
     return (
@@ -58,93 +97,35 @@ const RoomsUnavailable = () => {
                 <div className="roomState">
                     <a href="./roomsAvailable">Available Rooms</a>
                     <a className="stateBtn state">Unavailable Rooms</a>
-                    {/* <span className="addRoom">+ Add Room</span> */}
-                </div>
-                <div className="roomsRow">
-                    <div className="roomsRowWrapper">
-                        <img src="https://th.bing.com/th/id/OIP.KW6xLZGZcpwJjQgXnkI35QHaFD?pid=ImgDet&rs=1" alt="" />
-                        <div className="roomDetails">
-                            <p>Valencia</p>
-                            <p>Room #1</p>
-                        </div>
-                        <div className="roomButtons">
-                            <button className="roomBtn">Update</button>
-                            <button className="roomBtn">Unavailable</button>
-                        </div>
-                    </div>
-                </div>
-                <div className="roomsRow">
-                    <div className="roomsRowWrapper">
-                        <img src="https://th.bing.com/th/id/OIP.KW6xLZGZcpwJjQgXnkI35QHaFD?pid=ImgDet&rs=1" alt="" />
-                        <div className="roomDetails">
-                            <p>Maramag</p>
-                            <p>Room #1</p>
-                        </div>
-                        <div className="roomButtons">
-                            <button className="roomBtn">Update</button>
-                            <button className="roomBtn">Unavailable</button>
-                        </div>
-                    </div>
-                </div>
-                <div className="roomsRow">
-                    <div className="roomsRowWrapper">
-                        <img src="https://th.bing.com/th/id/OIP.KW6xLZGZcpwJjQgXnkI35QHaFD?pid=ImgDet&rs=1" alt="" />
-                        <div className="roomDetails">
-                            <p>Malaybalay</p>
-                            <p>Room #1</p>
-                        </div>
-                        <div className="roomButtons">
-                            <button className="roomBtn">Update</button>
-                            <button className="roomBtn">Unavailable</button>
-                        </div>
-                    </div>
-                </div>
-                <div className="roomsRow">
-                    <div className="roomsRowWrapper">
-                        <img src="https://th.bing.com/th/id/OIP.KW6xLZGZcpwJjQgXnkI35QHaFD?pid=ImgDet&rs=1" alt="" />
-                        <div className="roomDetails">
-                            <p>Maramag</p>
-                            <p>Room #2</p>
-                        </div>
-                        <div className="roomButtons">
-                            <button className="roomBtn">Update</button>
-                            <button className="roomBtn">Unavailable</button>
-                        </div>
-                    </div>
-                </div>
-                <div className="roomsRow">
-                    <div className="roomsRowWrapper">
-                        <img src="https://th.bing.com/th/id/OIP.KW6xLZGZcpwJjQgXnkI35QHaFD?pid=ImgDet&rs=1" alt="" />
-                        <div className="roomDetails">
-                            <p>Malaybalay</p>
-                            <p>Room #3</p>
-                        </div>
-                        <div className="roomButtons">
-                            <button className="roomBtn">Update</button>
-                            <button className="roomBtn">Unavailable</button>
-                        </div>
-                    </div>
-                </div>
-                <div className="roomsRow">
-                    <div className="roomsRowWrapper">
-                        <img src="https://th.bing.com/th/id/OIP.KW6xLZGZcpwJjQgXnkI35QHaFD?pid=ImgDet&rs=1" alt="" />
-                        <div className="roomDetails">
-                            <p>Valencia</p>
-                            <p>Room #3</p>
-                        </div>
-                        <div className="roomButtons">
-                            <button className="roomBtn">Update</button>
-                            <button className="roomBtn">Unavailable</button>
-                        </div>
-                    </div>
                 </div>
 
+                {/* Display unavailable rooms */}
+                {loading && <Loader />}
+                {error && <Error />}
+                {!loading && !error && (
+                    filteredRooms.map(room => (
+                        <div key={room._id} className="roomsRow">
+                            <div className="roomsRowWrapper">
+                                <img src={room.imageurls[0]} alt="" />
+                                <div className="roomDetails">
+                                    <p className='sub-heading'>{room.branch}</p>
+                                    <p>{room.name}</p>
+                                    <p className='sub'>Per Day: {room.price}</p>
+                                    <p className='sub'>Max People:{room.maxPeople}</p>
+                                </div>
+                                <div className="roomButtons">
+                                    <button className="roomBtn">Update</button>
+                                    <p className="roomAvailability">{room.unavailable ? "Unavailable" : "Available"}</p>
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                )}
             </section>
 
             <Footer />
-
         </div>
-    )
-}
+    );
+};
 
 export default RoomsUnavailable;

@@ -30,6 +30,14 @@ const adminSchema = new Schema({
         type: String
     },
 
+    birthday: {
+        type: String
+    },
+
+    age: {
+        type: Number
+    },
+
     phoneNumber: {
         type: String
     },

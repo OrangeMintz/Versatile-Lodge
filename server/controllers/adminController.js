@@ -96,9 +96,43 @@ const getProfile = (req, res) => {
     }
 }
 
+const getUser = async (req, res, next) => {
+    try {
+        const user = await Admin.findById(req.params.id);
+        res.status(200).json(user)
+    } catch (err) {
+        next(err)
+    }
+};
+
+const getUsers = async (req, res, next) => {
+    try {
+        const user = await Admin.find();
+        res.status(200).json(user)
+    } catch (err) {
+        next(err)
+    }
+};
+
+const updateUser = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const updatedUser = await Admin.findByIdAndUpdate(id, req.body, { new: true });
+        if (!updatedUser) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.status(200).json(updatedUser);
+    } catch (err) {
+        next(err);
+    }
+};
+
 
 module.exports = {
     createAdmin,
     loginAdmin,
-    getProfile
+    getUser,
+    getUsers,
+    getProfile,
+    updateUser
 }

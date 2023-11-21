@@ -23,6 +23,9 @@
     border-radius: 5px;
     align-items: center;
     height: max-content;
+    border: 1px solid  var(--main-color);
+
+
 }
 
 .profileAdminDetails img {
@@ -38,7 +41,7 @@
     color: var(--black);
 }
 
-.profileAdminDetails span {
+.profileAdminDetails  .span {
     color: var(--light-color);
     font-size: 1.5rem;
 }
@@ -49,6 +52,7 @@
     place-items: center;
     gap: 3rem;
     padding: 1rem 2rem;
+    margin-top: 3rem;
 }
 
 .profileAdminDetails .profileBtns .profileBtn {
@@ -64,6 +68,11 @@
     background-color: var(--light-color);
     color: var(--white);
     transition: .2s linear;
+}
+
+.profileAdminDetails .info{
+    font-size: 15px;
+    padding: 3px 0px;
 }
 
 
