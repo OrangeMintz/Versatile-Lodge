@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useTable, useSortBy, useGlobalFilter, usePagination } from 'react-table';
 import EmployeeEditModal from '../../components/EmployeeEditModal';
+import EmployeeAddModal from '../../components/EmployeeAddModal';
 import './employees.css';
 import HeaderAdmin from '../../components/HeaderAdmin';
 import Sidebar from '../../components/Sidebar';
@@ -101,7 +102,8 @@ const Employees = () => {
     const { pageIndex, globalFilter } = state;
 
 
-    const [openModal, setOpenModal] = useState(false);
+    const [openEditModal, setOpenEditModal] = useState(false);
+    const [openAddModal, setOpenAddModal] = useState(false);
 
 
     // const openModalHandler = () => {
@@ -129,10 +131,12 @@ const Employees = () => {
             <section className="employees">
                 <h1 className="heading">Our Employees</h1>
                 
-                <button style={{ backgroundColor: 'wheat', padding: '1rem', margin: '1rem', cursor: 'pointer'}} onClick={() => setOpenModal(true)}>
+                <button style={{ backgroundColor: 'wheat', padding: '1rem', margin: '1rem', cursor: 'pointer'}} onClick={() => setOpenEditModal(true)}>
                     Modal
                 </button>
-                <EmployeeEditModal open={openModal} onClose={()=> setOpenModal(false)}/>
+
+                <EmployeeEditModal open={openEditModal} onClose={()=> setOpenEditModal(false)}/>
+                <EmployeeAddModal open={openAddModal} onClose={()=> setOpenAddModal(false)}/>
                 
                 <div className="search-container">
                     <input
@@ -145,7 +149,7 @@ const Employees = () => {
                     />
                 </div>
                 
-                <span className="addEmployee">+ Add Employees</span>
+                <span className="addEmployee" onClick={() => setOpenAddModal(true)}>+ Add Employees</span>
                 <div className="employeesContainer">
                     <table {...getTableProps()} className="employeesTable">
                         <thead>

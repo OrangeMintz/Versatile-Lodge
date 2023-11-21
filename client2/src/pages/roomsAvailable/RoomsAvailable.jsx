@@ -47,6 +47,29 @@ const RoomsAvailable = () => {
     }, [user, operationsComplete, navigate]);
     // Check LOGON
 
+
+
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedLocation, setSelectedLocation] = useState('all'); // 'all' or initial default value
+
+    const handleSearch = (e) => {
+        setSearchTerm(e.target.value);
+    };
+
+    const handleLocationChange = (e) => {
+        setSelectedLocation(e.target.value);
+    };
+
+    // const filteredRooms = yourRoomsArray.filter((room) => {
+    //     const locationMatch = selectedLocation === 'all' || room.location.toLowerCase().includes(selectedLocation.toLowerCase());
+    //     const searchTermMatch = room.name.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    //     return locationMatch && searchTermMatch;
+    // });
+
+
+
+
     return (
         <div>
             <HeaderAdmin />
@@ -57,8 +80,19 @@ const RoomsAvailable = () => {
                 <div className="roomState">
                     <a className="stateBtn state">Available Rooms</a>
                     <a href="./roomsUnavailable">Unavailable Rooms</a>
-                    <span className="addRoom">+ Add Room</span>
+                    <select value={selectedLocation} onChange={handleLocationChange}>
+                        <option value="all">All Locations</option>
+                        <option value="malaybalay">Malaybalay</option>
+                        <option value="valencia">Valencia</option>
+                        <option value="maramag">Maramag</option>
+                    </select>
+                    <div className="searchNadd">
+                        <span className="addRoom">+ Add Room</span>
+                        <input className="searchRoom" type="text" placeholder="Search here" value={searchTerm} onChange={handleSearch} />
+                    </div>
                 </div>
+
+
                 <div className="roomsRow">
                     <div className="roomsRowWrapper">
                         <img src="https://th.bing.com/th/id/OIP.KW6xLZGZcpwJjQgXnkI35QHaFD?pid=ImgDet&rs=1" alt="" />
