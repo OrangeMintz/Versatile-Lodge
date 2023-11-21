@@ -53,19 +53,34 @@
 
 
 .roomsAvailable .addRoom{
+    padding: 2px 8px;
+    margin-right: 10px;
+    display: block;
+    direction: rtl;
+}
+
+.roomsAvailable .addRoom span{
     font-size: 2rem;
-    /* position: absolute; */
-    /* right: 4%; */
-    /* top: 5%; */
     text-decoration: none;
     color: var(--main-color);
     cursor: pointer;
-    padding: 2px 8px;
-    margin-right: 20px;
+    padding: 8px 15px;
+    border-radius: 3px;
+    border:1px solid #eeeeee;
+
+}
+
+.roomsAvailable .addRoom span:hover{
+    cursor: pointer;
+    transition: 0.5s;
+    color: var(--main-color);
+    border:1px solid var(--main-color);
+
+
 }
 
 .roomsAvailable .searchRoom {
-    padding: 0.3rem 1rem;
+    padding: 1rem 1rem;
     border-radius: 5px;
     outline: 1px solid var(--main-color);
     margin-right: 20px;
@@ -75,6 +90,9 @@
     display: flex;
     margin: 4rem 2rem;
     position: relative;
+    border-bottom: 1px solid var(--main-color);
+    border-top: 1px solid var(--main-color);
+
 }
 
 .roomsAvailable .roomsRow .roomsRowWrapper img {
@@ -97,6 +115,20 @@
     color: var(--black);
 }
 
+.roomsAvailable .roomsRow .roomsRowWrapper .roomDetails .sub-heading{
+    font-size: 2.1rem;
+    font-weight: 700;
+    padding: 0.5rem 2rem;
+    color: var(--black);
+}
+
+.roomsAvailable .roomsRow .roomsRowWrapper .roomDetails .sub{
+    font-size: 1.5rem;
+    font-style: italic;
+    padding: 0.5rem 2rem;
+    color: var(--black);
+}
+
 .roomsAvailable .roomsRow .roomsRowWrapper .roomButtons {
     position: absolute;
     right: 0;
@@ -114,10 +146,23 @@
     margin: 1rem;
     border-radius: 5px;
 }
+
 .roomsAvailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn:hover {
     background: var(--branch-color);
     color: var(--main-color);
     outline: 1px solid black;
+}
+
+.roomsAvailable .roomsRow .roomsRowWrapper .roomButtons .roomAvailability {
+    padding: 1rem 1rem;
+    color: var(--main-color);
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 1rem;
+    border-radius: 5px;
+    border: 1px solid var(--main-color);
+
 }
 
 
