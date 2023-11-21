@@ -83,6 +83,29 @@ const RoomsAvailable = () => {
         return () => clearInterval(intervalId);
     }, [reFetch]);
 
+
+
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedLocation, setSelectedLocation] = useState('all'); // 'all' or initial default value
+
+    const handleSearch = (e) => {
+        setSearchTerm(e.target.value);
+    };
+
+    const handleLocationChange = (e) => {
+        setSelectedLocation(e.target.value);
+    };
+
+    // const filteredRooms = yourRoomsArray.filter((room) => {
+    //     const locationMatch = selectedLocation === 'all' || room.location.toLowerCase().includes(selectedLocation.toLowerCase());
+    //     const searchTermMatch = room.name.toLowerCase().includes(searchTerm.toLowerCase());
+
+    //     return locationMatch && searchTermMatch;
+    // });
+
+
+
+
     return (
         <div>
             <HeaderAdmin />
@@ -93,26 +116,40 @@ const RoomsAvailable = () => {
                 <div className="roomState">
                     <Link className="stateBtn state">Available Rooms</Link>
                     <Link to="/roomsUnavailable">Unavailable Rooms</Link>
-                    <span className="addRoom">+ Add Room</span>
+                    <select value={selectedLocation} onChange={handleLocationChange}>
+                        <option value="all">All Locations</option>
+                        <option value="malaybalay">Malaybalay</option>
+                        <option value="valencia">Valencia</option>
+                        <option value="maramag">Maramag</option>
+                    </select>
+                    <div className="searchNadd">
+                        <span className="addRoom">+ Add Room</span>
+                        <input className="searchRoom" type="text" placeholder="Search here" value={searchTerm} onChange={handleSearch} />
+                    </div>
                 </div>
-
-                {loading && <Loader />}
-                {error && <Error />}
-
-                {availableRooms.map(room => (
-                    <div key={room._id} className="roomsRow">
-                        <div className="roomsRowWrapper">
-                            <img src={room.imageurls[0]} alt="" />
-                            <div className="roomDetails">
-                                <p className='sub-heading'>{room.branch}</p>
-                                <p>{room.name}</p>
-                                <p className='sub'>Per Day: {room.price}</p>
-                                <p className='sub'>Max People:{room.maxPeople}</p>
-                            </div>
-                            <div className="roomButtons">
-                                <button className="roomBtn">Update</button>
-                                <p className="roomAvailability">{room.unavailable ? "Unavailable" : "Available"}</p>
-                            </div>
+                <div className="roomsRow">
+                    <div className="roomsRowWrapper">
+                        <img src="https://th.bing.com/th/id/OIP.KW6xLZGZcpwJjQgXnkI35QHaFD?pid=ImgDet&rs=1" alt="" />
+                        <div className="roomDetails">
+                            <p>Malaybalay</p>
+                            <p>Room #1</p>
+                        </div>
+                        <div className="roomButtons">
+                            <button className="roomBtn">Update</button>
+                            <button className="roomBtn">Unavailable</button>
+                        </div>
+                    </div>
+                </div>
+                <div className="roomsRow">
+                    <div className="roomsRowWrapper">
+                        <img src="https://th.bing.com/th/id/OIP.KW6xLZGZcpwJjQgXnkI35QHaFD?pid=ImgDet&rs=1" alt="" />
+                        <div className="roomDetails">
+                            <p>Valencia</p>
+                            <p>Room #1</p>
+                        </div>
+                        <div className="roomButtons">
+                            <button className="roomBtn">Update</button>
+                            <button className="roomBtn">Unavailable</button>
                         </div>
                     </div>
                 ))}

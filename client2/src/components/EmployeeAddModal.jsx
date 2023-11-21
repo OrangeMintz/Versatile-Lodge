@@ -1,6 +1,6 @@
 import React from 'react';
 
-const EmployeeEditModal = ({open, onClose}) => {
+const EmployeeAddModal = ({open, onClose}) => {
     if(!open) return null
     return (
         <div className="overlay" onClick={onClose}>
@@ -11,7 +11,7 @@ const EmployeeEditModal = ({open, onClose}) => {
                 <div className="modalBox">
                     <p className="closeBtn" onClick={onClose}>X</p>
                     <div className="content">
-                        <h1 style={{color: 'var(--black)'}}>Edit an Employee</h1>
+                        <h1 style={{color: 'var(--black)'}}>Add an Employee</h1>
                         <form action="#">
                             {/* <label htmlFor="">Name:</label> */}
                             <input type="text" placeholder='enter a name...' />
@@ -36,8 +36,7 @@ const EmployeeEditModal = ({open, onClose}) => {
                                 <input type="passowrd" />
                             </div>
                             <div className="btnContainer">
-                                <input type="submit" value="Update" className='updateBtn'/>
-                                <button className="deleteBtn">Delete</button>
+                                <input type="submit" value="Add" className='updateBtn'/>
                             </div>
                         </form>
                     </div>
@@ -48,4 +47,4 @@ const EmployeeEditModal = ({open, onClose}) => {
     )
 }
 
-export default EmployeeEditModal;
+export default EmployeeAddModal;
