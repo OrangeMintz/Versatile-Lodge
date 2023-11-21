@@ -348,8 +348,9 @@ section {                   /*header block*/
 }
 
 .side-bar .profile span {            /*span, profile description*/  
-    color: var(--light-color);
+    color: var(--black);
     font-size: 1.5rem;
+
 }
 
 .side-bar .navbar {
