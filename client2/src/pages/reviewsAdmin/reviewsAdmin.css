@@ -8,7 +8,7 @@
 
 .reviews .box-container {       /*container of ENTIRE employees*/
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
     gap: 1.5rem;
     align-items: flex-start;
     justify-content: center;
@@ -20,6 +20,7 @@
     padding: 2rem;
     width: 1000;
     margin: 10px 0;
+    height: max-content;
 }
 
 .reviews .box-container .box .customer {   /*person description inside every box*/

@@ -122,7 +122,7 @@ const Employees = () => {
     return (
 
 
-        <div>
+        <div className='employeesMain employeesPage'>
             <HeaderAdmin />
             <Sidebar />
 
