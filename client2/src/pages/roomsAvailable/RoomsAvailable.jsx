@@ -54,8 +54,12 @@ const RoomsAvailable = () => {
     const [availableRooms, setAvailableRooms] = useState([]);
 
     useEffect(() => {
-        // Filter out rooms with overlapping bookings
+        // Filter out rooms with overlapping bookings and unavailable rooms
         const filteredRooms = data.filter(room => {
+            if (room.unavailable) {
+                return false; // Exclude rooms marked as unavailable
+            }
+
             if (!room.currentbookings || room.currentbookings.length === 0) {
                 return true; // Room has no current bookings
             }
@@ -128,7 +132,6 @@ const RoomsAvailable = () => {
                 <div className="roomState">
                     <Link className="stateBtn state">Available Rooms</Link>
                     <Link to="/roomsUnavailable">Unavailable Rooms</Link>
-
                     <select value={selectedLocation} onChange={handleLocationChange}>
                         <option value="all">All</option>
                         <option value="Malaybalay">Malaybalay</option>
@@ -155,7 +158,7 @@ const RoomsAvailable = () => {
                             </div>
                             <div className="roomButtons">
                                 <button className="roomBtn">Update</button>
-                                <p className="roomAvailability">{room.unavailable ? "Unavailable" : "Available"}</p>
+                                {/* <p className="roomAvailability">{room.unavailable ? "Maintenance" : "Available"}</p> */}
                             </div>
                         </div>
                     </div>
