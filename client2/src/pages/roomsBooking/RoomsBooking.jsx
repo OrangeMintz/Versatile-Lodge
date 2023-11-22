@@ -55,7 +55,7 @@ const RoomsBooking = () => {
             <Sidebar />
 
             <section className="roomsBooking">
-                <h1 className="heading">Occupied Rooms (Booked)</h1>
+                <h1 className="heading">Occupied Rooms (Bookings)</h1>
                 <div className="roomState">
                     <Link to="/roomsReserved">Reserved</Link>
                     <Link className="stateBtn state">Booked</Link>
