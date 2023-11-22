@@ -24,7 +24,6 @@ const AdminAccountSettings = () => {
                             <label htmlFor="">Address:</label>
                             <label htmlFor="">Email:</label>
                             <label htmlFor="">Birthday:</label>
-                            <label htmlFor="">Age:</label>
                             <label htmlFor="">Phone Number:</label>
                             <label htmlFor="">Username:</label>
                             <label  htmlFor="">Password:</label>
@@ -38,7 +37,6 @@ const AdminAccountSettings = () => {
                             <input type="text" name="" id="" />
                             <input type="email" name="" id="" />
                             <input type="text" name="" id="" />
-                            <input type="number" name="" id="" />
                             <input type="number" name="" id="" />
                             <input type="text" name="" id="" />
                             <div className="adminBtns">
