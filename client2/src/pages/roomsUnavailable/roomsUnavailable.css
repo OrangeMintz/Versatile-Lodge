@@ -1,3 +1,7 @@
+.roomsUnavailablePage {
+    max-height: 100vh;
+    height: 100%;
+}
 .roomsUnavailable {
     height: 100%;
 }
@@ -13,6 +17,28 @@
     color: var(--black);
 }
 
+.roomsUnavailable .roomState .searchNadd {
+    display: flex;
+}
+
+.roomsUnavailable .roomState .searchRoom {
+    padding: 1rem 1rem;
+    border-radius: 5px;
+    outline: 1px solid var(--main-color);
+    margin-right: 20px;
+    align-items: center;
+}
+
+.roomsUnavailable .roomState select {
+    border-radius: 5px;
+    background-color: var(--light-bg);
+    border-bottom: 1px solid var(--black);
+    font-size: 2rem;
+    margin: 1rem 0 0 2rem;
+    height: 36px;
+    cursor: pointer;
+    color: var(--black);
+}
 
 .roomsUnavailable .roomState a:hover {
     background: var(--main-color);
@@ -39,12 +65,13 @@
     color: var(--black);
 }
 
-.roomsUnavailable .roomState .searchNadd {
+.roomsUnavailable .roomState .searchNadd{
     display: flex;
     flex-direction: column;
     align-items: end;
     flex: 1;
     gap: 1rem;
+    /* margin-top: 10px; */
 }
 
 

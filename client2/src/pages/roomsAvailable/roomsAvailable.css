@@ -12,6 +12,9 @@
     padding: 1rem;
     cursor: pointer;
     color: var(--black);
+    outline: 1px solid var(--main-color);
+    border-radius: 5px;
+    transition: linear .2s;
 }
 
 

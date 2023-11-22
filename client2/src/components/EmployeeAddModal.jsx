@@ -12,7 +12,7 @@ const EmployeeAddModal = ({open, onClose}) => {
                     <p className="closeBtn" onClick={onClose}>X</p>
                     <div className="content">
                         <h1 style={{color: 'var(--black)'}}>Add an Employee</h1>
-                        <form action="#">
+                        <form action="#" className="employeeForm">
                             {/* <label htmlFor="">Name:</label> */}
                             <input type="text" placeholder='enter a name...' />
                             {/* <label htmlFor="">Email:</label> */}

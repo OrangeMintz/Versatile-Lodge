@@ -543,7 +543,7 @@ section {                   /*header block*/
 
 
 
-
+/*modals*/
 
 .overlay {
     background-color: rgba(0,0,0,0.5);
@@ -574,6 +574,57 @@ section {                   /*header block*/
 
 }
 
+.adminModalContainer {
+    max-width: 500px;
+    width: 100%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    background: var(--white);
+    box-shadow: 0px 0px 18px 0px rgba(0,0,0,0.75);
+
+}
+.adminModalBox {
+    width: 100%;
+    padding: 1rem;
+}
+
+.adminModalBox .adminContent {
+    padding: 2rem;
+    background: var(--branch-color);
+
+
+}
+
+.adminModalBox .adminContent .adminForm {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    width: 100%;
+
+}
+
+.adminModalBox .adminContent .adminForm > * {    
+    font-size: 2rem;
+}
+
+.adminModalBox .adminContent .adminForm .btnContainer input {
+    padding: 1rem 2rem;
+}
+
+.adminModalBox .closeBtn {
+    position: fixed;
+    top: 5%;
+    right: 4%; 
+    font-size: 2rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--black);
+    padding: 0 .5rem;
+}
+
+
 .modalBox .closeBtn {
     position: fixed;
     top: 3%;
@@ -582,6 +633,7 @@ section {                   /*header block*/
     font-weight: 700;
     cursor: pointer;
     color: var(--black);
+    padding: 0 .5rem;
 }
 
 .modalBox .closeBtn:hover {
@@ -600,13 +652,13 @@ section {                   /*header block*/
     border-radius: 5px;
 }
 
-.content form {
+.content .employeeForm {
     display: grid;
     gap: 0.5rem;
     padding: 2rem 4rem;
 }
 
-.content form label {
+.content .employeeForm label {
     color: var(--black);
     text-align: left;
     font-size: 2rem;
@@ -614,7 +666,7 @@ section {                   /*header block*/
     margin: .4rem 0;
 }
 
-.content form input {
+.content .employeeForm input {
     width: 100%;
     padding: 1.2rem 1rem;
     margin: .5rem 0;
@@ -625,13 +677,13 @@ section {                   /*header block*/
     color: var(--black);
 }
 
-.content form .radioBtns {
+.content .employeeForm .radioBtns {
     display: flex;
     gap: 2rem;
     margin-top: 2rem;
 }
 
-.content form .radioBtns span {
+.content .employeeForm .radioBtns span {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -639,24 +691,24 @@ section {                   /*header block*/
     color: var(--black);
 }
 
-.content form .radioBtn {
+.content .employeeForm .radioBtn {
     width: 20px;
     height: 20px;
 }
 
-.content form .notInTable {
+.content .employeeForm .notInTable {
     height: 80%;
     margin-top: 3rem;
     text-align: left;
 }
 
-.content form .notInTable * {
+.content .employeeForm .notInTable * {
     padding: .7rem;
     margin: .7rem;
     width: 70%;
 }
 
-.content form .notInTable input {
+.content .employeeForm .notInTable input {
     display: flex;
 }
 
