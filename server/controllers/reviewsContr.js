@@ -23,7 +23,8 @@ const deleteReviews = async (req, res, next) => {
 
 const getReviews = async (req, res, next) => {
     try {
-        const reviews = await Reviews.find();
+        const reviews = await Reviews.find({});
+        const hehe = Reviews.length;
         res.status(200).json(reviews)
     } catch (err) {
         next(err)

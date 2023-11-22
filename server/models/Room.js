@@ -35,6 +35,10 @@ const roomschema = new mongoose.Schema(
             type: Boolean,
         },
 
+        isArchive: {
+            type: Boolean,
+        },
+
         // remove if not needed
         roomNumbers: [{ number: Number }, { unavailableDates: { type: [Date] } }],
         // remove if not needed
