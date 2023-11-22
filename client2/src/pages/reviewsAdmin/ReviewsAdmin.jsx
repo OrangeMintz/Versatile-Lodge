@@ -86,7 +86,6 @@ const ReviewsAdmin = () => {
 
 
     return (
-        <>
             <div>
                 <HeaderAdmin />
                 <Sidebar />
@@ -126,7 +125,6 @@ const ReviewsAdmin = () => {
 
                 <Footer />
             </div>
-        </>
     )
 }
 

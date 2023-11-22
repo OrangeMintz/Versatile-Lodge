@@ -1,5 +1,5 @@
 .roomsBooking {
-    height: 100vh;
+    height: 100%;
 }
 .roomsBooking .roomState {
     display: flex;

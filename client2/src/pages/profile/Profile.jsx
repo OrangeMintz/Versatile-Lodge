@@ -82,7 +82,7 @@ const ProfileAdmin = () => {
     return (
         <>
             {user && (
-                <div>
+                <div className='profileAdmin'>
                     <HeaderAdmin />
                     <Sidebar />
                     <section className="heading">

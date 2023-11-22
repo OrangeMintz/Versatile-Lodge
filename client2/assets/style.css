@@ -429,8 +429,8 @@ section {                   /*header block*/
 }
 
 .footerAdmin {                           /*footer values*/
-    /* position: sticky; */
-    /* bottom: 0; right: 0; left: 0; */
+    position: sticky;
+    bottom: 0; right: 0; left: 0;
     background-color: var(--white);
     border-top: var(--border);
     padding: 2.5rem 2rem;
