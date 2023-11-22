@@ -57,6 +57,7 @@
 .reviews .box-container .box p {   /*comment below every persons image inside boxes*/
     font-size: 14px;
     height: 20rem;
+    color: var(--black);
     
 }
 

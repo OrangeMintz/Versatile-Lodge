@@ -124,7 +124,7 @@ const RoomsAvailable = () => {
     };
 
     return (
-        <div>
+        <div className="roomsAvailablePage">
             <HeaderAdmin />
             <Sidebar />
             <section className="roomsAvailable">
