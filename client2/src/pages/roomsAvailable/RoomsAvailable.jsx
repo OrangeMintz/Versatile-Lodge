@@ -47,7 +47,7 @@ const RoomsAvailable = () => {
     }, [user, operationsComplete, navigate]);
     // Check LOGON
 
-    const { data, loading, error, reFetch } = useFetch("http://localhost:8000/api/room/");
+    const { data, loading, error, reFetch } = useFetch("/api/room/");
     const currentDate = moment().format('MM/DD/YYYY');
 
     // State to store the available rooms
@@ -157,8 +157,8 @@ const RoomsAvailable = () => {
                                 <p className='sub'>Max People: {room.maxPeople}</p>
                             </div>
                             <div className="roomButtons">
-                                <button className="roomBtn">Update</button>
-                                {/* <p className="roomAvailability">{room.unavailable ? "Maintenance" : "Available"}</p> */}
+                                <button className="roomBtn"><span className='fa-solid fa-pencil'></span></button>
+                                <button className="roomBtn-archive"><span className='fa-solid fa-trash'></span></button>
                             </div>
                         </div>
                     </div>
