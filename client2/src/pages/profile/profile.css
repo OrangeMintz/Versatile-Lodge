@@ -1,4 +1,7 @@
 
+.profileAdmin { 
+    height: 100%;
+}
 .profileAdminGrid {
     display: grid;
     grid-template-columns: 1fr;

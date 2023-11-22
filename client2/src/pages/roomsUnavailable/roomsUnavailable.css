@@ -1,5 +1,5 @@
-.roomsUnvailable {
-    height: 100vh;
+.roomsUnavailable {
+    height: 100%;
 }
 .roomsUnavailable .roomState {
     display: flex;

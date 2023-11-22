@@ -5,7 +5,7 @@
 
 .employees {
     position: relative;
-    height: 100vh;
+    height: 100%;
 }
 .employees .addEmployee{
     font-size: 2rem;
