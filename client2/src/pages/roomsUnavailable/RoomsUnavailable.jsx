@@ -110,7 +110,7 @@ const RoomsUnavailable = () => {
         });
 
     return (
-        <div>
+        <div className='roomsUnavailablePage'>
             <HeaderAdmin />
             <Sidebar />
 
@@ -119,17 +119,17 @@ const RoomsUnavailable = () => {
                 <div className="roomState">
                     <a href="./roomsAvailable">Available Rooms</a>
                     <a className="stateBtn state">Unavailable Rooms</a>
-                </div>
-
-                <div className="searchNadd">
                     <select value={selectedLocation} onChange={handleLocationChange}>
                         <option value="all">All</option>
                         <option value="Malaybalay">Malaybalay</option>
                         <option value="Valencia">Valencia</option>
                         <option value="Maramag">Maramag</option>
                     </select>
-                    <input className="searchRoom" type="text" placeholder="Search here..." value={searchTerm} onChange={handleSearch} />
+                    <div className="searchNadd">
+                        <input className="searchRoom" type="text" placeholder="Search here..." value={searchTerm} onChange={handleSearch} />
+                    </div>
                 </div>
+
 
                 {/* Display unavailable rooms */}
                 {loading && <Loader />}
@@ -152,7 +152,100 @@ const RoomsUnavailable = () => {
                                     )}
                                 </div>
                             </div>
+                            <div className="roomsRowWrapper">
+                                <img src={room.imageurls[0]} alt="" />
+                                <div className="roomDetails">
+                                    <p className='sub-heading'>{room.branch}</p>
+                                    <p>{room.name}</p>
+                                    <p className='sub'>Per Day: {room.price}</p>
+                                       <p className='sub'>Max People:{room.maxPeople}</p>
+                                </div>
+                                <div className="roomButtons">
+                                    <button className="roomBtn">Update</button>
+                                    {room.unavailable && (
+                                        <p className="roomAvailability">{room.unavailable ? "Maintenance" : "Available"}</p>
+                                    )}
+                                </div>
+                                
+                            </div>
+                            <div className="roomsRowWrapper">
+                                <img src={room.imageurls[0]} alt="" />
+                                <div className="roomDetails">
+                                    <p className='sub-heading'>{room.branch}</p>
+                                    <p>{room.name}</p>
+                                    <p className='sub'>Per Day: {room.price}</p>
+                                    <p className='sub'>Max People:{room.maxPeople}</p>
+                                </div>
+                                <div className="roomButtons">
+                                    <button className="roomBtn">Update</button>
+                                    {room.unavailable && (
+                                        <p className="roomAvailability">{room.unavailable ? "Maintenance" : "Available"}</p>
+                                    )}
+                                </div>
+                            </div>
+                            <div className="roomsRowWrapper">
+                                <img src={room.imageurls[0]} alt="" />
+                                <div className="roomDetails">
+                                    <p className='sub-heading'>{room.branch}</p>
+                                    <p>{room.name}</p>
+                                    <p className='sub'>Per Day: {room.price}</p>
+                                    <p className='sub'>Max People:{room.maxPeople}</p>
+                                </div>
+                                <div className="roomButtons">
+                                    <button className="roomBtn">Update</button>
+                                    {room.unavailable && (
+                                        <p className="roomAvailability">{room.unavailable ? "Maintenance" : "Available"}</p>
+                                    )}
+                                </div>
+                            </div>
+                            <div className="roomsRowWrapper">
+                                <img src={room.imageurls[0]} alt="" />
+                                <div className="roomDetails">
+                                    <p className='sub-heading'>{room.branch}</p>
+                                    <p>{room.name}</p>
+                                    <p className='sub'>Per Day: {room.price}</p>
+                                    <p className='sub'>Max People:{room.maxPeople}</p>
+                                </div>
+                                <div className="roomButtons">
+                                    <button className="roomBtn">Update</button>
+                                    {room.unavailable && (
+                                        <p className="roomAvailability">{room.unavailable ? "Maintenance" : "Available"}</p>
+                                    )}
+                                </div>
+                            </div>
+                            <div className="roomsRowWrapper">
+                                <img src={room.imageurls[0]} alt="" />
+                                <div className="roomDetails">
+                                    <p className='sub-heading'>{room.branch}</p>
+                                    <p>{room.name}</p>
+                                    <p className='sub'>Per Day: {room.price}</p>
+                                    <p className='sub'>Max People:{room.maxPeople}</p>
+                                </div>
+                                <div className="roomButtons">
+                                    <button className="roomBtn">Update</button>
+                                    {room.unavailable && (
+                                        <p className="roomAvailability">{room.unavailable ? "Maintenance" : "Available"}</p>
+                                    )}
+                                </div>
+                            </div>
+                            <div className="roomsRowWrapper">
+                                <img src={room.imageurls[0]} alt="" />
+                                <div className="roomDetails">
+                                    <p className='sub-heading'>{room.branch}</p>
+                                    <p>{room.name}</p>
+                                    <p className='sub'>Per Day: {room.price}</p>
+                                    <p className='sub'>Max People:{room.maxPeople}</p>
+                                </div>
+                                <div className="roomButtons">
+                                    <button className="roomBtn">Update</button>
+                                    {room.unavailable && (
+                                        <p className="roomAvailability">{room.unavailable ? "Maintenance" : "Available"}</p>
+                                    )}
+                                </div>
+                            </div>
+                            
                         </div>
+                        
                     ))
                 )}
             </section>
