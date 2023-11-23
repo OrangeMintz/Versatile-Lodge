@@ -155,21 +155,20 @@ const RoomsBooking = () => {
             <HeaderAdmin />
             <Sidebar />
 
-            <section className="roomsReserved">
+            <section className="roomsBooking">
                 <h1 className="heading">Booked Rooms (Bookings)</h1>
                 <div className="roomState">
                     <Link to="/roomsReserved">Reserved</Link>
                     <Link className="stateBtn state" >Booked</Link>
-                </div>
-
-                <div className="searchNadd">
                     <select value={selectedLocation} onChange={handleLocationChange}>
                         <option value="all">All</option>
                         <option value="Malaybalay">Malaybalay</option>
                         <option value="Valencia">Valencia</option>
                         <option value="Maramag">Maramag</option>
                     </select>
-                    <input className="searchRoom" type="text" placeholder="Search here..." value={searchTerm} onChange={handleSearch} />
+                    <div className="searchNadd">
+                        <input className="searchRoom" type="text" placeholder="Search here..." value={searchTerm} onChange={handleSearch} />
+                    </div>
                 </div>
 
                 {/* Display reserved rooms */}
