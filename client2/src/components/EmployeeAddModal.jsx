@@ -58,7 +58,7 @@ const EmployeeAddModal = ({ open, onClose }) => {
         const isManager = role === 'Manager';
 
         try {
-            const { data } = await axios.post('/admin/register', {
+            const { data } = await axios.put(`/admin/user/${userId}`, {
                 name,
                 username,
                 email,

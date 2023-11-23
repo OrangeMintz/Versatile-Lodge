@@ -21,6 +21,17 @@ const columns = [
     { Header: 'Number', accessor: 'phoneNumber' },
     { Header: 'Sex', accessor: 'sex' },
     { Header: 'Role', accessor: 'role' },
+
+    // {
+    //     Header: 'Options',
+    //     accessor: 'options',
+    //     Cell: ({ row }) => (
+    //         <button className='option-btn' onClick={() => setOpenModal(true, row.original.userId)}>
+    //             Option
+    //         </button>
+    //     ),
+    //     disableSortBy: true,
+    // },
     {
         Header: 'Options',
         accessor: 'options',

@@ -143,7 +143,7 @@ const Dashboard = () => {
                         {user && (user.isAdmin) && (
                             <div className="box">
                                 <h3 className="title">Rooms and Comments:</h3>
-                                <p className="stat">Available rooms: <span>{roomCount}</span></p>
+                                <p className="stat">Total Rooms: <span>{roomCount}</span></p>
                                 <Link to="/roomsAvailable" className="inline-btn">View rooms</Link>
                                 <p className="stat">Total comments: <span>{reviewCount}</span></p>
                                 <Link to="/reviewsAdmin" className="inline-btn">View Comments</Link>
@@ -153,7 +153,7 @@ const Dashboard = () => {
                         {user && (user.isManager) && (
                             <div className="box">
                                 <h3 className="title">Rooms and Comments:</h3>
-                                <p className="stat">Available rooms: <span>{roomCount}</span></p>
+                                <p className="stat">Total Rooms: <span>{roomCount}</span></p>
                                 <Link to="/roomsAvailable" className="inline-btn">View rooms</Link>
                             </div>
                         )}
