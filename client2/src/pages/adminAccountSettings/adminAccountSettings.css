@@ -63,7 +63,8 @@
 
  .adminAccountSettings form .adminBtns button {
     outline:1px solid var(--black);
-    color: var(--black);
+    color: var(--white);
+    background-color: var(--light-color);
     padding: 1rem 2rem;
     cursor: pointer;
     height: max-content;
