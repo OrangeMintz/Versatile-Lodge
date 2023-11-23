@@ -172,6 +172,8 @@ const RoomsBooking = () => {
                 </div>
 
                 {/* Display reserved rooms */}
+                {loading && <Loader />}
+                {error && <Error />}
                 {!loading && !error && (
                     filteredAndSearchedRooms.map(({ room, reservedBooking }) => (
                         <div key={`${room._id}-${reservedBooking.bookingid}`} className="roomsRow">
