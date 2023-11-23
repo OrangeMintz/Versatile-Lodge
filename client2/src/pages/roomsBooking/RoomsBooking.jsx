@@ -184,11 +184,13 @@ const RoomsBooking = () => {
                                     <p className='sub'>Max People: {room.maxPeople}</p>
                                     <span className='sub'>Start Date: {reservedBooking.fromDate}</span>
                                     <span className='sub'>End Date: {reservedBooking.toDate}</span>
+                                    <p className='sub'>User ID: {reservedBooking.userId}</p>
+
                                 </div>
                                 <div className="roomButtons">
                                     <button className="roomBtn"><span className='fa-solid fa-pencil'></span></button>
                                     <button className="roomBtn-archive"><span className='fa-solid fa-trash'></span></button>
-                                    <p className="roomsBooked">
+                                    <p className="roomBooked">
                                         {room.unavailable ? "Maintenance" : "Booked"}
                                     </p>
                                 </div>
