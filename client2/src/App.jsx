@@ -55,12 +55,12 @@ function App() {
         {/* REQUIRED AUTHENTICATION */}
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/employees" element={<Employees />} />
-        <Route path="/payroll" element={<Payroll />} />
+        {/* <Route path="/payroll" element={<Payroll />} /> */}
         <Route path="/reviewsAdmin" element={<ReviewsAdmin />} />
-        <Route path="/roomsAvailable" element={<RoomsAvailable />} />   {/*rooms*/}
-        <Route path="/roomsUnavailable" element={<RoomsUnavailable />} />     {/*rooms*/}
-        <Route path="/roomsReserved" element={<RoomsReserved />} />         {/*transaction*/}
-        <Route path="/roomsBooking" element={<RoomsBooking />} />         {/*transaction*/}
+        <Route path="/roomsAvailable" element={<RoomsAvailable />} />
+        <Route path="/roomsUnavailable" element={<RoomsUnavailable />} />
+        <Route path="/roomsReserved" element={<RoomsReserved />} />
+        <Route path="/roomsBooking" element={<RoomsBooking />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/AccountSettings" element={<AdminAccountSettings />} />
 
