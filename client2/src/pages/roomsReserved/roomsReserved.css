@@ -114,7 +114,7 @@
 
 }
 
-.roomsReserved .roomsRow .roomsRowWrapper .roomButtons .roomAvailability {
+.roomsReserved .roomsRow .roomsRowWrapper .roomButtons .roomReserved {
     padding: 1rem 1rem;
     color: var(--main-color);
     text-align: center;
@@ -124,4 +124,29 @@
     border-radius: 5px;
     border: 1px solid var(--main-color);
 }
+
+.roomsReserved .roomsRow .roomsRowWrapper .roomButtons .roomReserved:hover {
+    transition: 0.3s;
+    background-color: var(--main-color);
+    padding: 1rem 1rem;
+    color: #f1f3f9;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 1rem;
+    border-radius: 5px;
+    border: 1px solid var(--main-color);
+}
+
+.roomsReserved .roomsRow .roomsRowWrapper .roomButtons .roomsBooked {
+    padding: 1rem 1rem;
+    color: var(--main-color);
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 1rem;
+    border-radius: 5px;
+    border: 1px solid var(--main-color);
+}
+
 

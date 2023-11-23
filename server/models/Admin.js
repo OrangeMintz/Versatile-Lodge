@@ -42,6 +42,10 @@ const adminSchema = new Schema({
         type: String
     },
 
+    sex: {
+        type: String
+    },
+
     baseSalary: {
         type: String
     },
