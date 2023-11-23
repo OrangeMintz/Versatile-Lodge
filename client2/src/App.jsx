@@ -62,8 +62,8 @@ function App() {
         <Route path="/roomsReserved" element={<RoomsReserved />} />         {/*transaction*/}
         <Route path="/roomsBooking" element={<RoomsBooking />} />         {/*transaction*/}
         <Route path="/profile" element={<Profile />} />
-        <Route path="/adminAccountSettings" element={<AdminAccountSettings />} />
-        
+        <Route path="/AccountSettings" element={<AdminAccountSettings />} />
+
 
         {/* INVALID ACCESS */}
         <Route path="/404" element={<Error404 />} />

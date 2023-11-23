@@ -1,28 +1,28 @@
 import React from 'react';
 
-const EmployeeEditModal = ({open, onClose}) => {
-    if(!open) return null
+const EmployeeEditModal = ({ open, onClose }) => {
+    if (!open) return null
     return (
         <div className="overlay" onClick={onClose}>
             <div className="modalContainer"
-                 onClick={(e) => {
+                onClick={(e) => {
                     e.stopPropagation()
-                 }}>
+                }}>
                 <div className="modalBox">
                     <p className="closeBtn" onClick={onClose}>X</p>
                     <div className="content">
-                        <h1 style={{color: 'var(--black)'}}>Edit an Employee</h1>
+                        <h1 style={{ color: 'var(--black)' }}>Edit an Employee</h1>
                         <form action="#" className="employeeForm">
                             {/* <label htmlFor="">Name:</label> */}
-                            <input type="text" placeholder='enter a name...' />
+                            <input type="text" placeholder='Enter a name...' />
                             {/* <label htmlFor="">Email:</label> */}
-                            <input type="email" placeholder='enter an email...'/>
+                            <input type="email" placeholder='Enter an email...' />
                             {/* <label htmlFor="">Address:</label> */}
-                            <input type="text" placeholder='enter an address...' />
+                            <input type="text" placeholder='Enter an address...' />
                             {/* <label htmlFor="">Birthday:</label> */}
-                            <input type="datetime" placeholder='enter a birthday...' />
+                            <input type="datetime" placeholder='Enter a birthday...' />
                             {/* <label htmlFor="">Number:</label> */}
-                            <input type="number" placeholder='enter a phone #...' />
+                            <input type="number" placeholder='Enter a phone #...' />
                             <div className='radioBtns'>
                                 <span>Male: <input type="radio" name="" className='radioBtn' /></span>
                                 <span>FeMale: <input type="radio" name="" className='radioBtn' /></span>
@@ -36,12 +36,12 @@ const EmployeeEditModal = ({open, onClose}) => {
                                 <input type="passowrd" />
                             </div>
                             <div className="btnContainer">
-                                <input type="submit" value="Update" className='updateBtn'/>
+                                <input type="submit" value="Update" className='updateBtn' />
                                 <button className="deleteBtn">Delete</button>
                             </div>
                         </form>
                     </div>
- 
+
                 </div>
             </div>
         </div>
