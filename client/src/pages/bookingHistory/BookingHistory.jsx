@@ -130,7 +130,7 @@ const BookingHistory = () => {
                 <tbody>
                   {bookingHistory.map((booking) => (
                     <tr key={booking._id}>
-                      <td>{moment(booking.bookingDate).format('MM-DD-YYYY:HH:mm:ss')}</td>
+                      <td>{moment(booking.bookingDate).format('MMMM DD YYYY HH:mm:ss')}</td>
                       <td>{booking.roomName}</td>
                       <td>{booking.branch}</td>
                       <td>{moment(booking.checkInDate).format('MM-DD-YYYY')}</td>

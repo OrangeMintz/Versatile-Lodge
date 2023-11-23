@@ -70,7 +70,7 @@ const Sidebar = () => {
                     <Link to="/employees" className={location.pathname === '/employees' ? 'active' : ''}><i className="fas fa-users"></i><span>Employees</span></Link>
                     <Link to="/roomsAvailable" className={location.pathname.includes('/roomsAvailable') || location.pathname.includes('/roomsUnavailable') ? 'active' : ''}><i className="fas fa-bed"></i><span>Rooms</span></Link>
                     <Link to="/roomsReserved" className={location.pathname.includes('/roomsReserved') || location.pathname.includes('/roomsBooking') ? 'active' : ''}><i className="fa-solid fa-credit-card"></i><span>Transactions</span></Link>
-                    <Link to="/payroll" className={location.pathname === '/payroll' ? 'active' : ''}><i className="fa-solid fa-peso-sign"></i><span>Payroll</span></Link>
+                    {/* <Link to="/payroll" className={location.pathname === '/payroll' ? 'active' : ''}><i className="fa-solid fa-peso-sign"></i><span>Payroll</span></Link> */}
                     <Link onClick={handleLogout}><i className="fas fa-power-off"></i><span>Log out</span></Link>
                 </nav>
             )}
@@ -82,19 +82,19 @@ const Sidebar = () => {
                     <Link to="/roomsReserved" className={location.pathname.includes('/roomsReserved') || location.pathname.includes('/roomsBooking') ? 'active' : ''}><i className="fa-solid fa-credit-card"></i><span>Transactions</span></Link>
 
 
-                    <Link to="/payroll" className={location.pathname === '/payroll' ? 'active' : ''}><i className="fa-solid fa-peso-sign"></i><span>Payroll</span></Link>
+                    {/* <Link to="/payroll" className={location.pathname === '/payroll' ? 'active' : ''}><i className="fa-solid fa-peso-sign"></i><span>Payroll</span></Link> */}
                     <Link onClick={handleLogout}><i className="fas fa-power-off"></i><span>Log out</span></Link>
 
                 </nav>
             )}
-
+            {/* 
             {user && user.isEmployee && (
                 <nav className="navbar">
                     <Link to="/dashboard" className={location.pathname === '/dashboard' ? 'active' : ''}><i className="fa-solid fa-chart-bar"></i><span>Dashboard</span></Link>
                     <Link to="/payroll" className={location.pathname === '/payroll' ? 'active' : ''}><i className="fa-solid fa-peso-sign"></i><span>Payroll</span></Link>
                     <Link onClick={handleLogout}><i className="fas fa-power-off"></i><span>Log out</span></Link>
                 </nav>
-            )}
+            )} */}
         </div>
     );
 };

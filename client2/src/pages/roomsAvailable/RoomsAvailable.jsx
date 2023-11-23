@@ -145,25 +145,30 @@ const RoomsAvailable = () => {
                 <div className="addRoom">
                     <span>+ Add Room</span>
                 </div>
-                {/* {availableRooms.map(room => ( */}
-                {filteredRooms.map(room => (
-                    <div key={room._id} className="roomsRow">
-                        <div className="roomsRowWrapper">
-                            <img src={room.imageurls[0]} alt="" />
-                            <div className="roomDetails">
-                                <p className='sub-heading'>{room.branch}</p>
-                                <p>{room.name}</p>
-                                <p className='sub'>Per Day: {room.price}</p>
-                                <p className='sub'>Max People: {room.maxPeople}</p>
-                            </div>
-                            <div className="roomButtons">
-                                <button className="roomBtn"><span className='fa-solid fa-pencil'></span></button>
-                                <button className="roomBtn-archive"><span className='fa-solid fa-trash'></span></button>
+
+                {loading && <Loader />}
+                {error && <Error />}
+                {!loading && !error && (
+                    filteredRooms.map(room => (
+                        <div key={room._id} className="roomsRow">
+                            <div className="roomsRowWrapper">
+                                <img src={room.imageurls[0]} alt="" />
+                                <div className="roomDetails">
+                                    <p className='sub-heading'>{room.branch}</p>
+                                    <p>{room.name}</p>
+                                    <p className='sub'>Per Day: {room.price}</p>
+                                    <p className='sub'>Max People: {room.maxPeople}</p>
+                                </div>
+                                <div className="roomButtons">
+                                    <button className="roomBtn"><span className='fa-solid fa-pencil'></span></button>
+                                    <button className="roomBtn-archive"><span className='fa-solid fa-trash'></span></button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))
 
+
+                )}
 
             </section>
 
