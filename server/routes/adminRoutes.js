@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const { loginAdmin, getProfile, createAdmin, getUser, getUsers, updateUser } = require('../controllers/adminController');
 
-const authenticateUser = require('../middleware/authMiddleware');
-
 
 router.post('/register', createAdmin)
 router.post('/login', loginAdmin)
@@ -12,9 +10,6 @@ router.get('/user', getUsers)
 router.get('/profile/', getProfile)
 
 router.put('/user/:id', updateUser)
-
-
-
 
 
 

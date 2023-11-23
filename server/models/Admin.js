@@ -34,9 +34,6 @@ const adminSchema = new Schema({
         type: String
     },
 
-    age: {
-        type: Number
-    },
 
     phoneNumber: {
         type: String
@@ -46,13 +43,9 @@ const adminSchema = new Schema({
         type: String
     },
 
-    baseSalary: {
-        type: String
-    },
-
-    isEmployee: Boolean,
     isAdmin: Boolean,
     isManager: Boolean,
+
 
 },
     { timestamps: true }

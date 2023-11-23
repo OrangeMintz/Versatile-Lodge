@@ -150,6 +150,7 @@ const RoomsReserved = () => {
         return () => clearInterval(intervalId);
     }, []);
 
+
     return (
         <div>
             <HeaderAdmin />
@@ -172,8 +173,11 @@ const RoomsReserved = () => {
                 </div>
 
                 {/* Display reserved rooms */}
+                {loading && <Loader />}
+                {error && <Error />}
                 {!loading && !error && (
                     filteredAndSearchedRooms.map(({ room, reservedBooking }) => (
+
                         <div key={`${room._id}-${reservedBooking.bookingid}`} className="roomsRow">
                             <div className="roomsRowWrapper">
                                 <img src={room.imageurls[0]} alt="" />
@@ -184,6 +188,8 @@ const RoomsReserved = () => {
                                     <p className='sub'>Max People: {room.maxPeople}</p>
                                     <span className='sub'>Start Date: {reservedBooking.fromDate}</span>
                                     <span className='sub'>End Date: {reservedBooking.toDate}</span>
+                                    <p className='sub'>User ID: {reservedBooking.userId}</p>
+
                                 </div>
                                 <div className="roomButtons">
                                     <button className="roomBtn"><span className='fa-solid fa-pencil'></span></button>
@@ -191,11 +197,14 @@ const RoomsReserved = () => {
                                     <button className="roomReserved">
                                         {room.unavailable ? "Maintenance" : "Confirm"}
                                     </button>
+                                    <button className="roomReserved">
+                                        {room.unavailable ? "Maintenance" : "Reject"}
+                                    </button>
                                 </div>
                             </div>
-                            
+
                         </div>
-                        
+
                     ))
                 )}
 

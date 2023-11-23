@@ -178,7 +178,7 @@
 
 }
 
-.roomsBooking .roomsRow .roomsRowWrapper .roomButtons .roomAvailability {
+.roomsBooking .roomsRow .roomsRowWrapper .roomButtons .roomBooked {
     padding: 1rem 1rem;
     color: var(--main-color);
     text-align: center;

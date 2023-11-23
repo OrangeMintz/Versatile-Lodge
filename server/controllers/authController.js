@@ -216,7 +216,23 @@ const updatePassword = async (req, res) => {
 
 
 
+const getUser = async (req, res, next) => {
+    try {
+        const customers = await Customer.findById(req.params.id);
+        res.status(200).json(customers)
+    } catch (err) {
+        next(err)
+    }
+};
 
+const getUsers = async (req, res, next) => {
+    try {
+        const customers = await Customer.find();
+        res.status(200).json(customers)
+    } catch (err) {
+        next(err)
+    }
+};
 
 
 
@@ -299,6 +315,7 @@ const getProfile = (req, res) => {
 }
 
 
+getUser
 
 
 module.exports = {
@@ -307,4 +324,6 @@ module.exports = {
     getProfile,
     updateUser,
     updatePassword,
+    getUser,
+    getUsers
 }
