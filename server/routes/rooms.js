@@ -17,7 +17,7 @@ router.post("/", verifyAdmin, createRoom);
 router.delete("/:id", verifyAdmin, deleteRoom);
 
 //Update
-router.put("/:id", verifyAdmin, updateRoom)
+router.put("/:id", updateRoom)
 
 //Get
 router.get("/:id", getRoom);
