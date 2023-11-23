@@ -98,14 +98,15 @@ const ProfileAdmin = () => {
                                 <span className='span'>{user.isAdmin && 'Admin'} {user.isManager && 'Manager'} {user.isEmployee && 'Employee'}</span>
                                 <br />
                                 <br />
-                                <p style={{ textTransform: "none" }} className='info'>Username: {userDetails.username}</p>
-                                <p style={{ textTransform: "none" }} className='info'>Email: {userDetails.email}</p>
-                                <p className='info'>Birthday: {userDetails.birthday}</p>
-                                <p className='info'>Address: {userDetails.address}</p>
-                                <p className='info'>Phone Number: {userDetails.phoneNumber}</p>
+                                <div className="centerDetails">
+                                    <p style={{ textTransform: "none" }} className='info'><span>Username:</span> {userDetails.username}</p>
+                                    <p style={{ textTransform: "none" }} className='info'><span>Email:</span> {userDetails.email}</p>
+                                    <p className='info'><span>Birthday:</span> {userDetails.birthday}</p>
+                                    <p className='info'><span>Address:</span> {userDetails.address}</p>
+                                    <p className='info'><span>Phone Number:</span> {userDetails.phoneNumber}</p>
+                                </div>
                                 <div className="profileBtns">
-                                    <Link to="/AccountSettings" className="profileBtn">Account Settings</Link>
-                                    <Link to="#" className="profileBtn">Change Password</Link>
+                                    <Link to="/adminAccountSettings" className="profileBtn">Account Settings</Link>
                                     <Link onClick={handleLogout} className="profileBtn">Log out</Link>
                                 </div>
                             </div>

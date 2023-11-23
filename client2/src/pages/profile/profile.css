@@ -3,32 +3,30 @@
     height: 100%;
 }
 .profileAdminGrid {
-    display: grid;
-    grid-template-columns: 1fr;
     gap: 2rem;
     height: 70vh;
 }
 
-.profileAdminGrid .profileAdminCalendar {
-    border-radius: 50px;
-}
-
-.profileAdminGrid .profileAdminCalendar img{
-    width: 100%;
-    background: var(--white);
-    padding: 1em;
-}
-
 .profileAdminGrid .profileAdminDetails {
+
     background: var(--white);
     text-align: center;
     padding: 3rem 0rem;
     border-radius: 5px;
-    align-items: center;
     height: max-content;
     border: 1px solid  var(--main-color);
+}
 
+.profileAdminGrid .profileAdminDetails .centerDetails {
+    width: 40rem;
+    margin: auto;
+    text-align: left;
+}
 
+.profileAdminGrid .profileAdminDetails .centerDetails span {
+    min-width: 44%; 
+    display: inline-block;
+    align-items: left;
 }
 
 .profileAdminDetails img {
@@ -51,7 +49,7 @@
 
 .profileAdminDetails .profileBtns {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     place-items: center;
     gap: 3rem;
     padding: 1rem 2rem;
