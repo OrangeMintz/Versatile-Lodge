@@ -189,7 +189,7 @@ const RoomsBooking = () => {
                                 <div className="roomButtons">
                                     <button className="roomBtn"><span className='fa-solid fa-pencil'></span></button>
                                     <button className="roomBtn-archive"><span className='fa-solid fa-trash'></span></button>
-                                    <p className="roomAvailability">
+                                    <p className="roomsBooked">
                                         {room.unavailable ? "Maintenance" : "Booked"}
                                     </p>
                                 </div>

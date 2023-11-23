@@ -104,7 +104,7 @@ const ProfileAdmin = () => {
                                 <p className='info'>Address: {userDetails.address}</p>
                                 <p className='info'>Phone Number: {userDetails.phoneNumber}</p>
                                 <div className="profileBtns">
-                                    <Link to="#" className="profileBtn">Account Settings</Link>
+                                    <Link to="/AccountSettings" className="profileBtn">Account Settings</Link>
                                     <Link to="#" className="profileBtn">Change Password</Link>
                                     <Link onClick={handleLogout} className="profileBtn">Log out</Link>
                                 </div>
