@@ -38,10 +38,31 @@ const Dashboard = () => {
         }
     }, [user, operationsComplete, navigate]);
     // Check LOGON
-
-
     //GET PROFILE END
 
+
+    //FETCHED COUNTS 
+    const [roomCount, setRoomCount] = useState(0);
+    const [reviewCount, setReviewCount] = useState(0);
+    useEffect(() => {
+        // Fetch room count
+        axios.get('/api/room')
+            .then(response => {
+                setRoomCount(response.data.length);
+            })
+            .catch(error => {
+                console.error('Error fetching room count:', error);
+            });
+
+        // Fetch review count
+        axios.get('/api/reviews')
+            .then(response => {
+                setReviewCount(response.data.length);  // Change this line
+            })
+            .catch(error => {
+                console.error('Error fetching review count:', error);
+            });
+    }, []);
 
     return (
         // <div className={styles.dashboard}>
@@ -119,24 +140,20 @@ const Dashboard = () => {
 
                         </div>
 
-                        {user && user.isAdmin && (
+                        {user && (user.isAdmin) && (
                             <div className="box">
                                 <h3 className="title">Rooms and Comments:</h3>
-                                {/* <p className="stat">total likes : <span>14</span></p>
-                        <a href="/reviewsAdmin" className="inline-btn">view stars</a> */}
-                                <p className="stat">Available rooms : <span>2</span></p>
+                                <p className="stat">Available rooms: <span>{roomCount}</span></p>
                                 <Link to="/roomsAvailable" className="inline-btn">View rooms</Link>
-                                <p className="stat">Total comments : <span>5</span></p>
+                                <p className="stat">Total comments: <span>{reviewCount}</span></p>
                                 <Link to="/reviewsAdmin" className="inline-btn">View Comments</Link>
                             </div>
                         )}
 
-                        {user && user.isManager && (
+                        {user && (user.isManager) && (
                             <div className="box">
-                                <h3 className="title">Rooms</h3>
-                                {/* <p className="stat">total likes : <span>14</span></p>
-                        <a href="/reviewsAdmin" className="inline-btn">view stars</a> */}
-                                <p className="stat">Available rooms : <span>2</span></p>
+                                <h3 className="title">Rooms and Comments:</h3>
+                                <p className="stat">Available rooms: <span>{roomCount}</span></p>
                                 <Link to="/roomsAvailable" className="inline-btn">View rooms</Link>
                             </div>
                         )}

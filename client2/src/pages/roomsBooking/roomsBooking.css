@@ -38,10 +38,12 @@
     display: flex;
     margin: 4rem 2rem;
     position: relative;
+    border-bottom: 1px solid var(--main-color);
+    border-top: 1px solid var(--main-color);
 }
 
 .roomsBooking .roomsRow .roomsRowWrapper img {
-    width: 15%;
+    width: 20%;
     aspect-ratio: 3/2;
     
 }
@@ -58,6 +60,20 @@
 .roomsBooking .roomsRow .roomsRowWrapper .roomDetails p {
     font-size: 2rem;
     padding: 0.3rem 2rem;
+    color: var(--black);
+}
+
+.roomsBooking .roomsRow .roomsRowWrapper .roomDetails .sub-heading{
+    font-size: 2.1rem;
+    font-weight: 700;
+    padding: 0.5rem 2rem;
+    color: var(--black);
+}
+
+.roomsBooking .roomsRow .roomsRowWrapper .roomDetails .sub{
+    font-size: 1.5rem;
+    font-style: italic;
+    padding: 0.5rem 2rem;
     color: var(--black);
 }
 
@@ -78,18 +94,40 @@
 
 .roomsBooking .roomsRow .roomsRowWrapper .roomButtons .roomBtn {
     padding: 1.3rem 2rem;
-    background: var(--main-color);
-    color: var(--white);
-    font-size: 1.5rem;
+    color: #007BFF;
+    font-size: 1.6rem;
     margin: 1rem;
     border-radius: 5px;
 }
 .roomsBooking .roomsRow .roomsRowWrapper .roomButtons .roomBtn:hover {
-    background: var(--branch-color);
     color: var(--main-color);
-    outline: 1px solid black;
-    transition: 0.3s;
+    transition: 0.5s;
 
 }
 
+.roomsBooking .roomsRow .roomsRowWrapper .roomButtons .roomBtn-archive {
+    padding: 1.3rem 2rem;
+    color: #DC3545;
+    font-size: 1.6rem;
+
+    margin: 1rem;
+    border-radius: 5px;
+}
+
+.roomsBooking .roomsRow .roomsRowWrapper .roomButtons .roomBtn-archive:hover {
+    color: var(--main-color);
+    transition: 0.5s;
+
+}
+
+.roomsBooking .roomsRow .roomsRowWrapper .roomButtons .roomAvailability {
+    padding: 1rem 1rem;
+    color: var(--main-color);
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 1rem;
+    border-radius: 5px;
+    border: 1px solid var(--main-color);
+}
 

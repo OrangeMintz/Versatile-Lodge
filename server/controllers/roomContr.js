@@ -11,14 +11,6 @@ const createRoom = async (req, res, next) => {
 
     try {
         const savedRoom = await newRoom.save();
-        // try {
-        //     await Branch.findByIdAndUpdate(branchId,
-        //         {
-        //             $push: { rooms: savedRoom._id }
-        //         })
-        // } catch (err) {
-        //     next(err)
-        // }
         res.status(200).json(savedRoom);
     } catch (err) {
         next(err)
@@ -32,30 +24,12 @@ const deleteRoom = async (req, res, next) => {
 
     try {
         const room = await Room.findByIdAndDelete(req.params.id);
-        // try {
-        //     await Branch.findByIdAndUpdate(branchId,
-        //         {
-        //             $pull: { rooms: req.params.id }
-        //         })
-        // } catch (err) {
-        //     next(err)
-        // }
+
         res.status(200).json("Room Has Been Deleted");
     } catch (err) {
         next(err);
     }
 };
-
-
-// const createRoom = async (req,res, next) =>{
-//     try {
-//         const rooms = await Room.find
-//     } catch (err) {
-//         next(err);
-
-//     }
-// NOT YET FINISHED
-// }
 
 
 const updateRoom = async (req, res, next) => {
@@ -80,9 +54,9 @@ const getRoom = async (req, res, next) => {
 const getRooms = async (req, res, next) => {
     try {
         const rooms = await Room.find({})
+        const roomsCount = Room.length;
+
         res.send(rooms)
-        // return res.json({ rooms })
-        // res.status(200).json(rooms)
     } catch (err) {
         next(err)
     }
