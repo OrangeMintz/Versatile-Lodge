@@ -20,6 +20,7 @@ const columns = [
     { Header: 'Birthday', accessor: 'birthday' },
     { Header: 'Number', accessor: 'phoneNumber' },
     { Header: 'Sex', accessor: 'sex' },
+    { Header: 'Role', accessor: 'role' },
     {
         Header: 'Options',
         accessor: 'options',
@@ -43,6 +44,28 @@ const Employees = () => {
     const [operationsComplete, setOperationsComplete] = useState(false);
 
     useEffect(() => {
+        const fetchData = async () => {
+            try {
+                // Fetch user data including the role from the /profile endpoint
+                const profileResponse = await axios.get('/profile');
+                setUser(profileResponse.data); // Assuming setUser is a state updater function
+
+                // Fetch employee data using the /admin/user endpoint
+                const employeeResponse = await axios.get('/admin/user');
+                setData(employeeResponse.data);
+            } catch (error) {
+                console.error('Error fetching user or employee data:', error);
+                setError(error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, [setUser]);
+
+    // Check LOGON
+    useEffect(() => {
         if (!user) {
             axios
                 .get('/profile')
@@ -62,15 +85,10 @@ const Employees = () => {
     useEffect(() => {
         if (operationsComplete && !user) {
             navigate('/401');
-            toast.error('Unauthorized Access');
+            toast.error("Unauthorized Access");
         }
-        if (operationsComplete && user && user.isEmployee == true) {
-            toast.error('Unauthorized Access');
-            navigate('/dashboard');
-        }
-
-        if (operationsComplete && user && user.isManager == true) {
-            toast.error('Unauthorized Access');
+        if (operationsComplete && user && user.isManager === true) {
+            toast.error("Unauthorized Access");
             navigate('/dashboard');
         }
     }, [user, operationsComplete, navigate]);
@@ -101,25 +119,25 @@ const Employees = () => {
 
     const { pageIndex, globalFilter } = state;
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('/admin/user');
-                setData(response.data);
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-                setError(error);
-            } finally {
-                setLoading(false);
-            }
-        };
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const response = await axios.get('/admin/user');
+    //             setData(response.data);
+    //         } catch (error) {
+    //             console.error('Error fetching user data:', error);
+    //             setError(error);
+    //         } finally {
+    //             setLoading(false);
+    //         }
+    //     };
 
-        fetchData();
-    }, []);
+    //     fetchData();
+    // }, []);
 
     return (
         <div className='employeesMain employeesPage'>
-            <HeaderAdmin />
+            <HeaderAdmin role={user?.isAdmin ? 'Admin' : user?.isManager ? 'Manager' : 'Employee'} />
             <Sidebar />
 
             <section className="employees">
@@ -173,7 +191,9 @@ const Employees = () => {
                                     return (
                                         <tr {...row.getRowProps()}>
                                             {row.cells.map((cell) => (
-                                                <td {...cell.getCellProps()}>{cell.render('Cell', { setOpenModal: setOpenEditModal })}</td>
+                                                <td {...cell.getCellProps()}>
+                                                    {cell.column.id === 'role' ? (row.original.isManager ? 'Manager' : row.original.isAdmin ? 'Admin' : 'Employee') : cell.render('Cell', { setOpenModal: setOpenEditModal })}
+                                                </td>
                                             ))}
                                         </tr>
                                     );
@@ -182,7 +202,7 @@ const Employees = () => {
                         </table>
                     )}
 
-                    {error && <Error message="Error fetching user data" />} {/* Show Error component if there's an error */}
+                    {error && <Error message="Error fetching user data" />}
                 </div>
 
                 <div className="pagination">

@@ -677,6 +677,18 @@ section {                   /*header block*/
     color: var(--black);
 }
 
+
+.content .employeeForm select {
+    width: 100%;
+    padding: 1.2rem 1rem;
+    margin: .5rem 0;
+    font-size: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    background: var(--white);
+    color: var(--black);
+}
+
 .content .employeeForm .radioBtns {
     display: flex;
     gap: 2rem;
@@ -723,6 +735,7 @@ form .btnContainer {
     margin: 5px;
     padding: 0;
 }
+
 
 form .btnContainer .updateBtn {
     width: max-content;
