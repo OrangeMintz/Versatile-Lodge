@@ -46,6 +46,7 @@ const EmployeeEditModal = ({ open, onClose, userId }) => {
 
         const { name, username, email, password, confirmPassword, address, birthday, sex, phoneNumber } = data;
 
+
         if (name) {
             // Check if name has leading or trailing spaces
             if (name.trim() !== name) {
@@ -53,6 +54,7 @@ const EmployeeEditModal = ({ open, onClose, userId }) => {
                 return;
 
             }
+
         }
 
         // Validate email
@@ -63,45 +65,13 @@ const EmployeeEditModal = ({ open, onClose, userId }) => {
                 toast.error('Invalid email format');
                 return;
             }
-
-            // Check if email is already in use
-            try {
-                const response = await axios.get('/admin/user/');
-                const users = response.data;
-
-                if (users.some(user => user.email === email)) {
-                    toast.error('Email is already in use');
-                    return;
-                }
-            } catch (error) {
-                console.error('Error checking email:', error);
-                toast.error('Error checking email. Please try again.');
-                return;
-            }
-        }
-
-        // Check if username is already in use
-        if (username) {
-            try {
-                const response = await axios.get('/admin/user/');
-                const users = response.data;
-
-                if (users.some(user => user.username === username)) {
-                    toast.error('Username is already in use');
-                    return;
-                }
-            } catch (error) {
-                console.error('Error checking username:', error);
-                toast.error('Error checking username. Please try again.');
-                return;
-            }
         }
 
         // Validate phoneNumber
         if (phoneNumber) {
             // Check if phoneNumber starts with 0
-            if (!phoneNumber.startsWith('09')) {
-                toast.error('Phone number should start with 09');
+            if (!phoneNumber.startsWith('0')) {
+                toast.error('Phone number should start with 0');
                 return;
             }
         }
@@ -197,7 +167,7 @@ const EmployeeEditModal = ({ open, onClose, userId }) => {
                     <div className="content">
                         <h1 style={{ color: 'var(--black)', fontSize: "20px", marginTop: "2rem" }}>Edit an Employee</h1>
                         <form className="employeeForm" onSubmit={registerUser}>
-                            <input type="text" placeholder='Enter Full Name...' value={data.name} onChange={(e) => setData({ ...data, name: e.target.value })} />
+                            <input type="text" placeholder='Enter Name...' value={data.name} onChange={(e) => setData({ ...data, name: e.target.value })} />
                             <input type="email" placeholder='Enter Email...' value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} />
                             <input type="text" placeholder='Enter Address...' value={data.address} onChange={(e) => setData({ ...data, address: e.target.value })} />
                             <input type="date" placeholder='Enter Birthday...' value={data.birthday} onChange={(e) => setData({ ...data, birthday: e.target.value })} />

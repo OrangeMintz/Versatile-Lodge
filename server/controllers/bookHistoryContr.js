@@ -111,10 +111,18 @@ const getBookHistory = async (req, res, next) => {
 
 const getBookHistoryByUserId = async (req, res, next) => {
     const user_id = req.params.id; // Assuming you are passing the user_id as a parameter in the URL
-
     try {
         const history = await BookingHistory.find({ userId: user_id });
         res.status(200).json(history);
+    } catch (err) {
+        next(err);
+    }
+};
+
+const updateBookingHistory = async (req, res, next) => {
+    try {
+        const updatedBookingHistory = await BookingHistory.findByIdAndUpdate(req.params.id, { $set: req.body });
+        res.status(200).json(updatedBookingHistory)
     } catch (err) {
         next(err);
     }
@@ -125,10 +133,10 @@ const getBookHistoryByUserId = async (req, res, next) => {
 
 
 
-
 module.exports = {
     createBookingHistory,
     deleteBookHistory,
     getBookHistory,
-    getBookHistoryByUserId
+    getBookHistoryByUserId,
+    updateBookingHistory
 };

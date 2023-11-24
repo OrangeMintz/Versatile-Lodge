@@ -11,6 +11,7 @@ import toast from 'react-hot-toast';
 import Loader from '../../components/Loader';
 import Error from '../../components/Error';
 import moment from 'moment';
+import AdminChangePassModal from '../../components/AdminChangePassModal';
 
 const RoomsReserved = () => {
     const navigate = useNavigate();
@@ -106,8 +107,6 @@ const RoomsReserved = () => {
     }).filter(({ room }) => filterRooms(room));
 
 
-
-
     //ROOMS AUTO DELETE RESERVATION
     // Function to automatically delete bookings with toDate in the past
     const autoDeleteBookings = async () => {
@@ -134,6 +133,10 @@ const RoomsReserved = () => {
             console.error('Error auto-deleting bookings:', error);
         }
     };
+
+
+
+
 
     // Run auto-delete function on component mount
     useEffect(() => {
@@ -177,7 +180,6 @@ const RoomsReserved = () => {
                 {error && <Error />}
                 {!loading && !error && (
                     filteredAndSearchedRooms.map(({ room, reservedBooking }) => (
-
                         <div key={`${room._id}-${reservedBooking.bookingid}`} className="roomsRow">
                             <div className="roomsRowWrapper">
                                 <img src={room.imageurls[0]} alt="" />
@@ -195,12 +197,8 @@ const RoomsReserved = () => {
                                     <button className="roomBtn"><span className='fa-solid fa-pencil'></span></button>
                                     <button className="roomBtn-archive"><span className='fa-solid fa-trash'></span></button>
                                     <div className="roomReservedContainer">
-                                        <button className="roomReserved">
-                                            {room.unavailable ? "Maintenance" : "Confirm"}
-                                        </button>
-                                        <button className="roomReserved">
-                                            {room.unavailable ? "Maintenance" : "Reject"}
-                                        </button>
+                                        <button className="roomReserved">Reject</button>
+                                        <button className="roomReserved" >Confirm</button>
                                     </div>
                                 </div>
                             </div>
