@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
-const EmployeeEditModal = ({ open, onClose }) => {
+const EmployeeEditModal = ({ open, onClose, userId }) => {
     const navigate = useNavigate();
     const [file, setFile] = useState("");
     const [image, setImage] = useState("");
@@ -56,7 +56,7 @@ const EmployeeEditModal = ({ open, onClose }) => {
         const isManager = role === 'Manager';
 
         try {
-            const { data } = await axios.put(`/admin/user/${supposedtobeIDoftheUser}`, {
+            const { data } = await axios.put(`/admin/user/${userId}`, {
                 name,
                 username,
                 email,
@@ -93,7 +93,7 @@ const EmployeeEditModal = ({ open, onClose }) => {
                     phoneNumber: '',
                     sex: '',
                 });
-                toast.success('Added Employee Successful');
+                toast.success('Updated Employee Successful');
                 window.location.href = `${window.location.origin}/employees`;
 
             }
@@ -103,6 +103,23 @@ const EmployeeEditModal = ({ open, onClose }) => {
     };
 
     if (!open) return null
+
+
+
+
+    //ARCHIVE
+    const handleArchive = async (userId) => {
+        try {
+            const response = await axios.post(`/admin/user/${userId}/archive`);
+            console.log(response.data); // Handle the response as needed
+            window.location.href = `${window.location.origin}/employees`;
+
+        } catch (error) {
+            console.error('Error archiving user:', error);
+            toast.error('Error archiving user. Please try again.');
+        }
+    };
+
     return (
         <div className="overlay" onClick={onClose}>
             <div className="modalContainer"
@@ -159,10 +176,13 @@ const EmployeeEditModal = ({ open, onClose }) => {
                             <input type="file" accept="image/png, image/jpeg, image/jpg" onChange={handleChange} />
 
                             <div className="btnContainer">
-                                <button className="deleteBtn" style={{ fontSize: "16px", borderRadius: "5px" }}>Archive</button>
+                                <button className="deleteBtn" style={{ fontSize: "16px", borderRadius: "5px" }} onClick={() => handleArchive(userId)} >
+                                    Archive
+                                </button>
                                 <input type="submit" value="Update" className='updateBtn' />
                             </div>
                         </form>
+
                     </div>
 
                 </div>
