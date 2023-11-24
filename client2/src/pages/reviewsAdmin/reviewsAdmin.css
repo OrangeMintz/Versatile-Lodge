@@ -69,7 +69,9 @@
 }
 */
 
-.reviews .more-btn {    /*view more botton*/
+
+
+/* .reviews .more-btn {   
     margin-top: 2rem;
     text-align: center;
 } 
@@ -87,4 +89,38 @@
 .reviews .more-btn .inline-option-btn:active {
     margin: 3px 0px 0px 3px;
     box-shadow: none;
+} */
+
+
+.reviews .box-container .reply-container {
+    background-color: var(--light-bg);
+    display: flex;
+    width: 100%;
+}
+
+.reviews .box-container .reply-container input {
+    background: var(--white);
+    flex: 1;
+    padding: 1rem;
+    outline: 1px solid var(--black);
+    border-radius: 5px;
+}
+.reviews .box-container .reply-container .reply-btn1{
+    padding: 1rem;
+    background: var(--main-color);
+    color: var(--branch-color);
+    cursor: pointer;
+}
+
+.reviews .box-container .reply-container .reply-btn2 {
+    padding: 1rem;
+    background-color: var(--light-bg);
+    color: var(--black);
+    cursor: pointer;
+    transition: .3s linear
+}
+
+.reviews .box-container .reply-container .reply-btn2:hover {
+    background-color: var(--light-color);
+    color: var(--white);
 }

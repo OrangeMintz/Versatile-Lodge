@@ -102,6 +102,7 @@ const Dashboard = () => {
                             <h3 className="title">Total:</h3>
                             <p>50%</p>
                         </div>
+                        
 
                         <div className="box">
                             <h3 className="title">Occupancy Statistics:</h3>

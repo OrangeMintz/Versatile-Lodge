@@ -137,6 +137,7 @@
     color: #007BFF;
     font-size: 1.6rem;
     margin: 1rem;
+    cursor: pointer;
     border-radius: 5px;
 }
 .roomsUnavailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn:hover {
@@ -152,6 +153,7 @@
     font-size: 1.6rem;
     margin: 1rem;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .roomsUnavailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-archive:hover {
@@ -162,13 +164,14 @@
 
 .roomsUnavailable .roomsRow .roomsRowWrapper .roomButtons .roomAvailability {
     padding: 1rem 1rem;
-    color: var(--main-color);
+    color: var(--white);
     text-align: center;
     font-size: 1.5rem;
     font-weight: 700;
     margin: 1rem;
     border-radius: 5px;
     border: 1px solid var(--main-color);
+    background: var(--light-color);
 }
 
 
