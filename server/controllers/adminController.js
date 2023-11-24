@@ -142,7 +142,6 @@ const loginAdmin = async (req, res) => {
                     id: admin._id,
                     name: admin.name,
                     image: admin.image,
-                    isEmployee: admin.isEmployee,
                     isManager: admin.isManager,
                     isAdmin: admin.isAdmin,
                 },
@@ -206,15 +205,115 @@ const getUsers = async (req, res, next) => {
 const updateUser = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const updatedUser = await Admin.findByIdAndUpdate(id, req.body, { new: true });
+        const updateFields = { ...req.body };
+
+        // Remove undefined or empty values from the update object
+        Object.keys(updateFields).forEach((key) => {
+            if (updateFields[key] === undefined || updateFields[key] === '') {
+                delete updateFields[key];
+            }
+        });
+
+        // Check if an image is provided and upload it to Cloudinary
+        if (updateFields.image) {
+            try {
+                const uploadedImage = await cloudinary.uploader.upload(updateFields.image, {
+                    upload_preset: 'unsigned_upload',
+                    public_id: `${id}avatar`,
+                    allowed_formats: ['png', 'jpg', 'jpeg', 'svg', 'ico', 'jfif', 'webp']
+                });
+
+                // Update the 'image' property in the updateFields object
+                updateFields.image = uploadedImage.secure_url;
+            } catch (uploadError) {
+                console.error('Error uploading image to Cloudinary:', uploadError);
+                return res.status(500).json({ error: 'Error uploading image to Cloudinary' });
+            }
+        } else {
+            // If no image is provided, do not update the 'image' property
+            delete updateFields.image;
+        }
+
+        // If password is being updated, hash the new password
+        if (updateFields.password) {
+            const hashedPassword = await hashPassword(updateFields.password);
+            updateFields.password = hashedPassword;
+        }
+
+        // Update the user in the database
+        const updatedUser = await Admin.findByIdAndUpdate(id, updateFields, { new: true });
+
         if (!updatedUser) {
             return res.status(404).json({ message: 'User not found' });
         }
+
         res.status(200).json(updatedUser);
     } catch (err) {
         next(err);
     }
 };
+
+
+
+// const updateUser = async (req, res, next) => {
+//     try {
+//         const { id } = req.params;
+//         const updateFields = { ...req.body };
+
+//         // Remove undefined or empty values from the update object
+//         Object.keys(updateFields).forEach((key) => {
+//             if (updateFields[key] === undefined || updateFields[key] === '') {
+//                 delete updateFields[key];
+//             }
+//         });
+
+//         // Check if an image is provided and upload it to Cloudinary
+//         if (updateFields.image) {
+//             try {
+//                 const uploadedImage = await cloudinary.uploader.upload(updateFields.image, {
+//                     upload_preset: 'unsigned_upload',
+//                     public_id: `${id}avatar`,
+//                     allowed_formats: ['png', 'jpg', 'jpeg', 'svg', 'ico', 'jfif', 'webp']
+//                 });
+
+//                 // Update the 'image' property in the updateFields object
+//                 updateFields.image = uploadedImage.secure_url;
+//             } catch (uploadError) {
+//                 console.error('Error uploading image to Cloudinary:', uploadError);
+//                 return res.status(500).json({ error: 'Error uploading image to Cloudinary' });
+//             }
+//         }
+//         else {
+//             // If no image is provided, use a default image or keep the existing image
+//             // For example, you can set a default image URL or use the existing image URL from the database
+
+//             // Set a default image URL
+//             // updateFields.image = 'https://example.com/default-image.jpg';
+
+//             // or use the existing image URL from the database
+//             const existingUser = await Admin.findById(id);
+//             updateFields.image = existingUser.image;
+//         }
+
+
+//         // If password is being updated, hash the new password
+//         if (updateFields.password) {
+//             const hashedPassword = await hashPassword(updateFields.password);
+//             updateFields.password = hashedPassword;
+//         }
+
+//         // Update the user in the database
+//         const updatedUser = await Admin.findByIdAndUpdate(id, updateFields, { new: true });
+
+//         if (!updatedUser) {
+//             return res.status(404).json({ message: 'User not found' });
+//         }
+
+//         res.status(200).json(updatedUser);
+//     } catch (err) {
+//         next(err);
+//     }
+// };
 
 
 module.exports = {

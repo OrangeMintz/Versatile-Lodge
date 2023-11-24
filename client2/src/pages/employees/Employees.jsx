@@ -13,36 +13,9 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import { UserContext } from '../../components/userContext';
 
-const columns = [
-    { Header: 'Name', accessor: 'name' },
-    { Header: 'Email', accessor: 'email' },
-    { Header: 'Address', accessor: 'address' },
-    { Header: 'Birthday', accessor: 'birthday' },
-    { Header: 'Number', accessor: 'phoneNumber' },
-    { Header: 'Sex', accessor: 'sex' },
-    { Header: 'Role', accessor: 'role' },
+import DataTable from 'react-data-table-component'
 
-    // {
-    //     Header: 'Options',
-    //     accessor: 'options',
-    //     Cell: ({ row }) => (
-    //         <button className='option-btn' onClick={() => setOpenModal(true, row.original.userId)}>
-    //             Option
-    //         </button>
-    //     ),
-    //     disableSortBy: true,
-    // },
-    {
-        Header: 'Options',
-        accessor: 'options',
-        Cell: ({ row, setOpenModal }) => (
-            <button className='option-btn' onClick={() => setOpenModal(true)}>
-                Option
-            </button>
-        ),
-        disableSortBy: true,
-    },
-];
+
 
 const Employees = () => {
     const navigate = useNavigate();
@@ -54,16 +27,22 @@ const Employees = () => {
     const { user, setUser } = useContext(UserContext);
     const [operationsComplete, setOperationsComplete] = useState(false);
 
+    const [data, setData] = useState([]);
+    const [originalData, setOriginalData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
                 // Fetch user data including the role from the /profile endpoint
                 const profileResponse = await axios.get('/profile');
-                setUser(profileResponse.data); // Assuming setUser is a state updater function
+                setUser(profileResponse.data);
 
                 // Fetch employee data using the /admin/user endpoint
                 const employeeResponse = await axios.get('/admin/user');
                 setData(employeeResponse.data);
+                setOriginalData(employeeResponse.data); // Save the original data
             } catch (error) {
                 console.error('Error fetching user or employee data:', error);
                 setError(error);
@@ -105,46 +84,112 @@ const Employees = () => {
     }, [user, operationsComplete, navigate]);
     // Check LOGON
 
-    const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
-    const {
-        getTableProps,
-        getTableBodyProps,
-        headerGroups,
-        prepareRow,
-        page,
-        state,
-        setGlobalFilter,
-        nextPage,
-        previousPage,
-        canNextPage,
-        canPreviousPage,
-    } = useTable(
-        { columns, data, initialState: { pageIndex: 0 }, setOpenModal: setOpenEditModal },
-        useGlobalFilter,
-        useSortBy,
-        usePagination
+
+    const columns = [
+        {
+            name: 'Role',
+            selector: row => (row.isAdmin ? 'Admin' : row.isManager ? 'Manager' : 'Employee'),
+            sortable: true
+
+        },
+        {
+            name: 'Username',
+            selector: row => row.username,
+            sortable: true
+        },
+        {
+            name: 'Name',
+            selector: row => row.name,
+            sortable: true
+        },
+        {
+            name: 'Email',
+            selector: row => row.email,
+            sortable: true
+        },
+        {
+            name: 'Address',
+            selector: row => row.address,
+            sortable: true
+        },
+        {
+            name: 'Phone Number',
+            selector: row => row.phoneNumber,
+            sortable: true
+        },
+        {
+            name: 'Birthday',
+            selector: row => row.birthday,
+            sortable: true
+        },
+        {
+            name: 'Actions',
+            cell: (row) => (
+                <button className='option-btn' onClick={() => handleEdit(row._id)}>Update</button>
+            ),
+        },
+
+
+    ];
+
+
+
+    const customStyles = {
+        headRow: {
+            style: {
+                borderTop: '1px solid #dee2e6',
+                background: '#DCC69C',
+                fontSize: '14px',
+                color: '#ffffff',
+                fontWeight: 'bold',
+                textAlign: 'center'
+            },
+        },
+        headCells: {
+            style: {
+                color: '#2B1103',
+            },
+        },
+        cells: {
+            style: {
+                borderBottom: '1px solid #dee2e6',
+            },
+        },
+    };
+
+    const CustomNoDataMessage = () => (
+        <div style={{ fontSize: '18px', textAlign: 'center', marginTop: '20px' }}>
+            No records to be displayed
+        </div>
     );
 
-    const { pageIndex, globalFilter } = state;
+    const [searchText, setSearchText] = useState('');
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const response = await axios.get('/admin/user');
-    //             setData(response.data);
-    //         } catch (error) {
-    //             console.error('Error fetching user data:', error);
-    //             setError(error);
-    //         } finally {
-    //             setLoading(false);
-    //         }
-    //     };
+    const handleSearch = (e) => {
+        const searchText = e.target.value.toLowerCase();
+        setSearchText(searchText);
 
-    //     fetchData();
-    // }, []);
+        if (searchText.trim() === '') {
+            // If search text is empty, reset to the original data
+            setData(originalData);
+        } else {
+            const filteredData = data.filter((row) =>
+                Object.values(row).some(
+                    (value) => typeof value === 'string' && value.toLowerCase().includes(searchText)
+                )
+            );
+            setData(filteredData);
+        }
+    };
+
+    const [editUserId, setEditUserId] = useState(null);
+    const handleEdit = (userId) => {
+        setEditUserId(userId);
+        setOpenEditModal(true);
+    };
+
+
 
     return (
         <div className='employeesMain employeesPage'>
@@ -153,72 +198,50 @@ const Employees = () => {
 
             <section className="employees">
                 <h1 className="heading">Our Employees</h1>
-                <EmployeeEditModal open={openEditModal} onClose={() => setOpenEditModal(false)} />
+                {/* <EmployeeEditModal open={openEditModal} onClose={() => setOpenEditModal(false)} /> */}
+
+                <EmployeeEditModal
+                    open={openEditModal}
+                    onClose={() => {
+                        setEditUserId(null); // Reset the editUserId when modal is closed
+                        setOpenEditModal(false);
+                    }}
+                    userId={editUserId}  // Pass the user ID to the modal
+                />
                 <EmployeeAddModal open={openAddModal} onClose={() => setOpenAddModal(false)} />
 
-                <div className="search-container">
-                    <input
-                        className='searchInput'
-                        placeholder='Search here...'
-                        id="search"
-                        type="text"
-                        value={globalFilter || ''}
-                        onChange={(e) => setGlobalFilter(e.target.value)}
-                    />
-                </div>
 
-                <span className="addEmployee" onClick={() => setOpenAddModal(true)}>+ Add Employees</span>
-                <div className="employeesContainer">
-                    {loading && <Loader />} {/* Show Loader while data is being fetched */}
+                <span className="addEmployee" onClick={() => setOpenAddModal(true)}>+ Add Employee</span>
 
-                    {!loading && !error && (
-                        <table {...getTableProps()} className="employeesTable">
-                            <thead>
-                                {headerGroups.map((headerGroup) => (
-                                    <tr {...headerGroup.getHeaderGroupProps()}>
-                                        {headerGroup.headers.map((column) => (
-                                            <th className="theaderMain" {...column.getHeaderProps(column.getSortByToggleProps())}>
-                                                <span className="theader">
-                                                    {column.id !== 'options' ? (
-                                                        <>
-                                                            {column.render('Header')}
-                                                            <span className="arrows">
-                                                                {' '}
-                                                                {column.isSorted ? (column.isSortedDesc ? <i className="fas fa-chevron-down"></i> : <i className="fas fa-chevron-up"></i>) : <span><i className="fas fa-chevron-down"></i><i className="fas fa-chevron-up"></i></span>}
-                                                            </span>
-                                                        </>
-                                                    ) : (
-                                                        column.render('Header')
-                                                    )}
-                                                </span>
-                                            </th>
-                                        ))}
-                                    </tr>
-                                ))}
-                            </thead>
-                            <tbody {...getTableBodyProps()}>
-                                {page.map((row) => {
-                                    prepareRow(row);
-                                    return (
-                                        <tr {...row.getRowProps()}>
-                                            {row.cells.map((cell) => (
-                                                <td {...cell.getCellProps()}>
-                                                    {cell.column.id === 'role' ? (row.original.isManager ? 'Manager' : row.original.isAdmin ? 'Admin' : 'Employee') : cell.render('Cell', { setOpenModal: setOpenEditModal })}
-                                                </td>
-                                            ))}
-                                        </tr>
-                                    );
-                                })}
-                            </tbody>
-                        </table>
-                    )}
+                {loading && <Loader />}
+                {error && <Error />}
+                {!loading && !error && (
+                    <div className="employeesContainer" style={{ marginTop: '70px' }}>
 
-                    {error && <Error message="Error fetching user data" />}
-                </div>
+                        <DataTable
+                            columns={columns}
+                            data={data}
+                            fixedHeader
+                            fixedHeaderScrollHeight="500px"
+                            pagination
+                            theme="solarized"
+                            customStyles={customStyles}
+                            subHeader
+                            noDataComponent={<CustomNoDataMessage />}
 
-                <div className="pagination">
-                    {/* ... (existing code) */}
-                </div>
+                            subHeaderComponent={<div>
+                                <input
+                                    className="searchInput"
+                                    placeholder="Search here..."
+                                    type="text"
+                                    value={searchText}
+                                    onChange={handleSearch}
+                                />
+                            </div>}
+                        />
+                    </div>
+                )}
+
             </section>
 
             <Footer />
