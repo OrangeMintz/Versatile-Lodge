@@ -15,16 +15,18 @@
     float: left;
     width: 30%;
     padding: 20px;
+    
 }
 
 .account-settings .account-menu ul {
     list-style-type: none;
     padding: 0;
+
 }
 
 
-.account-settings .account-menu li {
-    border: 1px solid black;
+.account-settings .account-menu ul li {
+    border: 1px solid var(--black);
     background-color: var(--branch-color);
     padding: 20px;
     font-size: 2rem;
@@ -62,12 +64,14 @@
 .account-settings .settings h2 {
     font-size: 3rem;
     margin-bottom: 45px;
+    color: var(--black)
 }
 
 .account-settings .settings label {
     display: block;
     margin-top: 10px;
     font-size: 1.5rem;
+    color: var(--black);
 }
 
 .account-settings .settings input {
@@ -75,6 +79,8 @@
     padding: 10px;
     margin-top: 5px;
     margin-bottom: 15px;
+    background-color: var(--light-bg);
+
 }
   
 .account-settings button {
@@ -146,7 +152,7 @@
     background: var(--branch-color);
     color: var(--main-color);
     padding: 5px 5px;
-    border: 1px solid #000;
+    border: 1px solid var(--black);
     border-radius: 5px;
     cursor: pointer;
     width: 50%;
@@ -154,6 +160,10 @@
 
   .profile-picture:hover label {
     display: block;
+  }
+
+  .profile-picture input {
+    background: var(--white);
   }
 
  

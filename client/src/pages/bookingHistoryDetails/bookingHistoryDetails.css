@@ -15,10 +15,12 @@
     left: 0;
     padding: 0.8rem 1rem;
     border-radius: 10px;
+
 }
 
 .BookingHistoryDetails .left {
     position: relative;
+
 }
 
 .BookingHistoryDetails .left img {
