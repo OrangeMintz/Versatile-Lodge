@@ -1,5 +1,8 @@
 const Room = require("../models/Room.js");
 const Branch = require("../models/Branch.js");
+const BookingHistory = require('../models/BookingHistory.js');
+
+const mongoose = require('mongoose');
 
 const createError = require('../utils/error.js');
 
@@ -63,7 +66,39 @@ const getRooms = async (req, res, next) => {
 };
 
 
+const confirmBooking = async (req, res) => {
+    try {
+        const { bookingId, roomId } = req.params;
 
+        // console.log(bookingId)
+        // console.log(roomId)
+
+
+        // Update room status to "booked"
+        const updatedRCB = await Room.findOneAndUpdate(
+            { _id: roomId, 'currentbookings.bookingid': bookingId },
+            { $set: { 'currentbookings.$.status': 'booked' } }
+
+        );
+        // console.log(`ROOM`, updatedRCB);
+        // const foundRoomByBookingId = await Room.findOne({ 'currentbookings.bookingid': bookingId });
+        // console.log('Found Room By Booking Id:', foundRoomByBookingId);
+
+
+        // Update user's booking history status to "Accepted"
+        const updatedBH = await BookingHistory.findOneAndUpdate(
+            { reservationId: bookingId },
+            { $set: { status: 'Accepted' } }
+        );
+
+        // console.log(`BH`, updatedBH)
+
+        res.status(200).json({ message: 'Booking confirmed successfully ROOMCONTROLLER' });
+    } catch (error) {
+        console.error('Error confirming booking:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
 
 
 module.exports = {
@@ -71,5 +106,7 @@ module.exports = {
     deleteRoom,
     updateRoom,
     getRoom,
-    getRooms
+    getRooms,
+    confirmBooking
+
 };

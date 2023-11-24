@@ -154,6 +154,29 @@ const RoomsReserved = () => {
     }, []);
 
 
+    const handleConfirm = async (roomId, bookingid, userId) => {
+
+        console.log('Room ID:', roomId);
+        console.log('Booking ID:', bookingid);
+        console.log('User ID:', userId);
+
+        try {
+            // Update room status to "booked"
+            await axios.put(`/api/room/${roomId}/confirmBooking/${bookingid}`);
+            window.location.reload();
+
+
+            // Update user's booking history status to "Accepted"
+            // await axios.put(`http://localhost:8000/api/bookingHistory/${userId}/acceptBooking/${bookingId}`);
+
+            // Refresh the page or update the state to reflect changes
+        } catch (error) {
+            console.error('Error confirming booking:', error);
+            toast.error('Error confirming booking. Please try again.');
+        }
+    };
+
+
     return (
         <div>
             <HeaderAdmin />
@@ -198,7 +221,9 @@ const RoomsReserved = () => {
                                     <button className="roomBtn-archive"><span className='fa-solid fa-trash'></span></button>
                                     <div className="roomReservedContainer">
                                         <button className="roomReserved">Reject</button>
-                                        <button className="roomReserved" >Confirm</button>
+                                        {/* <button className="roomReserved" >Confirm</button> */}
+                                        <button className="roomReserved" onClick={() => handleConfirm(room._id, reservedBooking.bookingid, reservedBooking.userId)}>Confirm</button>
+
                                     </div>
                                 </div>
                             </div>
