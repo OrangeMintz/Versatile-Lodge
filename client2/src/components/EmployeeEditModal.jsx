@@ -103,6 +103,23 @@ const EmployeeEditModal = ({ open, onClose, userId }) => {
     };
 
     if (!open) return null
+
+
+
+
+    //ARCHIVE
+    const handleArchive = async (userId) => {
+        try {
+            const response = await axios.post(`/admin/user/${userId}/archive`);
+            console.log(response.data); // Handle the response as needed
+            window.location.href = `${window.location.origin}/employees`;
+
+        } catch (error) {
+            console.error('Error archiving user:', error);
+            toast.error('Error archiving user. Please try again.');
+        }
+    };
+
     return (
         <div className="overlay" onClick={onClose}>
             <div className="modalContainer"
@@ -159,10 +176,13 @@ const EmployeeEditModal = ({ open, onClose, userId }) => {
                             <input type="file" accept="image/png, image/jpeg, image/jpg" onChange={handleChange} />
 
                             <div className="btnContainer">
-                                <button className="deleteBtn" style={{ fontSize: "16px", borderRadius: "5px" }}>Archive</button>
+                                <button className="deleteBtn" style={{ fontSize: "16px", borderRadius: "5px" }} onClick={() => handleArchive(userId)} >
+                                    Archive
+                                </button>
                                 <input type="submit" value="Update" className='updateBtn' />
                             </div>
                         </form>
+
                     </div>
 
                 </div>
