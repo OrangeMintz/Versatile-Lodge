@@ -58,6 +58,37 @@ function Navbar() {
         return location.pathname === pathname ? 'active' : '';
     };
 
+    const handleMoonIconClick = () => {                      //darkmode
+        const light_btn = document.querySelector('#light-btn');
+        const light_mode = localStorage.getItem('light-mode');
+        const body = document.body;                              //html's body element
+
+
+        const enablelightMode = () => {
+            light_btn.classList.replace('fa-moon', 'fa-sun');
+            body.classList.add('light');
+            localStorage.setItem('light-mode', 'enabled');
+
+        }
+        const disablelightMode = () => {
+            light_btn.classList.replace('fa-sun', 'fa-moon');
+            body.classList.remove('light');
+            localStorage.setItem('light-mode', 'disabled');
+
+        }
+
+        if (light_mode === 'enabled') {
+            enablelightMode();
+        }
+
+        if (light_mode === 'disabled') {
+            enablelightMode();
+        } else {
+            disablelightMode();
+        }
+
+    };
+
     return (
         <div>
             <section className="header">
@@ -86,6 +117,7 @@ function Navbar() {
                     <Link to="/room" className={isLinkActive('/room')}>Rooms</Link>
                     <Link to="/contact" className={isLinkActive('/contact')}>Contact</Link>
                     <Link to="/reviews" className={isLinkActive('/reviews')}>Reviews</Link>
+                    <div id="light-btn" className='fas fa-moon' onClick={handleMoonIconClick}></div>
                     {user && (
                         <div>
                             <img src={user.image} id="user-btn" alt="user" onClick={handleUserBtnClick} />

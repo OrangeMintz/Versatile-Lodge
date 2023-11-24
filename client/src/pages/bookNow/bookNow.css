@@ -8,6 +8,8 @@
     max-height: 75vh;
     position: relative;
     padding: 30px 20px;
+    color: var(--black);
+
   }
   
   .imageContainer {
