@@ -6,6 +6,7 @@ import SwiperGallery from '../../component/SwiperGallery';
 import { useContext } from 'react';
 import AuthContext from '../../context/AuthProvider';
 import Navbar from '../../component/Navbar';
+import FAQ from '../../component/FAQ';
 
 const Home = () => {
 
@@ -143,103 +144,7 @@ const Home = () => {
 
       <SwiperGallery />
 
-      <section className="contact" id="contact">
-        <div className="row">
-          <form action="" method="post">
-            <h3>send us message</h3>
-            <input
-              type="text"
-              name="name"
-              required
-              maxLength="50"
-              placeholder="enter your name"
-              className="box"
-            />
-            <input
-              type="email"
-              name="email"
-              required
-              maxLength="50"
-              placeholder="enter your email"
-              className="box"
-            />
-            <input
-              type="number"
-              name="number"
-              required
-              maxLength="10"
-              min="0"
-              max="99999999"
-              placeholder="enter your number"
-              className="box"
-            />
-            <textarea
-              name="msg"
-              className="box"
-              required
-              maxLength="1000"
-              placeholder="enter your message"
-              cols="30"
-              rows="10"
-            ></textarea>
-            <input
-              type="submit"
-              value="send message"
-              name="send"
-              className="btn"
-            />
-          </form>
-          <div className="faq">
-            <h3 className="title">Frequently Asked Questions</h3>
-            <div className="box">
-              <h3>How to cancel?</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut
-                voluptate vitae temporibus quis necessitatibus quos provident
-                atque sapiente aperiam illum iusto fugiat tenetur in cupiditate
-                magni?
-              </p>
-            </div>
-            <div className="box">
-              <h3>Is there any vacancy?</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut
-                voluptate vitae temporibus quis necessitatibus quos provident
-                atque sapiente aperiam illum iusto fugiat tenetur in cupiditate
-                magni?
-              </p>
-            </div>
-            <div className="box">
-              <h3>What are payment methods?</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut
-                voluptate vitae temporibus quis necessitatibus quos provident
-                atque sapiente aperiam illum iusto fugiat tenetur in cupiditate
-                magni?
-              </p>
-            </div>
-            <div className="box">
-              <h3>How to claim coupons codes?</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut
-                voluptate vitae temporibus quis necessitatibus quos provident
-                atque sapiente aperiam illum iusto fugiat tenetur in cupiditate
-                magni?
-              </p>
-            </div>
-            <div className="box">
-              <h3>What are the age requirements?</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut
-                voluptate vitae temporibus quis necessitatibus quos provident
-                atque sapiente aperiam illum iusto fugiat tenetur in cupiditate
-                magni?
-              </p>
-            </div>
-            <div className="swiper-pagination"></div>
-          </div>
-        </div>
-      </section>
+      <FAQ />
 
       <Footer />
     </div>

@@ -194,12 +194,14 @@ const RoomsReserved = () => {
                                 <div className="roomButtons">
                                     <button className="roomBtn"><span className='fa-solid fa-pencil'></span></button>
                                     <button className="roomBtn-archive"><span className='fa-solid fa-trash'></span></button>
-                                    <button className="roomReserved">
-                                        {room.unavailable ? "Maintenance" : "Confirm"}
-                                    </button>
-                                    <button className="roomReserved">
-                                        {room.unavailable ? "Maintenance" : "Reject"}
-                                    </button>
+                                    <div className="roomReservedContainer">
+                                        <button className="roomReserved">
+                                            {room.unavailable ? "Maintenance" : "Confirm"}
+                                        </button>
+                                        <button className="roomReserved">
+                                            {room.unavailable ? "Maintenance" : "Reject"}
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
 
