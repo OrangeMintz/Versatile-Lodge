@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
-const EmployeeEditModal = ({ open, onClose }) => {
+const EmployeeEditModal = ({ open, onClose, userId }) => {
     const navigate = useNavigate();
     const [file, setFile] = useState("");
     const [image, setImage] = useState("");
@@ -56,7 +56,7 @@ const EmployeeEditModal = ({ open, onClose }) => {
         const isManager = role === 'Manager';
 
         try {
-            const { data } = await axios.put(`/admin/user/${supposedtobeIDoftheUser}`, {
+            const { data } = await axios.put(`/admin/user/${userId}`, {
                 name,
                 username,
                 email,
@@ -93,7 +93,7 @@ const EmployeeEditModal = ({ open, onClose }) => {
                     phoneNumber: '',
                     sex: '',
                 });
-                toast.success('Added Employee Successful');
+                toast.success('Updated Employee Successful');
                 window.location.href = `${window.location.origin}/employees`;
 
             }
