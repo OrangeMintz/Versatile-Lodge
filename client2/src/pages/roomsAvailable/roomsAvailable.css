@@ -62,7 +62,7 @@
     direction: rtl;
 }
 
-.roomsAvailable .addRoom span{
+.roomsAvailable .addRoom a{
     font-size: 2rem;
     text-decoration: none;
     color: var(--main-color);

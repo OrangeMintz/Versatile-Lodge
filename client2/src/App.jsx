@@ -15,6 +15,7 @@ import Profile from "./pages/profile/Profile.jsx";
 import AdminAccountSettings from "./pages/adminAccountSettings/AdminAccountSettings.jsx";
 import Error404 from "./pages/404/404.jsx"
 import Error401 from "./pages/401/401.jsx"
+import AddRoom from "./pages/addRoom/AddRoom.jsx"
 //Components
 
 import axios from 'axios';
@@ -63,6 +64,7 @@ function App() {
         <Route path="/roomsBooking" element={<RoomsBooking />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/AccountSettings" element={<AdminAccountSettings />} />
+        <Route path="/AddRoom" element={<AddRoom />} />
 
 
         {/* INVALID ACCESS */}
