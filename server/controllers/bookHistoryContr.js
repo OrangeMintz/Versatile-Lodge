@@ -128,6 +128,23 @@ const updateBookingHistory = async (req, res, next) => {
     }
 };
 
+const acceptBooking = async (req, res) => {
+    try {
+        const { userId, bookingId } = req.params;
+
+        // Update user's booking history status to "Accepted"
+        await BookingHistory.findOneAndUpdate(
+            { userId, reservationId: bookingId },
+            { $set: { status: 'Accepted' } }
+        );
+
+        res.status(200).json({ message: 'Booking accepted successfully' });
+    } catch (error) {
+        console.error('Error accepting booking:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
 
 
 
@@ -138,5 +155,6 @@ module.exports = {
     deleteBookHistory,
     getBookHistory,
     getBookHistoryByUserId,
-    updateBookingHistory
+    updateBookingHistory,
+    acceptBooking
 };

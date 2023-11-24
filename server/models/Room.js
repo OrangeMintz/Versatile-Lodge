@@ -29,7 +29,17 @@ const roomschema = new mongoose.Schema(
 
         imageurls: [],
 
-        currentbookings: [],
+        currentbookings: [
+            {
+                bookingid: String,
+                fromDate: String,
+                toDate: String,
+                userId: String,
+                status: String,
+            },
+        ],
+
+        // currentbookings: [],
 
         unavailable: {
             type: Boolean,
