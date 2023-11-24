@@ -138,8 +138,7 @@ const Employees = () => {
     const customStyles = {
         headRow: {
             style: {
-                borderTop: '1px solid #dee2e6',
-                background: '#DCC69C',
+                borderTop: '1   px solid #dee2e6',
                 fontSize: '14px',
                 color: '#ffffff',
                 fontWeight: 'bold',
@@ -149,13 +148,29 @@ const Employees = () => {
         headCells: {
             style: {
                 color: '#2B1103',
+                textAlign: 'center',
+                padding: '1rem',
+                display: 'flex',
+                justifyContent: 'center',
             },
         },
         cells: {
             style: {
                 borderBottom: '1px solid #dee2e6',
+                borderRight: '1px solid #dee2e6', // Add this line to include a right border
+                padding: '10px', // Adjust padding as needed
             },
         },
+        subHeader: {
+            style: {
+                background: 'var(--light-bg)', // Background color for the subheader
+                borderBottom: '1px solid #dee2e6',
+                textAlign: 'center',
+                fontSize: '14px',
+                padding: '10px',
+            },
+        },
+    
     };
 
     const CustomNoDataMessage = () => (

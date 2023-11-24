@@ -1,3 +1,4 @@
+
 .reviews {
     height: 100%;
 }
@@ -12,7 +13,8 @@
     gap: 1.5rem;
     align-items: flex-start;
     justify-content: center;
-    height: 70vh;
+    height: 100%;
+    flex: 1;
 }
 .reviews .box-container .box {      /*white boxes inside container of employees*/
     border-radius: .5rem;
@@ -93,23 +95,38 @@
 
 
 .reviews .box-container .reply-container {
-    background-color: var(--light-bg);
+    background-color: var(--branch-color);
     display: flex;
     width: 100%;
+    flex-direction: column;
 }
 
-.reviews .box-container .reply-container input {
+.reviews .box-container .reply-container .replyInputAndBtn {
     background: var(--white);
     flex: 1;
     padding: 1rem;
-    outline: 1px solid var(--black);
     border-radius: 5px;
+    width: 100%;
 }
+
+.reviews .box-container .reply-container .replyInput {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 1rem auto;
+}
+.reviews .box-container .reply-container .replyBtns {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
 .reviews .box-container .reply-container .reply-btn1{
     padding: 1rem;
     background: var(--main-color);
     color: var(--branch-color);
     cursor: pointer;
+    border-radius: 5px;
 }
 
 .reviews .box-container .reply-container .reply-btn2 {
@@ -117,10 +134,26 @@
     background-color: var(--light-bg);
     color: var(--black);
     cursor: pointer;
-    transition: .3s linear
+    transition: .3s linear;
+    border-radius: 5px;
+
 }
 
 .reviews .box-container .reply-container .reply-btn2:hover {
     background-color: var(--light-color);
     color: var(--white);
+}
+
+.reviews .box-container .reply-container .replyContent {
+    border-radius: 10px;
+    margin: 2rem;
+    background: var(--light-bg);
+    padding: 2rem;
+}
+
+.reviews .box-container .reply-container .replyContent button {
+    padding: 1rem;
+    background: var(--main-color);
+    color: var(--white);
+    cursor: pointer;
 }
