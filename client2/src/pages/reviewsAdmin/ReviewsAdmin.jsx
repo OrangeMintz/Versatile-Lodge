@@ -112,8 +112,11 @@ const ReviewsAdmin = () => {
         }
     };
 
+    // admin static reply
+    const adminReply = "Thank you for your feedback! We appreciate your input.";
+
     return (
-            <div>
+            <div className='reviewsPage'>
                 <HeaderAdmin />
                 <Sidebar />
 
@@ -136,29 +139,42 @@ const ReviewsAdmin = () => {
                                         </div>
                                     </div>
                                     <p>{review.comment}</p>
-                                <div className="reply-container">
-                                    {showReplyInput[review._id] && (
-                                        <>
-                                            <input
-                                                type="text"
-                                                placeholder="Type your reply..."
-                                                value={replyInputs[review._id] || ''}
-                                                onChange={(e) => updateReplyInput(review._id, e.target.value)}
-                                            />
-                                            <button className="reply-btn1" onClick={() => handleReply(review._id)}>
+                                    <div className="reply-container">
+                                        {showReplyInput[review._id] && (
+                                            <div className='replyInputAndBtn'>
+                                                <input
+                                                    className='replyInput'
+                                                    type="text"
+                                                    placeholder="Type your reply..."
+                                                    value={replyInputs[review._id] || ''}
+                                                    onChange={(e) => updateReplyInput(review._id, e.target.value)}
+                                                />
+                                                <div className='replyBtns'>
+                                                    <button className="reply-btn1" onClick={() => handleReply(review._id)}>
+                                                        Reply
+                                                    </button>
+                                                    <button className="reply-btn2" onClick={() => handleCancelReply(review._id)}>
+                                                        Cancel
+                                                    </button>
+                                                </div>
+                                        </div>
+                                        )}
+                                        {!showReplyInput[review._id] && (
+                                            <button className="reply-btn2" onClick={() => setShowReplyInput((prev) => ({ ...prev, [review._id]: true }))}>
                                                 Reply
                                             </button>
-                                            <button className="reply-btn2" onClick={() => handleCancelReply(review._id)}>
-                                                Cancel
-                                            </button>
-                                        </>
-                                    )}
-                                    {!showReplyInput[review._id] && (
-                                        <button className="reply-btn2" onClick={() => setShowReplyInput((prev) => ({ ...prev, [review._id]: true }))}>
-                                            Reply
-                                        </button>
-                                    )}
-                                </div>
+                                        )}
+                                        {/* Display admin's static reply */}
+                                        <div className='replyContent'>
+                                            {
+                                                adminReply && (
+                                                <div className="admin-reply">
+                                                    <p>{adminReply}</p>
+                                                    <button>Delete</button>
+                                                </div>
+                                            )}  
+                                        </div>
+                                    </div>
                                 </div>
                             ))}
                             
@@ -167,8 +183,8 @@ const ReviewsAdmin = () => {
 
                 </section>
 
+                <Footer />  
 
-                <Footer />
             </div>
     )
 }
