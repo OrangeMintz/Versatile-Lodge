@@ -74,6 +74,12 @@ const BookingHistory = () => {
     setBookingIdToCancel(bookingId);
   };
 
+  //CAN NO LONGER CANCEL
+  const isCancelButtonDisabled = (bookingDate) => {
+    const cancelDeadline = moment(bookingDate).add(5, 'minutes');
+    return moment().isAfter(cancelDeadline);
+  };
+
   const handleConfirmCancel = async () => {
     try {
       // Cancel the booking using the stored booking ID
@@ -140,9 +146,17 @@ const BookingHistory = () => {
                       </td>
                       <td>{booking.status}</td>
                       <td>
-                        <span className='btnCancel' onClick={() => handleCancelBooking(booking._id)}>
+                        <button
+                          className={`btnCancel${isCancelButtonDisabled(booking.bookingDate) ? ' btndisabled' : ''}`}
+                          onClick={() => handleCancelBooking(booking._id)}
+                          disabled={isCancelButtonDisabled(booking.bookingDate)}>
                           Cancel
-                        </span>
+                        </button>
+                        {/* <button className='btnCancel' onClick={() => handleCancelBooking(booking._id)} disabled={isCancelButtonDisabled(booking.bookingDate)}>
+                          Cancel
+                        </button> */}
+
+
                       </td>
                     </tr>
                   ))}

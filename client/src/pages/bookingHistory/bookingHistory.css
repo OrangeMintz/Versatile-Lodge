@@ -171,6 +171,21 @@
 
   }
 
+  .btndisabled{
+    background-color:  #2b1103e1!important;
+    color:  rgba(128, 128, 128, 0.863)!important;
+
+  }
+
+  .btndisabled:hover{
+    border-radius: 5px !important;
+    color:  gray!important;
+    outline: none !important;
+    box-shadow: none !important;
+    
+  }
+
+
 
 @media (max-width:450px) {          /*width 1/4 the screen closest to android phone (380px)*/
 
