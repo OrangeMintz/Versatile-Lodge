@@ -143,7 +143,7 @@ const RoomsAvailable = () => {
                     </div>
                 </div>
                 <div className="addRoom">
-                    <span>+ Add Room</span>
+                    <Link to="/AddRoom">+ Add Room</Link>
                 </div>
 
                 {loading && <Loader />}
