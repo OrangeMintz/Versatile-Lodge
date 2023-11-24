@@ -85,6 +85,33 @@ const ReviewsAdmin = () => {
     }, []);
 
 
+    //Reply
+    const [replyInputs, setReplyInputs] = useState({});
+    const [showReplyInput, setShowReplyInput] = useState({});
+
+
+    const handleCancelReply = (reviewId) => {
+        // Hide the reply input and button
+        setShowReplyInput((prev) => ({ ...prev, [reviewId]: false }));
+        // Clear the reply input value
+        setReplyInputs((prevInputs) => ({ ...prevInputs, [reviewId]: '' }));
+    };
+
+
+    const updateReplyInput = (reviewId, value) => {
+        setReplyInputs((prevInputs) => ({ ...prevInputs, [reviewId]: value }));
+    };
+
+    const handleReply = async (reviewId, event) => {
+        try {
+
+
+        } catch (error) {
+            console.error('Error sending reply:', error);
+
+        }
+    };
+
     return (
             <div>
                 <HeaderAdmin />
@@ -106,17 +133,35 @@ const ReviewsAdmin = () => {
                                         <div>
                                             <h3>{review.name}</h3>
                                             <span>{moment(review.date).format('MMMM DD YYYY HH:mm:ss')}</span>
-
                                         </div>
                                     </div>
                                     <p>{review.comment}</p>
-                                    {/* <div className="more-btn">
-                                        <Link to="#" className="inline-option-btn">
-                                            View more
-                                        </Link>
-                                    </div> */}
+                                <div className="reply-container">
+                                    {showReplyInput[review._id] && (
+                                        <>
+                                            <input
+                                                type="text"
+                                                placeholder="Type your reply..."
+                                                value={replyInputs[review._id] || ''}
+                                                onChange={(e) => updateReplyInput(review._id, e.target.value)}
+                                            />
+                                            <button className="reply-btn1" onClick={() => handleReply(review._id)}>
+                                                Reply
+                                            </button>
+                                            <button className="reply-btn2" onClick={() => handleCancelReply(review._id)}>
+                                                Cancel
+                                            </button>
+                                        </>
+                                    )}
+                                    {!showReplyInput[review._id] && (
+                                        <button className="reply-btn2" onClick={() => setShowReplyInput((prev) => ({ ...prev, [review._id]: true }))}>
+                                            Reply
+                                        </button>
+                                    )}
+                                </div>
                                 </div>
                             ))}
+                            
                     </div>
 
 
