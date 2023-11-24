@@ -4,6 +4,9 @@ const jwt = require('jsonwebtoken');
 const cloudinary = require('../cloudinary/cloudinary')
 const bcrypt = require('bcrypt');
 
+const ArchiveUsers = require('../models/ArchiveUsers.js');
+
+
 //Register Endpoint
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
@@ -202,6 +205,75 @@ const getUsers = async (req, res, next) => {
     }
 };
 
+const updateAccount = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const updateFields = { ...req.body };
+
+        // Remove undefined or empty values from the update object
+        Object.keys(updateFields).forEach((key) => {
+            if (updateFields[key] === undefined || updateFields[key] === '') {
+                delete updateFields[key];
+            }
+        });
+
+        // Check if an image is provided and upload it to Cloudinary
+        if (updateFields.image) {
+            try {
+                const uploadedImage = await cloudinary.uploader.upload(updateFields.image, {
+                    upload_preset: 'unsigned_upload',
+                    // public_id: `${id}avatar`,
+                    public_id: `AccountSettings/${id}avatar`, // Specify the folder structure here
+
+                    allowed_formats: ['png', 'jpg', 'jpeg', 'svg', 'ico', 'jfif', 'webp']
+                });
+
+                // Update the 'image' property in the updateFields object
+                updateFields.image = uploadedImage.secure_url;
+            } catch (uploadError) {
+                console.error('Error uploading image to Cloudinary:', uploadError);
+                return res.status(500).json({ error: 'Error uploading image to Cloudinary' });
+            }
+        } else {
+            // If no image is provided, do not update the 'image' property
+            delete updateFields.image;
+        }
+
+        // Update the user in the database
+        const updatedUser = await Admin.findByIdAndUpdate(id, updateFields, { new: true });
+
+        if (!updatedUser) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Create a new token with updated information
+        const updatedToken = jwt.sign(
+            {
+                email: updatedUser.email,
+                username: updatedUser.username,
+                id: updatedUser._id,
+                name: updatedUser.name,
+                image: updatedUser.image,
+                isManager: updatedUser.isManager,
+                isAdmin: updatedUser.isAdmin,
+            },
+            process.env.JWT_SECRET,
+            { expiresIn: '2h' }
+        );
+
+        // Send the updated token as a cookie in the response
+        res.cookie(`token`, updatedToken, {
+            secure: true,
+            httpOnly: true,
+            sameSite: 'strict',
+        }).json(updatedUser);
+
+    } catch (err) {
+        next(err);
+    }
+};
+
+
 const updateUser = async (req, res, next) => {
     try {
         const { id } = req.params;
@@ -254,66 +326,77 @@ const updateUser = async (req, res, next) => {
 };
 
 
+//ARCHIVE USERS:
+const archiveUser = async (req, res, next) => {
+    try {
+        const { id } = req.params;
 
-// const updateUser = async (req, res, next) => {
+        // Get user details before deleting
+        const userToArchive = await Admin.findById(id);
+
+        if (!userToArchive) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Create an entry in ArchiveUsers with all fields
+        const archivedUser = await ArchiveUsers.create({
+            name: userToArchive.name,
+            username: userToArchive.username,
+            email: userToArchive.email,
+            password: userToArchive.password,
+            image: userToArchive.image,
+            address: userToArchive.address,
+            birthday: userToArchive.birthday,
+            phoneNumber: userToArchive.phoneNumber,
+            sex: userToArchive.sex,
+            isAdmin: userToArchive.isAdmin,
+            isManager: userToArchive.isManager,
+            // ...
+        });
+
+        // Delete the user from Admin collection
+        await Admin.findByIdAndDelete(id);
+
+        console.log('User archived successfully:', archivedUser);
+
+        res.status(200).json({ message: 'User archived successfully', archivedUser });
+    } catch (err) {
+        console.error('Error archiving user:', err);
+        next(err);
+    }
+};
+
+// const archiveUser = async (req, res, next) => {
 //     try {
 //         const { id } = req.params;
-//         const updateFields = { ...req.body };
 
-//         // Remove undefined or empty values from the update object
-//         Object.keys(updateFields).forEach((key) => {
-//             if (updateFields[key] === undefined || updateFields[key] === '') {
-//                 delete updateFields[key];
-//             }
-//         });
+//         // Get user details before deleting
+//         const userToArchive = await Admin.findById(id);
 
-//         // Check if an image is provided and upload it to Cloudinary
-//         if (updateFields.image) {
-//             try {
-//                 const uploadedImage = await cloudinary.uploader.upload(updateFields.image, {
-//                     upload_preset: 'unsigned_upload',
-//                     public_id: `${id}avatar`,
-//                     allowed_formats: ['png', 'jpg', 'jpeg', 'svg', 'ico', 'jfif', 'webp']
-//                 });
-
-//                 // Update the 'image' property in the updateFields object
-//                 updateFields.image = uploadedImage.secure_url;
-//             } catch (uploadError) {
-//                 console.error('Error uploading image to Cloudinary:', uploadError);
-//                 return res.status(500).json({ error: 'Error uploading image to Cloudinary' });
-//             }
-//         }
-//         else {
-//             // If no image is provided, use a default image or keep the existing image
-//             // For example, you can set a default image URL or use the existing image URL from the database
-
-//             // Set a default image URL
-//             // updateFields.image = 'https://example.com/default-image.jpg';
-
-//             // or use the existing image URL from the database
-//             const existingUser = await Admin.findById(id);
-//             updateFields.image = existingUser.image;
-//         }
-
-
-//         // If password is being updated, hash the new password
-//         if (updateFields.password) {
-//             const hashedPassword = await hashPassword(updateFields.password);
-//             updateFields.password = hashedPassword;
-//         }
-
-//         // Update the user in the database
-//         const updatedUser = await Admin.findByIdAndUpdate(id, updateFields, { new: true });
-
-//         if (!updatedUser) {
+//         if (!userToArchive) {
 //             return res.status(404).json({ message: 'User not found' });
 //         }
 
-//         res.status(200).json(updatedUser);
+//         // Create an entry in ArchiveUsers
+//         const archivedUser = await ArchiveUsers.create({
+//             archivedName: userToArchive.name,
+//             archivedUsername: userToArchive.username,
+//             // Add other fields as needed
+//             // ...
+//         });
+
+//         // Delete the user from Admin collection
+//         await Admin.findByIdAndDelete(id);
+
+//         console.log('User archived successfully:', archivedUser);
+
+//         res.status(200).json({ message: 'User archived successfully', archivedUser });
 //     } catch (err) {
+//         console.error('Error archiving user:', err);
 //         next(err);
 //     }
 // };
+
 
 
 module.exports = {
@@ -322,5 +405,7 @@ module.exports = {
     getUser,
     getUsers,
     getProfile,
-    updateUser
+    updateUser,
+    updateAccount,
+    archiveUser
 }
