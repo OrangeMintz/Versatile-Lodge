@@ -40,7 +40,7 @@ const roomschema = new mongoose.Schema(
         },
 
         // remove if not needed
-        roomNumbers: [{ number: Number }, { unavailableDates: { type: [Date] } }],
+        // roomNumbers: [{ number: Number }, { unavailableDates: { type: [Date] } }],
         // remove if not needed
     },
     { timestamps: true }
