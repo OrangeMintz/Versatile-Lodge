@@ -122,6 +122,32 @@ const removeOverlappingBookings = async (req, res) => {
 };
 
 
+
+// In your controller file
+const rejectBooking = async (req, res) => {
+    try {
+        const { bookingId, roomId } = req.params;
+
+        // Update room status to "available" (or whatever status you use for available rooms)
+        const updatedRCB = await Room.findOneAndUpdate(
+            { _id: roomId, 'currentbookings.bookingid': bookingId },
+            { $set: { 'currentbookings.$.status': 'available' } }
+        );
+
+        // Update user's booking history status to "Declined"
+        const updatedBH = await BookingHistory.findOneAndUpdate(
+            { reservationId: bookingId },
+            { $set: { status: 'Declined' } }
+        );
+
+        res.status(200).json({ message: 'Booking rejected successfully' });
+    } catch (error) {
+        console.error('Error rejecting booking:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
+
 module.exports = {
     createRoom,
     deleteRoom,
@@ -129,6 +155,7 @@ module.exports = {
     getRoom,
     getRooms,
     confirmBooking,
-    removeOverlappingBookings
+    removeOverlappingBookings,
+    rejectBooking
 
 };

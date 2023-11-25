@@ -168,23 +168,23 @@ const updateStatus = async (req, res, next) => {
     }
 }
 
+// New function to reject a booking
+const rejectBooking = async (req, res) => {
+    try {
+        const { bookingId } = req.body;
 
-// const updateStatusForDeletedReservations = async (req, res) => {
-//     try {
-//         const { userIds } = req.body;
+        // Update booking history status to "Declined"
+        await BookingHistory.findOneAndUpdate(
+            { reservationId: bookingId },
+            { $set: { status: 'Declined' } }
+        );
 
-//         // Update booking history status for deleted reservations
-//         await BookingHistory.updateMany(
-//             { userId: { $in: userIds }, status: 'Pending' }, // Update only 'Pending' reservations
-//             { $set: { status: 'Room Taken' } }
-//         );
-
-//         res.status(200).json({ message: 'Booking history status updated for deleted reservations' });
-//     } catch (error) {
-//         console.error('Error updating booking history status for deleted reservations:', error);
-//         res.status(500).json({ error: 'Internal server error' });
-//     }
-// };
+        res.status(200).json({ message: 'Booking rejected successfully' });
+    } catch (error) {
+        console.error('Error rejecting booking:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
 
 
 module.exports = {
@@ -194,5 +194,6 @@ module.exports = {
     getBookHistoryByUserId,
     updateBookingHistory,
     acceptBooking,
-    updateStatus
+    updateStatus,
+    rejectBooking
 };
