@@ -64,3 +64,54 @@
     font-size: 14px; 
 }
 
+.contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.contact .row {
+    background-color: var(--main-color);
+    display: flex;
+    border-radius: 5px;
+    text-align: center;   
+    border: 1px solid var(--branch-color);
+}
+.contact .row h3 {
+    font-size: 2.5rem;
+    padding: 1rem 2rem;
+    text-align: center;
+    background-color: var(--branch-color);
+    color: var(--main-color);
+
+}
+
+.contact .row .boxArea {
+    border-bottom: 1px solid var(--white);
+    width: 100%;
+    background-color: var(--main-color);
+    padding: 1rem 2rem;
+    color: var(--white);
+
+}
+
+.contact .row .boxArea::placeholder {
+    font-size: 1.5rem;
+    color: var(--branch-color);
+} 
+
+.contact .row .reviewBtn {
+    font-size: 1.8rem;
+    color: var(--main-color);
+    background-color: var(--branch-color);
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 1rem;
+    transition: .2s linear;
+}
+
+.contact .row .reviewBtn:hover {
+    color: var(--branch-color);
+    background: var(--main-color);
+    outline: 1px solid var(--branch-color);
+}
