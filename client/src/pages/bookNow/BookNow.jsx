@@ -12,6 +12,10 @@ import moment from 'moment';
 import Error from '../../component/Error';
 import { toast } from 'react-hot-toast'
 
+import { v4 as uuidv4 } from 'uuid';
+
+
+
 const BookNow = () => {
     const navigate = useNavigate();
     const { id, fromDate, toDate } = useParams();
@@ -24,6 +28,9 @@ const BookNow = () => {
     const totalDays = isValidDates ? moment(toDate).diff(moment(fromDate), 'days') + 1 : 0;
     const totalAmount = totalDays * data.price;
 
+    //WILL HAVE THE SAME ID FOR BOOKINGS, HISTORY AND ROOM BOOKING
+    const uuid = uuidv4();
+
     async function bookRoom() {
         const bookingDetails = {
             room: data.name,
@@ -34,6 +41,7 @@ const BookNow = () => {
             toDate,
             totalAmount,
             totalDays,
+            transactionId: uuid
         }
 
         try {
@@ -52,6 +60,7 @@ const BookNow = () => {
                 roomName: data.name,
                 branch: data.branch,
                 price: data.price,
+                transactionId: uuid
             });
 
             navigate('/'); // Redirect to the homepage after booking

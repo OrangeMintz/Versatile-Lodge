@@ -76,7 +76,7 @@ const BookingHistory = () => {
 
   //CAN NO LONGER CANCEL
   const isCancelButtonDisabled = (bookingDate) => {
-    const cancelDeadline = moment(bookingDate).add(5, 'minutes');
+    const cancelDeadline = moment(bookingDate).add(5, 'hours');
     return moment().isAfter(cancelDeadline);
   };
 
@@ -130,6 +130,7 @@ const BookingHistory = () => {
                     <th>End Date</th>
                     <th>Amount</th>
                     <th>Status</th>
+                    <th>Transaction ID:</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -145,6 +146,7 @@ const BookingHistory = () => {
                         {`₱${Math.max(1, moment(booking.checkOutDate).diff(moment(booking.checkInDate), 'days') + 1) * booking.price}`}
                       </td>
                       <td>{booking.status}</td>
+                      <td>{booking.transactionId}</td>
                       <td>
                         <button
                           className={`btnCancel${isCancelButtonDisabled(booking.bookingDate) ? ' btndisabled' : ''}`}
@@ -155,8 +157,6 @@ const BookingHistory = () => {
                         {/* <button className='btnCancel' onClick={() => handleCancelBooking(booking._id)} disabled={isCancelButtonDisabled(booking.bookingDate)}>
                           Cancel
                         </button> */}
-
-
                       </td>
                     </tr>
                   ))}

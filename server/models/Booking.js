@@ -43,7 +43,7 @@ const bookingSchema = new mongoose.Schema({
     },
 
     //Remove if not needed
-    transaction_id: {
+    transactionId: {
         type: String,
     },
     //Remove if not needed

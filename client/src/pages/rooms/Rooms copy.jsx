@@ -13,10 +13,11 @@ import { DatePicker } from 'antd';
 
 
 
+
 const Rooms = () => {
     const { RangePicker } = DatePicker;
     const [searchTerm, setSearchTerm] = useState("");
-    const { data, loading, error, reFetch } = useFetch("http://localhost:8000/api/room/");
+    const { data, loading, error, reFetch } = useFetch("/api/room/");
     const { user, setUser } = useContext(UserContext);
     const [fromDate, setfromDate] = useState();
     const [toDate, settoDate] = useState();
@@ -49,8 +50,14 @@ const Rooms = () => {
             );
 
             const isBranchMatched = selectedBranch === 'All' || room.branch === selectedBranch;
+            const isRoomAvailable = !room.unavailable; // Check the 'unavailable' property
+            const isRoomBooked = room.currentbookings.some(booking => booking.status === 'booked');
 
-            return isDateAvailable && isBranchMatched;
+
+            // return isDateAvailable && isBranchMatched && isRoomAvailable;
+            return isDateAvailable && isBranchMatched && isRoomAvailable && !isRoomBooked;
+
+
         });
 
         setduplicateroom(availableRooms);
@@ -61,17 +68,32 @@ const Rooms = () => {
         setfromDate(null);
         settoDate(null);
 
+        // Reset the search input field to an empty string whenever the branch is changed
+        setSearchTerm("");
+
         const filteredRooms = originalData.filter(room => {
-            return branch === 'All' || room.branch === branch;
+            const isRoomAvailable = !room.unavailable; // Check the 'unavailable' property
+
+            return branch === 'All' || (room.branch === branch && isRoomAvailable);
+
+
+
         });
 
         setduplicateroom(filteredRooms);
     }
 
     function filterBySearch(value) {
+        // Reset the branch to 'All' whenever a keyword is typed in the search input
+        const branchSelect = document.querySelector('[name="branch"]');
+        branchSelect.value = 'All';
+
         const filteredRooms = originalData.filter(room => {
             const isNameMatched = room.name.toLowerCase().includes(value.toLowerCase());
             const isPriceMatched = room.price.toString().includes(value);
+            const isRoomAvailable = !room.unavailable; // Check the 'unavailable' property
+
+
 
             // Check if the room is booked during the selected date range
             const isBookedDuringDateRange = (
@@ -85,11 +107,21 @@ const Rooms = () => {
                 )
             );
 
-            return (isNameMatched || isPriceMatched) && !isBookedDuringDateRange;
+            return (isNameMatched || isPriceMatched) && !isBookedDuringDateRange && isRoomAvailable;
+
         });
 
         setduplicateroom(filteredRooms);
     }
+
+    useEffect(() => {
+        // Set both originalData and duplicateroom when the main data changes
+        setOriginalData(data);
+
+        // Filter out unavailable rooms by default
+        const availableRooms = data.filter(room => !room.unavailable);
+        setduplicateroom(availableRooms);
+    }, [data]);
 
     useEffect(() => {
         if (!user) {
@@ -104,9 +136,12 @@ const Rooms = () => {
         }
     }, [user, setUser]);
 
+
+
+
     return (
         <>
-            {/* ... (your Navbar component) */}
+            <Navbar />
             <section className="rooms">
                 <h1>--- Explore Our Rooms ---</h1>
                 <div className="flex">
@@ -138,7 +173,8 @@ const Rooms = () => {
                     </form>
                 </div>
                 <div className="card-container">
-                    {loading ? (<h1>Loading...</h1>) : error ? (<Error />)
+                    {loading ? (<h1><Loader /></h1>) : error ? (<Error />)
+
                         : (
                             duplicateroom
                                 .slice()

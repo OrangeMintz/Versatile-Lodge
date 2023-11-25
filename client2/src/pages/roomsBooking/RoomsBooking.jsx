@@ -186,7 +186,9 @@ const RoomsBooking = () => {
                                     <p className='sub'>Max People: {room.maxPeople}</p>
                                     <span className='sub'>Start Date: {reservedBooking.fromDate}</span>
                                     <span className='sub'>End Date: {reservedBooking.toDate}</span>
-                                    <p className='sub'>User ID: {reservedBooking.userId}</p>
+                                    <p className='sub'>Total Ammount: ₱{reservedBooking.totalAmount}</p>
+                                    <p className='sub' style={{ fontWeight: "bold", fontStyle: 'normal' }}>{reservedBooking.transactionId}</p>
+
 
                                 </div>
                                 <div className="roomButtons">

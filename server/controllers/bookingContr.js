@@ -17,7 +17,10 @@ const createBooking = async (req, res, next) => {
             fromDate: savedBooking.fromDate,
             toDate: savedBooking.toDate,
             userId: savedBooking.user_id,
-            status: savedBooking.status
+            status: savedBooking.status,
+            totalAmount: savedBooking.totalAmount,
+            transactionId: savedBooking.transactionId
+
         });
 
         await roomTemp.save()

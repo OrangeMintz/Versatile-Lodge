@@ -73,13 +73,14 @@ const confirmBooking = async (req, res) => {
         // console.log(bookingId)
         // console.log(roomId)
 
+
         // Update room status to "booked"
         const updatedRCB = await Room.findOneAndUpdate(
             { _id: roomId, 'currentbookings.bookingid': bookingId },
             { $set: { 'currentbookings.$.status': 'booked' } }
 
         );
-        console.log(`ROOM`, updatedRCB);
+        // console.log(`ROOM`, updatedRCB);
         // const foundRoomByBookingId = await Room.findOne({ 'currentbookings.bookingid': bookingId });
         // console.log('Found Room By Booking Id:', foundRoomByBookingId);
 
@@ -100,35 +101,12 @@ const confirmBooking = async (req, res) => {
 };
 
 
-const removeOverlappingBookings = async (req, res) => {
-    try {
-        const { roomId } = req.params;
-        const { bookingIds } = req.body;
-
-        // Fetch the room
-        const room = await Room.findById(roomId);
-
-        // Remove overlapping bookings
-        room.currentbookings = room.currentbookings.filter(booking => !bookingIds.includes(booking.bookingid));
-
-        // Save the updated room
-        await room.save();
-
-        res.status(200).json({ message: 'Overlapping bookings removed successfully' });
-    } catch (error) {
-        console.error('Error removing overlapping bookings:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-};
-
-
 module.exports = {
     createRoom,
     deleteRoom,
     updateRoom,
     getRoom,
     getRooms,
-    confirmBooking,
-    removeOverlappingBookings
+    confirmBooking
 
 };

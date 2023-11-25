@@ -122,7 +122,7 @@ const Reviews = () => {
         const validBooking = userBooking.find(
             (booking) =>
                 booking.user_id === user.id &&
-                booking.status === 'booked' &&
+                booking.status === 'reserved' &&
                 (moment(booking.toDate).isSameOrBefore(moment(), 'day') ||
                     moment(booking.toDate).isSame(moment(), 'day'))
         );
@@ -157,34 +157,34 @@ const Reviews = () => {
                     ))}
             </div>
 
-            {hasValidBooking() && !userReview && (
-                <section className="contact" id="contact" style={{ marginTop: '100px' }}>
-                    <div className="row">
-                        <form onSubmit={handleSubmit}>
-                            <h3>Send Us A Review</h3>
-                            <textarea
-                                name="msg"
-                                className="box"
-                                required
-                                maxLength="1000"
-                                placeholder="enter your message"
-                                value={comment}
-                                onChange={(e) => setComment(e.target.value)}
-                                cols="30"
-                                rows="10"
-                                style={{
-                                    background: '#DCC69C',
-                                    color: '#2B1103',
-                                    padding: '1em',
-                                    borderRadius: '5px',
-                                    height: '250px',
-                                }}
-                            ></textarea>
-                            <input type="submit" value="send message" name="send" className="btn" />
-                        </form>
-                    </div>
-                </section>
-            )}
+            {/* {hasValidBooking() && !userReview && ( */}
+            <section className="contact" id="contact" style={{ marginTop: '100px' }}>
+                <div className="row">
+                    <form onSubmit={handleSubmit}>
+                        <h3>Send Us A Review</h3>
+                        <textarea
+                            name="msg"
+                            className="box"
+                            required
+                            maxLength="1000"
+                            placeholder="enter your message"
+                            value={comment}
+                            onChange={(e) => setComment(e.target.value)}
+                            cols="30"
+                            rows="10"
+                            style={{
+                                background: '#DCC69C',
+                                color: '#2B1103',
+                                padding: '1em',
+                                borderRadius: '5px',
+                                height: '250px',
+                            }}
+                        ></textarea>
+                        <input type="submit" value="send message" name="send" className="btn" />
+                    </form>
+                </div>
+            </section>
+            {/* )} */}
             <Footer />
         </div>
     );
