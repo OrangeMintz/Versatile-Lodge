@@ -205,8 +205,8 @@ const EmployeeEditModal = ({ open, onClose, userId }) => {
                                 // Only allow numeric characters and limit to 11 digits
                                 const phoneNumber = e.target.value.replace(/\D/g, '').slice(0, 11);
                                 setData({ ...data, phoneNumber });
-                            }}
-                            />                            <select name="role" required value={role} onChange={(e) => setRole(e.target.value)} >
+                            }} />
+                            <select name="role" required value={role} onChange={(e) => setRole(e.target.value)} >
                                 <option value="" defaultValue disabled> -- Select Role -- </option>
                                 <option value="Admin">Admin</option>
                                 <option value="Manager">Manager</option>

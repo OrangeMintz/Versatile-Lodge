@@ -79,7 +79,7 @@ const confirmBooking = async (req, res) => {
             { $set: { 'currentbookings.$.status': 'booked' } }
 
         );
-        console.log(`ROOM`, updatedRCB);
+        // console.log(`ROOM`, updatedRCB);
         // const foundRoomByBookingId = await Room.findOne({ 'currentbookings.bookingid': bookingId });
         // console.log('Found Room By Booking Id:', foundRoomByBookingId);
 
@@ -92,7 +92,7 @@ const confirmBooking = async (req, res) => {
 
         // console.log(`BH`, updatedBH)
 
-        res.status(200).json({ message: 'Booking confirmed successfully ROOMCONTROLLER' });
+        res.status(200).json({ message: 'Booking confirmed successfully' });
     } catch (error) {
         console.error('Error confirming booking:', error);
         res.status(500).json({ error: 'Internal server error' });
@@ -122,6 +122,32 @@ const removeOverlappingBookings = async (req, res) => {
 };
 
 
+
+const rejectBooking = async (req, res) => {
+    try {
+        const { bookingId, roomId } = req.params;
+
+        // Remove the booking from the currentbookings array
+        const updatedRCB = await Room.findOneAndUpdate(
+            { _id: roomId },
+            { $pull: { currentbookings: { bookingid: bookingId } } },
+            { new: true }
+        );
+
+        // Update user's booking history status to "Declined"
+        const updatedBH = await BookingHistory.findOneAndUpdate(
+            { reservationId: bookingId },
+            { $set: { status: 'Declined' } }
+        );
+
+        res.status(200).json({ message: 'Booking rejected successfully' });
+    } catch (error) {
+        console.error('Error rejecting booking:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
+
 module.exports = {
     createRoom,
     deleteRoom,
@@ -129,6 +155,7 @@ module.exports = {
     getRoom,
     getRooms,
     confirmBooking,
-    removeOverlappingBookings
+    removeOverlappingBookings,
+    rejectBooking
 
 };
