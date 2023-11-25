@@ -188,7 +188,7 @@ const RoomsReserved = () => {
             // Auto-delete overlapping reservations
             if (overlappingReservations.length > 0) {
                 const bookingsToRemove = overlappingReservations.map(booking => booking.bookingid);
-                await axios.put(`/api/bookingHistory/`, { userIds: overlappingReservations.map(booking => booking.userId) });
+                await axios.put(`/api/bookingHistory/updateStatus`, { userIds: overlappingReservations.map(booking => booking.userId) });
                 await axios.put(`/api/room/${roomId}/removeOverlappingBookings`, { bookingIds: bookingsToRemove });
             }
 
@@ -202,6 +202,27 @@ const RoomsReserved = () => {
         }
     };
 
+
+
+    const handleReject = async (roomId, bookingid, userId) => {
+        console.log('Room ID:', roomId);
+        console.log('Booking ID:', bookingid);
+        console.log('User ID:', userId);
+
+        try {
+            // Update room status to "available" (or whatever status you use for available rooms)
+            await axios.put(`/api/room/${roomId}/rejectBooking/${bookingid}`);
+
+            // Update user's booking history status to "Declined"
+            await axios.put(`/api/bookingHistory/rejectBooking`, { bookingId: bookingid });
+
+            // Refresh the page or update the state to reflect changes
+            window.location.reload();
+        } catch (error) {
+            console.error('Error rejecting booking:', error);
+            toast.error('Error rejecting booking. Please try again.');
+        }
+    };
 
     return (
         <div>
@@ -246,7 +267,7 @@ const RoomsReserved = () => {
                                 <div className="roomButtons">
                                     {/* <button className="roomBtn"><span className='fa-solid fa-pencil'></span></button> */}
                                     {/* <div className="roomReservedContainer"> */}
-                                    <button className="roomReserved">Reject</button>
+                                    <button className="roomReserved" onClick={() => handleReject(room._id, reservedBooking.bookingid, reservedBooking.userId)}>Reject</button>
                                     {/* <button className="roomReserved" >Confirm</button> */}
                                     <button className="roomReserved" onClick={() => handleConfirm(room._id, reservedBooking.bookingid, reservedBooking.userId)}>Confirm</button>
                                     <button className="roomBtn-archive"><span className='fa-solid fa-trash'></span></button>
