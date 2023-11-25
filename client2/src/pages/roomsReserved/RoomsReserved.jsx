@@ -89,8 +89,12 @@ const RoomsReserved = () => {
         const maxPeopleMatch = room.maxPeople.toString().includes(searchTerm);
         const priceMatch = room.price.toString().includes(searchTerm);
 
+        // Check if any of the reserved bookings have a matching transactionId
+        const hasMatchingTransactionId = room.currentbookings.some(booking =>
+            booking.status === 'reserved' && booking.transactionId.toLowerCase().includes(searchTerm.toLowerCase())
+        );
 
-        return branchMatch && (nameMatch || maxPeopleMatch || priceMatch) || transactionId;
+        return branchMatch && (nameMatch || maxPeopleMatch || priceMatch || hasMatchingTransactionId);
     };
 
     const filteredAndSearchedRooms = data.flatMap(room => {
@@ -188,7 +192,7 @@ const RoomsReserved = () => {
                 await axios.put(`/api/room/${roomId}/removeOverlappingBookings`, { bookingIds: bookingsToRemove });
             }
 
-            // window.location.reload();
+            window.location.reload();
 
 
             // Refresh the page or update the state to reflect changes
