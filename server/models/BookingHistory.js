@@ -42,11 +42,19 @@ const bookingHistorySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
+  transactionId: {
+    type: String,
+    required: true,
+  },
+
   status: {
     type: String,
     required: true,
     default: 'Pending', // Initial status, you can update it accordingly
   },
+
+
 }, { timestamps: true });
 
 module.exports = mongoose.model('BookingHistory', bookingHistorySchema);

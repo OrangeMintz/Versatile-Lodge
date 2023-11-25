@@ -5,7 +5,6 @@
   "type": "module",
   "scripts": {
     "start": "vite --port 3000",
-
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
@@ -24,7 +23,8 @@
     "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.17.0",
     "react-spinners": "^0.13.8",
-    "swiper": "^10.3.1"
+    "swiper": "^10.3.1",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

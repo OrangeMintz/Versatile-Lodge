@@ -11,6 +11,7 @@ import toast from 'react-hot-toast';
 import Loader from '../../components/Loader';
 import Error from '../../components/Error';
 import moment from 'moment';
+import AdminChangePassModal from '../../components/AdminChangePassModal';
 
 const RoomsReserved = () => {
     const navigate = useNavigate();
@@ -106,8 +107,6 @@ const RoomsReserved = () => {
     }).filter(({ room }) => filterRooms(room));
 
 
-
-
     //ROOMS AUTO DELETE RESERVATION
     // Function to automatically delete bookings with toDate in the past
     const autoDeleteBookings = async () => {
@@ -135,6 +134,10 @@ const RoomsReserved = () => {
         }
     };
 
+
+
+
+
     // Run auto-delete function on component mount
     useEffect(() => {
         autoDeleteBookings();
@@ -151,9 +154,8 @@ const RoomsReserved = () => {
     }, []);
 
 
-
-
     const handleConfirm = async (roomId, bookingid, userId) => {
+
         console.log('Room ID:', roomId);
         console.log('Booking ID:', bookingid);
         console.log('User ID:', userId);
@@ -161,36 +163,11 @@ const RoomsReserved = () => {
         try {
             // Update room status to "booked"
             await axios.put(`/api/room/${roomId}/confirmBooking/${bookingid}`);
-
-            // Fetch the updated room data
-            const response = await axios.get(`/api/room/${roomId}`);
-            const room = response.data;
-
-            // Find the confirmed booking
-            const confirmedBooking = room.currentbookings.find(booking => booking.bookingid === bookingid);
-
-            // Filter out overlapping reservations with status 'reserved'
-            const overlappingReservations = room.currentbookings.filter(booking => {
-                return (
-                    booking.status === 'reserved' &&
-                    (
-                        // Check if fromDate and toDate are the same
-                        (booking.fromDate === confirmedBooking.fromDate && booking.toDate === confirmedBooking.toDate) ||
-                        // Check for overlapping dates
-                        (moment(booking.toDate, 'MM-DD-YYYY').isSameOrAfter(moment(confirmedBooking.fromDate, 'MM-DD-YYYY')) &&
-                            moment(booking.fromDate, 'MM-DD-YYYY').isSameOrBefore(moment(confirmedBooking.toDate, 'MM-DD-YYYY')))
-                    )
-                );
-            });
-
-            // Auto-delete overlapping reservations
-            if (overlappingReservations.length > 0) {
-                const bookingsToRemove = overlappingReservations.map(booking => booking.bookingid);
-                await axios.put(`/api/room/${roomId}/removeOverlappingBookings`, { bookingIds: bookingsToRemove });
-            }
-
             window.location.reload();
 
+
+            // Update user's booking history status to "Accepted"
+            // await axios.put(`http://localhost:8000/api/bookingHistory/${userId}/acceptBooking/${bookingId}`);
 
             // Refresh the page or update the state to reflect changes
         } catch (error) {

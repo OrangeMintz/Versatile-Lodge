@@ -152,7 +152,6 @@ const RoomsReserved = () => {
 
 
 
-
     const handleConfirm = async (roomId, bookingid, userId) => {
         console.log('Room ID:', roomId);
         console.log('Booking ID:', bookingid);
@@ -169,17 +168,12 @@ const RoomsReserved = () => {
             // Find the confirmed booking
             const confirmedBooking = room.currentbookings.find(booking => booking.bookingid === bookingid);
 
-            // Filter out overlapping reservations with status 'reserved'
+            // Filter out overlapping reservations with status 'reserved' and 'booked'
             const overlappingReservations = room.currentbookings.filter(booking => {
                 return (
-                    booking.status === 'reserved' &&
-                    (
-                        // Check if fromDate and toDate are the same
-                        (booking.fromDate === confirmedBooking.fromDate && booking.toDate === confirmedBooking.toDate) ||
-                        // Check for overlapping dates
-                        (moment(booking.toDate, 'MM-DD-YYYY').isSameOrAfter(moment(confirmedBooking.fromDate, 'MM-DD-YYYY')) &&
-                            moment(booking.fromDate, 'MM-DD-YYYY').isSameOrBefore(moment(confirmedBooking.toDate, 'MM-DD-YYYY')))
-                    )
+                    (booking.status === 'reserved' || booking.status === 'booked') &&
+                    moment(booking.toDate, 'MM-DD-YYYY').isAfter(moment(confirmedBooking.fromDate, 'MM-DD-YYYY')) &&
+                    moment(booking.fromDate, 'MM-DD-YYYY').isBefore(moment(confirmedBooking.toDate, 'MM-DD-YYYY'))
                 );
             });
 
@@ -189,15 +183,101 @@ const RoomsReserved = () => {
                 await axios.put(`/api/room/${roomId}/removeOverlappingBookings`, { bookingIds: bookingsToRemove });
             }
 
-            window.location.reload();
-
-
             // Refresh the page or update the state to reflect changes
+            window.location.reload();
         } catch (error) {
             console.error('Error confirming booking:', error);
             toast.error('Error confirming booking. Please try again.');
         }
     };
+
+
+
+
+    // const handleConfirm = async (roomId, bookingid, userId) => {
+    //     console.log('Room ID:', roomId);
+    //     console.log('Booking ID:', bookingid);
+    //     console.log('User ID:', userId);
+
+    //     try {
+    //         // Update room status to "booked"
+    //         await axios.put(`/api/room/${roomId}/confirmBooking/${bookingid}`);
+    //         // window.location.reload();
+
+    //         // Fetch the updated room data
+    //         const response = await axios.get(`/api/room/${roomId}`);
+    //         const room = response.data;
+
+    //         // Find the confirmed booking
+    //         const confirmedBooking = room.currentbookings.find(booking => booking.bookingid === bookingid);
+
+    //         // Filter out overlapping reservations with status 'reserved'
+    //         const overlappingReservations = room.currentbookings.filter(booking => {
+    //             return (
+    //                 booking.status === 'reserved' &&
+    //                 moment(booking.toDate, 'MM-DD-YYYY').isAfter(moment(confirmedBooking.fromDate, 'MM-DD-YYYY')) &&
+    //                 moment(booking.fromDate, 'MM-DD-YYYY').isBefore(moment(confirmedBooking.toDate, 'MM-DD-YYYY'))
+    //             );
+    //         });
+
+    //         // Auto-delete overlapping reservations
+    //         if (overlappingReservations.length > 0) {
+    //             const bookingsToRemove = overlappingReservations.map(booking => booking.bookingid);
+
+    //             // Update booking history status for users whose reservations are being deleted
+    //             await axios.put(`/api/bookingHistory/updateStatusForDeletedReservations`, { userIds: overlappingReservations.map(booking => booking.userId) });
+
+    //             // Remove overlapping reservations
+    //             await axios.put(`/api/room/${roomId}/removeOverlappingBookings`, { bookingIds: bookingsToRemove });
+    //         }
+
+    //         // Refresh the page or update the state to reflect changes
+    //     } catch (error) {
+    //         console.error('Error confirming booking:', error);
+    //         toast.error('Error confirming booking. Please try again.');
+    //     }
+    // };
+
+
+
+    // const handleConfirm = async (roomId, bookingid, userId) => {
+    //     console.log('Room ID:', roomId);
+    //     console.log('Booking ID:', bookingid);
+    //     console.log('User ID:', userId);
+
+    //     try {
+    //         // Update room status to "booked"
+    //         await axios.put(`/api/room/${roomId}/confirmBooking/${bookingid}`);
+    //         // window.location.reload();
+
+    //         // Fetch the updated room data
+    //         const response = await axios.get(`/api/room/${roomId}`);
+    //         const room = response.data;
+
+    //         // Find the confirmed booking
+    //         const confirmedBooking = room.currentbookings.find(booking => booking.bookingid === bookingid);
+
+    //         // Filter out overlapping reservations with status 'reserved'
+    //         const overlappingReservations = room.currentbookings.filter(booking => {
+    //             return (
+    //                 booking.status === 'reserved' &&
+    //                 moment(booking.toDate, 'MM-DD-YYYY').isAfter(moment(confirmedBooking.fromDate, 'MM-DD-YYYY')) &&
+    //                 moment(booking.fromDate, 'MM-DD-YYYY').isBefore(moment(confirmedBooking.toDate, 'MM-DD-YYYY'))
+    //             );
+    //         });
+
+    //         // Auto-delete overlapping reservations
+    //         if (overlappingReservations.length > 0) {
+    //             const bookingsToRemove = overlappingReservations.map(booking => booking.bookingid);
+    //             await axios.put(`/api/room/${roomId}/removeOverlappingBookings`, { bookingIds: bookingsToRemove });
+    //         }
+
+    //         // Refresh the page or update the state to reflect changes
+    //     } catch (error) {
+    //         console.error('Error confirming booking:', error);
+    //         toast.error('Error confirming booking. Please try again.');
+    //     }
+    // };
 
 
     return (

@@ -32,10 +32,13 @@ const roomschema = new mongoose.Schema(
         currentbookings: [
             {
                 bookingid: String,
+                tempDate: String,
                 fromDate: String,
                 toDate: String,
                 userId: String,
                 status: String,
+                totalAmount: String,
+                transactionId: String
             },
         ],
 

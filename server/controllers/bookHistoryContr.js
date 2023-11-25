@@ -1,11 +1,13 @@
 const BookingHistory = require("../models/BookingHistory.js");
 const Room = require("../models/Room.js");
 const Booking = require("../models/Booking.js");
-
 const createError = require('../utils/error.js');
 
+
+
+
 const createBookingHistory = async (req, res, next) => {
-    const { user_id, reservation_id, fromDate, toDate, roomName, branch, price, room_id } = req.body;
+    const { user_id, reservation_id, fromDate, toDate, roomName, branch, price, room_id, transactionId } = req.body;
 
     try {
         const newHistory = new BookingHistory({
@@ -17,6 +19,7 @@ const createBookingHistory = async (req, res, next) => {
             roomName: roomName,
             branch: branch,
             price: price,
+            transactionId: transactionId
         });
 
         const savedHistory = await newHistory.save();
@@ -148,6 +151,23 @@ const acceptBooking = async (req, res) => {
 
 
 
+// const updateStatusForDeletedReservations = async (req, res) => {
+//     try {
+//         const { userIds } = req.body;
+
+//         // Update booking history status for deleted reservations
+//         await BookingHistory.updateMany(
+//             { userId: { $in: userIds }, status: 'Pending' }, // Update only 'Pending' reservations
+//             { $set: { status: 'Room Taken' } }
+//         );
+
+//         res.status(200).json({ message: 'Booking history status updated for deleted reservations' });
+//     } catch (error) {
+//         console.error('Error updating booking history status for deleted reservations:', error);
+//         res.status(500).json({ error: 'Internal server error' });
+//     }
+// };
+
 
 
 module.exports = {
@@ -156,5 +176,6 @@ module.exports = {
     getBookHistory,
     getBookHistoryByUserId,
     updateBookingHistory,
-    acceptBooking
+    acceptBooking,
+    // updateStatusForDeletedReservations
 };

@@ -79,34 +79,39 @@ const Rooms = () => {
         setduplicateroom(filteredRooms);
     }
 
-    function filterBySearch(value) {
-        // Reset the branch to 'All' whenever a keyword is typed in the search input
-        const branchSelect = document.querySelector('[name="branch"]');
-        branchSelect.value = 'All';
+    function filterByDate(dates) {
+        const fromDate = dates[0]?.format('MM-DD-YYYY');
+        const toDate = dates[1]?.format('MM-DD-YYYY');
+        setfromDate(fromDate);
+        settoDate(toDate);
 
-        const filteredRooms = originalData.filter(room => {
-            const isNameMatched = room.name.toLowerCase().includes(value.toLowerCase());
-            const isPriceMatched = room.price.toString().includes(value);
-            const isRoomAvailable = !room.unavailable; // Check the 'unavailable' property
+        const selectedBranch = document.querySelector('[name="branch"]').value;
 
+        const availableRooms = originalData.filter(room => {
+            const isDateAvailable = (
+                room.currentbookings.length === 0 ||
+                !room.currentbookings.some(booking => {
+                    const isBooked = booking.status === 'booked';
 
-            // Check if the room is booked during the selected date range
-            const isBookedDuringDateRange = (
-                fromDate &&
-                toDate &&
-                room.currentbookings.some(booking =>
-                    moment(fromDate).isBetween(booking.fromDate, booking.toDate, null, '[]') ||
-                    moment(toDate).isBetween(booking.fromDate, booking.toDate, null, '[]') ||
-                    moment(booking.fromDate).isBetween(fromDate, toDate, null, '[]') ||
-                    moment(booking.toDate).isBetween(fromDate, toDate, null, '[]')
-                )
+                    if (isBooked) {
+                        // If the booking is 'booked', filter out rooms with overlapping dates
+                        return moment(fromDate).isBetween(booking.fromDate, booking.toDate, null, '[]') ||
+                            moment(toDate).isBetween(booking.fromDate, booking.toDate, null, '[]') ||
+                            moment(booking.fromDate).isBetween(fromDate, toDate, null, '[]') ||
+                            moment(booking.toDate).isBetween(fromDate, toDate, null, '[]');
+                    }
+
+                    return false;
+                })
             );
 
-            return (isNameMatched || isPriceMatched) && !isBookedDuringDateRange && isRoomAvailable;
+            const isBranchMatched = selectedBranch === 'All' || room.branch === selectedBranch;
+            const isRoomAvailable = !room.unavailable; // Check the 'unavailable' property
 
+            return isDateAvailable && isBranchMatched && isRoomAvailable;
         });
 
-        setduplicateroom(filteredRooms);
+        setduplicateroom(availableRooms);
     }
 
     useEffect(() => {
@@ -151,7 +156,13 @@ const Rooms = () => {
                         </div>
                     </form>
                     <div className='box'>
-                        <RangePicker className='range-picker' format='MM-DD-YYYY' onChange={filterByDate} />
+                        {/* <RangePicker className='range-picker' format='MM-DD-YYYY' onChange={filterByDate} /> */}
+                        <RangePicker
+                            className='range-picker'
+                            format='MM-DD-YYYY'
+                            onChange={filterByDate}
+                            disabledDate={(current) => current && current < moment().startOf('day')}
+                        />
                     </div>
                     <form className="search-form">
                         <input

@@ -16,7 +16,7 @@ import 'leaflet/dist/leaflet.css';
 
 const Contact = () => {
 
-    //GOOGLE MAP API
+    // // GOOGLE MAP API
     // const mapContainerStyle = {
     //     width: "100%",
     //     height: '600px',
@@ -33,7 +33,7 @@ const Contact = () => {
     //     { lat: 8.142743226351817, lng: 125.12743448393374 }, // Another location
     //     { lat: 7.758363209056108, lng: 125.00179601085193 }, // Another location
     // ];
-    //GOOGLE MAP API
+    // GOOGLE MAP API
 
 
     const center = [7.917101367126545, 125.08983695765984];
@@ -92,7 +92,7 @@ const Contact = () => {
 
             </section >
 
-            <FAQ/>
+            <FAQ />
 
             <Footer />
         </div >

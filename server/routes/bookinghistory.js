@@ -1,5 +1,5 @@
 const express = require('express');
-const { createBookingHistory, deleteBookHistory, getBookHistory, getBookHistoryByUserId, updateBookingHistory, acceptBooking } = require('../controllers/bookHistoryContr.js');
+const { createBookingHistory, deleteBookHistory, getBookHistory, getBookHistoryByUserId, updateBookingHistory, acceptBooking, updateStatusForDeletedReservations } = require('../controllers/bookHistoryContr.js');
 
 const BookingHistory = require("../models/BookingHistory.js");
 // const { verifyAdmin, verifyUser } = require('../utils/verifyToken.js');
@@ -21,6 +21,9 @@ router.get("/", getBookHistory);
 router.get("/:id", getBookHistoryByUserId);
 
 router.put("/:userId/acceptBooking/:bookingId", acceptBooking);
+
+
+// router.put('/updateStatusForDeletedReservations', updateStatusForDeletedReservations);
 
 
 

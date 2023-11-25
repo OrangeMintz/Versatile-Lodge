@@ -3,7 +3,7 @@ import PulseLoader from 'react-spinners/PulseLoader';
 
 function Loader() {
     const [loading, setLoading] = useState(true);
-    const [color, setColor] = useState('#2B1103');
+    const [color, setColor] = useState('var(--main-color)');
 
     return (
         <div style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh' }}>
