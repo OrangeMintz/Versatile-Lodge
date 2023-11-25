@@ -161,26 +161,19 @@ const Reviews = () => {
             <section className="contact" id="contact" style={{ marginTop: '100px' }}>
                 <div className="row">
                     <form onSubmit={handleSubmit}>
-                        <h3>Send Us A Review</h3>
+                        <h3>Send Us Review</h3>
                         <textarea
                             name="msg"
-                            className="box"
+                            className="boxArea"
                             required
                             maxLength="1000"
                             placeholder="enter your message"
                             value={comment}
                             onChange={(e) => setComment(e.target.value)}
                             cols="30"
-                            rows="10"
-                            style={{
-                                background: '#DCC69C',
-                                color: '#2B1103',
-                                padding: '1em',
-                                borderRadius: '5px',
-                                height: '250px',
-                            }}
+                            rows="15"
                         ></textarea>
-                        <input type="submit" value="send message" name="send" className="btn" />
+                        <input type="submit" value="Send Message" name="send" className="reviewBtn" />
                     </form>
                 </div>
             </section>
