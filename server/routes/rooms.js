@@ -1,5 +1,5 @@
 const express = require('express');
-const { createRoom, deleteRoom, updateRoom, getRoom, getRooms, confirmBooking, removeOverlappingBookings } = require('../controllers/roomContr.js');
+const { createRoom, deleteRoom, updateRoom, getRoom, getRooms, confirmBooking, removeOverlappingBookings, rejectBooking } = require('../controllers/roomContr.js');
 
 const Room = require("../models/Room.js");
 const { verifyAdmin, verifyUser } = require('../utils/verifyToken.js');
@@ -8,9 +8,12 @@ const { verifyAdmin, verifyUser } = require('../utils/verifyToken.js');
 
 const router = express.Router();
 
-//Create
-// router.post("/", createRoom);
-router.post("/", verifyAdmin, createRoom);
+router.put('/:roomId/confirmBooking/:bookingId', confirmBooking);
+
+router.put('/:roomId/removeOverlappingBookings', removeOverlappingBookings);
+
+router.put('/:roomId/rejectBooking/:bookingId', rejectBooking);
+
 
 //Delete
 // router.delete("/:id", verifyAdmin, deleteRoom);
@@ -25,10 +28,9 @@ router.get("/:id", getRoom);
 //GetAll
 router.get("/", getRooms);
 
-router.put('/:roomId/confirmBooking/:bookingId', confirmBooking);
-
-router.put('/:roomId/removeOverlappingBookings', removeOverlappingBookings);
-
+//Create
+// router.post("/", createRoom);
+router.post("/", verifyAdmin, createRoom);
 
 
 
