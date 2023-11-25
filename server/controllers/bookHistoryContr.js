@@ -151,6 +151,24 @@ const acceptBooking = async (req, res) => {
 
 
 
+const updateStatus = async (req, res, next) => {
+    try {
+        const { userIds } = req.body;
+
+        // Update booking history status for deleted reservations
+        await BookingHistory.updateMany(
+            { userId: { $in: userIds }, status: 'Pending' }, // Update only 'Pending' reservations
+            { $set: { status: 'Room Taken' } }
+        );
+
+        res.status(200).json({ message: 'Booking history status updated for deleted reservations' });
+    } catch (error) {
+        console.error('Error updating booking history status for deleted reservations:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}
+
+
 // const updateStatusForDeletedReservations = async (req, res) => {
 //     try {
 //         const { userIds } = req.body;
@@ -169,7 +187,6 @@ const acceptBooking = async (req, res) => {
 // };
 
 
-
 module.exports = {
     createBookingHistory,
     deleteBookHistory,
@@ -177,5 +194,5 @@ module.exports = {
     getBookHistoryByUserId,
     updateBookingHistory,
     acceptBooking,
-    // updateStatusForDeletedReservations
+    updateStatus
 };

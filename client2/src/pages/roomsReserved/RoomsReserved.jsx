@@ -89,7 +89,8 @@ const RoomsReserved = () => {
         const maxPeopleMatch = room.maxPeople.toString().includes(searchTerm);
         const priceMatch = room.price.toString().includes(searchTerm);
 
-        return branchMatch && (nameMatch || maxPeopleMatch || priceMatch);
+
+        return branchMatch && (nameMatch || maxPeopleMatch || priceMatch) || transactionId;
     };
 
     const filteredAndSearchedRooms = data.flatMap(room => {
@@ -106,9 +107,6 @@ const RoomsReserved = () => {
     }).filter(({ room }) => filterRooms(room));
 
 
-
-
-    //ROOMS AUTO DELETE RESERVATION
     // Function to automatically delete bookings with toDate in the past
     const autoDeleteBookings = async () => {
         try {
@@ -186,10 +184,11 @@ const RoomsReserved = () => {
             // Auto-delete overlapping reservations
             if (overlappingReservations.length > 0) {
                 const bookingsToRemove = overlappingReservations.map(booking => booking.bookingid);
+                await axios.put(`/api/bookingHistory/`, { userIds: overlappingReservations.map(booking => booking.userId) });
                 await axios.put(`/api/room/${roomId}/removeOverlappingBookings`, { bookingIds: bookingsToRemove });
             }
 
-            window.location.reload();
+            // window.location.reload();
 
 
             // Refresh the page or update the state to reflect changes
@@ -243,9 +242,9 @@ const RoomsReserved = () => {
                                 <div className="roomButtons">
                                     {/* <button className="roomBtn"><span className='fa-solid fa-pencil'></span></button> */}
                                     {/* <div className="roomReservedContainer"> */}
-                                        <button className="roomReserved">Reject</button>
-                                        {/* <button className="roomReserved" >Confirm</button> */}
-                                        <button className="roomReserved" onClick={() => handleConfirm(room._id, reservedBooking.bookingid, reservedBooking.userId)}>Confirm</button>
+                                    <button className="roomReserved">Reject</button>
+                                    {/* <button className="roomReserved" >Confirm</button> */}
+                                    <button className="roomReserved" onClick={() => handleConfirm(room._id, reservedBooking.bookingid, reservedBooking.userId)}>Confirm</button>
                                     <button className="roomBtn-archive"><span className='fa-solid fa-trash'></span></button>
 
                                     {/* </div> */}

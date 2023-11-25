@@ -2,18 +2,18 @@ const mongoose = require('mongoose');
 
 const bookingHistorySchema = new mongoose.Schema({
   userId: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     ref: 'Customer', // Assuming you have a Customer model
     required: true,
   },
   reservationId: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     ref: 'Booking',
     required: true,
   },
 
   roomId: {  // Added this field to store the room ID
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     ref: 'Room',
     required: true,
   },

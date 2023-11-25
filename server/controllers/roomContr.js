@@ -79,7 +79,7 @@ const confirmBooking = async (req, res) => {
             { $set: { 'currentbookings.$.status': 'booked' } }
 
         );
-        console.log(`ROOM`, updatedRCB);
+        // console.log(`ROOM`, updatedRCB);
         // const foundRoomByBookingId = await Room.findOne({ 'currentbookings.bookingid': bookingId });
         // console.log('Found Room By Booking Id:', foundRoomByBookingId);
 
@@ -92,7 +92,7 @@ const confirmBooking = async (req, res) => {
 
         // console.log(`BH`, updatedBH)
 
-        res.status(200).json({ message: 'Booking confirmed successfully ROOMCONTROLLER' });
+        res.status(200).json({ message: 'Booking confirmed successfully' });
     } catch (error) {
         console.error('Error confirming booking:', error);
         res.status(500).json({ error: 'Internal server error' });
