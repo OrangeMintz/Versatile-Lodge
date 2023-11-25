@@ -241,14 +241,14 @@ const RoomsReserved = () => {
 
                                 </div>
                                 <div className="roomButtons">
-                                    <button className="roomBtn"><span className='fa-solid fa-pencil'></span></button>
-                                    <button className="roomBtn-archive"><span className='fa-solid fa-trash'></span></button>
-                                    <div className="roomReservedContainer">
+                                    {/* <button className="roomBtn"><span className='fa-solid fa-pencil'></span></button> */}
+                                    {/* <div className="roomReservedContainer"> */}
                                         <button className="roomReserved">Reject</button>
                                         {/* <button className="roomReserved" >Confirm</button> */}
                                         <button className="roomReserved" onClick={() => handleConfirm(room._id, reservedBooking.bookingid, reservedBooking.userId)}>Confirm</button>
+                                    <button className="roomBtn-archive"><span className='fa-solid fa-trash'></span></button>
 
-                                    </div>
+                                    {/* </div> */}
                                 </div>
                             </div>
 

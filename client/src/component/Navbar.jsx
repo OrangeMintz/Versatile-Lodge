@@ -43,11 +43,61 @@ function Navbar() {
         window.location.reload();
     };
 
-    const [navbarActive, setNavbarActive] = useState(false);
 
+    // const [navbarActive, setNavbarActive] = useState(false);
+
+    // const toggleNavbar = () => {
+    //     setNavbarActive(!navbarActive);
+    // };
+
+
+    // const toggleNavbar = () => {
+    //     setNavbarActive(!navbarActive);
+    //     const navbar = document.querySelector('#menu-btn'); // Assuming #menu-btn is the ID of your navbar element
+    
+    //     if (navbar) {
+    //       navbar.onlick = () => {
+    //         // to open side bar
+    //         navbar.classList.toggle('active');
+    //       };
+    //     }
+    //   };
+
+    // const toggleNavbar = () => {
+    //     const navbar = document.querySelector('#menu-btn');
+        
+    //     setNavbarActive(!navbarActive);
+
+    //     navbar.classList.toggle('active');
+
+    //     console.log('menu!');
+    // }
+
+    // const toggleNavbar = () => {
+    //     const navbar = document.querySelector('#menu-btn');
+    
+    //     if (navbar) {
+    //         console.log('Before toggle:', navbar.classList.contains('active'));
+    //         setNavbarActive(!navbarActive);
+    //         navbar.classList.toggle('active');
+    //         console.log('After toggle:', navbar.classList.contains('active'));
+    //         console.log('menu!');
+    //     } else {
+    //         console.error("Navbar element not found!");
+    //     }
+    // }
+
+
+    //for showing the links in smaller width
     const toggleNavbar = () => {
-        setNavbarActive(!navbarActive);
+        const navbar = document.querySelector('.header .navbar')
+        navbar.classList.toggle('active');
+
     };
+    
+
+
+
 
     const handleUserBtnClick = () => {
         const profile = document.querySelector('.profile');
@@ -105,13 +155,16 @@ function Navbar() {
                     </div>
 
                     <div
-                        className={`menu fas fa-bars ${navbarActive ? 'active' : ''}`}
+                        // className={`menu fas fa-bars ${navbarActive ? 'active' : ''}`}
+                        className='menu fas fa-bars'
                         id="menu-btn"
                         onClick={toggleNavbar}
                     ></div>
                 </div>
 
-                <nav className={`navbar ${navbarActive ? 'active' : ''}`}>
+                {/* <nav className={`navbar ${navbarActive ? 'active' : ''}`}> */}
+                <nav className='navbar'>
+
                     <Link to="/" className={isLinkActive('/')}>Home</Link>
                     <Link to="/about" className={isLinkActive('/about')}>About</Link>
                     <Link to="/room" className={isLinkActive('/room')}>Rooms</Link>
@@ -119,24 +172,25 @@ function Navbar() {
                     <Link to="/reviews" className={isLinkActive('/reviews')}>Reviews</Link>
                     <div id="light-btn" className='fas fa-moon' onClick={handleMoonIconClick}></div>
                     {user && (
-                        <div>
-                            <img src={user.image} id="user-btn" alt="user" onClick={handleUserBtnClick} />
-                            <div className="profile">
-                                <img src={user.image} alt="" />
-                                {!!user && <h3>{user.name}</h3>}
-                                <span>Client</span>
-                                <Link to={`/accountSetting`} className='btn'>View Profile</Link>
-                                <div className="flex-btn">
-                                    <Link to={`/bookingHistory`} className="option-btn">
-                                        History
-                                    </Link>
-                                    <Link className="option-btn" onClick={handleLogout}>
-                                        Logout
-                                    </Link>
-                                </div>
+                    <div >
+                        <img src={user.image} id="user-btn" alt="user" onClick={handleUserBtnClick} />
+                        <div className="profile">
+                            <img src={user.image} alt="" />
+                            {!!user && <h3>{user.name}</h3>}
+                            <span>Client</span>
+                            <Link to={`/accountSetting`} className='btn'>View Profile</Link>
+                            <div className="flex-btn">
+                                <Link to={`/bookingHistory`} className="option-btn">
+                                    History
+                                </Link>
+                                <Link className="option-btn" onClick={handleLogout}>
+                                    Logout
+                                </Link>
                             </div>
                         </div>
+                    </div>
                     )}
+
                 </nav>
             </section>
         </div>
