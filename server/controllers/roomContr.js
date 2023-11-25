@@ -123,15 +123,15 @@ const removeOverlappingBookings = async (req, res) => {
 
 
 
-// In your controller file
 const rejectBooking = async (req, res) => {
     try {
         const { bookingId, roomId } = req.params;
 
-        // Update room status to "available" (or whatever status you use for available rooms)
+        // Remove the booking from the currentbookings array
         const updatedRCB = await Room.findOneAndUpdate(
-            { _id: roomId, 'currentbookings.bookingid': bookingId },
-            { $set: { 'currentbookings.$.status': 'available' } }
+            { _id: roomId },
+            { $pull: { currentbookings: { bookingid: bookingId } } },
+            { new: true }
         );
 
         // Update user's booking history status to "Declined"
