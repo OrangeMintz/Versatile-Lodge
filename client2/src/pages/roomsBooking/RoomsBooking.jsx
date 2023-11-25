@@ -88,7 +88,12 @@ const RoomsBooking = () => {
         const maxPeopleMatch = room.maxPeople.toString().includes(searchTerm);
         const priceMatch = room.price.toString().includes(searchTerm);
 
-        return branchMatch && (nameMatch || maxPeopleMatch || priceMatch);
+        // Check if any of the reserved bookings have a matching transactionId
+        const hasMatchingTransactionId = room.currentbookings.some(booking =>
+            booking.status === 'reserved' && booking.transactionId.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+
+        return branchMatch && (nameMatch || maxPeopleMatch || priceMatch || hasMatchingTransactionId);
     };
 
     const filteredAndSearchedRooms = data.flatMap(room => {
