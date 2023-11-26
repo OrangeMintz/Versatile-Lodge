@@ -149,6 +149,19 @@
 
 } */
 
+.roomsUnavailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-pencil {
+    padding: 1.3rem 4rem;
+    font-size: 1.6rem;
+    margin: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    background: var(--main-color);
+    color: var(--branch-color);
+    position: relative;
+    
+}
+
+
 .roomsUnavailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-trashcan {
     padding: 1.3rem 2rem;
     font-size: 1.6rem;
@@ -158,12 +171,6 @@
     background: var(--main-color);
     color: var(--branch-color);
     position: relative;
-}
-
-.roomsUnavailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-trashcan:hover {
-    color: var(--main-color);
-    background-color: var(--branch-color);
-    transition: 0.2s;
 }
 
 
@@ -180,6 +187,7 @@
 }
 
 
+.roomsUnavailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-pencil:hover:before,
 .roomsUnavailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-trashcan:hover:before {
     position: absolute;
     right: 100%; /* Position it to the left of the button */
@@ -191,11 +199,76 @@
     transition: opacity 2s;
 }
 
+.roomsUnavailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-pencil:hover:before {
+    content: "Edit"; /* Display "Edit" when hovering over the pencil button */
+}
 
 .roomsUnavailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-trashcan:hover:before {
     content: "Delete"; /* Display "Delete" when hovering over the trashcan button */
 }
 
+.roomsUnavailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-pencil:hover,
+.roomsUnavailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-trashcan:hover {
+    color: var(--main-color);
+    background-color: var(--branch-color);
+    transition: 0.2s;
+}
+
+.roomsUnavailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-pencil:hover:before,
 .roomsUnavailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-trashcan:hover:before {
     opacity: 1; /* Show the tooltip on hover */
 }
+
+
+
+.modal {
+    background: var(--branch-color);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    border: 1.3px solid #2B1103;
+
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 1000 !important; /* Ensure the modal appears on top of other elements */
+
+  }
+
+  .modal-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(0, 0, 0, 0.5) !important; /* Semi-transparent gray background */
+    z-index: 999 !important; /* Ensure the overlay appears above the content */
+}
+  
+  .modal p {
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: var(--main-color);
+  }
+  
+  .modal button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: var(--main-color);
+    color: var(--branch-color);
+    border: 1px solid var(--main-color);
+    border-radius: 8px;
+  }
+
+  .modal button:hover {
+    transition: 0.5s;
+    background-color: var(--branch-color);
+    color: var(--main-color);
+    border: 1px solid var(--main-color);
+    border-radius: 10px;
+    box-shadow: 4px 4px 15px rgba(0,0,0,.4);
+
+  }

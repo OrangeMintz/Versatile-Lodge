@@ -12,8 +12,13 @@ import Error from '../../components/Error';
 import useFetch from "../../hooks/useFetch";
 import moment from 'moment';
 
+
 const RoomsAvailable = () => {
     const navigate = useNavigate();
+    const [showModal, setShowModal] = useState(false);
+    const [selectedRoomId, setSelectedRoomId] = useState(null);
+
+
 
     // Check LOGON
     const { user, setUser } = useContext(UserContext);
@@ -123,6 +128,41 @@ const RoomsAvailable = () => {
         setSelectedLocation(e.target.value);
     };
 
+
+    const handleShowModal = (roomId) => {
+        setSelectedRoomId(roomId);
+        setShowModal(true);
+    };
+
+    const handleHideModal = () => {
+        setSelectedRoomId(null);
+        setShowModal(false);
+    };
+
+    const handleConfirmArchive = async () => {
+        try {
+
+            // Fetch the details of the room before it's archived
+            const roomDetailsResponse = await axios.get(`/api/room/${selectedRoomId}`);
+            const roomDetails = roomDetailsResponse.data;
+
+            // Call the API to archive the room
+            await axios.delete(`/api/room/${selectedRoomId}`);
+            toast.success(`${selectedRoomId} Room archived successfully!`);
+            // Refetch data after archiving
+            reFetch();
+            await axios.post(`/api/room/archive`, roomDetails);
+
+
+        } catch (error) {
+            console.error('Error archiving room:', error);
+            toast.error('Error archiving room. Please try again later.');
+        } finally {
+            // Hide the modal
+            handleHideModal();
+        }
+    };
+
     return (
         <div className="roomsAvailablePage">
             <HeaderAdmin />
@@ -142,9 +182,13 @@ const RoomsAvailable = () => {
                         <input className="searchRoom" type="text" placeholder="Search here..." value={searchTerm} onChange={handleSearch} />
                     </div>
                 </div>
-                <div className="addRoom">
-                    <Link to="/AddRoom">+ Add Room</Link>
-                </div>
+
+                {user && (user.isAdmin) && (
+                    <div className="addRoom">
+                        <Link to="/AddRoom">+ Add Room</Link>
+                    </div>
+                )}
+
 
                 {loading && <Loader />}
                 {error && <Error />}
@@ -160,17 +204,27 @@ const RoomsAvailable = () => {
                                     <p className='sub'>Max People: {room.maxPeople}</p>
                                 </div>
                                 <div className="roomButtons">
-                                    <button className="roomBtn-pencil"><span className='fa-solid fa-pencil'></span></button>
-                                    <button className="roomBtn-trashcan"><span className='fa-solid fa-trash'></span></button>
+                                    <Link to={`/room/edit/${room._id}`} className="roomBtn-pencil"><span className='fa-solid fa-pencil'></span></Link>
+                                    <button className="roomBtn-trashcan" onClick={() => handleShowModal(room._id)}>
+                                        <span className='fa-solid fa-trash'></span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     ))
-
-
                 )}
-
             </section>
+
+            {/* Confirmation Modal */}
+            {showModal && (
+                <div className="modal-overlay">
+                    <div className="modal">
+                        <p>Are you sure you want to archive this room?</p>
+                        <button onClick={handleHideModal}>No</button>
+                        <button onClick={handleConfirmArchive}>Yes</button>
+                    </div>
+                </div>
+            )}
 
             <Footer />
         </div>

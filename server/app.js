@@ -16,6 +16,7 @@ const transactionroute = require("./routes/transaction.js")
 const customerroute = require('./routes/authRoutes.js')
 const adminroute = require('./routes/adminRoutes.js')
 
+
 const bookingroute = require('./routes/booking.js')
 
 
@@ -59,9 +60,10 @@ app.use(express.urlencoded({ extended: false, limit: '50m' }))
 // app.use("/api/auth", authroute);
 
 // app.use("/api/users", usersroute);
+
+
 app.use("/", customerroute);
 app.use("/admin", adminroute);
-
 
 // app.use('/', require('./routes/authRoutes'))
 app.use("/api/branch", branchroute);
