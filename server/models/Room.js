@@ -38,7 +38,9 @@ const roomschema = new mongoose.Schema(
                 userId: String,
                 status: String,
                 totalAmount: String,
-                transactionId: String
+                transactionId: String,
+                isManual: Boolean
+
             },
         ],
 
