@@ -163,30 +163,52 @@
 
 }
 
-.roomsBooking .roomsRow .roomsRowWrapper .roomButtons .roomBtn-archive {
+.roomsBooking .roomsRow .roomsRowWrapper .roomButtons .roomBtn-trashcan {
     padding: 1.3rem 2rem;
-    color: #DC3545;
+    color: var(--branch-color);
     font-size: 1.6rem;
     cursor: pointer;
     margin: 1rem;
     border-radius: 5px;
+    background: var(--main-color);
+    position: relative;
+}
+.roomsBooking .roomsRow .roomsRowWrapper .roomButtons .roomBtn-trashcan:hover {
+    background: var(--branch-color);
+    color: var(--main-color);
+    transition: 0.3s;
+
 }
 
-.roomsBooking .roomsRow .roomsRowWrapper .roomButtons .roomBtn-archive:hover {
-    color: var(--main-color);
-    transition: 0.5s;
+.roomsBooking .roomsRow .roomsRowWrapper .roomButtons .roomBtn-trashcan:hover:before {
+    position: absolute;
+    right: 100%; /* Position it to the left of the button */
+    transform: translateY(-50%); /* Adjust for centering */
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    color: var(--black);
+    opacity: 0; 
+    transition: opacity 2s;
+}
 
+.roomsBooking .roomsRow .roomsRowWrapper .roomButtons .roomBtn-trashcan:hover:before {
+    content: "Delete"; /* Display "Delete" when hovering over the trashcan button */
+}
+
+.roomsBooking .roomsRow .roomsRowWrapper .roomButtons .roomBtn-trashcan:hover:before {
+    opacity: 1; /* Show the tooltip on hover */
 }
 
 .roomsBooking .roomsRow .roomsRowWrapper .roomButtons .roomBooked {
     padding: 1rem 1rem;
-    color: var(--main-color);
+    color: var(--white);
     text-align: center;
     font-size: 1.5rem;
     font-weight: 700;
     margin: 1rem;
     border-radius: 5px;
     border: 1px solid var(--main-color);
+    background: var(--light-color);
 }
 
 .roomsBooking .roomsRow .roomsRowWrapper .roomButtons .roomsBooked {
