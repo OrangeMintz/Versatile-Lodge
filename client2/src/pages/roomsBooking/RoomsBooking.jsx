@@ -209,7 +209,7 @@ const RoomsBooking = () => {
                                 </div>
                                 <div className="roomButtons">
                                     <button
-                                        className="roomBtn-archive"
+                                        className="roomBtn-trashcan"
                                         onClick={() => deleteBooking(room._id, reservedBooking.bookingid)}
                                     >
                                         <span className='fa-solid fa-trash'></span>

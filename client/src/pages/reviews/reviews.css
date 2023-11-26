@@ -46,7 +46,7 @@
 }
 
 .review-right {
-    flex-grow: 1; 
+    flex-gcontainer: 1; 
     display: flex;
     flex-direction: column;
     justify-content: space-between; 
@@ -64,19 +64,21 @@
     font-size: 14px; 
 }
 
-.contact {
+.contactUs {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-.contact .row {
+.contactUs .container {
     background-color: var(--main-color);
     display: flex;
     border-radius: 5px;
     text-align: center;   
     border: 1px solid var(--branch-color);
+    grid-column-start: 2;
+
 }
-.contact .row h3 {
+.contactUs .container .sendUsReview {
     font-size: 2.5rem;
     padding: 1rem 2rem;
     text-align: center;
@@ -85,7 +87,7 @@
 
 }
 
-.contact .row .boxArea {
+.contactUs .container .boxArea {
     border-bottom: 1px solid var(--white);
     width: 100%;
     background-color: var(--main-color);
@@ -94,12 +96,12 @@
 
 }
 
-.contact .row .boxArea::placeholder {
+.contactUs .container .boxArea::placeholder {
     font-size: 1.5rem;
     color: var(--branch-color);
 } 
 
-.contact .row .reviewBtn {
+.contactUs .container .reviewBtn {
     font-size: 1.8rem;
     color: var(--main-color);
     background-color: var(--branch-color);
@@ -110,7 +112,7 @@
     transition: .2s linear;
 }
 
-.contact .row .reviewBtn:hover {
+.contactUs .container .reviewBtn:hover {
     color: var(--branch-color);
     background: var(--main-color);
     outline: 1px solid var(--branch-color);
