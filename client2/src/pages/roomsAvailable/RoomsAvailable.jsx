@@ -160,8 +160,8 @@ const RoomsAvailable = () => {
                                     <p className='sub'>Max People: {room.maxPeople}</p>
                                 </div>
                                 <div className="roomButtons">
-                                    <button className="roomBtn"><span className='fa-solid fa-pencil'></span></button>
-                                    <button className="roomBtn-archive"><span className='fa-solid fa-trash'></span></button>
+                                    <button className="roomBtn-pencil"><span className='fa-solid fa-pencil'></span></button>
+                                    <button className="roomBtn-trashcan"><span className='fa-solid fa-trash'></span></button>
                                 </div>
                             </div>
                         </div>
