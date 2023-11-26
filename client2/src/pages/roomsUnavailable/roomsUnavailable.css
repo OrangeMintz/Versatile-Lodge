@@ -177,6 +177,8 @@
     border-radius: 5px;
     border: 1px solid var(--main-color);
     background: var(--light-color);
+
+    min-width: 120px; /* Adjust the value as needed */
 }
 
 

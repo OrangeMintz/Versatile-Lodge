@@ -148,13 +148,13 @@ const RoomsUnavailable = () => {
                                     <p className='sub'>Per Day: {room.price}</p>
                                     <p className='sub'>Max People:{room.maxPeople}</p>
                                 </div>
-                                <div className="roomButtons">
-                                    {/* <button className="roomBtn"><span className='fa-solid fa-pencil'></span></button> */}
-                                    <button className="roomBtn-trashcan"><span className='fa-solid fa-trash'></span></button>
-                                    <p className="roomAvailability">
-                                        {room.unavailable ? "Maintenance" : room.currentbookings.some(booking => booking.status === 'booked') ? "Booked" : "Available"}
-                                    </p>
-                                </div>
+                                    <div className="roomButtons">
+                                        {/* <button className="roomBtn"><span className='fa-solid fa-pencil'></span></button> */}
+                                        <button className="roomBtn-trashcan"><span className='fa-solid fa-trash'></span></button>
+                                        <p className="roomAvailability">
+                                            {room.unavailable ? "Maintenance" : room.currentbookings.some(booking => booking.status === 'booked') ? "Booked" : "Available"}
+                                        </p>
+                                    </div>
                             </div>
                         </div>
 
