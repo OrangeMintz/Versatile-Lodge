@@ -42,8 +42,6 @@ const roomschema = new mongoose.Schema(
             },
         ],
 
-        // currentbookings: [],
-
         unavailable: {
             type: Boolean,
         },
@@ -52,9 +50,6 @@ const roomschema = new mongoose.Schema(
             type: Boolean,
         },
 
-        // remove if not needed
-        // roomNumbers: [{ number: Number }, { unavailableDates: { type: [Date] } }],
-        // remove if not needed
     },
     { timestamps: true }
 );

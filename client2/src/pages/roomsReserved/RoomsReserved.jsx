@@ -13,8 +13,8 @@ import Error from '../../components/Error';
 import moment from 'moment';
 
 const RoomsReserved = () => {
-    const navigate = useNavigate();
 
+    const navigate = useNavigate();
     // CHECK LOGON
 
     const { user, setUser } = useContext(UserContext);
@@ -243,6 +243,9 @@ const RoomsReserved = () => {
                     <div className="searchNadd">
                         <input className="searchRoom" type="text" placeholder="Search here..." value={searchTerm} onChange={handleSearch} />
                     </div>
+                </div>
+                <div className="Reserved">
+                    <Link to="/Reservation"> + Reserved/Booked</Link>
                 </div>
 
                 {/* Display reserved rooms */}
