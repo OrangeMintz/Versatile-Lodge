@@ -126,39 +126,44 @@
 .roomsUnavailable .roomsRow .roomsRowWrapper .roomButtons {
     position: absolute;
     right: 0;
-    justify-content: right;
+    justify-content: center;
     display: flex;
     flex-direction: column;
+    height: 100%;
 
 }
 
-.roomsUnavailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn {
+/* .roomsUnavailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn {
     padding: 1.3rem 2rem;
     color: #007BFF;
     font-size: 1.6rem;
     margin: 1rem;
     cursor: pointer;
     border-radius: 5px;
-}
-.roomsUnavailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn:hover {
+} */
+
+/* .roomsUnavailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn:hover {
     color: var(--main-color);
     transition: 0.5s;
     
 
-}
+} */
 
-.roomsUnavailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-archive {
+.roomsUnavailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-trashcan {
     padding: 1.3rem 2rem;
-    color: #DC3545;
     font-size: 1.6rem;
     margin: 1rem;
     border-radius: 5px;
     cursor: pointer;
+    background: var(--main-color);
+    color: var(--branch-color);
+    position: relative;
 }
 
-.roomsUnavailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-archive:hover {
+.roomsUnavailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-trashcan:hover {
     color: var(--main-color);
-    transition: 0.5s;
+    background-color: var(--branch-color);
+    transition: 0.2s;
 }
 
 
@@ -175,3 +180,22 @@
 }
 
 
+.roomsUnavailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-trashcan:hover:before {
+    position: absolute;
+    right: 100%; /* Position it to the left of the button */
+    transform: translateY(-50%); /* Adjust for centering */
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    color: var(--black);
+    opacity: 0; 
+    transition: opacity 2s;
+}
+
+
+.roomsUnavailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-trashcan:hover:before {
+    content: "Delete"; /* Display "Delete" when hovering over the trashcan button */
+}
+
+.roomsUnavailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-trashcan:hover:before {
+    opacity: 1; /* Show the tooltip on hover */
+}
