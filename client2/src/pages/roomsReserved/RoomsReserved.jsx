@@ -13,8 +13,8 @@ import Error from '../../components/Error';
 import moment from 'moment';
 
 const RoomsReserved = () => {
-    const navigate = useNavigate();
 
+    const navigate = useNavigate();
     // CHECK LOGON
 
     const { user, setUser } = useContext(UserContext);
@@ -244,6 +244,9 @@ const RoomsReserved = () => {
                         <input className="searchRoom" type="text" placeholder="Search here..." value={searchTerm} onChange={handleSearch} />
                     </div>
                 </div>
+                <div className="Reserved">
+                    <Link to="/Reservation"> + Reserved a Room</Link>
+                </div>
 
                 {/* Display reserved rooms */}
                 {loading && <Loader />}
@@ -261,8 +264,15 @@ const RoomsReserved = () => {
                                     <span className='sub'>Start Date: {reservedBooking.fromDate}</span>
                                     <span className='sub'>End Date: {reservedBooking.toDate}</span>
                                     <p className='sub'>Total Ammount: ₱{reservedBooking.totalAmount}</p>
-                                    <p className='sub' style={{ fontWeight: "bold", fontStyle: 'normal' }}>{reservedBooking.transactionId}</p>
-
+                                    {reservedBooking.isManual ? (
+                                        <p className='sub' style={{ fontWeight: "bold", fontStyle: 'normal' }}>
+                                            Walk-In Reservation
+                                        </p>
+                                    ) : (
+                                        <p className='sub' style={{ fontWeight: "bold", fontStyle: 'normal' }}>
+                                            {reservedBooking.transactionId}
+                                        </p>
+                                    )}
                                 </div>
                                 <div className="roomButtons">
                                     {/* <button className="roomBtn"><span className='fa-solid fa-pencil'></span></button> */}

@@ -1,5 +1,5 @@
 const express = require('express');
-const { createRoom, deleteRoom, updateRoom, getRoom, getRooms, confirmBooking, removeOverlappingBookings, rejectBooking } = require('../controllers/roomContr.js');
+const { createRoom, deleteRoom, updateRoom, getRoom, getRooms, confirmBooking, removeOverlappingBookings, rejectBooking, deleteBooking } = require('../controllers/roomContr.js');
 
 const Room = require("../models/Room.js");
 const { verifyAdmin, verifyUser } = require('../utils/verifyToken.js');
@@ -7,6 +7,8 @@ const { verifyAdmin, verifyUser } = require('../utils/verifyToken.js');
 //const createError = require('../utils/error.js');
 
 const router = express.Router();
+
+router.delete('/:roomId/booking/:bookingId', deleteBooking);
 
 router.put('/:roomId/confirmBooking/:bookingId', confirmBooking);
 

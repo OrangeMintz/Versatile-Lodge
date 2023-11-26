@@ -73,7 +73,7 @@
 
 }
 
-.roomsAvailable .addRoom span:hover{
+.roomsAvailable .addRoom a:hover{
     cursor: pointer;
     transition: 0.5s;
     color: var(--main-color);
