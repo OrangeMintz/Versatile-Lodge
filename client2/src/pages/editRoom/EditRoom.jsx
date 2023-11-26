@@ -89,7 +89,7 @@ const EditRoom = () => {
         try {
             const response = await axios.get('/api/room/');
             const rooms = response.data;
-            return rooms.some(room => room.branch === formData.branch && room.name === formData.roomName);
+            return rooms.some(room => room.branch === formData.branch && room.name === formData.name);
         } catch (error) {
             console.error('Error checking room name:', error);
             return false;
@@ -101,8 +101,15 @@ const EditRoom = () => {
 
         const isTaken = await checkRoomName();
 
+        const isValidRoomNameFormat = /^[Rr]oom \d+/.test(formData.name);
+
         if (isTaken) {
             toast.error('Room name is already taken. Please choose a different name.');
+            return;
+        }
+
+        if (!isValidRoomNameFormat) {
+            toast.error('Room name should start with "Room " followed by a number.');
             return;
         }
 

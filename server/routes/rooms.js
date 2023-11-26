@@ -4,7 +4,6 @@ const { createRoom, deleteRoom, updateRoom, getRoom, getRooms, confirmBooking, r
 const Room = require("../models/Room.js");
 const { verifyAdmin, verifyUser } = require('../utils/verifyToken.js');
 
-//const createError = require('../utils/error.js');
 
 const router = express.Router();
 
@@ -35,12 +34,9 @@ router.get("/:id", getRoom);
 router.get("/", getRooms);
 
 //Create
-// router.post("/", createRoom);
-router.post("/", verifyAdmin, createRoom);
+router.post("/", createRoom);
+// router.post('/api/room', upload.array('imageurls', 3), createRoom);
 
-
-
-
-
+// router.post("/", verifyAdmin, createRoom);
 
 module.exports = router;

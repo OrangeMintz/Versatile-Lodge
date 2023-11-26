@@ -134,7 +134,7 @@ const RoomsUnavailable = () => {
 
             // Call the API to archive the room
             await axios.delete(`/api/room/${selectedRoomId}`);
-            toast.success(`${selectedRoomId} Room archived successfully!`);
+            toast.success(`Room archived successfully!`);
             // Refetch data after archiving
             reFetch();
             await axios.post(`/api/room/archive`, roomDetails);
