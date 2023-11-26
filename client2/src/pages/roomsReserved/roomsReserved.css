@@ -56,14 +56,14 @@
 }
 
 
-.roomsReserved .addRoom{
+.roomsReserved .Reserved{
     padding: 2px 8px;
     margin-right: 10px;
     display: block;
     direction: rtl;
 }
 
-.roomsReserved .addRoom span{
+.roomsReserved .Reserved a{
     font-size: 2rem;
     text-decoration: none;
     color: var(--main-color);
@@ -74,12 +74,11 @@
 
 }
 
-.roomsReserved .addRoom span:hover{
+.roomsReserved .Reserved a:hover{
     cursor: pointer;
     transition: 0.5s;
     color: var(--main-color);
     border:1px solid var(--main-color);
-
 
 }
 

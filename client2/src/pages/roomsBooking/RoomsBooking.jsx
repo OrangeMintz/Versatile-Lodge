@@ -109,10 +109,6 @@ const RoomsBooking = () => {
         }));
     }).filter(({ room }) => filterRooms(room));
 
-
-
-
-
     //ROOMS AUTO DELETE BOOKINGS
     // Function to automatically delete bookings with toDate in the past
     const autoDeleteBookings = async () => {
@@ -154,6 +150,21 @@ const RoomsBooking = () => {
         // Clear the interval on component unmount
         return () => clearInterval(intervalId);
     }, []);
+
+
+
+    //DELETING BOOKING
+    const deleteBooking = async (roomId, bookingId) => {
+        try {
+            await axios.delete(`/api/room/${roomId}/booking/${bookingId}`);
+            window.location.reload();
+            fetchData();
+        } catch (error) {
+            console.error('Error deleting booking:', error);
+            window.location.reload();
+
+        }
+    };
 
     return (
         <div>
@@ -197,11 +208,13 @@ const RoomsBooking = () => {
 
                                 </div>
                                 <div className="roomButtons">
-                                    {/* <button className="roomBtn"><span className='fa-solid fa-pencil'></span></button> */}
-                                    <button className="roomBtn-archive"><span className='fa-solid fa-trash'></span></button>
-                                    <p className="roomBooked">
-                                        {room.unavailable ? "Maintenance" : "Booked"}
-                                    </p>
+                                    <button
+                                        className="roomBtn-archive"
+                                        onClick={() => deleteBooking(room._id, reservedBooking.bookingid)}
+                                    >
+                                        <span className='fa-solid fa-trash'></span>
+                                    </button>
+                                    <p className="roomBooked">{room.unavailable ? "Maintenance" : "Booked"}</p>
                                 </div>
                             </div>
                         </div>

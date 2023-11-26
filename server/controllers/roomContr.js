@@ -148,6 +148,27 @@ const rejectBooking = async (req, res) => {
 };
 
 
+const deleteBooking = async (req, res, next) => {
+    const { roomId, bookingId } = req.params;
+
+    try {
+        const room = await Room.findById(roomId);
+
+        if (!room) {
+            return res.status(404).json({ message: 'Room not found' });
+        }
+
+        room.currentbookings = room.currentbookings.filter((booking) => booking.bookingid !== bookingId);
+
+        await room.save();
+
+        res.status(200).json({ message: 'Booking deleted successfully' });
+    } catch (error) {
+        next(error);
+    }
+};
+
+
 module.exports = {
     createRoom,
     deleteRoom,
@@ -156,6 +177,8 @@ module.exports = {
     getRooms,
     confirmBooking,
     removeOverlappingBookings,
-    rejectBooking
+    rejectBooking,
+    deleteBooking
+
 
 };
