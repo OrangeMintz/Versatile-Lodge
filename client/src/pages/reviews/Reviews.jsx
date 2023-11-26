@@ -158,10 +158,10 @@ const Reviews = () => {
             </div>
 
             {/* {hasValidBooking() && !userReview && ( */}
-            <section className="contact" id="contact" style={{ marginTop: '100px' }}>
-                <div className="row">
+            <section className="contactUs" id="contactUS" style={{ marginTop: '100px' }}>
+                <div className="container">
                     <form onSubmit={handleSubmit}>
-                        <h3>Send Us Review</h3>
+                        <h3 className='sendUsReview'>Send Us Review</h3>
                         <textarea
                             name="msg"
                             className="boxArea"
