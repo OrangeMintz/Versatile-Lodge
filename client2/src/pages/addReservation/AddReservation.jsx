@@ -182,6 +182,8 @@ const AddReservation = () => {
           status: 'reserved',
           totalAmount: totalAmount.toString(),
           transactionId: uuid,
+          isManual: true
+
         },
       ];
 

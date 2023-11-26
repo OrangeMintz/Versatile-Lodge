@@ -76,7 +76,7 @@ const BookingHistory = () => {
 
   //CAN NO LONGER CANCEL
   const isCancelButtonDisabled = (bookingDate) => {
-    const cancelDeadline = moment(bookingDate).add(5, 'hours');
+    const cancelDeadline = moment(bookingDate).add(1, 'hours');
     return moment().isAfter(cancelDeadline);
   };
 
@@ -148,15 +148,14 @@ const BookingHistory = () => {
                       <td>{booking.status}</td>
                       <td>{booking.transactionId}</td>
                       <td>
-                        <button
+                        <button className="btnCancel" onClick={() => handleCancelBooking(booking._id)}><span className='fa-solid fa-xmark'></span></button>
+                        {/* <button
                           className={`btnCancel${isCancelButtonDisabled(booking.bookingDate) ? ' btndisabled' : ''}`}
                           onClick={() => handleCancelBooking(booking._id)}
                           disabled={isCancelButtonDisabled(booking.bookingDate)}>
                           Cancel
-                        </button>
-                        {/* <button className='btnCancel' onClick={() => handleCancelBooking(booking._id)} disabled={isCancelButtonDisabled(booking.bookingDate)}>
-                          Cancel
                         </button> */}
+
                       </td>
                     </tr>
                   ))}
@@ -169,7 +168,7 @@ const BookingHistory = () => {
           {showModal && (
             <div className="modal-overlay">
               <div className="modal">
-                <p>Are you sure you want to cancel your booking?</p>
+                <p>Are you sure you want to delete your reservation and record?</p>
                 <button onClick={handleCancel}>No</button>
                 <button onClick={handleConfirmCancel}>Yes</button>
 
