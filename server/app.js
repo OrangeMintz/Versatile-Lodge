@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-
+const path = require('path');
 
 
 // const authroute = require("./routes/auth.js");
@@ -55,11 +55,8 @@ app.use(cors(corsOptions));
 app.use(express.json({ limit: '50mb' }));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false, limit: '50m' }))
-
-
-// app.use("/api/auth", authroute);
-
-// app.use("/api/users", usersroute);
+// app.use('/uploads', express.static('public/uploads'));
+app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
 
 app.use("/", customerroute);

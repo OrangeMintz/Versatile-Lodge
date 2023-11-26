@@ -191,7 +191,11 @@ const Rooms = () => {
                                 })
                                 .map((room, index) => (
                                     <div className="card" key={index}>
-                                        <img src={room.imageurls[0]} alt={room.name} />
+                                        {room.imageurls && room.imageurls.length > 0 ? (
+                                            <img src={room.imageurls[0]} alt={room.name} />
+                                        ) : (
+                                            <p>No images available</p>
+                                        )}
                                         <div className="description">
                                             <div className="room-details">
                                                 <h3 className="room-name">{room.name}</h3>

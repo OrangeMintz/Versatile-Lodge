@@ -28,7 +28,7 @@ const roomschema = new mongoose.Schema(
             required: true,
         },
 
-        imageurls: [],
+        imageurls: [String],
 
         currentbookings: [
             {

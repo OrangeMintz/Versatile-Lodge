@@ -85,19 +85,11 @@ const EditRoom = () => {
         });
     };
 
-    const handleImageChange = (e) => {
-        const { files } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            images: files,
-        }));
-    };
-
     const checkRoomName = async () => {
         try {
             const response = await axios.get('/api/room/');
             const rooms = response.data;
-            return rooms.some(room => room.branch === formData.branch && room.name === formData.roomName);
+            return rooms.some(room => room.branch === formData.branch && room.name === formData.name);
         } catch (error) {
             console.error('Error checking room name:', error);
             return false;
@@ -109,8 +101,15 @@ const EditRoom = () => {
 
         const isTaken = await checkRoomName();
 
+        const isValidRoomNameFormat = /^[Rr]oom \d+/.test(formData.name);
+
         if (isTaken) {
             toast.error('Room name is already taken. Please choose a different name.');
+            return;
+        }
+
+        if (!isValidRoomNameFormat) {
+            toast.error('Room name should start with "Room " followed by a number.');
             return;
         }
 
@@ -185,18 +184,6 @@ const EditRoom = () => {
                                 <option value="Available">Available</option>
                                 <option value="Maintenance">Maintenance</option>
                             </select>
-
-                            <label htmlFor="images">Images:</label>
-                            <input
-                                className="file"
-                                type="file"
-                                id="images"
-                                name="images"
-                                multiple
-                                accept="image/*"
-                                onChange={handleImageChange}
-                                placeholder="Choose images"
-                            />
 
                             <label htmlFor="desc">Description:</label>
                             <textarea
