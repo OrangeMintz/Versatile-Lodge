@@ -153,8 +153,6 @@ const RoomsReserved = () => {
     }, []);
 
 
-
-
     const handleConfirm = async (roomId, bookingid, userId) => {
         console.log('Room ID:', roomId);
         console.log('Booking ID:', bookingid);
@@ -264,13 +262,10 @@ const RoomsReserved = () => {
                                     <span className='sub'>Start Date: {reservedBooking.fromDate}</span>
                                     <span className='sub'>End Date: {reservedBooking.toDate}</span>
                                     <p className='sub'>Total Ammount: ₱{reservedBooking.totalAmount}</p>
-                                    {reservedBooking.isManual ? (
+                                    <p className='sub'>Transaction ID: {reservedBooking.transactionId}</p>
+                                    {reservedBooking.isManual && (
                                         <p className='sub' style={{ fontWeight: "bold", fontStyle: 'normal' }}>
                                             Walk-In Reservation
-                                        </p>
-                                    ) : (
-                                        <p className='sub' style={{ fontWeight: "bold", fontStyle: 'normal' }}>
-                                            {reservedBooking.transactionId}
                                         </p>
                                     )}
                                 </div>

@@ -5,15 +5,16 @@ import Sidebar from '../../components/Sidebar';
 import Footer from '../../components/Footer';
 import { UserContext } from '../../components/userContext';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-
 import Loader from '../../components/Loader';
 import Error from '../../components/Error';
 import moment from 'moment';
 
 const RoomsUnavailable = () => {
     const navigate = useNavigate();
+    const [showModal, setShowModal] = useState(false);
+    const [selectedRoomId, setSelectedRoomId] = useState(null);
 
     // Check LOGON
     const { user, setUser } = useContext(UserContext);
@@ -112,6 +113,42 @@ const RoomsUnavailable = () => {
             return branchMatch && (nameMatch || maxPeopleMatch || priceMatch);
         });
 
+
+
+    const handleShowModal = (roomId) => {
+        setSelectedRoomId(roomId);
+        setShowModal(true);
+    };
+
+    const handleHideModal = () => {
+        setSelectedRoomId(null);
+        setShowModal(false);
+    };
+
+    const handleConfirmArchive = async () => {
+        try {
+
+            // Fetch the details of the room before it's archived
+            const roomDetailsResponse = await axios.get(`/api/room/${selectedRoomId}`);
+            const roomDetails = roomDetailsResponse.data;
+
+            // Call the API to archive the room
+            await axios.delete(`/api/room/${selectedRoomId}`);
+            toast.success(`${selectedRoomId} Room archived successfully!`);
+            // Refetch data after archiving
+            reFetch();
+            await axios.post(`/api/room/archive`, roomDetails);
+
+
+        } catch (error) {
+            console.error('Error archiving room:', error);
+            toast.error('Error archiving room. Please try again later.');
+        } finally {
+            // Hide the modal
+            handleHideModal();
+        }
+    };
+
     return (
         <div className='roomsUnavailablePage'>
             <HeaderAdmin />
@@ -150,17 +187,30 @@ const RoomsUnavailable = () => {
                                 </div>
                                 <div className="roomButtons">
                                     {/* <button className="roomBtn"><span className='fa-solid fa-pencil'></span></button> */}
-                                    <button className="roomBtn-trashcan"><span className='fa-solid fa-trash'></span></button>
+                                    <Link to={`/room/edit/${room._id}`} className="roomBtn-pencil"><span className='fa-solid fa-pencil'></span></Link>
+                                    <button className="roomBtn-trashcan" onClick={() => handleShowModal(room._id)}>
+                                        <span className='fa-solid fa-trash'></span>
+                                    </button>
                                     <p className="roomAvailability">
                                         {room.unavailable ? "Maintenance" : room.currentbookings.some(booking => booking.status === 'booked') ? "Booked" : "Available"}
                                     </p>
                                 </div>
                             </div>
                         </div>
-
                     ))
                 )}
             </section>
+
+            {/* Confirmation Modal */}
+            {showModal && (
+                <div className="modal-overlay">
+                    <div className="modal">
+                        <p>Are you sure you want to archive this room?</p>
+                        <button onClick={handleHideModal}>No</button>
+                        <button onClick={handleConfirmArchive}>Yes</button>
+                    </div>
+                </div>
+            )}
 
             <Footer />
         </div>
