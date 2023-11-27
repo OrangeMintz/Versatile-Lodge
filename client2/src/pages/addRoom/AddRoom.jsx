@@ -38,23 +38,21 @@ const AddRoom = () => {
       navigate('/401');
       toast.error("Unauthorized Access");
     }
-    if (operationsComplete && user && user.isEmployee === true) {
+    if (operationsComplete && user && user.isManager === true) {
       toast.error("Unauthorized Access");
       navigate('/dashboard');
     }
   }, [user, operationsComplete, navigate]);
 
 
-
-
-
   const [formData, setFormData] = useState({
-    roomName: '',
+    name: '',
     branch: '',
     price: '',
     maxPeople: '',
-    description: '',
-    images: null,
+    desc: '',
+    imageurls: null,
+
   });
 
   const handleInputChange = (e) => {
@@ -67,42 +65,46 @@ const AddRoom = () => {
 
   const handleImageChange = (e) => {
     const { files } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      images: files,
-    }));
+
+    // Check if files is not null or undefined
+    if (files) {
+      setFormData((prevData) => {
+        console.log({ ...prevData, imageurls: files });
+        return {
+          ...prevData,
+          imageurls: files,
+        };
+      });
+    }
   };
 
-  const submitForm = () => {
-    // Create a FormData object to easily handle file uploads
-    const formDataObject = new FormData();
 
-    // Append form data to the FormData object
-    Object.entries(formData).forEach(([key, value]) => {
-      if (key === 'images') {
-        for (let i = 0; i < value.length; i++) {
-          formDataObject.append('images[]', value[i]);
+  const submitForm = async () => {
+    try {
+      // Create a FormData object to easily handle file uploads
+      const formDataObject = new FormData();
+
+      // Append form data to the FormData object
+      Object.entries(formData).forEach(([key, value]) => {
+        if (key === 'imageurls' && value) {
+          for (let i = 0; i < value.length; i++) {
+            formDataObject.append('imageurls', value[i]);
+          }
+        } else {
+          formDataObject.append(key, value);
         }
-      } else {
-        formDataObject.append(key, value);
-      }
-    });
-
-    // You can now send the formDataObject to your server using AJAX or other methods
-    // Example using Fetch API (you might need to adjust this based on your backend)
-    fetch('/your-api-endpoint', {
-      method: 'POST',
-      body: formDataObject,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Success:', data);
-        // Handle success, e.g., show a success message to the user
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        // Handle error, e.g., show an error message to the user
       });
+
+      // Send the formDataObject to your server using Axios
+      const response = await axios.post('http://localhost:8000/api/room', formDataObject, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log('Success:', response.data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
 
@@ -114,45 +116,30 @@ const AddRoom = () => {
         <h1 className="heading">Add Room</h1>
         <div className="formContainer">
           <form>
+
             <label htmlFor="roomName">Room Name:</label>
             <input
               type="text"
-              id="roomName"
-              name="roomName"
-              value={formData.roomName}
+              id="name"
+              name="name"
+              value={formData.name}
               onChange={handleInputChange}
               required
             />
 
-
-
-            {/* choose between input text or dropdown for the Branch*/}
-
             <label htmlFor="branch">Branch:</label>
-            <input
-              type="text"
+            <select
               id="branch"
               name="branch"
               value={formData.branch}
               onChange={handleInputChange}
               required
-            />
-
-            {/* <label htmlFor="branch">Branch:</label>
-                            <select
-                            id="branch"
-                            name="branch"
-                            value={formData.branch}
-                            onChange={handleInputChange}
-                            required
-                            >
-                            <option value="">Select Branch</option>
-                            <option value="Malaybalay">Malaybalay</option>
-                            <option value="Maramag">Maramag</option>
-                            <option value="Valencia">Valencia</option>
-                            </select> */}
-
-
+            >
+              <option value="">Select Branch</option>
+              <option value="Malaybalay">Malaybalay</option>
+              <option value="Maramag">Maramag</option>
+              <option value="Valencia">Valencia</option>
+            </select>
 
             <label htmlFor="price">Price:</label>
             <input
@@ -176,10 +163,10 @@ const AddRoom = () => {
 
             <label htmlFor="description">Description:</label>
             <textarea
-              id="description"
-              name="description"
+              id="desc"
+              name="desc"
               rows="2"
-              value={formData.description}
+              value={formData.desc}
               onChange={handleInputChange}
             ></textarea>
 
@@ -187,8 +174,8 @@ const AddRoom = () => {
             <input
               className="file"
               type="file"
-              id="images"
-              name="images"
+              id="imageurls"
+              name="imageurls"
               multiple
               accept="image/*"
               onChange={handleImageChange}
@@ -201,10 +188,6 @@ const AddRoom = () => {
         </div>
 
       </section>
-
-
-
-
 
       <Footer />
     </div>

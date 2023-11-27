@@ -22,10 +22,10 @@ const createBooking = async (req, res, next) => {
             transactionId: savedBooking.transactionId,
             isManual: savedBooking.isManual
 
-
         });
 
         await roomTemp.save()
+
         // console.log(roomTemp);
         // console.log(savedBooking)
 

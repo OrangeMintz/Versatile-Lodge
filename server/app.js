@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-
+const path = require('path');
 
 
 // const authroute = require("./routes/auth.js");
@@ -15,6 +15,7 @@ const reviewsroute = require("./routes/reviews.js")
 const transactionroute = require("./routes/transaction.js")
 const customerroute = require('./routes/authRoutes.js')
 const adminroute = require('./routes/adminRoutes.js')
+
 
 const bookingroute = require('./routes/booking.js')
 
@@ -54,14 +55,12 @@ app.use(cors(corsOptions));
 app.use(express.json({ limit: '50mb' }));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false, limit: '50m' }))
+// app.use('/uploads', express.static('public/uploads'));
+app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
 
-// app.use("/api/auth", authroute);
-
-// app.use("/api/users", usersroute);
 app.use("/", customerroute);
 app.use("/admin", adminroute);
-
 
 // app.use('/', require('./routes/authRoutes'))
 app.use("/api/branch", branchroute);

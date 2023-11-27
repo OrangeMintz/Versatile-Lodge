@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const roomschema = new mongoose.Schema(
+const archiveRoomschema = new mongoose.Schema(
     {
         name: {
             type: String,
@@ -28,7 +28,7 @@ const roomschema = new mongoose.Schema(
             required: true,
         },
 
-        imageurls: [String],
+        imageurls: [],
 
         currentbookings: [
             {
@@ -57,4 +57,4 @@ const roomschema = new mongoose.Schema(
     { timestamps: true }
 );
 
-module.exports = mongoose.model("Room", roomschema);
+module.exports = mongoose.model("ArchiveRooms", archiveRoomschema);

@@ -17,7 +17,7 @@ import Error404 from "./pages/404/404.jsx";
 import Error401 from "./pages/401/401.jsx";
 import AddRoom from "./pages/addRoom/AddRoom.jsx";
 import AddReservation from "./pages/addReservation/AddReservation.jsx";
-
+import EditRoom from './pages/editRoom/editRoom.jsx';
 
 //Components
 
@@ -69,7 +69,7 @@ function App() {
         <Route path="/AccountSettings" element={<AdminAccountSettings />} />
         <Route path="/AddRoom" element={<AddRoom />} />
         <Route path="/Reservation" element={<AddReservation />} />
-
+        <Route path="/room/edit/:id" element={<EditRoom />} />
 
 
         {/* INVALID ACCESS */}
