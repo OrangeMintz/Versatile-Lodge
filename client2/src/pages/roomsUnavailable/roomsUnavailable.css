@@ -158,6 +158,7 @@
     background: var(--main-color);
     color: var(--branch-color);
     position: relative;
+    text-align: center;
     
 }
 

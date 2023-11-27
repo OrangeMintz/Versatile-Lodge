@@ -9,6 +9,8 @@ import { UserContext } from '../../components/userContext';
 import axios from 'axios';
 import Loader from '../../components/Loader';
 import Error from '../../components/Error';
+import { Link } from 'react-router-dom';
+
 
 const EditRoom = () => {
     const navigate = useNavigate();
@@ -131,7 +133,10 @@ const EditRoom = () => {
             <HeaderAdmin />
             <Sidebar />
             <section className="AddRoom">
-                <h1 className="heading">Edit Room</h1>
+                <div className="title-back">
+                    <h1 className="heading">Edit Room</h1>
+                    <Link to="/roomsAvailable">back</Link>     
+                </div>
                 <div className="formContainer">
                     {loading && <Loader />}
                     {error && <Error />}

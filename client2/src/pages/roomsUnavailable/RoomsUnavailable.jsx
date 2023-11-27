@@ -202,7 +202,7 @@ const RoomsUnavailable = () => {
 
             {/* Confirmation Modal */}
             {showModal && (
-                <div className="modal-overlay">
+                <div className="overlay">
                     <div className="modal">
                         <p>Are you sure you want to archive this room?</p>
                         <button onClick={handleHideModal}>No</button>
