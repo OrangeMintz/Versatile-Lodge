@@ -1,7 +1,7 @@
 /* overview part*/
 
 .overview {
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .overview .box-container {      /*container of ENTIRE overview*/

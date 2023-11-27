@@ -1,10 +1,10 @@
 
 .profileAdmin { 
-    height: 100%;
+    min-height: 100vh;
 }
 .profileAdminGrid {
     gap: 2rem;
-    height: 70vh;
+    height: 100vh;
 }
 
 .profileAdminGrid .profileAdminDetails {
