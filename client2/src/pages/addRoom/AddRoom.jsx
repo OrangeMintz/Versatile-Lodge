@@ -52,7 +52,7 @@ const AddRoom = () => {
     maxPeople: '',
     desc: '',
     imageurls: null,
-    status: '',
+    status: 'Available',
 
   });
 
@@ -249,8 +249,8 @@ const AddRoom = () => {
             >
               <option value="" defaultValue disabled>Select Branch</option>
               <option value="Malaybalay">Malaybalay</option>
-              <option value="Maramag">Maramag</option>
               <option value="Valencia">Valencia</option>
+              <option value="Maramag">Maramag</option>
             </select>
 
             <label htmlFor="price">Price:</label>
