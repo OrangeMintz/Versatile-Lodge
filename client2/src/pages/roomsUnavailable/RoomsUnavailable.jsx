@@ -114,6 +114,28 @@ const RoomsUnavailable = () => {
         });
 
 
+    const sortedRooms = filteredAndSearchedRooms.sort((room1, room2) => {
+        // Compare by room name
+        const nameComparison = room1.name.localeCompare(room2.name);
+
+        if (nameComparison !== 0) {
+            return nameComparison;
+        }
+
+        // Compare by status (booked first)
+        const status1 = room1.currentbookings.some(booking => booking.status === 'booked');
+        const status2 = room2.currentbookings.some(booking => booking.status === 'booked');
+
+        if (status1 && !status2) {
+            return -1;
+        } else if (!status1 && status2) {
+            return 1;
+        }
+
+        return 0;
+    });
+
+
 
     const handleShowModal = (roomId) => {
         setSelectedRoomId(roomId);
@@ -170,11 +192,10 @@ const RoomsUnavailable = () => {
                 </div>
 
 
-                {/* Display unavailable rooms */}
                 {loading && <Loader />}
                 {error && <Error />}
                 {!loading && !error && (
-                    filteredAndSearchedRooms.map(room => (
+                    sortedRooms.map(room => (
                         <div key={room._id} className="roomsRow">
                             <div className="roomsRowWrapper">
                                 <img src={room.imageurls[0]} alt="" />

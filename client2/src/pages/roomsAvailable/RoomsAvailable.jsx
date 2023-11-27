@@ -121,6 +121,14 @@ const RoomsAvailable = () => {
             return branchMatch && (nameMatch || maxPeopleMatch || priceMatch);
         });
 
+    const sortRoomsByRoomNumber = (rooms) => {
+        return rooms.slice().sort((room1, room2) => {
+            const roomNumber1 = parseInt(room1.name.match(/\d+/)[0]);
+            const roomNumber2 = parseInt(room2.name.match(/\d+/)[0]);
+            return roomNumber1 - roomNumber2;
+        });
+    };
+
 
 
 
@@ -186,17 +194,16 @@ const RoomsAvailable = () => {
                     </div>
                 </div>
 
-                {user && (user.isAdmin) && (
+                {user && user.isAdmin && (
                     <div className="addRoom">
                         <Link to="/AddRoom">+ Add Room</Link>
                     </div>
                 )}
 
-
                 {loading && <Loader />}
                 {error && <Error />}
                 {!loading && !error && (
-                    filteredRooms.map(room => (
+                    sortRoomsByRoomNumber(filteredRooms).map((room) => (
                         <div key={room._id} className="roomsRow">
                             <div className="roomsRowWrapper">
                                 <img src={room.imageurls[0]} alt="" />
@@ -207,7 +214,9 @@ const RoomsAvailable = () => {
                                     <p className='sub'>Max People: {room.maxPeople}</p>
                                 </div>
                                 <div className="roomButtons">
-                                    <Link to={`/room/edit/${room._id}`} className="roomBtn-pencil"><span className='fa-solid fa-pencil'></span></Link>
+                                    <Link to={`/room/edit/${room._id}`} className="roomBtn-pencil">
+                                        <span className='fa-solid fa-pencil'></span>
+                                    </Link>
                                     <button className="roomBtn-trashcan" onClick={() => handleShowModal(room._id)}>
                                         <span className='fa-solid fa-trash'></span>
                                     </button>
@@ -220,7 +229,7 @@ const RoomsAvailable = () => {
 
             {/* Confirmation Modal */}
             {showModal && (
-                <div className="overlay"> 
+                <div className="overlay">
                     <div className="modal">
                         <p>Are you sure you want to archive this room?</p>
                         <button onClick={handleHideModal}>No</button>

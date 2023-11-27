@@ -79,6 +79,24 @@ const Rooms = () => {
         setduplicateroom(filteredRooms);
     }
 
+
+    function filterBySearch(term) {
+        const selectedBranch = document.querySelector('[name="branch"]').value;
+
+        const filteredRooms = originalData.filter((room) => {
+            const isBranchMatched = selectedBranch === 'All' || room.branch === selectedBranch;
+            const isRoomAvailable = !room.unavailable;
+            const isNameMatched = room.name.toLowerCase().includes(term.toLowerCase());
+            const isBranchDescMatched = room.branch.toLowerCase().includes(term.toLowerCase());
+            const isDescMatched = room.desc.toLowerCase().includes(term.toLowerCase());
+
+            return isBranchMatched && isRoomAvailable && (isNameMatched || isBranchDescMatched || isDescMatched);
+        });
+
+        setduplicateroom(filteredRooms);
+    }
+
+
     function filterByDate(dates) {
         const fromDate = dates[0]?.format('MM-DD-YYYY');
         const toDate = dates[1]?.format('MM-DD-YYYY');
