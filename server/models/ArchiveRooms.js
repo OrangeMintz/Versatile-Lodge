@@ -4,28 +4,22 @@ const archiveRoomschema = new mongoose.Schema(
     {
         name: {
             type: String,
-            required: true,
-            unique: true
         },
 
         branch: {
             type: String,
-            required: true,
         },
 
         price: {
             type: Number,
-            required: true,
         },
 
         maxPeople: {
             type: Number,
-            required: true,
         },
 
         desc: {
             type: String,
-            required: true,
         },
 
         imageurls: [],
