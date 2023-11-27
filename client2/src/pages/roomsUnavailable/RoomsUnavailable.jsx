@@ -142,7 +142,6 @@ const RoomsUnavailable = () => {
 
         } catch (error) {
             console.error('Error archiving room:', error);
-            toast.error('Error archiving room. Please try again later.');
         } finally {
             // Hide the modal
             handleHideModal();

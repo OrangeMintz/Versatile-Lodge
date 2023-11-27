@@ -69,6 +69,10 @@ const RoomsAvailable = () => {
                 return true; // Room has no current bookings
             }
 
+            if (!room.currentbookings || room.currentbookings.every(booking => booking.status === 'reserved')) {
+                return true; // Room has no current bookings or all bookings are reserved
+            }
+
             // Check if any booking overlaps with the current date
             return room.currentbookings.every(booking => {
                 const bookingStartDate = moment(booking.fromDate, 'MM-DD-YYYY').format('MM/DD/YYYY');
@@ -156,7 +160,6 @@ const RoomsAvailable = () => {
 
         } catch (error) {
             console.error('Error archiving room:', error);
-            toast.error('Error archiving room. Please try again later.');
         } finally {
             // Hide the modal
             handleHideModal();
