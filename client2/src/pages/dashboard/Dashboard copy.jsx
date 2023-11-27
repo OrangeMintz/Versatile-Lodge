@@ -1,17 +1,14 @@
-// import styles from './dashboard.module.css';
-
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+
+// import styles from './dashboard.module.css';
+import './dashboard.css';
+
 import HeaderAdmin from '../../components/HeaderAdmin';
 import Sidebar from '../../components/Sidebar';
 import Footer from '../../components/Footer';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { UserContext } from '../../components/userContext';
-import './dashboard.css';
-import moment from 'moment';
-
-
-
 const Dashboard = () => {
     const navigate = useNavigate()
 
@@ -67,58 +64,6 @@ const Dashboard = () => {
             });
     }, []);
 
-    const [roomData, setRoomData] = useState([]);
-
-    useEffect(() => {
-        // Fetch room data from the API
-        axios.get('/api/room')
-            .then(response => {
-                setRoomData(response.data);
-            })
-            .catch(error => {
-                console.error('Error fetching room data:', error);
-            });
-    }, []);
-
-
-    const calculateOccupancy = (branchName) => {
-        // Filter rooms based on the branch name
-        const branchRooms = roomData.filter((room) => room.branch === branchName);
-
-        // Get the current date in the format "MM-DD-YYYY"
-        const todayDate = moment().format('MM-DD-YYYY');
-
-        // Count the number of rooms occupied for the current day
-        const occupiedRoomsCount = branchRooms.reduce((count, room) => {
-            // Check if there is a booking with status "booked" and for the current day
-            if (
-                room.currentbookings.some(
-                    (booking) => {
-                        const fromDate = moment(booking.fromDate, 'MM-DD-YYYY').format('MM-DD-YYYY');
-                        const toDate = moment(booking.toDate, 'MM-DD-YYYY').format('MM-DD-YYYY');
-                        const isBookedForToday = moment(todayDate).isBetween(fromDate, toDate, null, '[]');
-                        console.log('Booking:', booking, 'Is Booked for Today:', isBookedForToday);
-                        return booking.status === 'booked' && isBookedForToday;
-                    }
-                )
-            ) {
-                return count + 1;
-            }
-            return count;
-        }, 0);
-
-        // Calculate the occupancy percentage
-        const occupancyPercentage = (occupiedRoomsCount / branchRooms.length) * 100 || 0; // Prevent division by zero
-
-        console.log('Occupied Rooms Count:', occupiedRoomsCount, 'Total Rooms:', branchRooms.length, 'Occupancy Percentage:', occupancyPercentage);
-
-        return { occupiedRoomsCount, occupancyPercentage };
-    };
-
-    const MalaybalayOccupancy = calculateOccupancy('Malaybalay');
-    const MaramagOccupancy = calculateOccupancy('Maramag');
-    const ValenciaOccupancy = calculateOccupancy('Valencia');
-
     return (
         // <div className={styles.dashboard}>
         <>
@@ -137,25 +82,25 @@ const Dashboard = () => {
                         <div className="box">
                             <span>Occupancy</span>
                             <h3 className="title">Malaybalay:</h3>
-                            <p>{MalaybalayOccupancy.occupancyPercentage.toFixed(1)}%</p>
+                            <p>50%</p>
                         </div>
 
                         <div className="box">
                             <span>Occupancy</span>
                             <h3 className="title">Maramag:</h3>
-                            <p>{MaramagOccupancy.occupancyPercentage.toFixed(1)}%</p>
+                            <p>50%</p>
                         </div>
 
                         <div className="box">
                             <span>Occupancy</span>
                             <h3 className="title">Valencia:</h3>
-                            <p>{ValenciaOccupancy.occupancyPercentage.toFixed(1)}%</p>
+                            <p>50%</p>
                         </div>
 
                         <div className="box">
                             <span>Occupancy</span>
                             <h3 className="title">Total:</h3>
-                            <p>{(((MalaybalayOccupancy.occupiedRoomsCount + MaramagOccupancy.occupiedRoomsCount + ValenciaOccupancy.occupiedRoomsCount) / roomData.length) * 100).toFixed(1)}%</p>
+                            <p>50%</p>
                         </div>
 
 
