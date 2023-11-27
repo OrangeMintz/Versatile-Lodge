@@ -2,10 +2,14 @@
     min-height: 100vh;
 }
 
-.roomsAvailable .roomState {
+.roomsAvailable .roomState {    /*container of clickable components above*/
+
     display: flex;
     align-items: center;
+    margin-bottom: 2rem;
+
 }
+
 
 .roomsAvailable .roomState a {
     font-size: 2rem;
@@ -30,6 +34,7 @@
     background: var(--main-color);
     color: var(--white);
     border-radius: 5px;
+
 }
 
 .roomsAvailable {
@@ -41,20 +46,23 @@
     background-color: var(--light-bg);
     border-bottom: 1px solid var(--black);
     font-size: 2rem;
-    margin: 0rem 0 0 2rem;
     height: 36px;
     cursor: pointer;
     color: var(--black);
 }
 
-.roomsAvailable .roomState .searchNall {
+.roomsAvailable .roomState .searchNselect {
     display: flex;
-    flex-direction: column;
-    align-items: end;
+    justify-content: space-between;
     flex: 1;
-    gap: 1rem;
 }
 
+
+.roomsAvailable .searchRoom {
+    padding: 1rem 1rem;
+    border-radius: 5px;
+    outline: 1px solid var(--main-color);
+}
 
 .roomsAvailable .addRoom{
     padding: 2px 8px;
@@ -70,25 +78,17 @@
     cursor: pointer;
     padding: 8px 15px;
     border-radius: 3px;
-    border:1px solid #eeeeee;
-
 }
 
 .roomsAvailable .addRoom a:hover{
     cursor: pointer;
     transition: 0.5s;
     color: var(--main-color);
-    border:1px solid var(--main-color);
+    border-bottom:1px solid var(--main-color);
 
 
 }
 
-.roomsAvailable .searchRoom {
-    padding: 1rem 1rem;
-    border-radius: 5px;
-    outline: 1px solid var(--main-color);
-    margin-right: 20px;
-}
 
 .roomsAvailable .roomsRow .roomsRowWrapper {
     display: flex;
@@ -99,12 +99,14 @@
 
 }
 
+
+
 .roomsAvailable .roomsRow .roomsRowWrapper img {
     width: 20%;
     aspect-ratio: 3/2;
 }
 
-.roomsAvailable .roomsRow .roomsRowWrapper .roomDetails {
+.roomsAvailable .roomsRow .roomsRowWrapper .roomDetails {      
     display: flex;
     flex-direction: column;
     margin: 0 4.5rem;
@@ -144,7 +146,7 @@
 }
 
 .roomsAvailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-pencil {
-    padding: 1.3rem 4rem;
+    padding: 1.2rem 3rem;
     font-size: 1.6rem;
     margin: 1rem;
     border-radius: 5px;
@@ -156,7 +158,7 @@
 }
 
 .roomsAvailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-trashcan {
-    padding: 1.3rem 2rem;
+    padding: 1.2rem 1rem;
     color: var(--branch-color);
     font-size: 1.6rem;
     cursor: pointer;
@@ -165,6 +167,140 @@
     background: var(--main-color);
     position: relative;
 }
+
+/* responsive style */
+
+    @media (max-width: 780px) {         /*grid the contents*/
+        .roomsAvailable .roomsRow .roomsRowWrapper{
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+        }
+
+
+        .roomsAvailable .roomState .links { /*container of below*/
+            display: flex;
+            flex-direction: column;
+        }
+
+        .roomsAvailable .roomState a { /*available rooms and unavailable rooms*/
+            display: block;
+            font-size: 1.7rem;
+        }
+
+        .roomsAvailable .roomsRow .roomsRowWrapper img {
+            width: 100%;
+        }
+
+        .roomsAvailable .roomsRow .roomsRowWrapper .roomDetails {
+            margin: 0;
+            width: 100%;
+        }
+
+        
+        .roomsAvailable .roomsRow .roomsRowWrapper .roomButtons {
+            margin: 0;
+            padding: 0;
+            position: static;
+            text-align: center;
+        }
+
+    }
+
+    @media (max-width: 500px) {
+
+        .roomsAvailable .roomState .searchNselect {
+            /* background-color: green; */
+            flex-direction: column-reverse;
+            justify-content: flex-start;
+            display: flex;
+            gap: 1.5rem;
+            width: 100%;
+        }
+
+        .roomsAvailable .roomState select {
+            border-radius: 5px;
+            font-size: 2rem;
+            height: 36px;
+            cursor: pointer;
+            color: var(--black);
+            width: 100%;
+        }
+        
+        
+        .roomsAvailable .searchRoom {
+            padding: 1rem 1rem;
+            border-radius: 5px;
+            width: 100%;
+
+        }
+
+        .roomsAvailable .roomsRow .roomsRowWrapper{
+            display: grid;
+            grid-template-columns: 1fr 1fr 0.5fr;
+        }
+
+        .roomsAvailable .roomsRow .roomsRowWrapper img {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .roomsAvailable .roomsRow .roomsRowWrapper .roomDetails {
+            margin: 0;
+            width: 100%;
+        }
+
+        .roomsAvailable .roomsRow .roomsRowWrapper .roomDetails p {
+            font-size: 1.8rem;
+            padding: 1rem 2rem;
+            color: var(--black);
+        }
+        
+        .roomsAvailable .roomsRow .roomsRowWrapper .roomDetails .sub-heading{
+            font-size: 1.8rem;
+            font-weight: 700;
+            padding: 0.5rem 2rem;
+            color: var(--black);
+        }
+        
+        .roomsAvailable .roomsRow .roomsRowWrapper .roomDetails .sub{
+            font-size: 1.2rem;
+            font-style: italic;
+            padding: 0.5rem 2rem;
+            color: var(--black);
+        }
+
+        
+        .roomsAvailable .roomsRow .roomsRowWrapper .roomButtons {
+            margin: 0;
+            padding: 0;
+            position: static;
+            text-align: center;
+        }
+
+        .roomsAvailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-pencil {
+            padding: 1rem;
+            font-size: 1.2rem;
+            margin: .5rem;
+            position: relative;
+            
+        }
+        
+        .roomsAvailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-trashcan {
+            padding: 1rem;
+            font-size: 1.2rem;
+            margin: .5rem;
+        }
+
+        .roomsAvailable .addRoom {
+            margin: 0;
+        }
+
+    }
+
+
 
 .roomsAvailable .roomsRow .roomsRowWrapper .roomButtons .roomAvailability {
     padding: 1rem 1rem;

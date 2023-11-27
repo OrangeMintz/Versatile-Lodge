@@ -129,7 +129,7 @@ const EditRoom = () => {
     };
 
     return (
-        <div>
+        <div className='AddRoom-Page'>
             <HeaderAdmin />
             <Sidebar />
             <section className="AddRoom">
@@ -207,7 +207,6 @@ const EditRoom = () => {
                     )}
                 </div>
             </section>
-            <Footer />
         </div>
     );
 }

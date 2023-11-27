@@ -1,5 +1,5 @@
 .AddRoom {
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .AddRoom .title-back {

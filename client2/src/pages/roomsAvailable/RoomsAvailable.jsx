@@ -173,16 +173,19 @@ const RoomsAvailable = () => {
             <section className="roomsAvailable">
                 <h1 className="heading">Available Rooms</h1>
                 <div className="roomState">
-                    <Link className="stateBtn state">Available Rooms</Link>
-                    <Link to="/roomsUnavailable">Unavailable Rooms</Link>
-                    <select value={selectedLocation} onChange={handleLocationChange}>
-                        <option value="all">All</option>
-                        <option value="Malaybalay">Malaybalay</option>
-                        <option value="Valencia">Valencia</option>
-                        <option value="Maramag">Maramag</option>
-                    </select>
-                    <div className="searchNadd">
+                    <div className="links">
+                        <Link className="stateBtn state">Available Rooms</Link>
+                        <Link to="/roomsUnavailable">Unavailable Rooms</Link>
+                    </div>
+                    <div className="searchNselect">
+                        <select value={selectedLocation} onChange={handleLocationChange}>
+                            <option value="all">All</option>
+                            <option value="Malaybalay">Malaybalay</option>
+                            <option value="Valencia">Valencia</option>
+                            <option value="Maramag">Maramag</option>
+                        </select>
                         <input className="searchRoom" type="text" placeholder="Search here..." value={searchTerm} onChange={handleSearch} />
+
                     </div>
                 </div>
 
