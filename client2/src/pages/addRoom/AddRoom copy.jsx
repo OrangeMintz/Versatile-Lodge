@@ -7,8 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { UserContext } from '../../components/userContext';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-
 
 
 const AddRoom = () => {
@@ -54,7 +52,6 @@ const AddRoom = () => {
     maxPeople: '',
     desc: '',
     imageurls: null,
-    status: '',
 
   });
 
@@ -169,11 +166,6 @@ const AddRoom = () => {
       return;
     }
 
-    if (!formData.status) {
-      toast.error('Status required');
-      return;
-    }
-
     if (formData.imageurls) {
       for (let i = 0; i < formData.imageurls.length; i++) {
         if (!acceptedFormats.includes(formData.imageurls[i].type)) {
@@ -185,11 +177,6 @@ const AddRoom = () => {
       toast.error('Images required');
       return;
     }
-
-    // Set unavailable based on status
-    formData.status === 'Available'
-      ? (formData.unavailable = false)
-      : (formData.unavailable = true);
 
     try {
       // Create a FormData object to easily handle file uploads
@@ -226,10 +213,7 @@ const AddRoom = () => {
       <HeaderAdmin />
       <Sidebar />
       <section className="AddRoom">
-        <div className="title-back">
-          <h1 className="heading">Add Room</h1>
-          <Link to="/roomsAvailable">back</Link>     
-        </div>
+        <h1 className="heading">Add Room</h1>
         <div className="formContainer">
           <form>
 
@@ -278,18 +262,8 @@ const AddRoom = () => {
               onChange={handleInputChange}
               required
               placeholder='Enter Maximum People'
-            />
 
-            <label htmlFor="Status">Status:</label>
-            <select
-              id="status"
-              name="status"
-              value={formData.status}
-              onChange={handleInputChange}
-            >
-              <option value="Available">Available</option>
-              <option value="Maintenance">Maintenance</option>
-            </select>
+            />
 
             <label htmlFor="description">Description:</label>
             <textarea

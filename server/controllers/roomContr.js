@@ -29,7 +29,7 @@ const upload = require('../middleware/multerConfig');
 const createRoom = async (req, res) => {
     try {
         // Multer middleware
-        upload.array('imageurls', 3)(req, res, async (err) => {
+        upload.array('imageurls', 20)(req, res, async (err) => {
             if (err) {
                 console.error('Multer error:', err);
                 return res.status(500).json({ error: 'Internal server error' });
@@ -44,7 +44,7 @@ const createRoom = async (req, res) => {
                     return res.status(400).json({ message: 'No files were uploaded.' });
                 }
 
-                const { name, branch, price, maxPeople, desc } = body;
+                const { name, branch, price, maxPeople, desc, unavailable } = body;
 
                 // Process uploaded files
                 const images = req.files.map((file) => `/uploads/${file.filename}`);
@@ -58,6 +58,7 @@ const createRoom = async (req, res) => {
                     maxPeople,
                     desc,
                     imageurls: images,
+                    unavailable,
                 });
 
                 const savedRoom = await newRoom.save();

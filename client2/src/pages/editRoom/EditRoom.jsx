@@ -110,7 +110,7 @@ const EditRoom = () => {
             return;
         }
 
-        if (!isValidRoomNameFormat) {
+        if (formData.name && !isValidRoomNameFormat) {
             toast.error('Room name should start with "Room " followed by a number.');
             return;
         }
