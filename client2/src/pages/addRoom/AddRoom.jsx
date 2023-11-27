@@ -323,7 +323,7 @@ const AddRoom = () => {
 
       </section>
 
-      <Footer />
+
     </div>
   )
 }
