@@ -1,9 +1,9 @@
 .roomsUnavailablePage {
-    max-height: 100vh;
     height: 100%;
 }
 .roomsUnavailable {
-    height: 100%;
+    min-height: 100vh;
+
 }
 .roomsUnavailable .roomState {
     display: flex;
