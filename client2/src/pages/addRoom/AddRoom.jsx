@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { UserContext } from '../../components/userContext';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 
 
 const AddRoom = () => {
@@ -113,7 +115,10 @@ const AddRoom = () => {
       <HeaderAdmin />
       <Sidebar />
       <section className="AddRoom">
-        <h1 className="heading">Add Room</h1>
+        <div className="title-back">
+          <h1 className="heading">Add Room</h1>
+          <Link to="/roomsAvailable">back</Link>     
+        </div>
         <div className="formContainer">
           <form>
 
