@@ -163,12 +163,15 @@ const AddReservation = () => {
       totalDays: totalDays.toString(),
       transactionId: uuid,
       status: 'reserved',
+      isManual: true
+
     };
 
     try {
       // Create a booking entry
       const result = await axios.post('/api/booking/', bookingDetails);
       toast.success('Reserved Successfully');
+      navigate("/roomsReserved")
 
       // Update the room's currentbookings
       const roomTemp = await axios.get(`/api/room/${selectedRoom._id}`);
@@ -180,12 +183,15 @@ const AddReservation = () => {
           toDate: endDate.format('MM-DD-YYYY'),
           userId: user.id,
           status: 'reserved',
+          isManual: true,
           totalAmount: totalAmount.toString(),
-          transactionId: uuid,
-          isManual: true
+          transactionId: uuid
+
 
         },
       ];
+
+      console.log("RESERVATION STATUS", updatedCurrentBookings)
 
       await axios.put(`/api/room/${selectedRoom._id}`, {
         ...roomTemp.data,
@@ -193,7 +199,7 @@ const AddReservation = () => {
       });
 
       // navigate('/'); // Redirect to the homepage after booking
-      window.location.href = `${window.location.origin}/roomsReserved`;
+      // window.location.href = `${window.location.origin}/roomsReserved`;
 
     } catch (error) {
       // Handle error
@@ -256,12 +262,11 @@ const AddReservation = () => {
 
           {selectedRoom && (
             <div className='details' >
-              <p>Price: {selectedRoom._id} </p>
-              <p>Price: {selectedRoom.price} </p>
-              <p>Total Days: {totalDays}</p>
-              <p>Total Amount: {totalAmount}</p>
-              <p>Maximum People: {selectedRoom.maxPeople}</p>
-              <p>Transaction ID: {uuidv4()}</p>
+              <p>Price: <h3>₱ {selectedRoom.price} </h3> </p>
+              <p>Total Days: <h3>{totalDays} Day/s </h3></p>
+              <p>Total Amount:<h3>₱ {totalAmount}</h3> </p>
+              <p>Maximum People: <h3>{selectedRoom.maxPeople} People</h3></p>
+              <p>Transaction ID: <h3>{uuidv4()}</h3></p>
             </div>
           )}
         </div>

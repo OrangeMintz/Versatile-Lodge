@@ -157,27 +157,28 @@ const Reviews = () => {
                     ))}
             </div>
 
-            {/* {hasValidBooking() && !userReview && ( */}
-            <section className="contactUs" id="contactUS" style={{ marginTop: '100px' }}>
-                <div className="container">
-                    <form onSubmit={handleSubmit}>
-                        <h3 className='sendUsReview'>Send Us Review</h3>
-                        <textarea
-                            name="msg"
-                            className="boxArea"
-                            required
-                            maxLength="1000"
-                            placeholder="enter your message"
-                            value={comment}
-                            onChange={(e) => setComment(e.target.value)}
-                            cols="30"
-                            rows="15"
-                        ></textarea>
-                        <input type="submit" value="Send Message" name="send" className="reviewBtn" />
-                    </form>
-                </div>
-            </section>
-            {/* )} */}
+            {hasValidBooking() && !userReview && (
+                <section className="contactUs" id="contactUS" style={{ marginTop: '50px' }}>
+                    <div className="container">
+                        <form onSubmit={handleSubmit}>
+                            <h3 className='sendUsReview'>Send Us Review</h3>
+                            <textarea
+                                name="msg"
+                                className="boxArea"
+                                required
+                                maxLength="1000"
+                                placeholder="Enter your message"
+                                value={comment}
+                                onChange={(e) => setComment(e.target.value)}
+                                style={{ width: "1000px", fontSize: "18px" }}
+                                cols="30"
+                                rows="15"
+                            ></textarea>
+                            <input type="submit" value="Send Message" name="send" className="reviewBtn" />
+                        </form>
+                    </div>
+                </section>
+            )}
             <Footer />
         </div>
     );

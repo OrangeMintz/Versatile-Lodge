@@ -1,114 +1,25 @@
 const Room = require("../models/Room.js");
-// const Branch = require("../models/Branch.js");
+const Branch = require("../models/Branch.js");
 const BookingHistory = require('../models/BookingHistory.js');
 const ArchiveRooms = require('../models/ArchiveRooms.js')
 
-
 const mongoose = require('mongoose');
+
 const createError = require('../utils/error.js');
 
-const multer = require('multer');
-const path = require('path');
 
-const upload = require('../middleware/multerConfig');
+const createRoom = async (req, res, next) => {
 
+    // const branchId = req.params.branchId;
+    const newRoom = new Room(req.body);
 
-// const createRoom = async (req, res, next) => {
-
-//     // const branchId = req.params.branchId;
-//     const newRoom = new Room(req.body);
-
-//     try {
-//         const savedRoom = await newRoom.save();
-//         res.status(200).json(savedRoom);
-//     } catch (err) {
-//         next(err)
-//     }
-// };
-
-const createRoom = async (req, res) => {
     try {
-        // Multer middleware
-        upload.array('imageurls', 3)(req, res, async (err) => {
-            if (err) {
-                console.error('Multer error:', err);
-                return res.status(500).json({ error: 'Internal server error' });
-            }
-
-
-            try {
-                const { body } = req;
-
-                // Check if files were uploaded
-                if (!req.files || req.files.length === 0) {
-                    return res.status(400).json({ message: 'No files were uploaded.' });
-                }
-
-                const { name, branch, price, maxPeople, desc } = body;
-
-                // Process uploaded files
-                const images = req.files.map((file) => `/uploads/${file.filename}`);
-
-                // Assuming images are stored in a public/uploads directory
-
-                const newRoom = new Room({
-                    name,
-                    branch,
-                    price,
-                    maxPeople,
-                    desc,
-                    imageurls: images,
-                });
-
-                const savedRoom = await newRoom.save();
-
-                res.status(201).json(savedRoom);
-            } catch (error) {
-                console.error('Error creating room:', error);
-                res.status(500).json({ error: 'Internal server error' });
-            }
-        });
-    } catch (error) {
-        console.error('Error creating room:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        const savedRoom = await newRoom.save();
+        res.status(200).json(savedRoom);
+    } catch (err) {
+        next(err)
     }
 };
-
-
-// const createRoom = async (req, res) => {
-//     try {
-//         const { body } = req;
-
-//         // Check if files were uploaded
-//         if (!req.files || Object.keys(req.files).length === 0) {
-//             return res.status(400).json({ message: 'No files were uploaded.' });
-//         }
-
-//         const { name, branch, price, maxPeople, desc } = body;
-
-//         // Process uploaded files
-//         const images = req.files.imageurls.map((file) => `/uploads/${file.filename}`);
-
-//         // Assuming images are stored in a public/uploads directory
-
-//         const newRoom = new Room({
-//             name,
-//             branch,
-//             price,
-//             maxPeople,
-//             desc,
-//             imageurls: images,
-//         });
-
-//         const savedRoom = await newRoom.save();
-
-//         res.status(201).json(savedRoom);
-//     } catch (error) {
-//         console.error('Error creating room:', error);
-//         res.status(500).json({ error: 'Internal server error' });
-//     }
-// };
-
 
 
 

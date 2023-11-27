@@ -44,7 +44,10 @@ const bookingSchema = new mongoose.Schema({
         default: 'reserved'
     },
 
-    isManual: Boolean
+    isManual: {
+        type: Boolean,
+        default: false
+    }
 
 },
     { timestamps: true }
