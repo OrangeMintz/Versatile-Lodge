@@ -75,7 +75,6 @@ body {
     padding-left: 30rem;                 /*space for sidebar*/
     transition: .2s linear;              /*transition if sidebar toggled*/
     background: var(--light-bg);
-    height: 100vh;
 
 }
 

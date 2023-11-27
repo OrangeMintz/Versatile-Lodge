@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import './adminAccountSettings.css';
 import HeaderAdmin from '../../components/HeaderAdmin';
 import Sidebar from '../../components/Sidebar';
+import Footer from '../../components/Footer';
 import AdminChangePassModal from '../../components/AdminChangePassModal';
 import { UserContext } from '../../components/userContext';
 import { useNavigate } from 'react-router-dom';
@@ -212,7 +213,10 @@ const AdminAccountSettings = () => {
                         </form>
                     )}
                 </div>
+
             </section>
+            {/* <Footer /> */}
+            
         </div>
     );
 };
