@@ -21,6 +21,8 @@ const AccountSetting = () => {
   const [file, setFile] = useState(null);
   const [image, setImage] = useState('');
 
+  // Check LOGON
+  const [operationsComplete, setOperationsComplete] = useState(false);
   useEffect(() => {
     if (!user) {
       axios
@@ -30,9 +32,20 @@ const AccountSetting = () => {
         })
         .catch((error) => {
           console.error('Error fetching user profile:', error);
+        })
+        .finally(() => {
+          // Set operationsComplete to true after data fetching is complete
+          setOperationsComplete(true);
         });
     }
   }, [user, setUser]);
+
+  useEffect(() => {
+    if (operationsComplete && !user) {
+      navigate('/login');
+    }
+  }, [user, operationsComplete, navigate]);
+
 
   const fileInputRef = useRef();
   const profileImageRef = useRef();
@@ -44,17 +57,18 @@ const AccountSetting = () => {
       const imageURL = URL.createObjectURL(selectedFile);
       profileImageRef.current.src = imageURL;
       setFile(selectedFile);
-      console.log('Selected file:', selectedFile);  // Add this line for logging
     }
-  };
-
-  // New function to log file changes
-  const logFileChanges = () => {
-    console.log('File:', file);
   };
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+
+
+    if (user.googleSign && name === 'email') {
+      toast.error('You cannot change your email if you signed in with Google.');
+      return;
+    }
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -99,17 +113,14 @@ const AccountSetting = () => {
 
     try {
       // Check if a new file is selected
-      console.log('Form data:', formData);  // Add this line for logging
-      console.log('File:', file);  // Add this line for logging
-
       if (file) {
-        const formDataObject = new FormData();
-        formDataObject.append('name', formData.name);
-        formDataObject.append('email', formData.email);
-        formDataObject.append('address', formData.address);
-        formDataObject.append('image', file);  // Append the file to formData
+        const formData = new FormData();
+        formData.append('name', formData.name);
+        formData.append('email', formData.email);
+        formData.append('address', formData.address);
+        formData.append('image', file);  // Append the file to formData
 
-        const response = await axios.put(`/update/${userId}`, formDataObject);
+        const response = await axios.put(`/update/${userId}`, formData);
 
         const updatedUser = response.data;
         setUser(updatedUser);
@@ -158,17 +169,28 @@ const AccountSetting = () => {
         <div className="account-menu">
           <div className="profile-picture">
             {!!user && <img src={user.image} alt="Profile Picture" ref={profileImageRef} />}
+            {/* <label htmlFor="profile-picture-input" id="change-picture-label">
+              Change Profile Picture
+            </label>
+            <input
+              type="file"
+              id="profile-picture-input"
+              accept="image/*"
+              style={{ display: 'none' }}
+              ref={fileInputRef}
+              onChange={handleFileInputChange}
+            /> */}
           </div>
           <ul>
             {!!user && (
               <>
                 <li>
-                  <Link to={`/accountSetting/${user.id}`}>
+                  <Link to={`/accountSetting`}>
                     <i className="fas fa-user"></i> Account Details
                   </Link>
                 </li>
                 <li>
-                  <Link to={`/changePassword/${user.id}`}>
+                  <Link to={`/changePassword`}>
                     <i className="fas fa-key"></i> Change Password
                   </Link>
                 </li>
@@ -183,7 +205,7 @@ const AccountSetting = () => {
         </div>
         <div className="settings">
           <h2>Account Settings</h2>
-          <form onSubmit={handleUpdateProfile} encType="multipart/form-data">
+          <form onSubmit={handleUpdateProfile}>
             {!!user && (
               <>
                 <label htmlFor="first-name">Full Name:</label>
@@ -204,6 +226,8 @@ const AccountSetting = () => {
                   placeholder={user.email}
                   value={formData.email}
                   onChange={handleInputChange}
+                  disabled={user.googleSign} // Disable the input if googleSign is true
+
                 />
 
                 <label htmlFor="address">Address:</label>
@@ -215,26 +239,12 @@ const AccountSetting = () => {
                   value={formData.address}
                   onChange={handleInputChange}
                 />
-
-                <label htmlFor="profile-picture-input" id="change-picture-label">
-                  Change Profile Picture
-                </label>
-                <input
-                  type="file"
-                  id="profile-picture-input"
-                  name="image"  // Set the name attribute to match the backend schema
-                  accept="image/*"
-                  style={{ display: 'none' }}
-                  ref={fileInputRef}
-                  onChange={(e) => {
-                    handleFileInputChange(e);
-                    logFileChanges();  // Add this line for logging file changes
-                  }}
-                />
+                <label htmlFor="address">Profile Picture:</label>
+                <input type='file' accept="image/png, image/jpeg, image/jpg" onChange={handleInputChange} />
               </>
             )}
 
-            <button type="submit">Update Profile</button>
+            <button className='btn-update' type="submit">Update Profile</button>
           </form>
 
           <div key={image._id}>
