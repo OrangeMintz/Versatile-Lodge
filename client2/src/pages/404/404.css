@@ -1,0 +1,41 @@
+.fourOfour {
+    background: var(--main-color);
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.wrapper{
+    display: flex;
+    top: 50%;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 100px;
+    width: 70vw;
+    background-color: #DCC69C;
+    border-radius: 10px;
+    margin: auto;
+}
+
+.wrapper button {
+    padding: 15px 20px;
+    background-color: #2B1103;
+    color: #DCC69C;
+    font-size: 15rem;
+    border: 1px solid #2B1103;
+}
+
+.wrapper button:hover {
+    transition: 0.5s;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #2B1103;
+    font-size: 15rem;
+    border: 1px solid #2B1103;
+}

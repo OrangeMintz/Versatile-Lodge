@@ -1,0 +1,78 @@
+
+.AddRoom {
+    min-height: 100%;
+}
+
+.AddRoom .title-back {
+    display: flex;
+    justify-content: space-between;
+    text-transform: capitalize;
+}
+
+.AddRoom .title-back a {
+    font-size: 1.5rem;
+    background: var(--main-color);
+    color: var(--branch-color);
+    padding: 1rem 2rem;
+    height: max-content;
+    border-radius: 7px;
+}
+
+.AddRoom .title-back a:hover {
+    background-color: var(--branch-color);
+    color: var(--main-color);
+    outline: 1px solid var(--black);
+}
+
+.AddRoom .formContainer {
+    margin: auto;
+    max-width: 700px;
+    width: 80%;
+    background-color: var(--white);
+    padding: 1rem;
+}
+
+.AddRoom .formContainer form {
+    color: var(--black);
+    display: flex;
+    flex-direction: column; 
+    gap: 1rem;
+    background-color: var(--branch-color) ;
+    padding: 1rem 2rem;
+    border-radius: 7px;
+}
+
+.AddRoom form label {
+    font-size: 1.8rem;
+    display: inline;
+}
+
+.AddRoom form input , textarea, select {
+    font-size: 1.8rem;
+    padding: 1rem 1.2rem;
+    border-radius: 7px;    
+}
+
+.AddRoom form input.file {
+    background-color: var(--white);
+    color: var(--black);
+}
+
+.AddRoom form .addRoomBtn {
+    width: max-content;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    box-shadow: 4px 4px 15px rgba(0,0,0,0.4);
+    cursor: pointer;
+    border: none;
+    margin: 2rem auto; 
+    color: var(--white);
+    background-color: var(--main-color);  
+}
+
+.AddRoom form .addRoomBtn:hover {
+    background-color: var(--branch-color);
+    color: var(--black);
+}
+
+
