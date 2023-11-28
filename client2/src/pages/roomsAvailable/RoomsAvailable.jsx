@@ -193,7 +193,6 @@ const RoomsAvailable = () => {
                             <option value="Maramag">Maramag</option>
                         </select>
                         <input className="searchRoom" type="text" placeholder="Search here..." value={searchTerm} onChange={handleSearch} />
-
                     </div>
                 </div>
 
