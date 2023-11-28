@@ -1,0 +1,173 @@
+.rooms h1 {                                    /*rooms section - ROOMS */
+    color: var(--branch-color);
+    font-size: 4rem;
+    text-align: center;
+    margin: 70px 0;
+}
+
+.rooms p {
+    color: var(--branch-color);
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.rooms .flex{              /*ROOMS drop down */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: flex-end;
+    border-bottom: 4px solid var(--white);
+    
+}
+
+.rooms .flex form .box .input {
+    width: 100%;
+    padding: 1rem 0;
+    font-size: 1.8rem;
+    background-color: var(--main-color);
+    color: var(--white);
+    border-bottom: var(--border);
+    margin: 1rem 0;
+}
+
+.search-form {  /*ROOMS search bar*/
+    height: 4rem;
+    width: 25rem;
+    margin-top: 10px;
+    border-radius: .5rem;
+    display: flex;
+    padding: 1rem 2rem;
+    background-color: var(--branch-color);
+}
+
+.search-form input { /*search bar input*/
+    width: 100%;
+    background: none;
+}
+
+.search-form button { /*search bar button (icon)*/
+    font-size: 2rem;
+    color: var(--main-color);
+    cursor: pointer;
+    background: none;
+}
+
+.search-form button:hover {
+    color: var(--white);
+}
+
+.rooms .card-container {            /*container of the entire cards*/
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50rem, 1fr));
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.rooms .card-container .card {           /*container of individual cards*/
+    margin: 3rem 3rem;
+    width: 90%;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+.rooms .card-container .card img {                /*img values*/
+    border-radius: .5rem;
+    width: 100%;
+    height: 300px;
+    object-fit: cover; 
+}
+
+.rooms .card-container .card .description {
+    background-color: var(--branch-color);
+    color: var(--main-color);
+    padding: 1rem 2rem;
+}
+
+.rooms .card-container .card .description h3 {
+    color: var(--main-color);
+    text-align: left;   
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+
+}
+
+.rooms .card-container .card .description p {
+    color: var(--main-color);
+    text-align: left;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    
+}
+
+.rooms .card-container .card .description .detail {        /*price and view detail container*/
+    display: flex;
+    justify-content: left;
+}
+
+.rooms .card-container .card .description .detail .room-branch{      /*room-branch*/
+    color: var(--main-color);
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+
+}
+
+.rooms .card-container .card .description .view-book {        /*price and view detail container*/
+    display: flex;
+    justify-content: right;
+}
+
+.rooms .card-container .card .description .view-book a {
+    text-align: right; /* Add this line to align "Book Now" and "View Detail" to the right */
+    background-color: var(--main-color);
+    color: var(--branch-color);
+    border: 1px solid var(--main-color);
+    padding: 7px 7px;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    border-radius: .7rem;
+    font-size: 1.5rem;
+}
+
+.rooms .card-container .card .description .view-book a:first-child {
+    margin-right: 5px; 
+}
+
+.rooms .card-container .card .description .view-book a:hover{    /*view detail hover*/
+    background-color: transparent ;
+    border: 1px solid var(--main-color);
+    color: var(--main-color);
+    transition-duration: .35s;
+}
+
+.room-details {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .room-name {
+    margin-right: auto; /* Pushes the room name to the left */
+  }
+  
+  .price {
+    margin-left: auto; /* Pushes the room branch to the right */
+  }
+
+.room-details h2{
+    font-weight: 600;
+    color: var(--branch-color);
+    font-size: 1em;
+    background-color: var(--main-color);
+    padding: 3px 10px;
+    font-style: italic;
+
+}
+
+
+/* Date-Range  */
+ .box .range-picker {
+    width: 100%;
+    padding: .65rem 0;
+    font-size: 1.8rem;
+    /* background-color: #DCC69C; */
+    border-bottom: var(--border);
+    margin: 1.2rem 0;
+}

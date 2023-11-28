@@ -1,0 +1,96 @@
+.adminAccountSettings {
+   height: 100vh;
+}
+
+.adminAccountSettings form{
+    display: grid;
+    grid-template-columns: 1fr 3fr .5fr;
+    gap: 4rem;
+    
+}
+
+.adminAccountSettings form .labels {
+    display: grid;
+    gap: 3.8rem;
+    font-size: 1.7rem;
+    text-align: right;
+    margin-top: 0.5rem;
+    color: var(--black);
+}
+
+.adminAccountSettings form .labels label {
+    padding: 1rem .5rem;
+}
+
+.adminAccountSettings form .labels label:nth-child(2){
+    margin-top: 70px;
+}
+
+.adminAccountSettings form .inputs input:nth-child(2) {
+    margin-top: 10px;
+}
+
+
+.adminAccountSettings form .inputs {
+    display: grid;
+    gap: 4rem;
+    color: var(--black);
+
+}
+
+.adminAccountSettings form .inputs input {
+    font-size: 1.7rem;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+
+.adminAccountSettings form .profile-picture {
+    height: 100px;
+    width: 100px;
+    margin: 0;
+ }
+
+ .adminAccountSettings form .profile-picture img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    margin: auto;
+    margin-bottom: 30px;
+
+ }
+
+ .adminAccountSettings form .adminBtns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ }
+
+ .adminAccountSettings form .adminBtns button {
+    outline:1px solid var(--black);
+    color: var(--white);
+    background-color: var(--light-color);
+    padding: 1rem 2rem;
+    cursor: pointer;
+    height: max-content;
+    border-radius: 5px;
+ }
+ 
+ .adminAccountSettings form .adminBtns button:hover {
+    background-color: var(--light-color);
+    color: var(--black);
+ }
+
+ .adminAccountSettings form .adminBtns input {
+    background-color: var(--main-color);
+    color: var(--white);
+    padding: 1rem 2rem;
+    cursor: pointer;
+    height: max-content;
+    border-radius: 5px;
+ }
+
+ .adminAccountSettings form .adminBtns input:hover {
+    background-color: var(--branch-color);
+    color: var(--black);
+ }

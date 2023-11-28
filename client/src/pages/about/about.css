@@ -1,0 +1,23 @@
+.about-us h1 {                                  /*about-us section - ABOUT */
+    color: var(--branch-color);
+    font-size: 4rem;
+    text-align: center;
+    margin: 70px 0;
+}
+
+.about-us h2 {
+    color: var(--branch-color);
+    font-size: 3.5rem;
+    text-align: center;
+    margin: 35px 0;
+
+}
+
+.about-us p {
+    color: var(--branch-color);
+    font-size: 2rem;
+    margin: 10px 0;
+}
+
+
+

@@ -1,0 +1,394 @@
+.roomsAvailable {
+    min-height: 100vh;
+}
+
+.roomsAvailable .roomState {    /*container of clickable components above*/
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+
+}
+
+.roomsAvailable .roomState a {  
+    font-size: 2rem;
+    margin: 1rem 2rem;
+    padding: 1rem;
+    cursor: pointer;
+    color: var(--black);
+    outline: 1px solid var(--main-color);
+    border-radius: 5px;
+    transition: linear .2s;
+}
+
+.roomsAvailable .roomState a:hover {
+    background: var(--main-color);
+    color: var(--white);
+    border-radius: 5px;
+    
+}
+
+.roomsAvailable .roomState a.state {
+    background: var(--main-color);
+    color: var(--white);
+    border-radius: 5px;
+
+}
+
+.roomsAvailable {
+    position: relative;
+}
+
+.roomsAvailable .roomState select { /*All Dropdown*/
+    border-radius: 5px;
+    background-color: var(--light-bg);
+    border-bottom: 1px solid var(--black);
+    font-size: 2rem;
+    margin: 1rem 0 0 2rem;
+    height: 36px;
+    cursor: pointer;
+    color: var(--black);
+}
+
+.roomsAvailable .roomState .searchNselect {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+}
+
+
+.roomsAvailable .searchRoom {
+    padding: 1rem 1rem;
+    border-radius: 5px;
+    outline: 1px solid var(--main-color);
+}
+
+.roomsAvailable .addRoom{
+    padding: 2px 8px;
+    margin-right: 10px;
+    display: block;
+    direction: rtl;
+}
+
+.roomsAvailable .addRoom a{
+    font-size: 2rem;
+    text-decoration: none;
+    color: var(--main-color);
+    cursor: pointer;
+    padding: 8px 15px;
+    border-radius: 3px;
+}
+
+.roomsAvailable .addRoom a:hover{
+    cursor: pointer;
+    transition: 0.5s;
+    color: var(--main-color);
+    border-bottom:1px solid var(--main-color);
+
+
+}
+
+.roomsAvailable .roomsRow .roomsRowWrapper {
+    display: flex;
+    margin: 4rem 2rem;
+    position: relative;
+    border-bottom: 1px solid var(--main-color);
+    border-top: 1px solid var(--main-color);
+}
+
+.roomsAvailable .roomsRow .roomsRowWrapper img {
+    width: 20%;
+    aspect-ratio: 3/2;
+}
+
+.roomsAvailable .roomsRow .roomsRowWrapper .roomDetails {      
+    display: flex;
+    flex-direction: column;
+    margin: 0 4.5rem;
+    text-align: center;
+    justify-content: center;
+    min-width: 10vw;
+}
+
+.roomsAvailable .roomsRow .roomsRowWrapper .roomDetails p {
+    font-size: 2rem;
+    padding: 1rem 2rem;
+    color: var(--black);
+}
+
+.roomsAvailable .roomsRow .roomsRowWrapper .roomDetails .sub-heading{
+    font-size: 2.1rem;
+    font-weight: 700;
+    padding: 0.5rem 2rem;
+    color: var(--black);
+}
+
+.roomsAvailable .roomsRow .roomsRowWrapper .roomDetails .sub{
+    font-size: 1.5rem;
+    font-style: italic;
+    padding: 0.5rem 2rem;
+    color: var(--black);
+}
+
+.roomsAvailable .roomsRow .roomsRowWrapper .roomButtons {
+    position: absolute;
+    right: 0;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.roomsAvailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-pencil {
+    padding: 1.2rem 3rem;
+    font-size: 1.6rem;
+    margin: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    background: var(--main-color);
+    color: var(--branch-color);
+    position: relative;
+}
+
+.roomsAvailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-trashcan {
+    padding: 1.2rem 1rem;
+    color: var(--branch-color);
+    font-size: 1.6rem;
+    cursor: pointer;
+    margin: 1rem;
+    border-radius: 5px;
+    background: var(--main-color);
+    position: relative;
+}
+
+/* responsive style */
+
+    @media (max-width: 780px) {         /*grid the contents*/
+        .roomsAvailable .roomsRow .roomsRowWrapper{
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+        }
+
+
+        .roomsAvailable .roomState .links { /*container of below*/
+            display: flex;
+            flex-direction: column;
+        }
+
+        .roomsAvailable .roomState a { /*available rooms and unavailable rooms*/
+            display: block;
+            font-size: 1.7rem;
+        }
+
+        .roomsAvailable .roomsRow .roomsRowWrapper img {
+            width: 100%;
+        }
+
+        .roomsAvailable .roomsRow .roomsRowWrapper .roomDetails {
+            margin: 0;
+            width: 100%;
+        }
+
+        
+        .roomsAvailable .roomsRow .roomsRowWrapper .roomButtons {
+            margin: 0;
+            padding: 0;
+            position: static;
+            text-align: center;
+        }
+
+    }
+
+    @media (max-width: 500px) {
+
+        .roomsAvailable .roomState .searchNselect {
+            /* background-color: green; */
+            flex-direction: column-reverse;
+            justify-content: flex-end;
+            align-items: flex-end;
+            display: flex;
+            gap: .5rem;
+            width: 100%;
+        }
+
+        .roomsAvailable .roomState select {
+            border-radius: 5px;
+            font-size: 2rem;
+            height: 36px;
+            cursor: pointer;
+            color: var(--black);
+            width: 100%;
+        }
+        
+        
+        .roomsAvailable .searchRoom {
+            padding: 1rem 1rem;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .roomsAvailable .roomsRow .roomsRowWrapper{
+            display: grid;
+            grid-template-columns: 1fr 1fr 0.5fr;
+        }
+
+        .roomsAvailable .roomsRow .roomsRowWrapper img {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .roomsAvailable .roomsRow .roomsRowWrapper .roomDetails {
+            margin: 0;
+            width: 100%;
+        }
+
+        .roomsAvailable .roomsRow .roomsRowWrapper .roomDetails p {
+            font-size: 1.8rem;
+            padding: 1rem 2rem;
+            color: var(--black);
+        }
+        
+        .roomsAvailable .roomsRow .roomsRowWrapper .roomDetails .sub-heading{
+            font-size: 1.8rem;
+            font-weight: 700;
+            padding: 0.5rem 2rem;
+            color: var(--black);
+        }
+        
+        .roomsAvailable .roomsRow .roomsRowWrapper .roomDetails .sub{
+            font-size: 1.2rem;
+            font-style: italic;
+            padding: 0.5rem 2rem;
+            color: var(--black);
+        }
+
+        
+        .roomsAvailable .roomsRow .roomsRowWrapper .roomButtons {
+            margin: 0;
+            padding: 0;
+            position: static;
+            text-align: center;
+        }
+
+        .roomsAvailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-pencil {
+            padding: 1rem;
+            font-size: 1.2rem;
+            margin: .5rem;
+            position: relative;
+            
+        }
+        
+        .roomsAvailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-trashcan {
+            padding: 1rem;
+            font-size: 1.2rem;
+            margin: .5rem;
+        }
+
+        .roomsAvailable .addRoom {
+            margin: 0;
+        }
+
+    }
+
+
+
+.roomsAvailable .roomsRow .roomsRowWrapper .roomButtons .roomAvailability {
+    padding: 1rem 1rem;
+    color: var(--main-color);
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 1rem;
+    border-radius: 5px;
+    border: 1px solid var(--main-color);
+
+}
+
+.roomsAvailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-pencil:hover:before,
+.roomsAvailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-trashcan:hover:before {
+    position: absolute;
+    right: 100%; /* Position it to the left of the button */
+    transform: translateY(-50%); /* Adjust for centering */
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    color: var(--black);
+    opacity: 0; 
+    transition: opacity 2s;
+}
+
+.roomsAvailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-pencil:hover:before {
+    content: "Edit"; /* Display "Edit" when hovering over the pencil button */
+}
+
+.roomsAvailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-trashcan:hover:before {
+    content: "Delete"; /* Display "Delete" when hovering over the trashcan button */
+}
+
+.roomsAvailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-pencil:hover,
+.roomsAvailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-trashcan:hover {
+    color: var(--main-color);
+    background-color: var(--branch-color);
+    transition: 0.2s;
+}
+
+.roomsAvailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-pencil:hover:before,
+.roomsAvailable .roomsRow .roomsRowWrapper .roomButtons .roomBtn-trashcan:hover:before {
+    opacity: 1; /* Show the tooltip on hover */
+}
+
+
+
+
+.modal {
+    background: var(--branch-color);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    border: 1.3px solid #2B1103;
+
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 1000 !important; /* Ensure the modal appears on top of other elements */
+
+  }
+
+  .modal-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(0, 0, 0, 0.5) !important; /* Semi-transparent gray background */
+    z-index: 999 !important; /* Ensure the overlay appears above the content */
+}
+  
+  .modal p {
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: var(--main-color);
+  }
+  
+  .modal button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: var(--main-color);
+    color: var(--branch-color);
+    border: 1px solid var(--main-color);
+    border-radius: 8px;
+  }
+
+  .modal button:hover {
+    transition: 0.5s;
+    background-color: var(--branch-color);
+    color: var(--main-color);
+    border: 1px solid var(--main-color);
+    border-radius: 10px;
+    box-shadow: 4px 4px 15px rgba(0,0,0,.4);
+
+  }
