@@ -135,7 +135,7 @@ const EditRoom = () => {
             <section className="AddRoom">
                 <div className="title-back">
                     <h1 className="heading">Edit Room</h1>
-                    <Link to="/roomsAvailable">back</Link>     
+                    <Link to="/roomsAvailable">&#8592; back</Link>     
                 </div>
                 <div className="formContainer">
                     {loading && <Loader />}

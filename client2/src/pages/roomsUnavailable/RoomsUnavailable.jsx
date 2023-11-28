@@ -174,19 +174,20 @@ const RoomsUnavailable = () => {
         <div className='roomsUnavailablePage'>
             <HeaderAdmin />
             <Sidebar />
-
             <section className="roomsUnavailable">
                 <h1 className="heading">Occupied Rooms</h1>
                 <div className="roomState">
-                    <a href="./roomsAvailable">Available Rooms</a>
-                    <a className="stateBtn state">Unavailable Rooms</a>
-                    <select value={selectedLocation} onChange={handleLocationChange}>
-                        <option value="all">All</option>
-                        <option value="Malaybalay">Malaybalay</option>
-                        <option value="Valencia">Valencia</option>
-                        <option value="Maramag">Maramag</option>
-                    </select>
-                    <div className="searchNadd">
+                    <div className="links">
+                        <Link to="/roomsAvailable">Available Rooms</Link>
+                        <Link className="stateBtn state">Unavailable Rooms</Link>
+                    </div>
+                    <div className="searchNselect">
+                        <select value={selectedLocation} onChange={handleLocationChange}>
+                            <option value="all">All</option>
+                            <option value="Malaybalay">Malaybalay</option>
+                            <option value="Valencia">Valencia</option>
+                            <option value="Maramag">Maramag</option>
+                        </select>
                         <input className="searchRoom" type="text" placeholder="Search here..." value={searchTerm} onChange={handleSearch} />
                     </div>
                 </div>
