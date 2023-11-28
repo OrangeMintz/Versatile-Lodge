@@ -102,31 +102,14 @@ const registerUser = async (req, res) => {
 // Update User Endpoint
 const updateUser = async (req, res) => {
     try {
-        const { name, email, address, image } = req.body;
+        const { name, email, address } = req.body;
 
-        let uploadedImage;
-
-        if (image) {
-            // If image is provided, upload the image to Cloudinary
-            uploadedImage = await cloudinary.uploader.upload(image, {
-                upload_preset: 'unsigned_upload',
-                public_id: `${email}avatar`,
-                allowed_formats: ['png', 'jpg', 'jpeg', 'svg', 'ico', 'jfif', 'webp'],
-            });
-        } else {
-            // If image is not provided, use a default image URL
-            uploadedImage = {
-                public_id: 'User_Avatar/w0nkngai05o8lbapligf',
-                secure_url: 'https://res.cloudinary.com/dl0qncxjh/image/upload/v1699580461/User_Avatar/w0nkngai05o8lbapligf.png',
-            };
-        }
 
         // Build the update object dynamically
         const updateObject = {};
         if (name) updateObject.name = name;
         if (email) updateObject.email = email;
         if (address) updateObject.address = address;
-        updateObject.image = `https://res.cloudinary.com/dl0qncxjh/image/upload/${uploadedImage.public_id}`;
 
         // Assuming 'updatedUser' contains the updated user information
         const updatedUser = await Customer.findByIdAndUpdate(

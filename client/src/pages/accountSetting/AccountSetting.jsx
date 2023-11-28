@@ -47,8 +47,6 @@ const AccountSetting = () => {
   }, [user, operationsComplete, navigate]);
 
 
-
-
   const fileInputRef = useRef();
   const profileImageRef = useRef();
 
@@ -241,17 +239,17 @@ const AccountSetting = () => {
                   value={formData.address}
                   onChange={handleInputChange}
                 />
-                <label htmlFor="address">Profile Picture:</label>
-                <input type='file' accept="image/png, image/jpeg, image/jpg" onChange={handleInputChange} />
+                {/* <label htmlFor="address">Profile Picture:</label>
+                <input type='file' accept="image/png, image/jpeg, image/jpg" onChange={handleInputChange} /> */}
               </>
             )}
 
             <button className='btn-update' type="submit">Update Profile</button>
           </form>
 
-          <div key={image._id}>
+          {/* <div key={image._id}>
             <img src={image} alt="" />
-          </div>
+          </div> */}
 
         </div>
 
