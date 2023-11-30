@@ -109,6 +109,11 @@ const Employees = () => {
             sortable: true
         },
         {
+            name: 'Sex',
+            selector: row => row.sex,
+            sortable: true
+        },
+        {
             name: 'Address',
             selector: row => row.address,
             sortable: true
@@ -170,7 +175,7 @@ const Employees = () => {
                 padding: '10px',
             },
         },
-    
+
     };
 
     const CustomNoDataMessage = () => (

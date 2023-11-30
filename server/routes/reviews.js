@@ -1,5 +1,5 @@
 const express = require('express');
-const { createReviews, deleteReviews, getReviews, updateReview } = require('../controllers/reviewsContr.js');
+const { createReviews, deleteReviews, getReviews, updateReview, createReply, deleteReply, editReply } = require('../controllers/reviewsContr.js');
 
 const Reviews = require("../models/Reviews.js");
 const { verifyAdmin, verifyUser } = require('../utils/verifyToken.js');
@@ -17,5 +17,15 @@ router.delete("/:id", deleteReviews);
 
 //GetAll
 router.get("/", getReviews);
+
+// Reply
+router.post("/:id/replies", createReply);
+
+router.delete("/:reviewId/replies/:replyId", deleteReply);
+
+router.put('/api/reviews/:reviewId/replies/:replyId', editReply);
+
+
+
 
 module.exports = router;

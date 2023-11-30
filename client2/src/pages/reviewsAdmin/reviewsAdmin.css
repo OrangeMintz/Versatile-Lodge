@@ -63,37 +63,6 @@
     
 }
 
-/* .reviews .box-container .box .title {   image title
-    font-size: 2rem;
-    color: var(--black);
-    margin-top: .5rem;
-    padding: .5rem 0;
-}
-*/
-
-
-
-/* .reviews .more-btn {   
-    margin-top: 2rem;
-    text-align: center;
-} 
-
-.reviews .more-btn .inline-option-btn {
-    width: max-content;
-    box-shadow: 3px 3px 15px rgba(0,0,0,0.3);
-}
-
-.reviews .more-btn .inline-option-btn:hover {
-    margin-bottom: 3px;
-    border: 1px solid #3b230d;
-}
-
-.reviews .more-btn .inline-option-btn:active {
-    margin: 3px 0px 0px 3px;
-    box-shadow: none;
-} */
-
-
 .reviews .box-container .reply-container {
     background-color: var(--branch-color);
     display: flex;
@@ -157,3 +126,88 @@
     color: var(--white);
     cursor: pointer;
 }
+
+
+.reviews .box-container .reply-container .replyContent {
+    border-radius: 10px;
+    margin: 2rem;
+    background: var(--light-bg);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column; /* Add this line */
+}
+
+.reviews .box-container .box .reply-container img {   /*person image inside every box*/
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.reviews .box-container .box .reply-container p {   /*comment below every persons image inside boxes*/
+    font-size: 15px;
+    height: 20rem;
+    color: var(--black);
+    
+}
+
+.reviews .box-container .box  .reply-container span {  /*date*/
+    font-size: 1.5rem;
+    color: var(--light-color);  
+}
+
+.reviews .box-container .reply-container .replyContent p {
+    font-size: 14px;
+    height: auto; /* Change from fixed height to auto */
+    color: var(--black);
+}
+
+
+.reviews .box-container .box  .reply-container .admin-reply p {  /*date*/
+    margin-top: 15px;
+}
+
+.reviews .box-container .box  .reply-container .admin-reply button {  /*date*/
+    margin-top: 15px;
+    border-radius: 3px;
+}
+
+.reviews .box-container .box  .reply-container .admin-reply button:hover {  /*date*/
+    color: var(--light-color);
+    border-radius: 6px;  
+    transition: 0.3s;
+}
+
+
+
+/* .reviews .box-container .box .title {   image title
+    font-size: 2rem;
+    color: var(--black);
+    margin-top: .5rem;
+    padding: .5rem 0;
+}
+*/
+
+
+
+/* .reviews .more-btn {   
+    margin-top: 2rem;
+    text-align: center;
+} 
+
+.reviews .more-btn .inline-option-btn {
+    width: max-content;
+    box-shadow: 3px 3px 15px rgba(0,0,0,0.3);
+}
+
+.reviews .more-btn .inline-option-btn:hover {
+    margin-bottom: 3px;
+    border: 1px solid #3b230d;
+}
+
+.reviews .more-btn .inline-option-btn:active {
+    margin: 3px 0px 0px 3px;
+    box-shadow: none;
+} */
+
+

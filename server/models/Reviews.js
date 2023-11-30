@@ -22,6 +22,31 @@ const reviewsschema = new mongoose.Schema({
         required: true
     },
 
+    replies: [
+        {
+            user_id: {
+                type: mongoose.Schema.Types.ObjectId,
+                required: true,
+            },
+            user_name: {
+                type: String,
+                required: true,
+            },
+            user_image: {
+                type: String,
+                required: true,
+            },
+            reply: {
+                type: String,
+                required: true,
+            },
+            date: {
+                type: Date,
+                default: Date.now,
+            },
+        },
+    ],
+
     date: {
         type: Date,
         required: true
