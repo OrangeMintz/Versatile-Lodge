@@ -9,7 +9,7 @@ const HeaderAdmin = () => {
 
     useEffect(() => {
         if (!user) {
-            axios.get('/profile')
+            axios.get('/profile/admin')
                 .then(({ data }) => {
                     setUser(data);
                 })
