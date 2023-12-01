@@ -22,7 +22,7 @@ const AddRoom = () => {
   useEffect(() => {
     if (!user) {
       axios
-        .get('/profile')
+        .get('/profile/admin')
         .then(({ data }) => {
           setUser(data);
         })
@@ -228,7 +228,7 @@ const AddRoom = () => {
       <section className="AddRoom">
         <div className="title-back">
           <h1 className="heading">Add Room</h1>
-          <Link to="/roomsAvailable">&#8592; back</Link>     
+          <Link to="/roomsAvailable">&#8592; back</Link>
         </div>
         <div className="formContainer">
           <form>

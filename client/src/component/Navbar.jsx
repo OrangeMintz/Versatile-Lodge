@@ -54,7 +54,7 @@ function Navbar() {
     // const toggleNavbar = () => {
     //     setNavbarActive(!navbarActive);
     //     const navbar = document.querySelector('#menu-btn'); // Assuming #menu-btn is the ID of your navbar element
-    
+
     //     if (navbar) {
     //       navbar.onlick = () => {
     //         // to open side bar
@@ -65,7 +65,7 @@ function Navbar() {
 
     // const toggleNavbar = () => {
     //     const navbar = document.querySelector('#menu-btn');
-        
+
     //     setNavbarActive(!navbarActive);
 
     //     navbar.classList.toggle('active');
@@ -75,7 +75,7 @@ function Navbar() {
 
     // const toggleNavbar = () => {
     //     const navbar = document.querySelector('#menu-btn');
-    
+
     //     if (navbar) {
     //         console.log('Before toggle:', navbar.classList.contains('active'));
     //         setNavbarActive(!navbarActive);
@@ -94,7 +94,7 @@ function Navbar() {
         navbar.classList.toggle('active');
 
     };
-    
+
 
 
 
@@ -172,23 +172,23 @@ function Navbar() {
                     <Link to="/reviews" className={isLinkActive('/reviews')}>Reviews</Link>
                     <div id="light-btn" className='fas fa-moon' onClick={handleMoonIconClick}></div>
                     {user && (
-                    <div >
-                        <img src={user.image} id="user-btn" alt="user" onClick={handleUserBtnClick} />
-                        <div className="profile">
-                            <img src={user.image} alt="" />
-                            {!!user && <h3>{user.name}</h3>}
-                            <span>Client</span>
-                            <Link to={`/accountSetting`} className='btn'>View Profile</Link>
-                            <div className="flex-btn">
-                                <Link to={`/bookingHistory`} className="option-btn">
-                                    History
-                                </Link>
-                                <Link className="option-btn" onClick={handleLogout}>
-                                    Logout
-                                </Link>
+                        <div >
+                            <img src={user.image} id="user-btn" alt="user" onClick={handleUserBtnClick} />
+                            <div className="profile">
+                                <img src={user.image} alt="" />
+                                {!!user && <h3>{user.name}</h3>}
+                                <span>Client</span>
+                                <Link to={`/accountSetting`} className='btn'>View Profile</Link>
+                                <div className="flex-btn">
+                                    <Link to={`/bookingHistory`} className="option-btn">
+                                        History
+                                    </Link>
+                                    <Link className="option-btn" onClick={handleLogout}>
+                                        Logout
+                                    </Link>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     )}
 
                 </nav>
