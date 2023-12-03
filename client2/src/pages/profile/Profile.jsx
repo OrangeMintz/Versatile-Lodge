@@ -67,7 +67,7 @@ const ProfileAdmin = () => {
     }, [user]);
 
     const handleLogout = () => {
-        axios.get('/logout')
+        axios.get('/logout/admin')
             .then(() => {
                 // Set the new location
                 window.location.href = `${window.location.origin}/`;

@@ -22,6 +22,11 @@ router.get('/logout', (req, res) => {
     res.status(200).json({ message: 'Logout successful' });
 });
 
+router.get('/logout/admin', (req, res) => {
+    res.clearCookie('aToken');
+    res.status(200).json({ message: 'Logout successful' });
+});
+
 
 
 module.exports = router
