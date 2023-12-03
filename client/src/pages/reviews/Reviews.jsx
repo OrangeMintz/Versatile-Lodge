@@ -130,6 +130,10 @@ const Reviews = () => {
         return !!validBooking;
     };
 
+    //show hide reply
+    const [replyVisible, setReplyVisible] = useState({});
+
+
     return (
         <div>
             <Navbar />
@@ -145,16 +149,49 @@ const Reviews = () => {
                     !error &&
                     reviews.map((review) => (
                         <div className="review" key={review._id}>
-                            <div className="review-left">
-                                <img src={review.image} alt="" />
-                                <h3>{review.name}</h3>
+                            <div className="message">
+                                <div className="message-left">
+                                    <img src={review.image} alt="" />
+                                    <h3>{review.name}</h3>
+                                </div>
+                                <div className="message-right">
+                                    <p style={{ textAlign: 'justify' }}>{review.comment}</p>
+                                    <p>{moment(review.date).format('MMMM DD YYYY HH:mm:ss')}</p>
+                                </div>
                             </div>
-                            <div className="review-right">
-                                <p style={{ textAlign: 'justify' }}>{review.comment}</p>
-                                <p>{moment(review.date).format('MMMM DD YYYY HH:mm:ss')}</p>
-                            </div>
+                            {!replyVisible[review._id] && (
+                                <button
+                                    className="reply-toggle-btn"
+                                    onClick={() => setReplyVisible({ ...replyVisible, [review._id]: true })}
+                                >
+                                    Show Reply
+                                </button>
+                            )}
+
+                            {replyVisible[review._id] && (
+                            <div className="replyContainer"> 
+
+                                <button
+                                    className="reply-toggle-btn"
+                                    onClick={() => setReplyVisible({ ...replyVisible, [review._id]: false })}
+                                >
+                                    Hide Reply
+                                </button>
+                                    <div className="reply">
+                                        <div className="reply-left">
+                                            <img src={review.image} alt="" />
+                                            <h3>{review.name}</h3>
+                                        </div>
+                                        <div className="reply-right">
+                                            <p style={{ textAlign: 'justify' }}>{review.comment}</p>
+                                            <p>{moment(review.date).format('MMMM DD YYYY HH:mm:ss')}</p>
+                                        </div>
+                                    </div>
+                                </div>  
+                            )}
                         </div>
                     ))}
+
             </div>
 
             {hasValidBooking() && !userReview && (
