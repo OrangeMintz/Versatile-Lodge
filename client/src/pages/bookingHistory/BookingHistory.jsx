@@ -84,7 +84,7 @@ const BookingHistory = () => {
     try {
       // Cancel the booking using the stored booking ID
       await axios.delete(`/api/bookingHistory/${bookingIdToCancel}`);
-      toast.success('Reservation Cancelled Successfully')
+      toast.success('Booking Record Removed Successfully')
 
       // Update the bookingHistory state to reflect the removal of the canceled booking
       setBookingHistory((prevBookingHistory) =>
