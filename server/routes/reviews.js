@@ -25,7 +25,4 @@ router.delete("/:reviewId/replies/:replyId", deleteReply);
 
 router.put('/api/reviews/:reviewId/replies/:replyId', editReply);
 
-
-
-
 module.exports = router;

@@ -20,6 +20,10 @@ const ReviewsAdmin = () => {
     const [comment, setComment] = useState('');
     const [userReview, setUserReview] = useState(null);
     const [userBooking, setUserBooking] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+    const [showModal2, setShowModal2] = useState(false);
+
+
 
 
     const navigate = useNavigate()
@@ -85,14 +89,12 @@ const ReviewsAdmin = () => {
     }, []);
 
 
+
     //REPLY
     const MAX_CHARACTERS_TO_SHOW = 50;
-
     const [replyInputs, setReplyInputs] = useState({});
     const [showReplyInput, setShowReplyInput] = useState({});
     const [expandedReviewIds, setExpandedReviewIds] = useState({});
-
-
 
 
 
@@ -177,6 +179,81 @@ const ReviewsAdmin = () => {
         }));
     };
 
+
+
+    //DELETE REVIEW MODAL
+    const [selectedReviewId, setSelectedReviewId] = useState(null);
+
+    const handleShowModal = (reviewId) => {
+        setSelectedReviewId(reviewId);
+        setShowModal(true);
+    };
+
+    const handleHideModal = () => {
+        setSelectedReviewId(null);
+        setShowModal(false);
+    };
+
+    // Update the "Yes" button in the confirmation modal to trigger the deleteReview function
+    const handleDeleteReview = async () => {
+        try {
+            // Send a DELETE request to delete the selected review
+            await axios.delete(`/api/reviews/${selectedReviewId}`);
+
+            // Update the reviews state without the deleted review
+            setReviews((prevReviews) => prevReviews.filter((review) => review._id !== selectedReviewId));
+
+            toast.success('Review deleted successfully');
+            handleHideModal(); // Close the modal after successful deletion
+        } catch (error) {
+            console.error('Error deleting review:', error);
+            toast.error('Error deleting review. Please try again.');
+        }
+    };
+
+
+    //DELETE REPLY MODAL
+    const [selectedReplyId, setSelectedReplyId] = useState(null);
+    const handleShowModal2 = (reviewId, replyId) => {
+        setSelectedReplyId({ reviewId, replyId });
+        setShowModal2(true);
+    };
+
+    const handleHideModal2 = () => {
+        setSelectedReplyId(null);
+        setShowModal2(false);
+    };
+
+    // Update the "Yes" button in the second confirmation modal to trigger the deleteReply function
+    const handleDeleteReview2 = async () => {
+        try {
+            const { reviewId, replyId } = selectedReplyId;
+
+            // Send a DELETE request to delete the selected reply
+            await axios.delete(`/api/reviews/${reviewId}/replies/${replyId}`);
+
+            // Update the reviews state without the deleted reply
+            setReviews((prevReviews) =>
+                prevReviews.map((review) => {
+                    if (review._id === reviewId) {
+                        return {
+                            ...review,
+                            replies: review.replies.filter((reply) => reply._id !== replyId),
+                        };
+                    }
+                    return review;
+                })
+            );
+
+            toast.success('Reply deleted successfully');
+            handleHideModal2(); // Close the modal after successful deletion
+        } catch (error) {
+            console.error('Error deleting reply:', error);
+            toast.error('Error deleting reply. Please try again.');
+        }
+    };
+
+
     return (
         <div className='reviewsPage'>
             <HeaderAdmin />
@@ -221,10 +298,16 @@ const ReviewsAdmin = () => {
                                             </div>
                                         </div>
                                     )}
+
                                     {!showReplyInput[review._id] && (
-                                        <button className="reply-btn2" onClick={() => setShowReplyInput((prev) => ({ ...prev, [review._id]: true }))}>
-                                            Reply
-                                        </button>
+                                        <>
+                                            <button className="reply-btn2" onClick={() => setShowReplyInput((prev) => ({ ...prev, [review._id]: true }))}>
+                                                Reply
+                                            </button>
+                                            <button className="reply-btn1" onClick={() => handleShowModal(review._id)}>
+                                                Delete
+                                            </button>
+                                        </>
                                     )}
                                     {review.replies.length > 0 && (
                                         <>
@@ -258,7 +341,9 @@ const ReviewsAdmin = () => {
                                                                 : reply.reply
                                                             }
                                                         </p>
-                                                        <button onClick={() => handleDeleteReply(review._id, reply._id)}>Delete</button>
+                                                        <button className="reply-btn1" onClick={() => handleShowModal2(review._id, reply._id)}>
+                                                            Delete
+                                                        </button>
                                                     </div>
                                                 </div>
                                             ))}
@@ -280,6 +365,28 @@ const ReviewsAdmin = () => {
 
 
             </section>
+
+            {/* Confirmation Modal */}
+            {showModal && (
+                <div className="overlay">
+                    <div className="modal">
+                        <p>Are you sure you want to delete this review?</p>
+                        <button onClick={handleHideModal}>No</button>
+                        <button onClick={handleDeleteReview}>Yes</button>
+                    </div>
+                </div>
+            )}
+
+            {showModal2 && (
+                <div className="overlay">
+                    <div className="modal">
+                        <p>Are you sure you want to delete this reply?</p>
+                        <button onClick={handleHideModal2}>No</button>
+                        <button onClick={handleDeleteReview2}>Yes</button>
+                    </div>
+                </div>
+            )}
+
 
             <Footer />
 
