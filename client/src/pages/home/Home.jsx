@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import Footer from '../../component/footer';
 import SwiperCarousel from '../../component/SwiperCarousel'
@@ -13,77 +13,11 @@ const Home = () => {
   const { setAuth } = useContext(AuthContext)
   const navigate = useNavigate()
 
+
   return (
     <div>
       <Navbar />
       <SwiperCarousel />
-
-      {/* <section className="availability" id="availability">
-        <form action="" method="post">
-          <div className="flex">
-            <div className="box">
-              <p>
-                Check In<span>*</span>
-              </p>
-              <input type="date" name="check_in" className="input" required />
-            </div>
-            <div className="box">
-              <p>
-                Check Out<span>*</span>
-              </p>
-              <input type="date" name="check_out" className="input" required />
-            </div>
-            <div className="box">
-              <p>
-                Adults<span>*</span>
-              </p>
-              <select name="adults" className="input" required>
-                <option value="1">1 Adult</option>
-                <option value="2">2 Adults</option>
-                <option value="3">3 Adults</option>
-                <option value="4">4 Adults</option>
-              </select>
-            </div>
-            <div className="box">
-              <p>
-                Childs<span>*</span>
-              </p>
-              <select name="childs" className="input" required>
-                <option value="">None</option>
-                <option value="1">1 Child</option>
-                <option value="2">2 Childs</option>
-                <option value="3">3 Childs</option>
-              </select>
-            </div>
-            <div className="box">
-              <p>
-                Branch<span>*</span>
-              </p>
-              <select name="branch" className="input" required>
-                <option value="Valencia">Valencia</option>
-                <option value="Malaybalay">Malaybalay</option>
-                <option value="Maramag">Maramag</option>
-              </select>
-            </div>
-          </div>
-          <input
-            type="text"
-            value="check availability"
-            name="check"
-            className="btn"
-          />
-        </form>
-      </section> */}
-
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-
       <section className="services">
         <div className="box-container">
           <div className="box">

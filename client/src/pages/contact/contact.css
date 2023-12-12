@@ -12,3 +12,44 @@
     width: 100%;
     object-fit: cover;     
 }
+
+
+/* home.css */
+
+/* Styles for the search input and button */
+.search-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .search-input {
+    padding: 8px;
+    font-size: 16px;
+  }
+  
+  .search-button {
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: var(--branch-color); /* Green */
+    color: var(--main-color);
+    border: none;
+  }
+  
+  /* Styles for weather information */
+  .weather-container {
+    text-align: center;
+    margin-top: 20px;
+    background-color: var(--branch-color);
+    padding: 2em;
+    margin-left: 20em;
+    margin-right: 20em;
+
+  }
+  
+  .weather-info {
+    font-size: 18px;
+  }
+  
+  /* Add more styles as needed */
+  

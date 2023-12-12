@@ -15,7 +15,7 @@ import 'leaflet/dist/leaflet.css';
 
 
 const Contact = () => {
-
+    // DONT REMOVE
     // // GOOGLE MAP API
     // const mapContainerStyle = {
     //     width: "100%",
@@ -44,6 +44,44 @@ const Contact = () => {
         [7.758363209056108, 125.00179601085193],
     ];
 
+    const [weatherValencia, setWeatherValencia] = useState({});
+    const [weatherMalaybalay, setWeatherMalaybalay] = useState({});
+    const [weatherMaramag, setWeatherMaramag] = useState({});
+
+    const weatherapikey = import.meta.env.VITE_REACT_APP_WEATHER_DATA;
+
+    const weatherapi = {
+        key: weatherapikey,
+        base: 'https://api.openweathermap.org/data/2.5/',
+    };
+
+    useEffect(() => {
+        // Fetch weather data for Valencia
+        fetch(`${weatherapi.base}weather?q=Valencia&units=metric&APPID=${weatherapi.key}`)
+            .then((res) => res.json())
+            .then((result) => {
+                console.log(result);
+                setWeatherValencia(result);
+            });
+
+        // Fetch weather data for Malaybalay
+        fetch(`${weatherapi.base}weather?q=Malaybalay&units=metric&APPID=${weatherapi.key}`)
+            .then((res) => res.json())
+            .then((result) => {
+                console.log(result);
+                setWeatherMalaybalay(result);
+            });
+
+        // Fetch weather data for Maramag
+        fetch(`${weatherapi.base}weather?q=Maramag&units=metric&APPID=${weatherapi.key}`)
+            .then((res) => res.json())
+            .then((result) => {
+                console.log(result);
+                setWeatherMaramag(result);
+            });
+    }, []); // Empty dependency array ensures the effect runs once after the initial render
+
+
 
     return (
         <div>
@@ -70,7 +108,7 @@ const Contact = () => {
                         </Marker>
                     ))}
                 </MapContainer>
-
+                {/* DONT REMOVE */}
                 {/* <LoadScript googleMapsApiKey="AIzaSyBS1jYdTx1vV22gtxsF-8I7C95fVbJAsL8" onLoad={() => { }}>
                     <GoogleMap
                         mapContainerStyle={mapContainerStyle}
@@ -86,11 +124,73 @@ const Contact = () => {
                         ))}
                     </GoogleMap>
                 </LoadScript> */}
-
-
-
-
             </section >
+
+            {/* Weather Information */}
+            <div className="weather-container">
+                {weatherValencia.name && (
+                    <p className="weather-info">Valencia: {weatherValencia.name}</p>
+                )}
+                {weatherValencia.main && weatherValencia.main.temp && (
+                    <p className="weather-info">Temperature: {weatherValencia.main.temp} °C</p>
+                )}
+
+                {weatherMaramag.main && weatherMaramag.main.humidity && (
+                    <p className="weather-info">Humidty: {weatherMaramag.main.humidity}%</p>
+                )}
+
+                {weatherMaramag.wind && weatherMaramag.wind.speed && (
+                    <p className="weather-info">Wind Speed: {weatherMaramag.wind.speed} MPH</p>
+                )}
+
+                {weatherValencia.weather && weatherValencia.weather[0] && (
+                    <p className="weather-info">Condition: {weatherValencia.weather[0].description}</p>
+                )}
+
+                <div style={{ marginTop: "20px" }}>
+                    {weatherMalaybalay.name && (
+                        <p className="weather-info">Malaybalay: {weatherMalaybalay.name}</p>
+                    )}
+                    {weatherMalaybalay.main && weatherMalaybalay.main.temp && (
+                        <p className="weather-info">Temperature: {weatherMalaybalay.main.temp} °C</p>
+                    )}
+
+                    {weatherMaramag.main && weatherMaramag.main.humidity && (
+                        <p className="weather-info">Humidity: {weatherMaramag.main.humidity}%</p>
+                    )}
+
+                    {weatherMaramag.wind && weatherMaramag.wind.speed && (
+                        <p className="weather-info">Wind Speed: {weatherMaramag.wind.speed} MPH</p>
+                    )}
+
+                    {weatherMalaybalay.weather && weatherMalaybalay.weather[0] && (
+                        <p className="weather-info">Condition: {weatherMalaybalay.weather[0].description}</p>
+                    )}
+                </div>
+
+                <div style={{ marginTop: "20px" }}>
+                    {weatherMaramag.name && (
+                        <p className="weather-info">Maramag: {weatherMaramag.name}</p>
+                    )}
+                    {weatherMaramag.main && weatherMaramag.main.temp && (
+                        <p className="weather-info">Temperature: {weatherMaramag.main.temp} °C</p>
+                    )}
+
+                    {weatherMaramag.main && weatherMaramag.main.humidity && (
+                        <p className="weather-info">Humidty: {weatherMaramag.main.humidity}%</p>
+                    )}
+
+                    {weatherMaramag.wind && weatherMaramag.wind.speed && (
+                        <p className="weather-info">Wind Speed: {weatherMaramag.wind.speed} MPH</p>
+                    )}
+
+
+                    {weatherMaramag.weather && weatherMaramag.weather[0] && (
+                        <p className="weather-info">Condition: {weatherMaramag.weather[0].description}</p>
+                    )}
+                </div>
+            </div>
+
 
             <FAQ />
 
