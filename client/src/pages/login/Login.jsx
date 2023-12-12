@@ -8,6 +8,10 @@ import { useEffect } from "react";
 import { useContext } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 
+const captchaKey = import.meta.env.VITE_REACT_APP_CAPTCHA_KEY;
+
+
+
 function navigate(url) {
     window.location.href = url;
 }
@@ -109,7 +113,7 @@ export const Login = () => {
                             </div>
                             <div className="buttons">
                                 <ReCAPTCHA
-                                    sitekey="6Ld5rC4pAAAAAC0P9rjEP4Hq6Qc69W3J7p2OUPms"
+                                    sitekey={captchaKey}
                                     onChange={captchaOnChange}
                                 />                                <input type="submit" value="Login" className="log-in-btn" />
                                 <h3 className="title2">Don't have an account?</h3>
