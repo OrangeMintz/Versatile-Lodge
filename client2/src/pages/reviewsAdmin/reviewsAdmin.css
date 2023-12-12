@@ -93,8 +93,14 @@
 .reviews .box-container .reply-container .reply-btn1{
     padding: 1rem;
     background: var(--main-color);
-    color: var(--branch-color);
+    color: var(--white);
     cursor: pointer;
+    border-radius: 5px;
+}
+
+.reviews .box-container .reply-container .reply-btn1:hover{
+    transition: 0.35s;
+    color: var(--light-color);
     border-radius: 5px;
 }
 

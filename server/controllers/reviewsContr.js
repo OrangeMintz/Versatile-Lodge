@@ -2,15 +2,20 @@ const Reviews = require("../models/Reviews.js");
 
 const createError = require('../utils/error.js');
 
+
+
 const createReviews = async (req, res, next) => {
-    const newReviews = new Reviews(req.body);
     try {
-        const savedReviews = await newReviews.save();
-        res.status(200).json(savedReviews);
+        // Always create a new review
+        const newReview = new Reviews(req.body);
+        const savedReview = await newReview.save();
+
+        res.status(200).json(savedReview);
     } catch (err) {
         next(err);
     }
 };
+
 
 const deleteReviews = async (req, res, next) => {
     try {
