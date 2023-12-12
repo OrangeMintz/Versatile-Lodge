@@ -162,7 +162,6 @@ const RoomsBooking = () => {
         } catch (error) {
             console.error('Error deleting booking:', error);
             window.location.reload();
-
         }
     };
 
@@ -170,7 +169,6 @@ const RoomsBooking = () => {
         <div>
             <HeaderAdmin />
             <Sidebar />
-
             <section className="roomsBooking">
                 <h1 className="heading">Booked Rooms (Bookings)</h1>
                 <div className="roomState">
@@ -204,8 +202,6 @@ const RoomsBooking = () => {
                                     <span className='sub'>End Date: {reservedBooking.toDate}</span>
                                     <p className='sub'>Total Ammount: ₱{reservedBooking.totalAmount}</p>
                                     <p className='sub' style={{ fontWeight: "bold", fontStyle: 'normal' }}>{reservedBooking.transactionId}</p>
-
-
                                 </div>
                                 <div className="roomButtons">
                                     <button

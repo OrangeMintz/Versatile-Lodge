@@ -43,14 +43,6 @@ const deleteBooking = async (req, res, next) => {
     }
 };
 
-// const getBooking = async (req, res, next) => {
-//     try {
-//         const booking = await Booking.find();
-//         res.status(200).json(booking)
-//     } catch (err) {
-//         next(err)
-//     }
-// };
 
 const getBooking = async (req, res, next) => {
     try {
