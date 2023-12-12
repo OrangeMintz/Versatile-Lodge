@@ -174,11 +174,11 @@ const RoomsReserved = () => {
                 return (
                     booking.status === 'reserved' &&
                     (
-                        // Check if fromDate and toDate are the same
                         (booking.fromDate === confirmedBooking.fromDate && booking.toDate === confirmedBooking.toDate) ||
-                        // Check for overlapping dates
-                        (moment(booking.toDate, 'MM-DD-YYYY').isSameOrAfter(moment(confirmedBooking.fromDate, 'MM-DD-YYYY')) &&
-                            moment(booking.fromDate, 'MM-DD-YYYY').isSameOrBefore(moment(confirmedBooking.toDate, 'MM-DD-YYYY')))
+                        (
+                            moment(booking.toDate, 'MM-DD-YYYY').isSameOrAfter(moment(confirmedBooking.fromDate, 'MM-DD-YYYY')) &&
+                            moment(booking.fromDate, 'MM-DD-YYYY').isSameOrBefore(moment(confirmedBooking.toDate, 'MM-DD-YYYY'))
+                        )
                     )
                 );
             });
@@ -190,8 +190,21 @@ const RoomsReserved = () => {
                 await axios.put(`/api/room/${roomId}/removeOverlappingBookings`, { bookingIds: bookingsToRemove });
             }
 
-            window.location.reload();
+            // If a user has reserved 2 times on the same room, keep the confirmed booking and remove the overlapping one
+            const userReservations = room.currentbookings.filter(booking => booking.userId === userId && booking.status === 'reserved');
+            if (userReservations.length > 1) {
+                const overlappingUserBooking = userReservations.find(booking =>
+                    moment(booking.toDate, 'MM-DD-YYYY').isSameOrAfter(moment(confirmedBooking.fromDate, 'MM-DD-YYYY')) &&
+                    moment(booking.fromDate, 'MM-DD-YYYY').isSameOrBefore(moment(confirmedBooking.toDate, 'MM-DD-YYYY'))
+                );
 
+                if (overlappingUserBooking) {
+                    // Remove the overlapping user reservation
+                    await axios.put(`/api/room/${roomId}/removeOverlappingBookings`, { bookingIds: [overlappingUserBooking.bookingid] });
+                }
+            }
+
+            window.location.reload();
 
             // Refresh the page or update the state to reflect changes
         } catch (error) {

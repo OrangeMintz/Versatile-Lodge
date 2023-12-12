@@ -25,8 +25,4 @@ router.post("/", createBookingHistory);
 //GetAll
 router.get("/", getBookHistory);
 
-
-
-
-
 module.exports = router;

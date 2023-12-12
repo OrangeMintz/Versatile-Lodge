@@ -30,8 +30,13 @@ const About = () => {
 
                 <h2>Welcome to Versatile</h2>
 
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt fuga minus veritatis ipsa et sequi obcaecati eum impedit, quas culpa aliquid nesciunt blanditiis esse voluptatibus ipsam nisi dolorum corrupti vero?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt fuga minus veritatis ipsa et sequi obcaecati eum impedit, quas culpa aliquid nesciunt blanditiis esse voluptatibus ipsam nisi dolorum corrupti vero?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt fuga minus veritatis ipsa et sequi obcaecati eum impedit, quas culpa aliquid nesciunt blanditiis esse voluptatibus ipsam nisi dolorum corrupti vero?ipsa et sequi obcaecati eum impedit, quas culpa aliquid nesciunt blanditiis esse voluptatibus ipsam nisi dolorum corrupti vero?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt fuga minus veritatis ipsa et sequi obcaecati eum impedit, quas culpa aliquid nesciunt blanditiis esse voluptatibus ipsam nisi dolorum corrupti vero?</p>
-
+                <p style={{ textAlign: 'justify', textIndent: '3em' }}>
+                    Welcome to Versatile Lodge! We strive to provide you with an exceptional experience during your stay. Our cozy rooms, friendly staff, and top-notch amenities are here to make your time with us memorable. Whether you're here for business or leisure, we aim to make your stay comfortable and enjoyable. Explore our reviews and feel free to share your thoughts with us. We look forward to hosting you at Versatile Lodge!
+                </p>
+                <br></br>
+                <p style={{ textAlign: 'justify', textIndent: '3em' }}>
+                    At Versatile Lodge, we pride ourselves on creating an inviting atmosphere for our guests. Immerse yourself in the serene surroundings, unwind in our cozy accommodations, and experience the warmth of our hospitality. As you explore the diverse offerings of our lodge, we invite you to share your thoughts and experiences through our reviews. Your feedback is invaluable in helping us continually enhance our services. Thank you for choosing Versatile Lodge — where comfort meets hospitality.
+                </p>
             </section>
 
 
@@ -80,54 +85,11 @@ const About = () => {
             </section>
 
 
-            {/* <!-- reviews section --> */}
 
-            <section className="reviews" id="reviews">
-
-                <div className="swiper reviews-slider">
-
-                    <div className="swiper-wrapper">
-                        <div className="swiper-slide box">
-                            <img src="/assets/images/pic-1.png" alt="" />
-                            <h3>John Doe</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis id eum dolor, aspernatur amet alias optio debitis magnam similique laborum ex praesentium fugit?</p>
-                        </div>
-                        <div className="swiper-slide box">
-                            <img src="/assets/images/pic-2.png" alt="" />
-                            <h3>John Doe</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis id eum dolor, aspernatur amet alias optio debitis magnam similique laborum ex praesentium fugit?</p>
-                        </div>
-                        <div className="swiper-slide box">
-                            <img src="/assets/images/pic-3.png" alt="" />
-                            <h3>John Doe</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis id eum dolor, aspernatur amet alias optio debitis magnam similique laborum ex praesentium fugit?</p>
-                        </div>
-                        <div className="swiper-slide box">
-                            <img src="/assets/images/pic-4.png" alt="" />
-                            <h3>John Doe</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis id eum dolor, aspernatur amet alias optio debitis magnam similique laborum ex praesentium fugit?</p>
-                        </div>
-                        <div className="swiper-slide box">
-                            <img src="/assets/images/pic-5.png" alt="" />
-                            <h3>John Doe</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis id eum dolor, aspernatur amet alias optio debitis magnam similique laborum ex praesentium fugit?</p>
-                        </div>
-                        <div className="swiper-slide box">
-                            <img src="/assets/images/pic-6.png" alt="" />
-                            <h3>John Doe</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis id eum dolor, aspernatur amet alias optio debitis magnam similique laborum ex praesentium fugit?</p>
-                        </div>
-
-                    </div>
-                    <div className="swiper-pagination"></div>
-
-                </div>
-
-            </section>
 
             <Footer />
 
-        </div>
+        </div >
     );
 }
 

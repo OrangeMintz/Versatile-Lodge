@@ -148,9 +148,6 @@ const acceptBooking = async (req, res) => {
     }
 };
 
-
-
-
 const updateStatus = async (req, res, next) => {
     try {
         const { userIds } = req.body;
@@ -158,7 +155,7 @@ const updateStatus = async (req, res, next) => {
         // Update booking history status for deleted reservations
         await BookingHistory.updateMany(
             { userId: { $in: userIds }, status: 'Pending' }, // Update only 'Pending' reservations
-            { $set: { status: 'Room Taken' } }
+            { $set: { status: 'Occupied' } }
         );
 
         res.status(200).json({ message: 'Booking history status updated for deleted reservations' });
