@@ -219,9 +219,11 @@ const RoomsAvailable = () => {
                                     <Link to={`/room/edit/${room._id}`} className="roomBtn-pencil">
                                         <span className='fa-solid fa-pencil'></span>
                                     </Link>
-                                    <button className="roomBtn-trashcan" onClick={() => handleShowModal(room._id)}>
-                                        <span className='fa-solid fa-trash'></span>
-                                    </button>
+                                    {user && user.isAdmin && (
+                                        <button className="roomBtn-trashcan" onClick={() => handleShowModal(room._id)}>
+                                            <span className='fa-solid fa-trash'></span>
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                         </div>

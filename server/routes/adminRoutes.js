@@ -19,7 +19,7 @@ router.get('/user/:id', verifyUser, getUser)
 router.get('/user', verifyUser, getUsers)
 
 //Update User
-router.put('/user/:id', verifyAdmin, updateUser)
+router.put('/user/:id', verifyUser, updateUser)
 
 //Archive
 router.post('/user/:id/archive', verifyAdmin, archiveUser); // New route for archiving a user

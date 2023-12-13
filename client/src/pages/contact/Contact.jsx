@@ -125,76 +125,76 @@ const Contact = () => {
                     </GoogleMap>
                 </LoadScript> */}
 
-                            {/* Weather Information */}
+                {/* Weather Information */}
 
-            <div className="weather-container">
-                <div className="weatherBox1">
-                    <div className="weatherTemp">
-                        {weatherValencia.name && (
-                            <p className="weather-info"><i className="weatherPlace">Valencia:</i> {weatherValencia.main.temp} °C</p>
-                        )}
+                <div className="weather-container">
+                    <div className="weatherBox1">
+                        <div className="weatherTemp">
+                            {weatherValencia.name && (
+                                <p className="weather-info"><i className="weatherPlace">Valencia:</i> {weatherValencia.main.temp} °C</p>
+                            )}
+                        </div>
+                        <div className="weatherDetails">
+                            {weatherMaramag.main && weatherMaramag.main.humidity && (
+                                <p className="weather-info">Humidty: {weatherMaramag.main.humidity}%</p>
+                            )}
+
+                            {weatherMaramag.wind && weatherMaramag.wind.speed && (
+                                <p className="weather-info">Wind Speed: {weatherMaramag.wind.speed} MPH</p>
+                            )}
+
+                            {weatherValencia.weather && weatherValencia.weather[0] && (
+                                <p className="weather-info">Condition: {weatherValencia.weather[0].description}</p>
+                            )}
+                        </div>
+
                     </div>
-                    <div className="weatherDetails">
-                        {weatherMaramag.main && weatherMaramag.main.humidity && (
-                            <p className="weather-info">Humidty: {weatherMaramag.main.humidity}%</p>
-                        )}
+                    <div className="weatherBox2">
+                        <div className="weatherTemp">
+                            {weatherMalaybalay.name && (
+                                <p className="weather-info"><i className="weatherPlace">Malaybalay:</i>{weatherMalaybalay.main.temp} °C</p>
+                            )}
+                        </div>
+                        <div className="weatherDetails">
+                            {weatherMaramag.main && weatherMaramag.main.humidity && (
+                                <p className="weather-info">Humidity: {weatherMaramag.main.humidity}%</p>
+                            )}
 
-                        {weatherMaramag.wind && weatherMaramag.wind.speed && (
-                            <p className="weather-info">Wind Speed: {weatherMaramag.wind.speed} MPH</p>
-                        )}
+                            {weatherMaramag.wind && weatherMaramag.wind.speed && (
+                                <p className="weather-info">Wind Speed: {weatherMaramag.wind.speed} MPH</p>
+                            )}
 
-                        {weatherValencia.weather && weatherValencia.weather[0] && (
-                            <p className="weather-info">Condition: {weatherValencia.weather[0].description}</p>
-                        )}
+                            {weatherMalaybalay.weather && weatherMalaybalay.weather[0] && (
+                                <p className="weather-info">Condition: {weatherMalaybalay.weather[0].description}</p>
+                            )}
+                        </div>
+
                     </div>
 
+                    <div className="weatherBox3">
+                        <div className="weatherTemp">
+                            {weatherMaramag.name && (
+                                <p className="weather-info"><i className="weatherPlace">Maramag:</i>{weatherMaramag.main.temp} °C</p>
+                            )}
+                        </div>
+
+                        <div className="weatherDetails">
+                            {weatherMaramag.main && weatherMaramag.main.humidity && (
+                                <p className="weather-info">Humidty: {weatherMaramag.main.humidity}%</p>
+                            )}
+
+                            {weatherMaramag.wind && weatherMaramag.wind.speed && (
+                                <p className="weather-info">Wind Speed: {weatherMaramag.wind.speed} MPH</p>
+                            )}
+
+
+                            {weatherMaramag.weather && weatherMaramag.weather[0] && (
+                                <p className="weather-info">Condition: {weatherMaramag.weather[0].description}</p>
+                            )}
+                        </div>
+
+                    </div>
                 </div>
-                <div className="weatherBox2">
-                    <div className="weatherTemp">
-                        {weatherMalaybalay.name && (
-                            <p className="weather-info"><i className="weatherPlace">Malaybalay:</i>{weatherMalaybalay.main.temp} °C</p>
-                        )}
-                    </div>
-                    <div className="weatherDetails">
-                        {weatherMaramag.main && weatherMaramag.main.humidity && (
-                            <p className="weather-info">Humidity: {weatherMaramag.main.humidity}%</p>
-                        )}
-
-                        {weatherMaramag.wind && weatherMaramag.wind.speed && (
-                            <p className="weather-info">Wind Speed: {weatherMaramag.wind.speed} MPH</p>
-                        )}
-
-                        {weatherMalaybalay.weather && weatherMalaybalay.weather[0] && (
-                            <p className="weather-info">Condition: {weatherMalaybalay.weather[0].description}</p>
-                        )}
-                    </div>       
-
-                </div>
-
-                <div className="weatherBox3">
-                    <div className="weatherTemp">
-                        {weatherMaramag.name && (
-                            <p className="weather-info"><i className="weatherPlace">Maramag:</i>{weatherMaramag.main.temp} °C</p>
-                        )}
-                    </div>
-
-                    <div className="weatherDetails">
-                        {weatherMaramag.main && weatherMaramag.main.humidity && (
-                            <p className="weather-info">Humidty: {weatherMaramag.main.humidity}%</p>
-                        )}
-
-                        {weatherMaramag.wind && weatherMaramag.wind.speed && (
-                            <p className="weather-info">Wind Speed: {weatherMaramag.wind.speed} MPH</p>
-                        )}
-
-
-                        {weatherMaramag.weather && weatherMaramag.weather[0] && (
-                            <p className="weather-info">Condition: {weatherMaramag.weather[0].description}</p>
-                        )}
-                    </div>
-                    
-                </div>
-            </div>
             </section >
 
 

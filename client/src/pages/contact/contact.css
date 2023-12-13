@@ -54,36 +54,33 @@
   }
 
   .weatherBox1 {
-    background: url(./assets/images/thumb-9.png);
+    background: url(./assets/images/Valencia.jpg);
     aspect-ratio: 4/3;
     padding: 5rem;
     background-size: cover;
     height: 100%;
     width: 100%;
     position: relative;
-    border-radius: 5px;
   }
 
   .weatherBox2 {
-    background: url(./assets/images/monastery.jpg);
+    background: url(./assets/images/Malaybalay.jpg);
     aspect-ratio: 4/3;
     padding: 5rem;
     background-size: cover;
     height: 100%;
     width: 100%;
     position: relative;
-    border-radius: 5px;
   }
 
   .weatherBox3 {
-    background: url(./assets/images/thumb-2.png);
+    background: url(./assets/images/Maramag.jpg);
     aspect-ratio: 4/3;
     padding: 5rem;
     background-size: cover;
     height: 100%;
     width: 100%;
     position: relative;
-    border-radius: 5px;
   }
 
   .weatherTemp {
@@ -95,13 +92,13 @@
   .weatherDetails {
     font-size: 14px;
     font-weight: 800;
-    color: #FFF;
+    color: #ffffffee;
     display: flex;
     gap: 3rem;
     align-items: center;
     /* display: grid;
     grid-template-columns: 1fr 1fr 1fr; */
-    background-color: rgba(245, 222, 179, 0.3); /* Wheat color with 80% opacity */
+    background-color: rgba(245, 222, 179, 0.116); /* Wheat color with 80% opacity */
     position: absolute;
     bottom: 0;
     left: 0;
