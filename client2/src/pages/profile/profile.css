@@ -98,3 +98,43 @@
         gap: 1;
     }
 }
+
+.joke-container{
+    margin-top: 30px;
+    margin-right: 10vh;
+    margin-left: 10vh;
+
+}
+
+.joke-container .title{
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--light-color);
+}
+
+.joke-container .joke-text{
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.joke-container .joke-btn{
+    font-size: 12px;
+    color: var(--white);
+    padding: 10px  40px 10px  40px;
+    border: 1px solid var(--main-color);
+    background-color: var(--main-color);
+    border-radius: 5px;
+    font-weight: bold;
+
+
+}
+
+.joke-container .joke-btn:hover{
+    color: var(--main-color);
+    border-radius: 5px;
+    padding: 10px  40px 10px  40px;
+    border: 1px solid var(--branch-color);
+    background-color: var(--branch-color);
+    transition: 0.35s;
+}
