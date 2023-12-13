@@ -2,6 +2,7 @@ const express = require('express');
 const { createRoom, deleteRoom, updateRoom, getRoom, getRooms, confirmBooking, removeOverlappingBookings, rejectBooking, deleteBooking, archiveRoom } = require('../controllers/roomContr.js');
 
 const { verifyAdmin, verifyUser } = require('../utils/verifyToken.js');
+const authenticateUser = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
@@ -30,7 +31,7 @@ router.delete("/:id", verifyAdmin, deleteRoom);
 router.get("/:id", verifyUser, getRoom);
 
 //GetAll
-router.get("/", verifyUser, getRooms);
+router.get("/", getRooms);
 
 //Create
 router.post("/", verifyAdmin, createRoom);
