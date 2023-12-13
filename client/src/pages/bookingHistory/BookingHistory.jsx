@@ -84,7 +84,7 @@ const BookingHistory = () => {
     try {
       // Cancel the booking using the stored booking ID
       await axios.delete(`/api/bookingHistory/${bookingIdToCancel}`);
-      toast.success('Reservation Cancelled Successfully')
+      toast.success('Booking Record Removed Successfully')
 
       // Update the bookingHistory state to reflect the removal of the canceled booking
       setBookingHistory((prevBookingHistory) =>
@@ -148,14 +148,7 @@ const BookingHistory = () => {
                       <td>{booking.status}</td>
                       <td>{booking.transactionId}</td>
                       <td>
-                        <button className="btnCancel" onClick={() => handleCancelBooking(booking._id)}><span className='fa-solid fa-xmark'></span></button>
-                        {/* <button
-                          className={`btnCancel${isCancelButtonDisabled(booking.bookingDate) ? ' btndisabled' : ''}`}
-                          onClick={() => handleCancelBooking(booking._id)}
-                          disabled={isCancelButtonDisabled(booking.bookingDate)}>
-                          Cancel
-                        </button> */}
-
+                        <button className="btnCancel" onClick={() => handleCancelBooking(booking._id)}><span className='fa-solid fa-trash'></span></button>
                       </td>
                     </tr>
                   ))}
@@ -168,7 +161,7 @@ const BookingHistory = () => {
           {showModal && (
             <div className="modal-overlay">
               <div className="modal">
-                <p>Are you sure you want to delete your reservation and record?</p>
+                <p>Are you sure you want to cancel your reservation?</p>
                 <button onClick={handleCancel}>No</button>
                 <button onClick={handleConfirmCancel}>Yes</button>
 

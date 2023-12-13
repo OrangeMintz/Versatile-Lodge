@@ -36,7 +36,7 @@ const Employees = () => {
         const fetchData = async () => {
             try {
                 // Fetch user data including the role from the /profile endpoint
-                const profileResponse = await axios.get('/profile');
+                const profileResponse = await axios.get('/profile/admin');
                 setUser(profileResponse.data);
 
                 // Fetch employee data using the /admin/user endpoint
@@ -58,7 +58,7 @@ const Employees = () => {
     useEffect(() => {
         if (!user) {
             axios
-                .get('/profile')
+                .get('/profile/admin')
                 .then(({ data }) => {
                     setUser(data);
                 })
@@ -106,6 +106,11 @@ const Employees = () => {
         {
             name: 'Email',
             selector: row => row.email,
+            sortable: true
+        },
+        {
+            name: 'Sex',
+            selector: row => row.sex,
             sortable: true
         },
         {
@@ -170,7 +175,7 @@ const Employees = () => {
                 padding: '10px',
             },
         },
-    
+
     };
 
     const CustomNoDataMessage = () => (

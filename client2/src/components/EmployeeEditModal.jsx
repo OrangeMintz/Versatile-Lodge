@@ -37,7 +37,7 @@ const EmployeeEditModal = ({ open, onClose, userId }) => {
         sex: '',
         phoneNumber: '',
     });
-
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     const registerUser = async (e) => {
         e.preventDefault();
 
@@ -97,6 +97,8 @@ const EmployeeEditModal = ({ open, onClose, userId }) => {
             }
         }
 
+
+
         // Validate phoneNumber
         if (phoneNumber) {
             // Check if phoneNumber starts with 0
@@ -112,11 +114,19 @@ const EmployeeEditModal = ({ open, onClose, userId }) => {
             return;
         }
 
+        // Validate password format using regex
+        if (password && !passwordRegex.test(password)) {
+            toast.error('Password must contain at least 1 lowercase letter, 1 uppercase letter, a number, and special character. It should be at least 8 characters long');
+            return;
+        }
+
         if (password !== confirmPassword) {
             // Check if password and confirm password match
             toast.error('Password and Confirm Password do not match');
             return;
         }
+
+
 
         const isAdmin = role === 'Admin';
         const isManager = role === 'Manager';

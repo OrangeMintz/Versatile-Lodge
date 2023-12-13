@@ -16,53 +16,130 @@
     margin: auto;
     border-top: 1px solid var(--white);
     border-bottom: 1px solid var(--white);
-
 }
 
 .review {
+    position: relative;
     display: flex;
+    flex-direction: column;
+}
+
+.message {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
     padding: 10px;
 }
 
-.review-left {
+.message-left {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-right: 20px;
+    text-align: center;
 }
 
-.review-left img {          /*image*/
+.message-left img {          /*image*/
     height: 100px;
     width: 100px;
     border-radius: 50%;
     object-fit: cover;
 }
 
-.review-left h3 {           /*name*/
+.message-left h3 {           /*name*/
     font-size: 18px;
     color: var(--branch-color);
     margin: 29px 0;
 
 }
 
-.review-right {
-    flex-gcontainer: 1; 
+.message-right {
     display: flex;
     flex-direction: column;
     justify-content: space-between; 
 }
 
-.review-right p {           /*review content*/
+.message-right p {           /*message content*/
     font-size: 16px;
     margin-bottom: 10px; 
     color: var(--branch-color);
 }
 
 
-.review-right p:last-child {    /*date*/
+.message-right p:last-child {    /*date*/
     align-self: flex-end; 
     font-size: 14px; 
 }
+
+.replyContainer {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.reply {
+    width: 70%;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    align-self: flex-end;
+    margin: auto 10px;
+    padding: .5rem;
+    border-bottom: 1px solid var(--white);
+    margin-top: 10px;
+}
+
+.reply-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+
+}
+
+.reply-left img {          /*image*/
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.reply-left h3 {           /*name*/
+    font-size: 12px;
+    color: var(--branch-color);
+    margin: 10px 0;
+    text-align: center;
+}
+
+.reply-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    padding: .5rem;
+}
+
+.reply-right p {           /*reply content*/
+    font-size: 12px;
+    margin-bottom: 10px; 
+    color: var(--branch-color);
+}
+
+
+.reply-right p:last-child {    /*date*/
+    align-self: flex-end; 
+    font-size: 10px; 
+}
+
+
+/*reply show / hide */ 
+.reply-toggle-btn {
+    cursor: pointer;
+    margin: 10px;
+    align-self: flex-end;
+    background-color: var(--light-color);
+    padding: .5rem;
+    border-radius: 7px;
+    color: var(--black);
+}
+
 
 .contactUs {
     display: grid;

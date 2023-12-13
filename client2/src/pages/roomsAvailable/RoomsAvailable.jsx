@@ -26,7 +26,7 @@ const RoomsAvailable = () => {
     useEffect(() => {
         if (!user) {
             axios
-                .get('/profile')
+                .get('/profile/admin')
                 .then(({ data }) => {
                     setUser(data);
                 })
@@ -219,9 +219,11 @@ const RoomsAvailable = () => {
                                     <Link to={`/room/edit/${room._id}`} className="roomBtn-pencil">
                                         <span className='fa-solid fa-pencil'></span>
                                     </Link>
-                                    <button className="roomBtn-trashcan" onClick={() => handleShowModal(room._id)}>
-                                        <span className='fa-solid fa-trash'></span>
-                                    </button>
+                                    {user && user.isAdmin && (
+                                        <button className="roomBtn-trashcan" onClick={() => handleShowModal(room._id)}>
+                                            <span className='fa-solid fa-trash'></span>
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -233,7 +235,7 @@ const RoomsAvailable = () => {
             {showModal && (
                 <div className="overlay">
                     <div className="modal">
-                        <p>Are you sure you want to archive this room?</p>
+                        <p>Are you sure you want to confirm this reservation?</p>
                         <button onClick={handleHideModal}>No</button>
                         <button onClick={handleConfirmArchive}>Yes</button>
                     </div>

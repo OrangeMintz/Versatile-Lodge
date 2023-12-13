@@ -1,42 +1,39 @@
 const express = require('express');
 const { createRoom, deleteRoom, updateRoom, getRoom, getRooms, confirmBooking, removeOverlappingBookings, rejectBooking, deleteBooking, archiveRoom } = require('../controllers/roomContr.js');
 
-const Room = require("../models/Room.js");
 const { verifyAdmin, verifyUser } = require('../utils/verifyToken.js');
-
+const authenticateUser = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
+// Delete Room Booking
+router.delete('/:roomId/booking/:bookingId', verifyUser, deleteBooking);
 
-router.delete('/:roomId/booking/:bookingId', deleteBooking);
+// Confirm Room Reservation
+router.put('/:roomId/confirmBooking/:bookingId', verifyUser, confirmBooking);
 
-router.put('/:roomId/confirmBooking/:bookingId', confirmBooking);
+// Remove Room Reservation
+router.put('/:roomId/removeOverlappingBookings', verifyUser, removeOverlappingBookings);
 
-router.put('/:roomId/removeOverlappingBookings', removeOverlappingBookings);
+// Reject Room Reservation
+router.put('/:roomId/rejectBooking/:bookingId', verifyUser, rejectBooking);
 
-router.put('/:roomId/rejectBooking/:bookingId', rejectBooking);
-
+//Archive 
 router.post("/archive", verifyAdmin, archiveRoom);
 
-
 //Update
-router.put("/:id", updateRoom)
+router.put("/:id", verifyUser, updateRoom)
 
 //Delete
-// router.delete("/:id", verifyAdmin, deleteRoom);
 router.delete("/:id", verifyAdmin, deleteRoom);
 
-
 //Get
-router.get("/:id", getRoom);
+router.get("/:id", verifyUser, getRoom);
 
 //GetAll
 router.get("/", getRooms);
 
 //Create
-router.post("/", createRoom);
-// router.post('/api/room', upload.array('imageurls', 3), createRoom);
-
-// router.post("/", verifyAdmin, createRoom);
+router.post("/", verifyAdmin, createRoom);
 
 module.exports = router;

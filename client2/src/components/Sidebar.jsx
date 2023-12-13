@@ -8,7 +8,7 @@ const Sidebar = () => {
 
     useEffect(() => {
         if (!user) {
-            axios.get('/profile')
+            axios.get('/profile/admin')
                 .then(({ data }) => {
                     setUser(data);
                 })
@@ -19,7 +19,7 @@ const Sidebar = () => {
     }, [user, setUser]);
 
     const handleLogout = () => {
-        axios.get('/logout')
+        axios.get('/logout/admin')
             .then(() => {
                 // Set the new location
                 window.location.href = `${window.location.origin}/`;

@@ -305,7 +305,7 @@ section {
 
 .services .box-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 1.5rem;
     justify-content: center;
     align-items: flex-start;
@@ -734,8 +734,6 @@ section {
         background-color: var(--branch-color);
         margin: 5px 10px;
         width: 100%;
-
-
     }
 
 }
@@ -765,6 +763,11 @@ section {
     .header .navbar .option-btn {
         background-color: var(--branch-color);
         margin: 5px;
+    }
+
+    .services .box-container {
+        grid-template-columns: 1fr;
+
     }
 
 }

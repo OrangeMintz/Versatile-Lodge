@@ -150,7 +150,7 @@ section {                   /*header block*/
 .inline-delete-btn:hover {   /*hover effect*/
     background-color: var(--light-bg);
     color: var(--main-color);
-    font-weight: bold;
+
 }
 
 .flex-btn {
