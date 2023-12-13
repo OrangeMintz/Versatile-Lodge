@@ -3,26 +3,28 @@ const { createReviews, deleteReviews, getReviews, updateReview, createReply, del
 
 const Reviews = require("../models/Reviews.js");
 const { verifyAdmin, verifyUser } = require('../utils/verifyToken.js');
-
+const authenticateUser = require('../middleware/authMiddleware');
 const router = express.Router();
 
 //Create
-router.post("/", createReviews);
+router.post("/", authenticateUser, createReviews);
 
-router.put("/:id", updateReview);
-
+//Update
+router.put("/:id", authenticateUser, updateReview);
 
 //Delete
-router.delete("/:id", deleteReviews);
+router.delete("/:id", verifyAdmin, deleteReviews);
 
-//GetAll
+//Get All
 router.get("/", getReviews);
 
-// Reply
-router.post("/:id/replies", createReply);
+//Reply
+router.post("/:id/replies", verifyAdmin, createReply);
 
-router.delete("/:reviewId/replies/:replyId", deleteReply);
+//Delete Reply
+router.delete("/:reviewId/replies/:replyId", verifyAdmin, deleteReply);
 
+//Update Reply
 router.put('/api/reviews/:reviewId/replies/:replyId', editReply);
 
 module.exports = router;
