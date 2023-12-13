@@ -49,37 +49,37 @@ const About = () => {
                     <div className="box">
                         <img src="/assets/images/icon-1.png" alt="" />
                         <h3>Easy to Access</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit iste facere beatae.</p>
+                        <p>Whether you're arriving by car, public transportation, or other means, our strategic location makes it convenient for you to reach us.</p>
                     </div>
 
                     <div className="box">
                         <img src="/assets/images/icon-2.png" alt="" />
                         <h3>Nature Views</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit iste facere beatae.</p>
+                        <p>Our lodge is designed to offer a connection with the natural environment, creating a peaceful and rejuvenating experience.</p>
                     </div>
 
                     <div className="box">
                         <img src="/assets/images/icon-3.png" alt="" />
                         <h3>Eco Friendly</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit iste facere beatae.</p>
+                        <p>Versatile Lodge takes pride in implementing eco-friendly practices to minimize our ecological footprint.</p>
                     </div>
 
                     <div className="box">
                         <img src="/assets/images/icon-4.png" alt="" />
                         <h3>Safety and Security</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit iste facere beatae.</p>
+                        <p>Rest easy knowing that we have implemented comprehensive safety protocols to make your stay worry-free.</p>
                     </div>
 
                     <div className="box">
                         <img src="/assets/images/icon-5.png" alt="" />
                         <h3>Peaceful Environment</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit iste facere beatae.</p>
+                        <p>Whether you're here for a quiet getaway or focused work, our surroundings create an ideal setting for a tranquil experience.</p>
                     </div>
 
                     <div className="box">
                         <img src="/assets/images/icon-6.png" alt="" />
                         <h3>Cozy Rooms</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit iste facere beatae.</p>
+                        <p> Each room at Versatile Lodge is a haven where you can unwind and recharge, ensuring a restful and pleasant stay.</p>
                     </div>
                 </div>
             </section>
