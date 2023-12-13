@@ -247,7 +247,7 @@ const Dashboard = () => {
                         data={{
                             labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                             datasets: [{
-                                label: "Occupancy",
+                                label: "Reservations",
                                 data: calculateMonthlyReservations(),
                                 backgroundColor: "#2B1103",
                                 borderColor: "#DCC69C"
