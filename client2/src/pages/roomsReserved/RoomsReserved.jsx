@@ -23,7 +23,7 @@ const RoomsReserved = () => {
     useEffect(() => {
         if (!user) {
             axios
-                .get('/profile')
+                .get('/profile/admin')
                 .then(({ data }) => {
                     setUser(data);
                 })
@@ -154,10 +154,6 @@ const RoomsReserved = () => {
 
 
     const handleConfirm = async (roomId, bookingid, userId) => {
-        console.log('Room ID:', roomId);
-        console.log('Booking ID:', bookingid);
-        console.log('User ID:', userId);
-
         try {
             // Update room status to "booked"
             await axios.put(`/api/room/${roomId}/confirmBooking/${bookingid}`);
@@ -174,11 +170,11 @@ const RoomsReserved = () => {
                 return (
                     booking.status === 'reserved' &&
                     (
-                        // Check if fromDate and toDate are the same
                         (booking.fromDate === confirmedBooking.fromDate && booking.toDate === confirmedBooking.toDate) ||
-                        // Check for overlapping dates
-                        (moment(booking.toDate, 'MM-DD-YYYY').isSameOrAfter(moment(confirmedBooking.fromDate, 'MM-DD-YYYY')) &&
-                            moment(booking.fromDate, 'MM-DD-YYYY').isSameOrBefore(moment(confirmedBooking.toDate, 'MM-DD-YYYY')))
+                        (
+                            moment(booking.toDate, 'MM-DD-YYYY').isSameOrAfter(moment(confirmedBooking.fromDate, 'MM-DD-YYYY')) &&
+                            moment(booking.fromDate, 'MM-DD-YYYY').isSameOrBefore(moment(confirmedBooking.toDate, 'MM-DD-YYYY'))
+                        )
                     )
                 );
             });
@@ -186,14 +182,15 @@ const RoomsReserved = () => {
             // Auto-delete overlapping reservations
             if (overlappingReservations.length > 0) {
                 const bookingsToRemove = overlappingReservations.map(booking => booking.bookingid);
+
+                // Update the room by removing the overlapping reservations
+                await axios.put(`/api/room/${roomId}`, { currentbookings: room.currentbookings.filter(booking => !bookingsToRemove.includes(booking.bookingid)) });
+
+                // Update the booking history status for deleted reservations
                 await axios.put(`/api/bookingHistory/updateStatus`, { userIds: overlappingReservations.map(booking => booking.userId) });
-                await axios.put(`/api/room/${roomId}/removeOverlappingBookings`, { bookingIds: bookingsToRemove });
             }
 
             window.location.reload();
-
-
-            // Refresh the page or update the state to reflect changes
         } catch (error) {
             console.error('Error confirming booking:', error);
             toast.error('Error confirming booking. Please try again.');
@@ -219,6 +216,72 @@ const RoomsReserved = () => {
         } catch (error) {
             console.error('Error rejecting booking:', error);
             toast.error('Error rejecting booking. Please try again.');
+        }
+    };
+
+
+    //MODAL1:
+    const [showModal, setShowModal] = useState(false);
+    const [selectedRoom, setSelectedRoom] = useState(null); // To store the selected room details
+
+    const handleShowModal = (roomId, bookingId, userId) => {
+        // Set the selected room details
+        setSelectedRoom({
+            roomId,
+            bookingId,
+            userId,
+        });
+
+        // Show the modal
+        setShowModal(true);
+    };
+
+    const handleHideModal = () => {
+        // Hide the modal
+        setShowModal(false);
+    };
+
+    const handleConfirmFromModal = () => {
+        // Close the modal
+        setShowModal(false);
+
+        // Extract details from selected room and perform confirmation
+        if (selectedRoom) {
+            const { roomId, bookingId, userId } = selectedRoom;
+            handleConfirm(roomId, bookingId, userId);
+        }
+    };
+
+
+    //MODAL2
+    const [showModal2, setShowModal2] = useState(false);
+    const [selectedRoom2, setSelectedRoom2] = useState(null); // To store the selected room details for Reject
+
+    const handleShowModal2 = (roomId, bookingId, userId) => {
+        // Set the selected room details
+        setSelectedRoom2({
+            roomId,
+            bookingId,
+            userId,
+        });
+
+        // Show the modal
+        setShowModal2(true);
+    };
+
+    const handleHideModal2 = () => {
+        // Hide the modal
+        setShowModal2(false);
+    };
+
+    const handleRejectFromModal = () => {
+        // Close the modal
+        setShowModal2(false);
+
+        // Extract details from selected room and perform rejection
+        if (selectedRoom2) {
+            const { roomId, bookingId, userId } = selectedRoom2;
+            handleReject(roomId, bookingId, userId);
         }
     };
 
@@ -270,14 +333,8 @@ const RoomsReserved = () => {
                                     )}
                                 </div>
                                 <div className="roomButtons">
-                                    {/* <button className="roomBtn"><span className='fa-solid fa-pencil'></span></button> */}
-                                    {/* <div className="roomReservedContainer"> */}
-                                    <button className="roomReserved" onClick={() => handleReject(room._id, reservedBooking.bookingid, reservedBooking.userId)}>Decline</button>
-                                    {/* <button className="roomReserved" >Confirm</button> */}
-                                    <button className="roomReserved" onClick={() => handleConfirm(room._id, reservedBooking.bookingid, reservedBooking.userId)}>Confirm</button>
-                                    {/* <button className="roomBtn-archive"><span className='fa-solid fa-trash'></span></button> */}
-
-                                    {/* </div> */}
+                                    <button className="roomReserved" onClick={() => handleShowModal2(room._id, reservedBooking.bookingid, reservedBooking.userId)}>Decline</button>
+                                    <button className="roomReserved" onClick={() => handleShowModal(room._id, reservedBooking.bookingid, reservedBooking.userId)}>Confirm</button>
                                 </div>
                             </div>
 
@@ -287,6 +344,27 @@ const RoomsReserved = () => {
                 )}
 
             </section >
+
+            {/* Confirmation Modal */}
+            {showModal && (
+                <div className="overlay">
+                    <div className="modal">
+                        <p>Do you want to confirm this reservation?</p>
+                        <button onClick={handleHideModal}>No</button>
+                        <button onClick={handleConfirmFromModal}>Yes</button>
+                    </div>
+                </div>
+            )}
+
+            {showModal2 && (
+                <div className="overlay">
+                    <div className="modal">
+                        <p>Do you want to reject this reservation?</p>
+                        <button onClick={handleHideModal2}>No</button>
+                        <button onClick={handleRejectFromModal}>Yes</button>
+                    </div>
+                </div>
+            )}
 
             < Footer />
 

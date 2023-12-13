@@ -26,7 +26,7 @@ const ProfileAdmin = () => {
     useEffect(() => {
         if (!user) {
             axios
-                .get('/profile')
+                .get('/profile/admin')
                 .then(({ data }) => {
                     setUser(data);
                 })
@@ -67,7 +67,7 @@ const ProfileAdmin = () => {
     }, [user]);
 
     const handleLogout = () => {
-        axios.get('/logout')
+        axios.get('/logout/admin')
             .then(() => {
                 // Set the new location
                 window.location.href = `${window.location.origin}/`;
@@ -78,6 +78,25 @@ const ProfileAdmin = () => {
                 console.error('Error during logout:', error);
             });
     };
+
+    const [dadJoke, setDadJoke] = useState('');
+
+    const apiUrl = '/dad-joke';
+
+    const fetchDadJoke = async () => {
+        try {
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+            setDadJoke(data.joke);
+        } catch (error) {
+            console.error('Error fetching Dad Joke:', error);
+        }
+    };
+
+    // Call fetchDadJoke to get a joke when the component mounts
+    useEffect(() => {
+        fetchDadJoke();
+    }, []);
 
     return (
         <>
@@ -108,6 +127,13 @@ const ProfileAdmin = () => {
                                 <div className="profileBtns">
                                     <Link to="/AccountSettings" className="profileBtn">Account Settings</Link>
                                     <Link onClick={handleLogout} className="profileBtn">Log out</Link>
+                                </div>
+                                <div className='joke-container'>
+                                    <p className="title">Random Joke Generator</p>
+                                    <p className="joke-text">{dadJoke}</p>
+                                    <button className="joke-btn" onClick={fetchDadJoke}>
+                                        Generate New Joke
+                                    </button>
                                 </div>
                             </div>
                         </div>

@@ -88,7 +88,7 @@
 
 .overview .box-container .box .rectangles {
     display: flex;
-    justify-content: space-between; /* Change this line */
+    justify-content: flex-end; /* Change this line */
     width: 90%;
     margin-left: 8%;
 }
@@ -196,14 +196,7 @@
     margin: 0;
     color: var(--white);
     outline: 1px solid var(--black);
-    transition: .3s;
 }
-
-.overview .box-container .box .inline-btn:hover {
-    background: var(--light-bg);
-    color: var(--main-color);
-}
-
 
 .overview .box-container .box p.stat span {      /* values */
     color: var(--main-color);

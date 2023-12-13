@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import './roomsBooking.css'; // Make sure to import your CSS file
+import './roomsReserved.css'; // Make sure to import your CSS file
 import HeaderAdmin from '../../components/HeaderAdmin';
 import Sidebar from '../../components/Sidebar';
 import Footer from '../../components/Footer';
@@ -7,13 +7,14 @@ import { UserContext } from '../../components/userContext';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+
 import Loader from '../../components/Loader';
 import Error from '../../components/Error';
 import moment from 'moment';
 
-const RoomsBooking = () => {
-    const navigate = useNavigate();
+const RoomsReserved = () => {
 
+    const navigate = useNavigate();
     // CHECK LOGON
 
     const { user, setUser } = useContext(UserContext);
@@ -101,7 +102,7 @@ const RoomsBooking = () => {
             return [];
         }
 
-        const reservedBookings = room.currentbookings.filter(booking => booking.status === 'booked');
+        const reservedBookings = room.currentbookings.filter(booking => booking.status === 'reserved');
 
         return reservedBookings.map(reservedBooking => ({
             room,
@@ -109,7 +110,7 @@ const RoomsBooking = () => {
         }));
     }).filter(({ room }) => filterRooms(room));
 
-    //ROOMS AUTO DELETE BOOKINGS
+
     // Function to automatically delete bookings with toDate in the past
     const autoDeleteBookings = async () => {
         try {
@@ -126,7 +127,7 @@ const RoomsBooking = () => {
                     });
 
                     if (bookingsToRemove.length > 0) {
-                        // Update the room by removing the expired bookings
+                        // Update the room by removing the expired reservation
                         await axios.put(`/api/room/${room._id}`, { currentbookings: room.currentbookings.filter(booking => !bookingsToRemove.includes(booking)) });
                     }
                 }
@@ -152,42 +153,85 @@ const RoomsBooking = () => {
     }, []);
 
 
+    const handleConfirm = async (roomId, bookingid, userId) => {
+        console.log('Room ID:', roomId);
+        console.log('Booking ID:', bookingid);
+        console.log('User ID:', userId);
 
-    //DELETING BOOKING
-    const deleteBooking = async (roomId, bookingId) => {
         try {
-            await axios.delete(`/api/room/${roomId}/booking/${bookingId}`);
+            // Update room status to "booked"
+            await axios.put(`/api/room/${roomId}/confirmBooking/${bookingid}`);
+
+            // Fetch the updated room data
+            const response = await axios.get(`/api/room/${roomId}`);
+            const room = response.data;
+
+            // Find the confirmed booking
+            const confirmedBooking = room.currentbookings.find(booking => booking.bookingid === bookingid);
+
+            // Filter out overlapping reservations with status 'reserved'
+            const overlappingReservations = room.currentbookings.filter(booking => {
+                return (
+                    booking.status === 'reserved' &&
+                    (
+                        (booking.fromDate === confirmedBooking.fromDate && booking.toDate === confirmedBooking.toDate) ||
+                        (
+                            moment(booking.toDate, 'MM-DD-YYYY').isSameOrAfter(moment(confirmedBooking.fromDate, 'MM-DD-YYYY')) &&
+                            moment(booking.fromDate, 'MM-DD-YYYY').isSameOrBefore(moment(confirmedBooking.toDate, 'MM-DD-YYYY'))
+                        )
+                    )
+                );
+            });
+
+            // Auto-delete overlapping reservations
+            if (overlappingReservations.length > 0) {
+                const bookingsToRemove = overlappingReservations.map(booking => booking.bookingid);
+                await axios.put(`/api/bookingHistory/updateStatus`, { userIds: overlappingReservations.map(booking => booking.userId) });
+                await axios.put(`/api/room/${roomId}/removeOverlappingBookings`, { bookingIds: bookingsToRemove });
+            }
+
+            // If a user has reserved 2 times on the same room, keep the confirmed booking and remove the overlapping one
+            const userReservations = room.currentbookings.filter(booking => booking.userId === userId && booking.status === 'reserved');
+            if (userReservations.length > 1) {
+                const overlappingUserBooking = userReservations.find(booking =>
+                    moment(booking.toDate, 'MM-DD-YYYY').isSameOrAfter(moment(confirmedBooking.fromDate, 'MM-DD-YYYY')) &&
+                    moment(booking.fromDate, 'MM-DD-YYYY').isSameOrBefore(moment(confirmedBooking.toDate, 'MM-DD-YYYY'))
+                );
+
+                if (overlappingUserBooking) {
+                    // Remove the overlapping user reservation
+                    await axios.put(`/api/room/${roomId}/removeOverlappingBookings`, { bookingIds: [overlappingUserBooking.bookingid] });
+                }
+            }
+
             window.location.reload();
-            fetchData();
+
+            // Refresh the page or update the state to reflect changes
         } catch (error) {
-            console.error('Error deleting booking:', error);
-            window.location.reload();
+            console.error('Error confirming booking:', error);
+            toast.error('Error confirming booking. Please try again.');
         }
     };
 
-    //MODAL
-    const [showModal, setShowModal] = useState(false);
-    const [bookingToDelete, setBookingToDelete] = useState(null);
 
-    // Function to show the modal and set the booking to delete
-    const handleShowModal = (roomId, bookingId) => {
-        setBookingToDelete({ roomId, bookingId });
-        setShowModal(true);
-    };
 
-    // Function to hide the modal
-    const handleHideModal = () => {
-        setShowModal(false);
-        setBookingToDelete(null);
-    };
+    const handleReject = async (roomId, bookingid, userId) => {
+        console.log('Room ID:', roomId);
+        console.log('Booking ID:', bookingid);
+        console.log('User ID:', userId);
 
-    // Function to handle the confirmation and delete the booking
-    const handleConfirmFromModal = async () => {
-        const { roomId, bookingId } = bookingToDelete;
         try {
-            await deleteBooking(roomId, bookingId);
-        } finally {
-            handleHideModal();
+            // Update room status to "available" (or whatever status you use for available rooms)
+            await axios.put(`/api/room/${roomId}/rejectBooking/${bookingid}`);
+
+            // Update user's booking history status to "Declined"
+            await axios.put(`/api/bookingHistory/rejectBooking`, { bookingId: bookingid });
+
+            // Refresh the page or update the state to reflect changes
+            window.location.reload();
+        } catch (error) {
+            console.error('Error rejecting booking:', error);
+            toast.error('Error rejecting booking. Please try again.');
         }
     };
 
@@ -195,11 +239,12 @@ const RoomsBooking = () => {
         <div>
             <HeaderAdmin />
             <Sidebar />
-            <section className="roomsBooking">
-                <h1 className="heading">Booked Rooms (Bookings)</h1>
+
+            <section className="roomsReserved">
+                <h1 className="heading">Reserved Rooms (Reservation)</h1>
                 <div className="roomState">
-                    <Link to="/roomsReserved">Reserved</Link>
-                    <Link className="stateBtn state" >Booked</Link>
+                    <Link className="stateBtn state">Reserved</Link>
+                    <Link to="/roomsBooking">Booked</Link>
                     <select value={selectedLocation} onChange={handleLocationChange}>
                         <option value="all">All</option>
                         <option value="Malaybalay">Malaybalay</option>
@@ -209,6 +254,9 @@ const RoomsBooking = () => {
                     <div className="searchNadd">
                         <input className="searchRoom" type="text" placeholder="Search here..." value={searchTerm} onChange={handleSearch} />
                     </div>
+                </div>
+                <div className="Reserved">
+                    <Link to="/Reservation"> + Reserved a Room</Link>
                 </div>
 
                 {/* Display reserved rooms */}
@@ -227,31 +275,31 @@ const RoomsBooking = () => {
                                     <span className='sub'>Start Date: {reservedBooking.fromDate}</span>
                                     <span className='sub'>End Date: {reservedBooking.toDate}</span>
                                     <p className='sub'>Total Ammount: ₱{reservedBooking.totalAmount}</p>
-                                    <p className='sub' style={{ fontWeight: "bold", fontStyle: 'normal' }}>{reservedBooking.transactionId}</p>
+                                    <p className='sub'>Transaction ID: {reservedBooking.transactionId}</p>
+                                    {reservedBooking.isManual && (
+                                        <p className='sub' style={{ fontWeight: "bold", fontStyle: 'normal' }}>
+                                            Walk-In Reservation
+                                        </p>
+                                    )}
                                 </div>
                                 <div className="roomButtons">
-                                    <button className="roomBtn-trashcan" onClick={() => handleShowModal(room._id, reservedBooking.bookingid)}>
-                                        <span className='fa-solid fa-trash'></span>
-                                    </button>
-                                    <p className="roomBooked">{room.unavailable ? "Maintenance" : "Booked"}</p>
+                                    {/* <button className="roomBtn"><span className='fa-solid fa-pencil'></span></button> */}
+                                    {/* <div className="roomReservedContainer"> */}
+                                    <button className="roomReserved" onClick={() => handleReject(room._id, reservedBooking.bookingid, reservedBooking.userId)}>Decline</button>
+                                    {/* <button className="roomReserved" >Confirm</button> */}
+                                    <button className="roomReserved" onClick={() => handleConfirm(room._id, reservedBooking.bookingid, reservedBooking.userId)}>Confirm</button>
+                                    {/* <button className="roomBtn-archive"><span className='fa-solid fa-trash'></span></button> */}
+
+                                    {/* </div> */}
                                 </div>
                             </div>
+
                         </div>
+
                     ))
                 )}
 
             </section >
-
-            {/* Confirmation Modal */}
-            {showModal && (
-                <div className="overlay">
-                    <div className="modal">
-                        <p>Do you want to cancel this booking?</p>
-                        <button onClick={handleHideModal}>No</button>
-                        <button onClick={handleConfirmFromModal}>Yes</button>
-                    </div>
-                </div>
-            )}
 
             < Footer />
 
@@ -259,4 +307,4 @@ const RoomsBooking = () => {
     )
 }
 
-export default RoomsBooking;
+export default RoomsReserved;

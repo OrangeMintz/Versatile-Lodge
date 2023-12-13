@@ -29,7 +29,7 @@ const AdminAccountSettings = () => {
     useEffect(() => {
         if (!user) {
             axios
-                .get('/profile')
+                .get('/profile/admin')
                 .then(({ data }) => {
                     setUser(data);
                 })
@@ -214,9 +214,10 @@ const AdminAccountSettings = () => {
                     )}
                 </div>
 
+
             </section>
             {/* <Footer /> */}
-            
+
         </div>
     );
 };

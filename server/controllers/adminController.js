@@ -150,10 +150,10 @@ const loginAdmin = async (req, res) => {
                 },
 
                 // process.env.JWT_SECRET, {}, (err, token) => {
-                process.env.JWT_SECRET, { expiresIn: '2h' }, (err, token) => {
+                process.env.JWT_SECRET, { expiresIn: '2h' }, (err, aToken) => {
                     if (err) throw err;
                     // res.cookie(`token`, token,).json(userWithImage)
-                    res.cookie(`token`, token, {
+                    res.cookie(`aToken`, aToken, {
                         secure: true,
                         httpOnly: true,
                         sameSite: 'strict',
@@ -173,19 +173,6 @@ const loginAdmin = async (req, res) => {
         });
     }
 };
-
-const getProfile = (req, res) => {
-    const { token } = req.cookies;
-    if (token) {
-        jwt.verify(token, process.env.JWT_SECRET, {}, (err, admin) => {
-            if (err) throw err;
-            res.json(admin)
-        })
-    }
-    else {
-        res.json(null)
-    }
-}
 
 const getUser = async (req, res, next) => {
     try {
@@ -374,7 +361,6 @@ module.exports = {
     loginAdmin,
     getUser,
     getUsers,
-    getProfile,
     updateUser,
     updateAccount,
     archiveUser

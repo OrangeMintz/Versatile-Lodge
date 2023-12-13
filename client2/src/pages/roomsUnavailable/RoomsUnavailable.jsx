@@ -23,7 +23,7 @@ const RoomsUnavailable = () => {
     useEffect(() => {
         if (!user) {
             axios
-                .get('/profile')
+                .get('/profile/admin')
                 .then(({ data }) => {
                     setUser(data);
                 })
@@ -209,9 +209,11 @@ const RoomsUnavailable = () => {
                                 <div className="roomButtons">
                                     {/* <button className="roomBtn"><span className='fa-solid fa-pencil'></span></button> */}
                                     <Link to={`/room/edit/${room._id}`} className="roomBtn-pencil"><span className='fa-solid fa-pencil'></span></Link>
-                                    <button className="roomBtn-trashcan" onClick={() => handleShowModal(room._id)}>
-                                        <span className='fa-solid fa-trash'></span>
-                                    </button>
+                                    {user && user.isAdmin && (
+                                        <button className="roomBtn-trashcan" onClick={() => handleShowModal(room._id)}>
+                                            <span className='fa-solid fa-trash'></span>
+                                        </button>
+                                    )}
                                     <p className="roomAvailability">
                                         {room.unavailable ? "Maintenance" : room.currentbookings.some(booking => booking.status === 'booked') ? "Booked" : "Available"}
                                     </p>

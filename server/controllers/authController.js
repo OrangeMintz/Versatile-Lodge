@@ -284,6 +284,19 @@ const loginUser = async (req, res) => {
     }
 };
 
+const getAdminProfile = (req, res) => {
+    const { aToken } = req.cookies;
+    if (aToken) {
+        jwt.verify(aToken, process.env.JWT_SECRET, {}, (err, user) => {
+            if (err) throw err;
+            res.json(user)
+        })
+    }
+    else {
+        res.json(null)
+    }
+}
+
 const getProfile = (req, res) => {
     const { token } = req.cookies;
     if (token) {
@@ -305,6 +318,7 @@ module.exports = {
     registerUser,
     loginUser,
     getProfile,
+    getAdminProfile,
     updateUser,
     updatePassword,
     getUser,

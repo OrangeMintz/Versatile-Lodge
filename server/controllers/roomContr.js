@@ -12,20 +12,6 @@ const path = require('path');
 
 const upload = require('../middleware/multerConfig');
 
-
-// const createRoom = async (req, res, next) => {
-
-//     // const branchId = req.params.branchId;
-//     const newRoom = new Room(req.body);
-
-//     try {
-//         const savedRoom = await newRoom.save();
-//         res.status(200).json(savedRoom);
-//     } catch (err) {
-//         next(err)
-//     }
-// };
-
 const createRoom = async (req, res) => {
     try {
         // Multer middleware

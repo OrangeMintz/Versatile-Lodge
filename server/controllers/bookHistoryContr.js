@@ -3,9 +3,6 @@ const Room = require("../models/Room.js");
 const Booking = require("../models/Booking.js");
 const createError = require('../utils/error.js');
 
-
-
-
 const createBookingHistory = async (req, res, next) => {
     const { user_id, reservation_id, fromDate, toDate, roomName, branch, price, room_id, transactionId } = req.body;
 
@@ -65,44 +62,6 @@ const deleteBookHistory = async (req, res, next) => {
 };
 
 
-
-// const deleteBookHistory = async (req, res, next) => {
-//     const bookingId = req.params.id;
-
-//     try {
-//         // Find the booking history entry
-//         const bookingHistory = await BookingHistory.findById(bookingId);
-
-//         if (!bookingHistory) {
-//             return res.status(404).json({ error: 'Booking History not found' });
-//         }
-
-//         // Extract the room ID from the booking history entry
-//         const roomId = bookingHistory.roomId;
-
-//         // Delete the booking history entry
-//         await BookingHistory.findByIdAndDelete(bookingId);
-
-//         // Update the current bookings of the room
-//         await Room.findByIdAndUpdate(roomId, {
-//             $pull: { currentbookings: { bookingid: bookingId } }
-//         });
-
-//         res.status(200).json("Booking History Has Been Deleted");
-//     } catch (err) {
-//         next(err);
-//     }
-// };
-
-// const deleteBookHistory = async (req, res, next) => {
-//     try {
-//         const history = await BookingHistory.findByIdAndDelete(req.params.id);
-//         res.status(200).json("Booking History Has Been Deleted");
-//     } catch (err) {
-//         next(err);
-//     }
-// };
-
 const getBookHistory = async (req, res, next) => {
     try {
         const history = await BookingHistory.find();
@@ -148,9 +107,6 @@ const acceptBooking = async (req, res) => {
     }
 };
 
-
-
-
 const updateStatus = async (req, res, next) => {
     try {
         const { userIds } = req.body;
@@ -158,7 +114,7 @@ const updateStatus = async (req, res, next) => {
         // Update booking history status for deleted reservations
         await BookingHistory.updateMany(
             { userId: { $in: userIds }, status: 'Pending' }, // Update only 'Pending' reservations
-            { $set: { status: 'Room Taken' } }
+            { $set: { status: 'Occupied' } }
         );
 
         res.status(200).json({ message: 'Booking history status updated for deleted reservations' });
@@ -197,3 +153,45 @@ module.exports = {
     updateStatus,
     rejectBooking
 };
+
+
+
+
+
+
+// const deleteBookHistory = async (req, res, next) => {
+//     const bookingId = req.params.id;
+
+//     try {
+//         // Find the booking history entry
+//         const bookingHistory = await BookingHistory.findById(bookingId);
+
+//         if (!bookingHistory) {
+//             return res.status(404).json({ error: 'Booking History not found' });
+//         }
+
+//         // Extract the room ID from the booking history entry
+//         const roomId = bookingHistory.roomId;
+
+//         // Delete the booking history entry
+//         await BookingHistory.findByIdAndDelete(bookingId);
+
+//         // Update the current bookings of the room
+//         await Room.findByIdAndUpdate(roomId, {
+//             $pull: { currentbookings: { bookingid: bookingId } }
+//         });
+
+//         res.status(200).json("Booking History Has Been Deleted");
+//     } catch (err) {
+//         next(err);
+//     }
+// };
+
+// const deleteBookHistory = async (req, res, next) => {
+//     try {
+//         const history = await BookingHistory.findByIdAndDelete(req.params.id);
+//         res.status(200).json("Booking History Has Been Deleted");
+//     } catch (err) {
+//         next(err);
+//     }
+// };
