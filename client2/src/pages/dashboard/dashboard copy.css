@@ -88,7 +88,7 @@
 
 .overview .box-container .box .rectangles {
     display: flex;
-    justify-content: space-between; /* Change this line */
+    justify-content: flex-end; /* Change this line */
     width: 90%;
     margin-left: 8%;
 }
