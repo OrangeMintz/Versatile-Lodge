@@ -165,6 +165,32 @@ const RoomsBooking = () => {
         }
     };
 
+    //MODAL
+    const [showModal, setShowModal] = useState(false);
+    const [bookingToDelete, setBookingToDelete] = useState(null);
+
+    // Function to show the modal and set the booking to delete
+    const handleShowModal = (roomId, bookingId) => {
+        setBookingToDelete({ roomId, bookingId });
+        setShowModal(true);
+    };
+
+    // Function to hide the modal
+    const handleHideModal = () => {
+        setShowModal(false);
+        setBookingToDelete(null);
+    };
+
+    // Function to handle the confirmation and delete the booking
+    const handleConfirmFromModal = async () => {
+        const { roomId, bookingId } = bookingToDelete;
+        try {
+            await deleteBooking(roomId, bookingId);
+        } finally {
+            handleHideModal();
+        }
+    };
+
     return (
         <div>
             <HeaderAdmin />
@@ -204,10 +230,7 @@ const RoomsBooking = () => {
                                     <p className='sub' style={{ fontWeight: "bold", fontStyle: 'normal' }}>{reservedBooking.transactionId}</p>
                                 </div>
                                 <div className="roomButtons">
-                                    <button
-                                        className="roomBtn-trashcan"
-                                        onClick={() => deleteBooking(room._id, reservedBooking.bookingid)}
-                                    >
+                                    <button className="roomBtn-trashcan" onClick={() => handleShowModal(room._id, reservedBooking.bookingid)}>
                                         <span className='fa-solid fa-trash'></span>
                                     </button>
                                     <p className="roomBooked">{room.unavailable ? "Maintenance" : "Booked"}</p>
@@ -218,6 +241,17 @@ const RoomsBooking = () => {
                 )}
 
             </section >
+
+            {/* Confirmation Modal */}
+            {showModal && (
+                <div className="overlay">
+                    <div className="modal">
+                        <p>Do you want to cancel this booking?</p>
+                        <button onClick={handleHideModal}>No</button>
+                        <button onClick={handleConfirmFromModal}>Yes</button>
+                    </div>
+                </div>
+            )}
 
             < Footer />
 
