@@ -349,7 +349,7 @@ const RoomsReserved = () => {
             {showModal && (
                 <div className="overlay">
                     <div className="modal">
-                        <p>Are you sure you want to archive this room?</p>
+                        <p>Do you want to confirm this reservation?</p>
                         <button onClick={handleHideModal}>No</button>
                         <button onClick={handleConfirmFromModal}>Yes</button>
                     </div>
@@ -359,7 +359,7 @@ const RoomsReserved = () => {
             {showModal2 && (
                 <div className="overlay">
                     <div className="modal">
-                        <p>Are you sure you want to reject this room?</p>
+                        <p>Do you want to reject this reservation?</p>
                         <button onClick={handleHideModal2}>No</button>
                         <button onClick={handleRejectFromModal}>Yes</button>
                     </div>

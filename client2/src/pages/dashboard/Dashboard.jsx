@@ -9,7 +9,8 @@ import axios from 'axios';
 import { UserContext } from '../../components/userContext';
 import './dashboard.css';
 import moment from 'moment';
-
+import { Chart as Chartjs } from "chart.js/auto"
+import { Bar, Doughnut, Line } from "react-chartjs-2"
 
 
 const Dashboard = () => {
@@ -119,6 +120,31 @@ const Dashboard = () => {
     const MaramagOccupancy = calculateOccupancy('Maramag');
     const ValenciaOccupancy = calculateOccupancy('Valencia');
 
+
+    //CHART
+    const [reservationsData, setReservationsData] = useState([]);
+    useEffect(() => {
+        axios.get('/api/booking')
+            .then(response => {
+                setReservationsData(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching reservations data:', error);
+            });
+    }, []);
+
+    const calculateMonthlyReservations = () => {
+        const monthlyReservations = Array(12).fill(0); // Initialize an array to store reservations count for each month
+
+        reservationsData.forEach(booking => {
+            const fromDate = moment(booking.fromDate, 'MM-DD-YYYY');
+            const monthIndex = fromDate.month();
+            monthlyReservations[monthIndex]++;
+        });
+
+        return monthlyReservations;
+    };
+
     return (
         // <div className={styles.dashboard}>
         <>
@@ -158,7 +184,6 @@ const Dashboard = () => {
                             <p>{(((MalaybalayOccupancy.occupiedRoomsCount + MaramagOccupancy.occupiedRoomsCount + ValenciaOccupancy.occupiedRoomsCount) / roomData.length) * 100).toFixed(1)}%</p>
                         </div>
 
-
                         <div className="box">
                             <h3 className="title">Occupancy Statistics:</h3>
                             <div className="monthly"><i className='fas fa-calendar'></i> Monthly</div>
@@ -180,10 +205,11 @@ const Dashboard = () => {
                                 <div className="rectangle8"></div>
                                 <div className="rectangle9"></div>
                                 <div className="rectangle10"></div>
+                                <div className="rectangle11"></div>
+                                <div className="rectangle12"></div>
+
                             </div>
                             <div className="months">
-                                <div className="month">Nov</div>
-                                <div className="month">Dec</div>
                                 <div className="month">Jan</div>
                                 <div className="month">Feb</div>
                                 <div className="month">Mar</div>
@@ -192,8 +218,11 @@ const Dashboard = () => {
                                 <div className="month">Jun</div>
                                 <div className="month">Jul</div>
                                 <div className="month">Aug</div>
+                                <div className="month">Sep</div>
+                                <div className="month">Oct</div>
+                                <div className="month">Nov</div>
+                                <div className="month">Dec</div>
                             </div>
-
                         </div>
 
                         {user && (user.isAdmin) && (
@@ -205,7 +234,6 @@ const Dashboard = () => {
                                 <Link to="/reviewsAdmin" className="inline-btn">View Comments</Link>
                             </div>
                         )}
-
                         {user && (user.isManager) && (
                             <div className="box">
                                 <h3 className="title">Rooms and Comments:</h3>
@@ -213,17 +241,25 @@ const Dashboard = () => {
                                 <Link to="/roomsAvailable" className="inline-btn">View rooms</Link>
                             </div>
                         )}
-
                     </div>
+
+                    <Bar
+                        data={{
+                            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                            datasets: [{
+                                label: "Reservations",
+                                data: calculateMonthlyReservations(),
+                                backgroundColor: "#2B1103",
+                                borderColor: "#DCC69C"
+                            }],
+                        }}
+                    />
 
                 </section>
 
                 {/* <!-- overview section ends --> */}
-
                 <Footer />
-
             </div>
-
         </>
     )
 }
