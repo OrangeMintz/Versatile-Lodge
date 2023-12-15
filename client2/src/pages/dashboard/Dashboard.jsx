@@ -187,42 +187,24 @@ const Dashboard = () => {
                         <div className="box">
                             <h3 className="title">Occupancy Statistics:</h3>
                             <div className="monthly"><i className='fas fa-calendar'></i> Monthly</div>
-                            <div className="percents">
-                                <div className="percent">100%</div>
-                                <div className="percent">75%</div>
-                                <div className="percent">50%</div>
-                                <div className="percent">25%</div>
-                                <div className="percent">0%</div>
-                            </div>
-                            <div className="rectangles">
-                                <div className="rectangle1"></div>
-                                <div className="rectangle2"></div>
-                                <div className="rectangle3"></div>
-                                <div className="rectangle4"></div>
-                                <div className="rectangle5"></div>
-                                <div className="rectangle6"></div>
-                                <div className="rectangle7"></div>
-                                <div className="rectangle8"></div>
-                                <div className="rectangle9"></div>
-                                <div className="rectangle10"></div>
-                                <div className="rectangle11"></div>
-                                <div className="rectangle12"></div>
+                            <div className="chart-container"> {/* Add this container */}
+                                <Bar
+                                    className="chart"
+                                    data={{
+                                        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                                        datasets: [{
+                                            label: "Reservations",
+                                            data: calculateMonthlyReservations(),
+                                            backgroundColor: "#2B1103",
+                                            borderColor: "#DCC69C",
+                                        }],
+                                    }}
+                                    options={{
 
-                            </div>
-                            <div className="months">
-                                <div className="month">Jan</div>
-                                <div className="month">Feb</div>
-                                <div className="month">Mar</div>
-                                <div className="month">Apr</div>
-                                <div className="month">May</div>
-                                <div className="month">Jun</div>
-                                <div className="month">Jul</div>
-                                <div className="month">Aug</div>
-                                <div className="month">Sep</div>
-                                <div className="month">Oct</div>
-                                <div className="month">Nov</div>
-                                <div className="month">Dec</div>
-                            </div>
+
+                                    }}
+                                />
+                    </div>
                         </div>
 
                         {user && (user.isAdmin) && (
@@ -243,7 +225,7 @@ const Dashboard = () => {
                         )}
                     </div>
 
-                    <Bar
+                    {/* <Bar
                         data={{
                             labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                             datasets: [{
@@ -253,7 +235,7 @@ const Dashboard = () => {
                                 borderColor: "#DCC69C"
                             }],
                         }}
-                    />
+                    /> */}
 
                 </section>
 
