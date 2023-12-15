@@ -654,7 +654,7 @@ section {                   /*header block*/
 .content .employeeForm {
     display: grid;
     gap: 0.5rem;
-    padding: 2rem 4rem;
+    padding: 1.5rem 3.5rem;
 }
 
 .content .employeeForm label {
@@ -662,14 +662,14 @@ section {                   /*header block*/
     text-align: left;
     font-size: 2rem;
     width: 100%;
-    margin: .4rem 0;
+    margin: .3rem 0;
 }
 
 .content .employeeForm input {
     width: 100%;
-    padding: 1.2rem 1rem;
-    margin: .5rem 0;
-    font-size: 2rem;
+    padding: 1rem;
+    margin: .4rem 0;
+    font-size: 1.7rem;
     border-radius: 5px;
     box-shadow: 0 0 15px rgba(0,0,0,0.3);
     background: var(--white);
