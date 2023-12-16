@@ -75,8 +75,8 @@ const Reviews = () => {
             (booking) =>
                 booking.user_id === user.id &&
                 booking.status === 'reserved' &&
-                moment().isSameOrAfter(moment(booking.fromDate)) &&
-                moment().isSameOrBefore(moment(booking.toDate).add(3, 'days'))
+                moment().isSameOrAfter(moment(booking.fromDate)) ||
+                moment().isSameOrBefore(moment(booking.toDate).add(2, 'days'))
         );
 
         return !!validBooking;
