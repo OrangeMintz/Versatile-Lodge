@@ -57,7 +57,7 @@ const Contact = () => {
 
     useEffect(() => {
         // Fetch weather data for Valencia
-        fetch(`${weatherapi.base}weather?q=Valencia&units=metric&APPID=${weatherapi.key}`)
+        fetch(`${weatherapi.base}weather?lat=7.8632&lon=125.1709&units=metric&APPID=${weatherapi.key}`)
             .then((res) => res.json())
             .then((result) => {
                 console.log(result);
@@ -65,7 +65,7 @@ const Contact = () => {
             });
 
         // Fetch weather data for Malaybalay
-        fetch(`${weatherapi.base}weather?q=Malaybalay&units=metric&APPID=${weatherapi.key}`)
+        fetch(`${weatherapi.base}weather?lat=8.1479&lon=125.1321&units=metric&APPID=${weatherapi.key}`)
             .then((res) => res.json())
             .then((result) => {
                 console.log(result);
@@ -73,7 +73,7 @@ const Contact = () => {
             });
 
         // Fetch weather data for Maramag
-        fetch(`${weatherapi.base}weather?q=Maramag&units=metric&APPID=${weatherapi.key}`)
+        fetch(`${weatherapi.base}weather?lat=7.7901&lon=124.9727&units=metric&APPID=${weatherapi.key}`)
             .then((res) => res.json())
             .then((result) => {
                 console.log(result);
@@ -131,7 +131,7 @@ const Contact = () => {
                     <div className="weatherBox1">
                         <div className="weatherTemp">
                             {weatherValencia.name && (
-                                <p className="weather-info"><i className="weatherPlace">Valencia:</i> {weatherValencia.main.temp} °C</p>
+                                <p className="weather-info"><i className="weatherPlace">Valencia:</i>{weatherValencia.main.temp} °C</p>
                             )}
                         </div>
                         <div className="weatherDetails">

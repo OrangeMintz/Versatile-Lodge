@@ -185,7 +185,7 @@ const Dashboard = () => {
                         </div>
 
                         <div className="box">
-                            <h3 className="title">Occupancy Statistics:</h3>
+                            <h3 className="title">Reservation Statistics:</h3>
                             <div className="monthly"><i className='fas fa-calendar'></i> Monthly</div>
                             <div className="chart-container"> {/* Add this container */}
                                 <Bar
@@ -204,7 +204,7 @@ const Dashboard = () => {
 
                                     }}
                                 />
-                    </div>
+                            </div>
                         </div>
 
                         {user && (user.isAdmin) && (

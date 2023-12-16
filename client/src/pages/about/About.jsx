@@ -22,7 +22,6 @@ const About = () => {
 
         <div className="About">
             <Navbar />
-
             {/* <!-- about-us section --> */}
             <section className="about-us">
 
