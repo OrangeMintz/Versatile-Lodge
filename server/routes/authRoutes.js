@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { registerUser, loginUser, getProfile, getAdminProfile, updateUser, updatePassword, getUser, getUsers } = require('../controllers/authController');
 const authenticateUser = require('../middleware/authMiddleware');
+const { verifyAdmin, verifyUser } = require('../utils/verifyToken.js');
 
 //Create
 router.post('/register/customer', registerUser)
@@ -22,10 +23,10 @@ router.get('/profile/', getProfile)
 router.get('/profile/admin', getAdminProfile)
 
 //Get Specific
-router.get("/customer/:id", getUser);
+router.get("/customer/:id", verifyUser, getUser);
 
 //Get All
-router.get("/customer/", getUsers);
+router.get("/customer/", verifyUser, getUsers);
 
 //Logout
 router.get('/logout', (req, res) => {
