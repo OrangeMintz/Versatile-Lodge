@@ -50,6 +50,39 @@ const createAdmin = async (req, res) => {
             });
         }
 
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            return res.json({
+                error: 'Invalid email format'
+            });
+
+        }
+
+        if (!address) {
+            return res.json({
+                error: 'Address is required'
+            });
+        }
+
+        if (!birthday) {
+            return res.json({
+                error: 'Birthday is required'
+            });
+        }
+
+        if (!phoneNumber) {
+            return res.json({
+                error: 'Phone Number is required'
+            });
+        }
+
+        if (!sex) {
+            return res.json({
+                error: 'Sex/Gender is required'
+            });
+        }
+
         // ... (rest of your validation logic)
 
         // Check email
@@ -65,15 +98,6 @@ const createAdmin = async (req, res) => {
             return res.json({
                 error: 'Username is already taken'
             });
-        }
-
-        // Validate email format
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            return res.json({
-                error: 'Invalid email format'
-            });
-
         }
 
         // Validate password format using regex
@@ -250,7 +274,7 @@ const updateAccount = async (req, res, next) => {
         );
 
         // Send the updated token as a cookie in the response
-        res.cookie(`token`, updatedToken, {
+        res.cookie(`aToken`, updatedToken, {
             secure: true,
             httpOnly: true,
             sameSite: 'strict',
