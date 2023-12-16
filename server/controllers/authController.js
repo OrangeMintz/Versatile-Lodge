@@ -34,11 +34,7 @@ const registerUser = async (req, res) => {
         }
 
         // Check if name was entered and does not contain leading/trailing spaces
-        if (!name || name.trim() !== name) {
-            return res.json({
-                error: 'Name is required and should not contain leading/trailing spaces'
-            });
-        }
+
 
         const nameRegex = /^[a-zA-Z ]+$/;
         if (!nameRegex.test(name)) {
@@ -267,8 +263,6 @@ const loginUser = async (req, res) => {
                         httpOnly: true,
                         sameSite: 'strict',
                     }).json(userWithImage)
-
-
                 })
 
         } else {

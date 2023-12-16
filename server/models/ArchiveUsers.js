@@ -14,7 +14,6 @@ const archiveSchema = new Schema({
 
     email: {
         type: String,
-        unique: true,
         required: true
     },
 
@@ -33,7 +32,6 @@ const archiveSchema = new Schema({
     birthday: {
         type: String
     },
-
 
     phoneNumber: {
         type: String
