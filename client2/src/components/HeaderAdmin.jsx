@@ -1,7 +1,8 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from "../components/userContext";
 import axios from 'axios';
+import RandomQuoteModal from './RandomQuoteModal'; 
 
 
 const HeaderAdmin = () => {
@@ -37,6 +38,7 @@ const HeaderAdmin = () => {
         const profile = document.querySelector('.profile');
         profile.classList.toggle('active');
     };
+
 
     //menu icon beside Versatile Lodge
     const handleBarsIconClick = () => {  //when menu-btn is pressed,,
@@ -85,6 +87,22 @@ const HeaderAdmin = () => {
 
     };
 
+    //open & close modal
+    const [modal, setModal] = useState(false);
+
+    const handleRandomIconClick = () => {
+        setModal(!modal)
+    }
+
+    //remove scrollbar if modal is open
+    if(modal) {                 
+        document.body.classList.add('active-modal')
+    } else {
+        document.body.classList.remove('active-modal')
+
+    }
+
+
 
     return (
         <div>
@@ -104,11 +122,14 @@ const HeaderAdmin = () => {
 
                         {/* <div id="search-btn" className="fas fa-search" onClick={handleSearchIconClick}></div> */}
                         <div id="toggle-btn" className="fas fa-sun" onClick={handleSunIconClick}></div>
-                        <div id="question-btn" className="fas fa-question"></div>
+                        <div id="question-btn" className="fas fa-question" onClick={handleRandomIconClick}></div>
                         <div id="user-btn" className="fas fa-user" onClick={handleUserIconClick}></div>
                         {/* <div id="drop-btn" className="fas fa-chevron-down"></div> */}
 
                     </div>
+
+
+
                     {user && (
                         <div className="profile">
                             <img src={user.image} />
@@ -122,8 +143,28 @@ const HeaderAdmin = () => {
                             </div>
                         </div>
                     )}
+                    {/* < RandomQuoteModal /> */}
+
                 </section>
             </header>
+            
+
+            {/* {modal && (
+
+                <div className="modalR">
+                    <div className="overlayR" onClick={handleRandomIconClick}></div>
+                    <div className="modal-contentR">
+                        <h2>Hellow Modal</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus suscipit recusandae omnis aliquid modi deserunt, temporibus incidunt adipisci, aperiam delectus iusto saepe exercitationem sit? Consequatur aliquam magni neque enim quisquamLorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus suscipit recusandae omnis aliquid modi deserunt, temporibus incidunt adipisci, aperiam delectus iusto saepe exercitationem sit? Consequatur aliquam magni neque enim quisquam.</p>
+                        <button className="close-modalR" onClick={handleRandomIconClick}>close</button>
+                    </div>
+                </div>
+            )} */}
+
+            {modal && (
+
+            <RandomQuoteModal />
+            )}
         </div>
     )
 }

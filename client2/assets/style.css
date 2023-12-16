@@ -783,3 +783,109 @@ form .btnContainer .deleteBtn:active {
     font-weight: 600;
 }
 
+
+body.active-modal {
+    overflow-y: hidden;
+}
+
+
+
+
+
+
+
+.App {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    align-items: center;
+    flex-direction: column;
+}
+
+.quote {
+    background: url(https://image.shutterstock.com/image-vector/vector-template-blank-rectangle-quote-260nw-1150834541.jpg);
+    background-size: cover;
+    width: 500px;
+    height: 320px;
+    border-radius:10px;
+    padding: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.quote h2 {
+    font-size: 2em;
+    font-family: cursive;
+}
+
+.quote small {
+    font-size: 1.5em;
+    font-family: fantasy;
+}
+
+.btnQ {
+    display: block;
+    border: 2px solid #008CBA;
+    background: transparent;
+    padding: 10px 15px;
+    color:#008CBA;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    transition: background 1s, color 1s;
+}
+
+.btnQ:hover {
+    background: #008CBA;
+    color: #FFF;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+
+
+
+
+
+
+
+
+.modalR, .overlayR {
+    width: 100vw;
+    height: 100vh;
+    top: 0; left: 0; right: 0; bottom: 0; 
+    position: fixed;
+}
+
+.overlayR {
+    background: lightgrey;
+}
+
+.modal-contentR {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1.4;
+    background: #f1f1f1;
+    padding: 14px 28px;
+    border-radius: 3px;
+    max-width: 600px;
+    min-width: 300px;
+    font-size: 1.5rem;
+}
+
+.close-modalR {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 2px 3px;
+    border: 1px solid black;
+}
+
+.close-modalR:hover {
+    background: grey;
+}
+
