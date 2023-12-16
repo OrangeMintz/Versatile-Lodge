@@ -25,6 +25,6 @@ router.post("/:id/replies", verifyAdmin, createReply);
 router.delete("/:reviewId/replies/:replyId", verifyAdmin, deleteReply);
 
 //Update Reply
-router.put('/api/reviews/:reviewId/replies/:replyId', editReply);
+// router.put('/:reviewId/replies/:replyId', editReply);
 
 module.exports = router;
