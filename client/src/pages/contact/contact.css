@@ -88,6 +88,10 @@
     top: 5%;
     left: 5%;
   }
+
+  .weather-info{
+    text-transform: capitalize;
+  }
   
   .weatherDetails {
     font-size: 14px;
@@ -98,7 +102,7 @@
     align-items: center;
     /* display: grid;
     grid-template-columns: 1fr 1fr 1fr; */
-    background-color: rgba(245, 222, 179, 0.116); /* Wheat color with 80% opacity */
+    background-color: rgba(31, 28, 22, 0.212); /* Wheat color with 80% opacity */
     position: absolute;
     bottom: 0;
     left: 0;

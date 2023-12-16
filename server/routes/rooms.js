@@ -27,7 +27,7 @@ router.put("/:id", verifyUser, updateRoom)
 router.delete("/:id", verifyAdmin, deleteRoom);
 
 //Get Specific
-router.get("/:id", verifyUser, getRoom);
+router.get("/:id", getRoom);
 
 //GetAll
 router.get("/", getRooms);
