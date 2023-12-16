@@ -235,7 +235,7 @@ const RoomsAvailable = () => {
             {showModal && (
                 <div className="overlay">
                     <div className="modal">
-                        <p>Are you sure you want to confirm this reservation?</p>
+                        <p>Are you sure you want to archive this room?</p>
                         <button onClick={handleHideModal}>No</button>
                         <button onClick={handleConfirmArchive}>Yes</button>
                     </div>
