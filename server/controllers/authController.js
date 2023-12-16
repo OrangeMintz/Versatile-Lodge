@@ -214,16 +214,6 @@ const getUsers = async (req, res, next) => {
 };
 
 
-
-
-
-
-
-
-
-
-
-
 //Login Endpoint
 const loginUser = async (req, res) => {
     try {
