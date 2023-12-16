@@ -1,0 +1,50 @@
+.App {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    align-items: center;
+    flex-direction: column;
+}
+
+.quote {
+    background: url(https://image.shutterstock.com/image-vector/vector-template-blank-rectangle-quote-260nw-1150834541.jpg);
+    background-size: cover;
+    width: 500px;
+    height: 320px;
+    border-radius:10px;
+    padding: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.quote h2 {
+    font-size: 2em;
+    font-family: cursive;
+}
+
+.quote small {
+    font-size: 1.5em;
+    font-family: fantasy;
+}
+
+.btnQ {
+    display: block;
+    border: 2px solid #008CBA;
+    background: transparent;
+    padding: 10px 15px;
+    color:#008CBA;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    transition: background 1s, color 1s;
+}
+
+.btnQ:hover {
+    background: #008CBA;
+    color: #FFF;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
