@@ -153,11 +153,17 @@ const loginAdmin = async (req, res) => {
             });
         }
 
+        // Check if the user is archived
+        if (admin.isArchive) {
+            return res.json({
+                error: 'User is archived and not allowed to log in'
+            });
+        }
+
         // Check if password matches
         const match = await comparePassword(password, admin.password);
 
         if (match) {
-
             // Password matches, you can proceed with user authentication here.
             const imageUrl = `https://res.cloudinary.com/dl0qncxjh/image/upload/${admin.image}`;
             const adminWithImage = { ...admin.toObject() };
@@ -172,19 +178,17 @@ const loginAdmin = async (req, res) => {
                     isManager: admin.isManager,
                     isAdmin: admin.isAdmin,
                 },
-
-                // process.env.JWT_SECRET, {}, (err, token) => {
-                process.env.JWT_SECRET, { expiresIn: '2h' }, (err, aToken) => {
+                process.env.JWT_SECRET,
+                { expiresIn: '2h' },
+                (err, aToken) => {
                     if (err) throw err;
-                    // res.cookie(`token`, token,).json(userWithImage)
                     res.cookie(`aToken`, aToken, {
                         secure: true,
                         httpOnly: true,
                         sameSite: 'strict',
-                    }).json(adminWithImage)
-
-                })
-
+                    }).json(adminWithImage);
+                }
+            );
         } else {
             res.json({
                 error: 'Password does not match'
@@ -209,10 +213,20 @@ const getUser = async (req, res, next) => {
 
 const getUsers = async (req, res, next) => {
     try {
-        const user = await Admin.find();
-        res.status(200).json(user)
+        // Get the value of the 'isArchive' query parameter
+        const isArchive = req.query.isArchive === 'true';
+
+        // If 'isArchive' is provided, filter users accordingly
+        const query = isArchive ? { isArchive: true } : { isArchive: false };
+
+        // Fetch users based on the provided query
+        const users = await Admin.find(query);
+
+        // Respond with the filtered users
+        res.status(200).json(users);
     } catch (err) {
-        next(err)
+        // Handle errors
+        next(err);
     }
 };
 
@@ -344,12 +358,15 @@ const archiveUser = async (req, res, next) => {
     try {
         const { id } = req.params;
 
-        // Get user details before deleting
+        // Get user details before updating
         const userToArchive = await Admin.findById(id);
 
         if (!userToArchive) {
             return res.status(404).json({ message: 'User not found' });
         }
+
+        // Update the user in the Admin collection
+        await Admin.findByIdAndUpdate(id, { isArchive: true });
 
         // Create an entry in ArchiveUsers with all fields
         const archivedUser = await ArchiveUsers.create({
@@ -364,17 +381,32 @@ const archiveUser = async (req, res, next) => {
             sex: userToArchive.sex,
             isAdmin: userToArchive.isAdmin,
             isManager: userToArchive.isManager,
-            // ...
         });
 
-        // Delete the user from Admin collection
-        await Admin.findByIdAndDelete(id);
-
-        console.log('User archived successfully:', archivedUser);
+        // console.log('User archived successfully:', archivedUser);
 
         res.status(200).json({ message: 'User archived successfully', archivedUser });
     } catch (err) {
         console.error('Error archiving user:', err);
+        next(err);
+    }
+};
+
+//UNARCHIVE USERS:
+const unarchiveUser = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+
+        // Find the user by ID and update the isArchive field
+        const updatedUser = await Admin.findByIdAndUpdate(id, { isArchive: false }, { new: true });
+
+        if (!updatedUser) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        res.status(200).json({ message: 'User unarchived successfully', updatedUser });
+    } catch (err) {
+        console.error('Error unarchiving user:', err);
         next(err);
     }
 };
@@ -387,5 +419,6 @@ module.exports = {
     getUsers,
     updateUser,
     updateAccount,
-    archiveUser
+    archiveUser,
+    unarchiveUser
 }

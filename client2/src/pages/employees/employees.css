@@ -77,6 +77,19 @@
     color: var(--main-color);
 }
 
+.employeesTable td .option-btn2 {
+    font-size: 10px;
+    background-color: var(--main-color);
+    color: var(--branch-color);
+}
+
+.employeesTable td .option-btn2:hover {
+    outline: 1px solid rgb(55, 36, 13);
+    font-weight: 300;
+    background-color: var(--branch-color);
+    color: var(--main-color);
+}
+
 .employeesTable .arrows {
     display: flex;
     flex-direction: column;

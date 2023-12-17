@@ -18,6 +18,9 @@ import Error401 from "./pages/401/401.jsx";
 import AddRoom from "./pages/addRoom/AddRoom.jsx";
 import AddReservation from "./pages/addReservation/AddReservation.jsx";
 import EditRoom from './pages/editRoom/editRoom.jsx';
+import RandomQuote from './pages/randomQuote/RandomQuote.jsx';
+import EmployeesArchive from './pages/employees/EmployeesArchive.jsx';
+
 
 //Components
 
@@ -59,6 +62,7 @@ function App() {
         {/* REQUIRED AUTHENTICATION */}
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/employees" element={<Employees />} />
+        <Route path="/employees/archive" element={<EmployeesArchive />} />
         {/* <Route path="/payroll" element={<Payroll />} /> */}
         <Route path="/reviewsAdmin" element={<ReviewsAdmin />} />
         <Route path="/roomsAvailable" element={<RoomsAvailable />} />
@@ -70,6 +74,7 @@ function App() {
         <Route path="/AddRoom" element={<AddRoom />} />
         <Route path="/Reservation" element={<AddReservation />} />
         <Route path="/room/edit/:id" element={<EditRoom />} />
+        <Route path="/randomQuote" element={<RandomQuote />} />
 
 
         {/* INVALID ACCESS */}

@@ -1,0 +1,787 @@
+{
+	"info": {
+		"_postman_id": "9e574602-f7e6-493e-b7db-46c491cdb30a",
+		"name": "Versatile API's",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29682623"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"Nickzgacus@gmail.com\",\r\n    \"password\":\"!Aa1234567\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/customer/654daf995104eabd539d682d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"customer",
+						"654daf995104eabd539d682d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Room",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"currentbookings.$.status\": \"booked\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/room",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"room"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Room",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"currentbookings.$.status\": \"booked\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/room/656402e5541b412836bd12dc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"room",
+						"656402e5541b412836bd12dc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Room Confirmation",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"currentbookings.$.status\": \"booked\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/room/65463e654ca87dcea0e543e6/confirmBooking/6560d9ffee35668d43c933ae",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"room",
+						"65463e654ca87dcea0e543e6",
+						"confirmBooking",
+						"6560d9ffee35668d43c933ae"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Room",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Room 3\",\r\n    \"branch\": \"Maramag\",\r\n    \"maxPeople\": 4,\r\n    \"price\": 500,\r\n    \"desc\": \"Room 3 Maramag City, Branch Maramag\",\r\n    \"imageurls\": [\r\n        \"https://images.oyoroomscdn.com/uploads/hotel_image/56303/medium/06883e94ec59702e.jpg\",\r\n        \"https://images.oyoroomscdn.com/uploads/hotel_image/56303/medium/597f0e48823f8885.jpg\",\r\n        \"https://images.oyoroomscdn.com/uploads/hotel_image/56303/medium/91dead74a5dffa61.jpg\"\r\n    ],\r\n    \"currentbookings\": [],\r\n    \"roomNumbers\": [],\r\n    \"unavailable\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/room/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"room",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Room",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"price\": 1000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/room/654f24c7cd3d27eeaa592af9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"room",
+						"654f24c7cd3d27eeaa592af9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get BookHistory",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/bookingHistory/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"bookingHistory",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put BookHistory",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\":\"Accepted\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/bookingHistory/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"bookingHistory",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post BookHistory",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": \"65105c84e31b4b488ee1b55d\",\r\n    \"reservationId\":\"65105c84e31b4b512ee1b55d\",\r\n    \"checkInDate\": \"11/05/2023\",\r\n    \"checkOutDate\": \"11/10/2023\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/booking/history",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"booking",
+						"history"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete BookHistory",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/bookingHistory/6579250509853a8a2ca4b87f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"bookingHistory",
+						"6579250509853a8a2ca4b87f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Reviews",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/reviews/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"reviews",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Review",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\":\"654daf995104eabd539d682d\",\r\n    \"name\": \"John Doe\",\r\n    \"image\":\"https://res.cloudinary.com/dl0qncxjh/image/upload/User_Avatar/w0nkngai05o8lbapligf\",\r\n    \"comment\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et malesuada fames ac turpis egestas sed tempus. Fermentum leo vel orci porta non. In est ante in nibh mauris cursus mattis molestie. Tellus in metus vulputate eu scelerisque felis imperdiet proin. Rutrum quisque non tellus orci ac auctor augue mauris. Semper risus in hendrerit gravida. Gravida neque convallis a cras semper. Magna eget est lorem ipsum dolor sit amet consectetur.\",\r\n    \"date\": \"11/19/2023\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/reviews/6559bbd3c29a232915856fa2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"reviews",
+						"6559bbd3c29a232915856fa2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Review Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Jane\",\r\n    \"comment\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et malesuada fames ac turpis egestas sed tempus. Fermentum leo vel orci porta non. In est ante in nibh mauris cursus mattis molestie. Tellus in metus vulputate eu scelerisque felis imperdiet proin. Rutrum quisque non tellus orci ac auctor augue mauris. Semper risus in hendrerit gravida. Gravida neque convallis a cras semper. Magna eget est lorem ipsum dolor sit amet consectetur.\",\r\n    \"date\": \"11/11/2023\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/reviews",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"reviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Review",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/reviews/6547d47d2057aa40c7feebab",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"reviews",
+						"6547d47d2057aa40c7feebab"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Transactions",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Djeikuje Nickolai C. Gacus\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/update/654d8867055bb1b8d0bca070",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"update",
+						"654d8867055bb1b8d0bca070"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Transaction",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customer\": \"6547adacbbffee0b0bfae517\",\r\n    \"roomname\":\"Room 1\",\r\n    \"branch\": \"Valencia\",\r\n    \"checkInDate\": \"11/05/2023\",\r\n    \"checkOutDate\": \"11/8/2023\",\r\n    \"isConfirmed\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/transaction",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"transaction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Transaction",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"isConfirmed\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/transaction/6547d3860ff36c9bca6ecb3d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"transaction",
+						"6547d3860ff36c9bca6ecb3d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Transaction",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/transaction/6547b3acd52b39adf634f1b7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"transaction",
+						"6547b3acd52b39adf634f1b7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/customer/655217f890f082d282459fa9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"customer",
+						"655217f890f082d282459fa9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Bookings",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/booking",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"booking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Bookings",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/booking/createbooking",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"booking",
+						"createbooking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Booking",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"room\":\"Room 1\",\r\n    \"room_id\": \"12623412474\",\r\n    \"user_id\":\"121562412\",\r\n    \"fromDate\":\"11/14/2023\",\r\n    \"toDate\":\"11/15/2023\",\r\n    \"totalAmount\":\"2500\",\r\n    \"totalDays\": 3,\r\n    \"transaction_id\":\"123135\",\r\n    \"status\":\"booked\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/booking/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"booking",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Raygie Arvy B Gante\",\r\n    \"username\":\"manager2\",\r\n    \"email\":\"manager2@gmail.com\",\r\n    \"password\":\"!Aa12345\",\r\n    \"phoneNumber\":\"09132512456\",\r\n    \"isManager\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/admin/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"admin",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"Nickzgacus@gmail.com\",\r\n    \"password\": \"!Aa123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/login/customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"login",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"manager2\",\r\n    \"password\":\"!Aa12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/admin/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"admin",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Admin Users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sex\": \"Male\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/admin/user/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"admin",
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
