@@ -2,14 +2,6 @@ const Room = require("../models/Room.js");
 // const Branch = require("../models/Branch.js");
 const BookingHistory = require('../models/BookingHistory.js');
 const ArchiveRooms = require('../models/ArchiveRooms.js')
-
-
-const mongoose = require('mongoose');
-const createError = require('../utils/error.js');
-
-const multer = require('multer');
-const path = require('path');
-
 const upload = require('../middleware/multerConfig');
 
 const createRoom = async (req, res) => {
@@ -20,7 +12,6 @@ const createRoom = async (req, res) => {
                 console.error('Multer error:', err);
                 return res.status(500).json({ error: 'Internal server error' });
             }
-
 
             try {
                 const { body } = req;

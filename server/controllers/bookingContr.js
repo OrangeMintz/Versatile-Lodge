@@ -71,9 +71,6 @@ const getSpecificBooking = async (req, res, next) => {
 };
 
 
-
-
-
 module.exports = {
     createBooking,
     deleteBooking,
