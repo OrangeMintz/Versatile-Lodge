@@ -21,7 +21,6 @@ const createRoom = async (req, res) => {
                 return res.status(500).json({ error: 'Internal server error' });
             }
 
-
             try {
                 const { body } = req;
 

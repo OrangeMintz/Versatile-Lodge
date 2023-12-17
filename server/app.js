@@ -38,6 +38,7 @@ mongoose.connection.on("connected", () => {
 });
 
 //Middlewares
+const { sendEmail } = require('./middleware/emailMiddleware.js'); // Import the email middleware
 const corsOptions = {
   origin: ["http://localhost:3000", "http://localhost:3001"],
   credentials: true,
@@ -72,6 +73,20 @@ app.use((err, req, res, next) => {
     stack: err.stack,
   });
 });
+
+
+// NODEMAILER NOT FINISHED
+// Example route that sends an email
+// app.get('/send-email', async (req, res) => {
+//   try {
+//     // Replace 'test@email.com' with the recipient's email address
+//     await sendEmail('test@email.com', 'Test Subject', 'Test Text', '<b>Test HTML</b>');
+//     res.status(200).json({ message: 'Email sent successfully' });
+//   } catch (error) {
+//     console.error('Error sending email:', error);
+//     res.status(500).json({ error: 'Internal server error' });
+//   }
+// });
 
 
 
