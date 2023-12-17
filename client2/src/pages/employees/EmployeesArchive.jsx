@@ -22,6 +22,8 @@ const Employees = () => {
 
     const [openEditModal, setOpenEditModal] = useState(false);
     const [openAddModal, setOpenAddModal] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+    const [userIdToUnarchive, setUserIdToUnarchive] = useState(null);
 
     // Check LOGON
     const { user, setUser } = useContext(UserContext);
@@ -40,7 +42,7 @@ const Employees = () => {
                 setUser(profileResponse.data);
 
                 // Fetch only archived employee data using the /admin/user endpoint with query parameters
-                const employeeResponse = await axios.get('/admin/user', { params: { isArchive: false } });
+                const employeeResponse = await axios.get('/admin/user', { params: { isArchive: true } });
                 setData(employeeResponse.data);
                 setOriginalData(employeeResponse.data); // Save the original data
             } catch (error) {
@@ -130,7 +132,8 @@ const Employees = () => {
         {
             name: 'Actions',
             cell: (row) => (
-                <button className='option-btn' onClick={() => handleEdit(row._id)}>Update</button>
+                <button className='option-btn' onClick={() => handleShowModal(row._id)}><span className='fa-solid fa-rotate'></span>
+                </button>
             ),
         },
 
@@ -208,6 +211,33 @@ const Employees = () => {
         setOpenEditModal(true);
     };
 
+    const handleShowModal = (userId) => {
+        setUserIdToUnarchive(userId);
+        setShowModal(true);
+    };
+
+    const handleHideModal = () => {
+        setShowModal(false);
+        setUserIdToUnarchive(null);
+    };
+
+    const handleConfirmUnarchive = async () => {
+        try {
+            await axios.post(`/admin/user/${userIdToUnarchive}/unarchive`);
+            // Refresh your data or update state as needed
+            // Example: Refetch the employee data after unarchiving
+            const employeeResponse = await axios.get('/admin/user', { params: { isArchive: true } });
+            setData(employeeResponse.data);
+            setOriginalData(employeeResponse.data);
+            toast.success('User unarchived successfully');
+        } catch (error) {
+            console.error('Error unarchiving user:', error);
+            toast.error('Error unarchiving user. Please try again.');
+        } finally {
+            handleHideModal();
+        }
+    };
+
 
     return (
         <div className='employeesMain employeesPage'>
@@ -218,8 +248,8 @@ const Employees = () => {
                 {/* <EmployeeEditModal open={openEditModal} onClose={() => setOpenEditModal(false)} /> */}
                 <div className="roomState">
                     <div className="links">
-                        <Link className="stateBtn state">Active Users</Link>
-                        <Link to="/employees/archive">Archive Users</Link>
+                        <Link to="/employees" >Active Users</Link>
+                        <Link className="stateBtn state">Archive Users</Link>
                     </div>
                 </div>
                 <EmployeeEditModal
@@ -265,6 +295,17 @@ const Employees = () => {
                 )}
 
             </section>
+            {showModal && (
+                <div className="overlay">
+                    <div className="modal">
+                        <p>Are you sure you want to unarchive this user?</p>
+                        <button onClick={handleHideModal}>No</button>
+                        <button onClick={handleConfirmUnarchive}>Yes</button>
+                    </div>
+                </div>
+            )}
+
+
 
             <Footer />
         </div>

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { loginAdmin, createAdmin, getUser, getUsers, updateUser, updateAccount, archiveUser } = require('../controllers/adminController');
+const { loginAdmin, createAdmin, getUser, getUsers, updateUser, updateAccount, archiveUser, unarchiveUser } = require('../controllers/adminController');
 const { verifyAdmin, verifyUser } = require('../utils/verifyToken.js');
 
 //Create
@@ -23,6 +23,10 @@ router.put('/user/:id', verifyUser, updateUser)
 
 //Archive
 router.post('/user/:id/archive', verifyAdmin, archiveUser); // New route for archiving a user
+
+//Archive
+router.post('/user/:id/unarchive', verifyAdmin, unarchiveUser);
+
 
 //Logout
 router.get('/logout', (req, res) => {
