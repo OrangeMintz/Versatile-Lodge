@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from "../components/userContext";
 import axios from 'axios';
-import RandomQuoteModal from './RandomQuoteModal'; 
+// import RandomQuoteModal from './RandomQuoteModal'; 
 
 
 const HeaderAdmin = () => {
@@ -87,11 +87,18 @@ const HeaderAdmin = () => {
 
     };
 
+
+
+    
+
     //open & close modal
     const [modal, setModal] = useState(false);
 
     const handleRandomIconClick = () => {
-        setModal(!modal)
+        // setModal(!modal)
+
+        const quoteContainer = document.querySelector('.quoteContainer');
+        quoteContainer.classList.toggle('active');
     }
 
     //remove scrollbar if modal is open
@@ -102,6 +109,34 @@ const HeaderAdmin = () => {
 
     }
 
+
+    const [quote, setQuote] = useState("");
+    const [author, setAuthor] = useState("");
+    // http://api.quotable.io/random
+
+    useEffect(() => {
+        fetch("http://api.quotable.io/random")
+        .then(res => res.json())
+        .then(
+            (quote) => {
+                setQuote(quote.content);
+                setAuthor(quote.author);
+                // console.log(quote);
+            }
+        )
+    }, []);
+
+    let fetchNewQuote = () => {
+        fetch("http://api.quotable.io/random")
+        .then(res => res.json())
+        .then(
+            (quote) => {
+                setQuote(quote.content);
+                setAuthor(quote.author);
+                // console.log(quote);
+            }
+        )
+    }
 
 
     return (
@@ -143,7 +178,18 @@ const HeaderAdmin = () => {
                             </div>
                         </div>
                     )}
-                    {/* < RandomQuoteModal /> */}
+
+
+                    
+                        <div className="quoteContainer">
+                            <h1 className='quoteTitle'>random quote generator</h1>
+                            <div className="quote">
+                                <h2>{quote}</h2>
+                                <small>-{author}</small>
+                            </div>
+                            <button className="btnQ" onClick={fetchNewQuote}>Generate New Quote</button>
+                        </div>
+
 
                 </section>
             </header>
@@ -161,10 +207,7 @@ const HeaderAdmin = () => {
                 </div>
             )} */}
 
-            {modal && (
 
-            <RandomQuoteModal />
-            )}
         </div>
     )
 }
