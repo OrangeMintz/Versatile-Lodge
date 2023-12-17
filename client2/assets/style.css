@@ -793,26 +793,44 @@ body.active-modal {
 
 
 
+.quoteContainer {
+    position: absolute;
+    top: 120%; right: 0rem;
+    border-radius: 1rem;
+    padding: 3rem;
+    text-align: center;
+    transform: scale(0);            /*hides profile*/
+    transform-origin: top right;    
+    transition: .2s linear; 
+    
+}
 
-.App {
-    display: flex;
-    justify-content: center;
-    min-height: 100vh;
-    align-items: center;
-    flex-direction: column;
+.quoteContainer.active {
+    transform: scale(1);
+    width: max-content;
+    height: max-content;
+    background: rgba(0, 0, 0, 0.7);
+
 }
 
 .quote {
-    background: url(https://image.shutterstock.com/image-vector/vector-template-blank-rectangle-quote-260nw-1150834541.jpg);
+    background: url(./images/quote.jpg);
     background-size: cover;
-    width: 500px;
-    height: 320px;
+    width: 400px;
+    height: 250px;
     border-radius:10px;
-    padding: 75px;
+    padding: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin: 4rem;
+}
+
+.quoteTitle {
+    color: white;
+    font-size: 2.5rem;
+    text-transform: capitalize;
 }
 
 .quote h2 {
@@ -823,69 +841,46 @@ body.active-modal {
 .quote small {
     font-size: 1.5em;
     font-family: fantasy;
+    margin-top: 1rem;
 }
 
 .btnQ {
     display: block;
-    border: 2px solid #008CBA;
-    background: transparent;
+    background: var(--main-color);
     padding: 10px 15px;
-    color:#008CBA;
-    font-size: 20px;
-    border-radius: 5px;
+    color:var(--branch-color);
+    font-size: 2rem;
+    border-radius: 8px;
     cursor: pointer;
-    outline: none;
-    transition: background 1s, color 1s;
+    margin: 5% auto;
 }
 
 .btnQ:hover {
-    background: #008CBA;
-    color: #FFF;
+    outline: 2px solid var(--white);
+    color: var(--white);
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 
+@media (max-width: 500px) {
 
+    .quoteContainer {
+        padding: 0;
+        margin: 0;
+    }
 
+    .quote {
+        width: 350px;
+        height: 200px;
+        padding: 20px;
+        margin: 2rem;
+    }
 
-
-
-
-
-.modalR, .overlayR {
-    width: 100vw;
-    height: 100vh;
-    top: 0; left: 0; right: 0; bottom: 0; 
-    position: fixed;
+    .quote h2 {
+        font-size: 1.8em;
+    }
+    
+    .btnQ {
+        font-size: 1.8em;
+    }
 }
-
-.overlayR {
-    background: lightgrey;
-}
-
-.modal-contentR {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    line-height: 1.4;
-    background: #f1f1f1;
-    padding: 14px 28px;
-    border-radius: 3px;
-    max-width: 600px;
-    min-width: 300px;
-    font-size: 1.5rem;
-}
-
-.close-modalR {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    padding: 2px 3px;
-    border: 1px solid black;
-}
-
-.close-modalR:hover {
-    background: grey;
-}
-
