@@ -193,7 +193,7 @@ const Dashboard = () => {
                                     data={{
                                         labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                                         datasets: [{
-                                            label: "Reservations",
+                                            label: "Bookings",
                                             data: calculateMonthlyReservations(),
                                             backgroundColor: "#2B1103",
                                             borderColor: "#DCC69C",
@@ -212,8 +212,6 @@ const Dashboard = () => {
                                 <h3 className="title">Rooms and Comments:</h3>
                                 <p className="stat">Total Rooms: <span>{roomCount}</span></p>
                                 <Link to="/roomsAvailable" className="inline-btn">View rooms</Link>
-                                <p className="stat">Total comments: <span>{reviewCount}</span></p>
-                                <Link to="/reviewsAdmin" className="inline-btn">View Comments</Link>
                             </div>
                         )}
                         {user && (user.isManager) && (
@@ -238,8 +236,6 @@ const Dashboard = () => {
                     /> */}
 
                 </section>
-
-                {/* <!-- overview section ends --> */}
                 <Footer />
             </div>
         </>

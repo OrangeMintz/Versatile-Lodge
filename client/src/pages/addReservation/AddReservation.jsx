@@ -160,7 +160,7 @@ const AddReservation = () => {
     try {
       // Create a booking entry
       const result = await axios.post('/api/booking/', bookingDetails);
-      toast.success('Reserved Successfully');
+      toast.success('Booked Successfully');
       navigate("/transactions/booking")
 
       // Update the room's currentbookings

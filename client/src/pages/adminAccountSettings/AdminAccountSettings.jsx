@@ -11,7 +11,6 @@ import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 
-
 const AdminAccountSettings = () => {
     const { user, setUser } = useContext(UserContext);
     const [userDetails, setUserDetails] = useState({
@@ -20,11 +19,12 @@ const AdminAccountSettings = () => {
         address: '',
         phoneNumber: '',
         username: '',
-        image: '',  // Assuming the user has an 'image' property
+        image: '',
     });
     const [operationsComplete, setOperationsComplete] = useState(false);
     const [openPasswordModal, setOpenPasswordModal] = useState(false);
     const navigate = useNavigate();
+    const [formSubmitted, setFormSubmitted] = useState(false);
 
     useEffect(() => {
         if (!user) {
@@ -37,7 +37,6 @@ const AdminAccountSettings = () => {
                     console.error('Error fetching user profile:', error);
                 })
                 .finally(() => {
-                    // Set operationsComplete to true after data fetching is complete
                     setOperationsComplete(true);
                 });
         }
@@ -49,37 +48,71 @@ const AdminAccountSettings = () => {
         }
     }, [user, operationsComplete, navigate]);
 
-    // FETCHED USER
     const fetchUser = async () => {
         try {
             const response = await axios.get(`/admin/user/${user.id}`);
             setUserDetails(response.data);
         } catch (error) {
             console.error('Error fetching user:', error);
-            // Handle error, set an error state, or show a notification
         }
     };
 
-    // Call fetchUser when the user is available
     useEffect(() => {
         if (user) {
             fetchUser();
         }
     }, [user]);
 
-
-
-    // IMAGE
-    // Update user details in the local state
     const handleInputChange = (e) => {
         const { id, value } = e.target;
-        setUserDetails((prevUserDetails) => ({
-            ...prevUserDetails,
-            [id]: value,
-        }));
+        let error = '';
+
+        switch (id) {
+            case 'name':
+                // Validation for name: only allow letters, space, and dot
+                const nameRegex = /^[a-zA-Z. ]+$/;
+                if (!nameRegex.test(value)) {
+                    error = 'Name should only contain letters, space, and dot.';
+                }
+                break;
+
+            case 'address':
+                // Validation for address: should be 8 characters or more
+                if (value.length < 8) {
+                    error = 'Address should be 8 characters or more.';
+                }
+                break;
+
+            case 'email':
+                // Validation for email: should contain '@'
+                const emailRegex = /\S+@\S+\.\S+/;
+                if (!emailRegex.test(value)) {
+                    error = 'Invalid email address.';
+                }
+                break;
+
+            case 'phoneNumber':
+                // Validation for phone number: should start with '09' and be 11 digits long
+                const phoneNumberRegex = /^09[0-9]{9}$/;
+                if (!phoneNumberRegex.test(value)) {
+                    error = 'Invalid phone number.';
+                }
+                break;
+
+            default:
+                break;
+        }
+
+        if (error && formSubmitted) {
+            toast.error(error);
+        } else {
+            setUserDetails((prevUserDetails) => ({
+                ...prevUserDetails,
+                [id]: value,
+            }));
+        }
     };
 
-    // Handle file input for the profile picture
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         const reader = new FileReader();
@@ -96,11 +129,19 @@ const AdminAccountSettings = () => {
         }
     };
 
-    // UPDATE
-    // Update user details on the server
     const updateProfile = async () => {
+        setFormSubmitted(true);
+
+        // Validate the inputs before submitting the form
+        const validationErrors = validateInputs();
+        if (validationErrors.length > 0) {
+            // Display toast messages for validation errors
+            validationErrors.forEach(error => toast.error(error));
+            setFormSubmitted(false);
+            return;
+        }
+
         try {
-            // Remove 'image' property if it is empty
             const updatedDetailsWithoutImage = { ...userDetails };
             if (updatedDetailsWithoutImage.image === '') {
                 delete updatedDetailsWithoutImage.image;
@@ -111,27 +152,40 @@ const AdminAccountSettings = () => {
             window.location.href = `${window.location.origin}/AccountSettings`;
         } catch (error) {
             console.error('Error updating user profile:', error);
-            // Handle error, set an error state, or show a notification
+            toast.error('Error updating user profile. Please try again.');
+        } finally {
+            setFormSubmitted(false);
         }
     };
 
+    const validateInputs = () => {
+        const validationErrors = [];
 
+        // Validation for name: only allow letters, space, and dot
+        const nameRegex = /^[a-zA-Z. ]+$/;
+        if (!nameRegex.test(userDetails.name)) {
+            validationErrors.push('Name should only contain letters, space, and dot.');
+        }
 
-    // const updateProfile = async () => {
-    //     try {
-    //         // Remove 'image' property if it is empty
-    //         if (userDetails.image === '') {
-    //             const { image, ...updatedDetailsWithoutImage } = userDetails;
-    //             setUserDetails(updatedDetailsWithoutImage);
-    //         }
-    //         const response = await axios.put(`/admin/profile/${user.id}`, userDetails);
-    //         console.log(response.data);
-    //         window.location.href = `${window.location.origin}/AccountSettings`;
-    //     } catch (error) {
-    //         console.error('Error updating user profile:', error);
-    //         // Handle error, set an error state, or show a notification
-    //     }
-    // };
+        // Validation for address: should be 8 characters or more
+        if (userDetails.address.length < 8) {
+            validationErrors.push('Address should be 8 characters or more.');
+        }
+
+        // Validation for email: should contain '@'
+        const emailRegex = /\S+@\S+\.\S+/;
+        if (!emailRegex.test(userDetails.email)) {
+            validationErrors.push('Invalid email address.');
+        }
+
+        // Validation for phone number: should start with '09' and be 11 digits long
+        const phoneNumberRegex = /^09[0-9]{9}$/;
+        if (!phoneNumberRegex.test(userDetails.phoneNumber)) {
+            validationErrors.push('Invalid phone number.');
+        }
+
+        return validationErrors;
+    };
 
     return (
         <div className="adminAccountSettingsPage">
@@ -200,24 +254,13 @@ const AdminAccountSettings = () => {
                                     onChange={handleInputChange}
                                 />
                                 <div className="adminBtns">
-                                    {/* <button type="button" className="adminChangePassword" onClick={() => setOpenPasswordModal(true)}
-                                    >Change Password
-                                    </button> */}
                                     <input type="submit" value="Update Profile" />
                                 </div>
-                                {/* <AdminChangePassModal
-                                    open={openPasswordModal}
-                                    onClose={() => setOpenPasswordModal(false)}
-                                /> */}
                             </div>
                         </form>
                     )}
                 </div>
-
-
             </section>
-            {/* <Footer /> */}
-
         </div>
     );
 };
