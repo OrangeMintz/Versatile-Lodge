@@ -198,7 +198,6 @@ const RoomsBooking = () => {
             <section className="roomsBooking">
                 <h1 className="heading">Booked Rooms (Bookings)</h1>
                 <div className="roomState">
-                    <Link to="/roomsReserved">Reserved</Link>
                     <Link className="stateBtn state" >Booked</Link>
                     <select value={selectedLocation} onChange={handleLocationChange}>
                         <option value="all">All</option>
@@ -209,6 +208,9 @@ const RoomsBooking = () => {
                     <div className="searchNadd">
                         <input className="searchRoom" type="text" placeholder="Search here..." value={searchTerm} onChange={handleSearch} />
                     </div>
+                </div>
+                <div className="bookARoom">
+                    <Link to="/transactions/booking/room"> + Book a Room</Link>
                 </div>
 
                 {/* Display reserved rooms */}

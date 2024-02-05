@@ -223,3 +223,30 @@
     background: var(--light-color);
 }
 
+
+.roomsBooking .bookARoom{
+    padding: 2px 8px;
+    margin-right: 10px;
+    display: block;
+    direction: rtl;
+}
+
+.roomsBooking .bookARoom a{
+    font-size: 2rem;
+    text-decoration: none;
+    color: var(--main-color);
+    cursor: pointer;
+    padding: 8px 15px;
+    border-radius: 3px;
+    border:1px solid #eeeeee;
+
+}
+
+.roomsBooking .bookARoom a:hover{
+    cursor: pointer;
+    transition: 0.5s;
+    color: var(--main-color);
+    border:1px solid var(--main-color);
+
+}
+

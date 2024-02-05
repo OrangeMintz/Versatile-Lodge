@@ -5,11 +5,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Dashboard from "./pages/dashboard/Dashboard.jsx";
 import Employees from "./pages/employees/Employees.jsx";
 import LoginAdmin from "./pages/loginAdmin/LoginAdmin.jsx";
-import Payroll from "./pages/payroll/Payroll.jsx";
-import ReviewsAdmin from "./pages/reviewsAdmin/ReviewsAdmin.jsx";
 import RoomsAvailable from "./pages/roomsAvailable/RoomsAvailable.jsx";
 import RoomsUnavailable from "./pages/roomsUnavailable/RoomsUnavailable.jsx";
-import RoomsReserved from "./pages/roomsReserved/RoomsReserved.jsx";
 import RoomsBooking from "./pages/roomsBooking/RoomsBooking.jsx";
 import Profile from "./pages/profile/Profile.jsx";
 import AdminAccountSettings from "./pages/adminAccountSettings/AdminAccountSettings.jsx";
@@ -63,16 +60,13 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/employees" element={<Employees />} />
         <Route path="/employees/archive" element={<EmployeesArchive />} />
-        {/* <Route path="/payroll" element={<Payroll />} /> */}
-        <Route path="/reviewsAdmin" element={<ReviewsAdmin />} />
         <Route path="/roomsAvailable" element={<RoomsAvailable />} />
         <Route path="/roomsUnavailable" element={<RoomsUnavailable />} />
-        <Route path="/roomsReserved" element={<RoomsReserved />} />
-        <Route path="/roomsBooking" element={<RoomsBooking />} />
+        <Route path="/transactions/booking" element={<RoomsBooking />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/AccountSettings" element={<AdminAccountSettings />} />
         <Route path="/AddRoom" element={<AddRoom />} />
-        <Route path="/Reservation" element={<AddReservation />} />
+        <Route path="/transactions/booking/room" element={<AddReservation />} />
         <Route path="/room/edit/:id" element={<EditRoom />} />
         <Route path="/randomQuote" element={<RandomQuote />} />
 

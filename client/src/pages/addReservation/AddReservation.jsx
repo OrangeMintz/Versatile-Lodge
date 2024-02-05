@@ -128,16 +128,6 @@ const AddReservation = () => {
     }
   }, [totalDays, selectedRoom]);
 
-
-
-
-
-  //CHECK filled datas
-  // Function to check if all required fields are present
-  // const areInputsValid = () => {
-  //   return startDate && endDate && branch && room;
-  // };
-
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const areInputsValid = () => {
@@ -162,7 +152,7 @@ const AddReservation = () => {
       totalAmount: totalAmount.toString(),
       totalDays: totalDays.toString(),
       transactionId: uuid,
-      status: 'reserved',
+      status: 'booked',
       isManual: true
 
     };
@@ -171,7 +161,7 @@ const AddReservation = () => {
       // Create a booking entry
       const result = await axios.post('/api/booking/', bookingDetails);
       toast.success('Reserved Successfully');
-      navigate("/roomsReserved")
+      navigate("/transactions/booking")
 
       // Update the room's currentbookings
       const roomTemp = await axios.get(`/api/room/${selectedRoom._id}`);
@@ -182,7 +172,7 @@ const AddReservation = () => {
           fromDate: startDate.format('MM-DD-YYYY'),
           toDate: endDate.format('MM-DD-YYYY'),
           userId: user.id,
-          status: 'reserved',
+          status: 'booked',
           isManual: true,
           totalAmount: totalAmount.toString(),
           transactionId: uuid
@@ -212,7 +202,7 @@ const AddReservation = () => {
       <HeaderAdmin />
       <Sidebar />
       <section className="AddRoom">
-        <h1 className="heading">Reserved/Booked</h1>
+        <h1 className="heading">Book A Room</h1>
         <div className="formContainer">
           <form>
             <label>Start & End Date:</label>
@@ -244,20 +234,25 @@ const AddReservation = () => {
             </select>
 
             <label htmlFor="roomName">Room Name:</label>
-            <select id="roomName" name="roomName" value={room}
+            <select
+              id="roomName"
+              name="roomName"
+              value={room}
               onChange={(e) => handleRoomChange(e.target.value)}
               required
               disabled={!startDate || !endDate || !branch}
             >
               <option value="" defaultValue disabled>-- Select Room --</option>
-              {getFilteredRooms().map((room) => (
-                <option key={room._id} value={room._id}>
-                  {room.name}
-                </option>
-              ))}
+              {getFilteredRooms()
+                .sort((a, b) => a.name.localeCompare(b.name)) // Sort the rooms alphabetically by name
+                .map((room) => (
+                  <option key={room._id} value={room._id}>
+                    {room.name}
+                  </option>
+                ))}
             </select>
             {/* <button type="button" className="addRoomBtn" disabled={!areInputsValid()}>Add Reservation</button> */}
-            <button type="button" className="addRoomBtn" disabled={isButtonDisabled} onClick={bookRoom}>Add Reservation</button>
+            <button type="button" className="addRoomBtn" disabled={isButtonDisabled} onClick={bookRoom}>Add Booking</button>
           </form>
 
           {selectedRoom && (
