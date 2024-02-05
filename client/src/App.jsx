@@ -2,33 +2,33 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 //Pages
-import Home from "./pages/home/Home";
-import About from "./pages/about/About";
-import Rooms from "./pages/rooms/Rooms";
-import RoomDetail from "./pages/roomDetail/RoomDetail";
-import Contact from "./pages/contact/Contact";
-import Reviews from "./pages/reviews/Reviews";
-import AccountSetting from "./pages/accountSetting/AccountSetting";
-import BookingHistory from "./pages/bookingHistory/BookingHistory";
-import ChangePassword from "./pages/changePassword/ChangePassword";
-import BookNow from "./pages/bookNow/BookNow";
-import BookingHistoryDetails from "./pages/bookingHistoryDetails/BookingHistoryDetails";
-import Login from "./pages/login/Login";
-import Register from "./pages/register/Register";
+import Dashboard from "./pages/dashboard/Dashboard.jsx";
+import Employees from "./pages/employees/Employees.jsx";
+import LoginAdmin from "./pages/loginAdmin/LoginAdmin.jsx";
+// import Payroll from "./pages/payroll/Payroll.jsx";
+import RoomsAvailable from "./pages/roomsAvailable/RoomsAvailable.jsx";
+import RoomsUnavailable from "./pages/roomsUnavailable/RoomsUnavailable.jsx";
+import RoomsBooked from "./pages/rooms_booked/booked.jsx";
+import Profile from "./pages/profile/Profile.jsx";
+import AdminAccountSettings from "./pages/adminAccountSettings/AdminAccountSettings.jsx";
+import Error404 from "./pages/404/404.jsx";
+import Error401 from "./pages/401/401.jsx";
+import AddRoom from "./pages/addRoom/AddRoom.jsx";
+import RoomsBooking from "./pages/rooms_booking/booking.jsx";
+import EditRoom from './pages/editRoom/editRoom.jsx';
+import RandomQuote from './pages/randomQuote/RandomQuote.jsx';
+import EmployeesArchive from './pages/employees/EmployeesArchive.jsx';
 
-import Unauthorized from "./pages/unauthorized/Unauthorized.jsx"
 
 //Components
-import Layout from './component/layout';
-import RequireAuth from './component/RequireAuth';
-//
+
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
-import { UserContextProvider } from './context/userContext.jsx';
+import { UserContextProvider } from './components/userContext.jsx';
+
 
 axios.defaults.baseURL = 'http://localhost:8000'
 axios.defaults.withCredentials = true
-
 
 
 function App() {
@@ -38,9 +38,9 @@ function App() {
         style: {
           background: '#DCC69C',
           color: '#363636',
-          fontSize: "15px",
-          boxShadow: "10px 10px 15px rgba(0,0,0,.4)",
-          border: "1px solid #363636"
+          fontSize: "12px",
+          boxShadow: "10px 10px 15px rgba(0,0,0,.4)"
+
 
         },
 
@@ -54,27 +54,30 @@ function App() {
         },
       }} />
       <Routes>
-        {/* PUBLIC ROUTES */}
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/room" element={<Rooms />} />
-        <Route path="/room/roomDetail/:id" element={<RoomDetail />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/reviews" element={<Reviews />} />
-        <Route path="/bookingHistoryDetails" element={<BookingHistoryDetails />} />
+
+        <Route path="/" element={<LoginAdmin />} />
 
         {/* REQUIRED AUTHENTICATION */}
-        <Route path="/accountSetting" element={<AccountSetting />} />
-        <Route path="/bookingHistory" element={<BookingHistory />} />
-        <Route path="/changePassword" element={<ChangePassword />} />
-        <Route path="/room/booking/:id/:fromDate/:toDate" element={<BookNow />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/employees" element={<Employees />} />
+        <Route path="/employees/archive" element={<EmployeesArchive />} />
+        {/* <Route path="/payroll" element={<Payroll />} /> */}
+        <Route path="/roomsAvailable" element={<RoomsAvailable />} />
+        <Route path="/roomsUnavailable" element={<RoomsUnavailable />} />
+        <Route path="/transactions/booked" element={<RoomsBooked />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/AccountSettings" element={<AdminAccountSettings />} />
+        <Route path="/AddRoom" element={<AddRoom />} />
+        <Route path="/transactions/booking" element={<RoomsBooking />} />
+        <Route path="/room/edit/:id" element={<EditRoom />} />
+        <Route path="/randomQuote" element={<RandomQuote />} />
+
 
         {/* INVALID ACCESS */}
-        <Route path="/404" element={<Unauthorized />} />
-        <Route path="*" element={<Navigate to="/404" />} />
+        <Route path="/404" element={<Error404 />} />
+        <Route path="/401" element={<Error401 />} />
 
+        <Route path="*" element={<Navigate to="/404" />} />
       </Routes>
     </UserContextProvider>
 
@@ -82,3 +85,5 @@ function App() {
 }
 
 export default App;
+
+
