@@ -112,29 +112,27 @@ const ProfileAdmin = () => {
                         </h1>
                         <div className="profileAdminGrid">
                             <div className="profileAdminDetails">
-                                <img src={user.image} alt="" />
-                                <h3>{user.name}</h3>
-                                <span className='span'>{user.isAdmin && 'Admin'} {user.isManager && 'Manager'} {user.isEmployee && 'Employee'}</span>
-                                <br />
-                                <br />
-                                <div className="centerDetails">
-                                    <p style={{ textTransform: "none" }} className='info'><span>Username:</span> {userDetails.username}</p>
-                                    <p style={{ textTransform: "none" }} className='info'><span>Email:</span> {userDetails.email}</p>
-                                    <p className='info'><span>Birthday:</span> {userDetails.birthday}</p>
-                                    <p className='info'><span>Address:</span> {userDetails.address}</p>
-                                    <p className='info'><span>Phone Number:</span> {userDetails.phoneNumber}</p>
+                                <div className="userInfo">
+
+                                    <img src={user.image} alt="" />
+                                    <h3>{user.name}</h3>
+                                    <span className='span'>{user.isAdmin && 'Admin'} {user.isManager && 'Manager'} {user.isEmployee && 'Employee'}</span>
+                                    <br />
+                                    <br />
+                                    <div className="centerDetails">
+                                        <p style={{ textTransform: "none" }} className='info'><span>Username:</span> {userDetails.username}</p>
+                                        <p style={{ textTransform: "none" }} className='info'><span>Email:</span> {userDetails.email}</p>
+                                        <p className='info'><span>Birthday:</span> {userDetails.birthday}</p>
+                                        <p className='info'><span>Address:</span> {userDetails.address}</p>
+                                        <p className='info'><span>Phone Number:</span> {userDetails.phoneNumber}</p>
+                                    </div>
                                 </div>
-                                <div className="profileBtns">
+
+
+                            </div>
+                            <div className="profileBtns">
                                     <Link to="/AccountSettings" className="profileBtn">Account Settings</Link>
                                     <Link onClick={handleLogout} className="profileBtn">Log out</Link>
-                                </div>
-                                <div className='joke-container'>
-                                    <p className="title">Random Joke Generator</p>
-                                    <p className="joke-text">{dadJoke}</p>
-                                    <button className="joke-btn" onClick={fetchDadJoke}>
-                                        Generate New Joke
-                                    </button>
-                                </div>
                             </div>
                         </div>
                     </section >

@@ -17,7 +17,7 @@ import AddReservation from "./pages/addReservation/AddReservation.jsx";
 import EditRoom from './pages/editRoom/editRoom.jsx';
 import RandomQuote from './pages/randomQuote/RandomQuote.jsx';
 import EmployeesArchive from './pages/employees/EmployeesArchive.jsx';
-
+import Receptions from './pages/receptions/Receptions.jsx';
 
 //Components
 
@@ -69,7 +69,7 @@ function App() {
         <Route path="/transactions/booking/room" element={<AddReservation />} />
         <Route path="/room/edit/:id" element={<EditRoom />} />
         <Route path="/randomQuote" element={<RandomQuote />} />
-
+        <Route path="/receptions" element={<Receptions />} />
 
         {/* INVALID ACCESS */}
         <Route path="/404" element={<Error404 />} />

@@ -82,6 +82,10 @@ const Employees = () => {
             toast.error("Unauthorized Access");
             navigate('/dashboard');
         }
+        else if (operationsComplete && user && user.isReceptionist === true) {
+            toast.error("Unauthorized Access");
+            navigate('/dashboard');
+        }
     }, [user, operationsComplete, navigate]);
     // Check LOGON
 
@@ -90,7 +94,7 @@ const Employees = () => {
     const columns = [
         {
             name: 'Role',
-            selector: row => (row.isAdmin ? 'Admin' : row.isManager ? 'Manager' : 'Employee'),
+            selector: row => (row.isAdmin ? 'Admin' : row.isManager ? 'Manager' : row.isReceptionist ? 'Receptionist' : 'Employee'),
             sortable: true
 
         },
@@ -241,7 +245,7 @@ const Employees = () => {
 
     return (
         <div className='employeesMain employeesPage'>
-            <HeaderAdmin role={user?.isAdmin ? 'Admin' : user?.isManager ? 'Manager' : 'Employee'} />
+            <HeaderAdmin role={user?.isAdmin ? 'Admin' : user?.isManager ? 'Manager' : user?.isReceptionist ? 'Receptionist' : 'Employee'} />
             <Sidebar />
             <section className="employees roomsAvailable">
                 <h1 className="heading">Our Employees</h1>

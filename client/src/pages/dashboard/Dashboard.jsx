@@ -221,6 +221,14 @@ const Dashboard = () => {
                                 <Link to="/roomsAvailable" className="inline-btn">View rooms</Link>
                             </div>
                         )}
+
+                        {user && (user.isReceptionist) && (
+                            <div className="box">
+                                <h3 className="title">Rooms and Comments:</h3>
+                                <p className="stat">Total Rooms: <span>{roomCount}</span></p>
+                                <Link to="/roomsAvailable" className="inline-btn">View rooms</Link>
+                            </div>
+                        )}
                     </div>
 
                     {/* <Bar

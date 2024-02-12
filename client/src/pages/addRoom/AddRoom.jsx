@@ -44,6 +44,11 @@ const AddRoom = () => {
       toast.error("Unauthorized Access");
       navigate('/dashboard');
     }
+
+    else if (operationsComplete && user && user.isReceptionist === true) {
+      toast.error("Unauthorized Access");
+      navigate('/dashboard');
+    }
   }, [user, operationsComplete, navigate]);
 
 

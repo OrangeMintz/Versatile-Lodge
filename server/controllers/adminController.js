@@ -12,7 +12,7 @@ const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$
 
 const createAdmin = async (req, res) => {
     try {
-        const { name, email, password, image, username, address, birthday, phoneNumber, sex, isAdmin, isManager } = req.body;
+        const { name, email, password, image, username, address, birthday, phoneNumber, sex, isAdmin, isManager, isReceptionist } = req.body;
 
         let uploadedImage;
 
@@ -124,6 +124,8 @@ const createAdmin = async (req, res) => {
             image: `https://res.cloudinary.com/dl0qncxjh/image/upload/${uploadedImage.public_id}`,
             isAdmin,
             isManager,
+            isReceptionist,
+            isArchive: false
         });
 
         const imageUrl = `https://res.cloudinary.com/dl0qncxjh/image/upload/${user.image}`;
@@ -175,6 +177,7 @@ const loginAdmin = async (req, res) => {
                     id: admin._id,
                     name: admin.name,
                     image: admin.image,
+                    isReceptionist: admin.isReceptionist,
                     isManager: admin.isManager,
                     isAdmin: admin.isAdmin,
                 },
@@ -213,23 +216,20 @@ const getUser = async (req, res, next) => {
 
 const getUsers = async (req, res, next) => {
     try {
-        // Get the value of the 'isArchive' query parameter
-        const isArchive = req.query.isArchive === 'true';
+        const { isArchive } = req.query;
 
-        // If 'isArchive' is provided, filter users accordingly
-        const query = isArchive ? { isArchive: true } : { isArchive: false };
+        let users;
+        if (isArchive === 'true') {
+            users = await Admin.find({ isArchive: true });
+        } else {
+            users = await Admin.find({ isArchive: false });
+        }
 
-        // Fetch users based on the provided query
-        const users = await Admin.find(query);
-
-        // Respond with the filtered users
         res.status(200).json(users);
     } catch (err) {
-        // Handle errors
         next(err);
     }
 };
-
 
 const updateAccount = async (req, res, next) => {
     try {
@@ -280,6 +280,7 @@ const updateAccount = async (req, res, next) => {
                 id: updatedUser._id,
                 name: updatedUser.name,
                 image: updatedUser.image,
+                isReceptionist: updatedUser.isReceptionist,
                 isManager: updatedUser.isManager,
                 isAdmin: updatedUser.isAdmin,
             },
@@ -381,6 +382,7 @@ const archiveUser = async (req, res, next) => {
             sex: userToArchive.sex,
             isAdmin: userToArchive.isAdmin,
             isManager: userToArchive.isManager,
+            isReceptionist: userToArchive.isReceptionist,
         });
 
         // console.log('User archived successfully:', archivedUser);
@@ -420,5 +422,5 @@ module.exports = {
     updateUser,
     updateAccount,
     archiveUser,
-    unarchiveUser
+    unarchiveUser,
 }

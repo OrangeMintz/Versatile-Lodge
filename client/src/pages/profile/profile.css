@@ -1,23 +1,27 @@
-
 .profileAdmin { 
     min-height: 100vh;
 }
 .profileAdminGrid {
     gap: 2rem;
-    height: 100vh;
+    height: max-content;
+    background: var(--white);
+    border: 1px solid  var(--main-color);
+    margin-bottom: 10rem;
+
 }
 
 .profileAdminGrid .profileAdminDetails {
-
-    background: var(--white);
+    padding: 2rem;
     text-align: center;
-    padding: 3rem 0rem;
     border-radius: 5px;
     height: max-content;
-    border: 1px solid  var(--main-color);
+    background: var(--white);
+
 }
 
+
 .profileAdminGrid .profileAdminDetails .centerDetails {
+    padding: 0 5rem;
     width: 40rem;
     margin: auto;
     text-align: left;
@@ -42,39 +46,43 @@
     color: var(--black);
 }
 
-.profileAdminDetails  .span {
+.profileAdminGrid  .span {
     color: var(--light-color);
     font-size: 1.5rem;
 }
 
-.profileAdminDetails .profileBtns {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    place-items: center;
-    gap: 3rem;
+.profileAdminGrid .profileBtns {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     padding: 1rem 2rem;
-    margin-top: 3rem;
+    margin: 3rem;
+    gap: 7rem;
 }
 
-.profileAdminDetails .profileBtns .profileBtn {
+.profileAdminGrid .profileBtns .profileBtn {
     font-size: 1.5rem;
     background: var(--main-color);
     color: var(--white);
     padding: 10px 18px;
     border-radius: 5px;
     width: 160px;
+    text-align: center;
 }
 
-.profileAdminDetails .profileBtns .profileBtn:hover {
+.profileAdminGrid .profileBtns .profileBtn:hover {
     background-color: var(--light-color);
     color: var(--white);
     transition: .2s linear;
 }
 
-.profileAdminDetails .info{
+.profileAdminGrid .info{
     font-size: 15px;
     padding: 3px 0px;
 }
+
+
+
 
 
 @media (max-width: 820px) {
@@ -91,50 +99,10 @@
 }
 
 @media (max-width: 500px) {
-    .profileAdminGrid {
+    .profileAdminGrid .profileAdminDetails {
         display: flex;
         flex-direction: column;
-        /* grid-template-rows: 1fr 1fr; */
-        gap: 1;
     }
-}
-
-.joke-container{
-    margin-top: 30px;
-    margin-right: 10vh;
-    margin-left: 10vh;
-
-}
-
-.joke-container .title{
-    font-size: 17px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    border-bottom: 1px solid var(--light-color);
-}
-
-.joke-container .joke-text{
-    font-size: 15px;
-    margin-bottom: 10px;
-}
-
-.joke-container .joke-btn{
-    font-size: 12px;
-    color: var(--white);
-    padding: 10px  40px 10px  40px;
-    border: 1px solid var(--main-color);
-    background-color: var(--main-color);
-    border-radius: 5px;
-    font-weight: bold;
 
 
-}
-
-.joke-container .joke-btn:hover{
-    color: var(--main-color);
-    border-radius: 5px;
-    padding: 10px  40px 10px  40px;
-    border: 1px solid var(--branch-color);
-    background-color: var(--branch-color);
-    transition: 0.35s;
 }

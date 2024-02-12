@@ -45,6 +45,7 @@ const adminSchema = new Schema({
 
     isAdmin: Boolean,
     isManager: Boolean,
+    isReceptionist: Boolean,
     isArchive: Boolean,
 
 

@@ -130,6 +130,8 @@ const EmployeeEditModal = ({ open, onClose, userId }) => {
 
         const isAdmin = role === 'Admin';
         const isManager = role === 'Manager';
+        const isReceptionist = role === 'Receptionist';
+
 
         try {
             const { data } = await axios.put(`/admin/user/${userId}`, {
@@ -144,6 +146,7 @@ const EmployeeEditModal = ({ open, onClose, userId }) => {
                 image: image,
                 isAdmin,
                 isManager,
+                isReceptionist
             });
 
             //
@@ -220,6 +223,8 @@ const EmployeeEditModal = ({ open, onClose, userId }) => {
                                 <option value="" defaultValue disabled> -- Select Role -- </option>
                                 <option value="Admin">Admin</option>
                                 <option value="Manager">Manager</option>
+                                <option value="Receptionist">Receptionist</option>
+
                             </select>
                             <div className='radioBtns'>
                                 <span style={{ fontSize: "15px" }}>Male:

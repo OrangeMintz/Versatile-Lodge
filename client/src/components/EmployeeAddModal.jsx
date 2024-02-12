@@ -122,6 +122,8 @@ const EmployeeAddModal = ({ open, onClose }) => {
 
         const isAdmin = role === 'Admin';
         const isManager = role === 'Manager';
+        const isReceptionist = role === 'Receptionist';
+
 
         // if (password !== confirmPassword) {
         //     // Check if password and confirm password match
@@ -145,6 +147,7 @@ const EmployeeAddModal = ({ open, onClose }) => {
                 image: image,
                 isAdmin,
                 isManager,
+                isReceptionist
             });
 
             //
@@ -207,6 +210,8 @@ const EmployeeAddModal = ({ open, onClose }) => {
                                 <option value="" defaultValue disabled> -- Select Role -- </option>
                                 <option value="Admin">Admin</option>
                                 <option value="Manager">Manager</option>
+                                <option value="Receptionist">Receptionist</option>
+
                             </select>
                             <div className='radioBtns'>
                                 <span style={{ fontSize: "15px" }}>Male:

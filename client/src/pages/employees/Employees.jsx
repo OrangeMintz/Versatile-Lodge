@@ -41,6 +41,7 @@ const Employees = () => {
 
                 // Fetch only archived employee data using the /admin/user endpoint with query parameters
                 const employeeResponse = await axios.get('/admin/user', { params: { isArchive: false } });
+
                 setData(employeeResponse.data);
                 setOriginalData(employeeResponse.data); // Save the original data
             } catch (error) {
@@ -76,7 +77,11 @@ const Employees = () => {
             navigate('/401');
             toast.error("Unauthorized Access");
         }
-        if (operationsComplete && user && user.isManager === true) {
+        if (operationsComplete && user && user.isReceptionist === true) {
+            toast.error("Unauthorized Access");
+            navigate('/dashboard');
+        }
+        else if (operationsComplete && user && user.isReceptionist === true) {
             toast.error("Unauthorized Access");
             navigate('/dashboard');
         }
@@ -88,7 +93,7 @@ const Employees = () => {
     const columns = [
         {
             name: 'Role',
-            selector: row => (row.isAdmin ? 'Admin' : row.isManager ? 'Manager' : 'Employee'),
+            selector: row => (row.isAdmin ? 'Admin' : row.isManager ? 'Manager' : row.isReceptionist ? 'Receptionist' : 'Employee'),
             sortable: true
 
         },
@@ -193,7 +198,7 @@ const Employees = () => {
             // If search text is empty, reset to the original data
             setData(originalData);
         } else {
-            const filteredData = data.filter((row) =>
+            const filteredData = originalData.filter((row) =>
                 Object.values(row).some(
                     (value) => typeof value === 'string' && value.toLowerCase().includes(searchText)
                 )
@@ -211,7 +216,7 @@ const Employees = () => {
 
     return (
         <div className='employeesMain employeesPage'>
-            <HeaderAdmin role={user?.isAdmin ? 'Admin' : user?.isManager ? 'Manager' : 'Employee'} />
+            <HeaderAdmin role={user?.isAdmin ? 'Admin' : user?.isManager ? 'Manager' : user?.isReceptionist ? 'Manager' : 'Employee'} />
             <Sidebar />
             <section className="employees roomsAvailable">
                 <h1 className="heading">Our Employees</h1>

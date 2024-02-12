@@ -1,0 +1,67 @@
+.receptions {
+    min-height: 100vh;
+
+}
+
+.receptions .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+    gap: 1.5rem;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.receptions .box-container .box {
+    border-radius: .5rem;
+    padding: 2rem;
+    background-color: var(--white);
+    width: 100%;
+}
+.receptions .box-container .box .reception {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+}
+
+.receptions .box-container .box .reception img {
+    height: 5rem;
+    width: 5rem;
+    object-fit: cover;
+    border-radius: 50%;
+
+}
+
+.receptions .box-container .box .reception h3 {
+    color: var(--black);
+    font-size: 2rem;
+    margin-bottom: .2rem;
+}
+
+.receptions .box-container .box .reception span {
+    color: var(--main-color);
+    font-size: 1.5rem;
+}
+
+.receptions .box-container .box p {
+    padding-top: 1rem;
+    font-size: 1.5rem;
+    color:var(--light-color);
+    line-height: 2;
+}
+
+.receptions .box-container .box p span {
+    color: var(--main-color);
+}
+
+
+
+
+.reception-profile .details {
+    background-color: var(--white);
+    border-radius: .5rem;
+    padding: 2rem;
+    text-align: center;
+
+}
