@@ -139,7 +139,6 @@ const AddReservation = () => {
   }, [startDate, endDate, branch, room]);
 
 
-
   const bookRoom = async () => {
     const uuid = uuidv4();
 
@@ -151,17 +150,33 @@ const AddReservation = () => {
       toDate: endDate.format('MM-DD-YYYY'),
       totalAmount: totalAmount.toString(),
       totalDays: totalDays.toString(),
+      bookedBy: user.name,
       transactionId: uuid,
       status: 'booked',
       isManual: true
-
     };
 
     try {
-      // Create a booking entry
+      // Create reception entry or update totalTransactions
+      const receptionDetails = {
+        userId: user.id,
+        name: user.name,
+        image: user.image,
+        phoneNumber: user.phoneNumber,
+        branch: branch,
+        totalTransactions: 1 // Initial value
+      };
+
+      const response = await axios.post('/api/reception/', receptionDetails);
+      if (response.data.message === 'Receptionist data already exists for this user') {
+        // Receptionist data already exists, so update totalTransactions
+        await axios.put(`/api/reception/${user.id}`);
+      }
+
+      // Create booking entry
       const result = await axios.post('/api/booking/', bookingDetails);
       toast.success('Booked Successfully');
-      navigate("/transactions/booking")
+      navigate("/transactions/booking");
 
       // Update the room's currentbookings
       const roomTemp = await axios.get(`/api/room/${selectedRoom._id}`);
@@ -173,29 +188,109 @@ const AddReservation = () => {
           toDate: endDate.format('MM-DD-YYYY'),
           userId: user.id,
           status: 'booked',
+          bookedBy: user.name,
           isManual: true,
           totalAmount: totalAmount.toString(),
           transactionId: uuid
-
-
         },
       ];
-
-      console.log("RESERVATION STATUS", updatedCurrentBookings)
 
       await axios.put(`/api/room/${selectedRoom._id}`, {
         ...roomTemp.data,
         currentbookings: updatedCurrentBookings,
       });
 
-      // navigate('/'); // Redirect to the homepage after booking
-      // window.location.href = `${window.location.origin}/roomsReserved`;
-
     } catch (error) {
       // Handle error
       console.error(error);
     }
   };
+
+
+
+  // const bookRoom = async () => {
+  //   const uuid = uuidv4();
+
+  //   const bookingDetails = {
+  //     room: selectedRoom.name,
+  //     room_id: selectedRoom._id,
+  //     branch: branch,
+  //     fromDate: startDate.format('MM-DD-YYYY'),
+  //     toDate: endDate.format('MM-DD-YYYY'),
+  //     totalAmount: totalAmount.toString(),
+  //     totalDays: totalDays.toString(),
+  //     bookedBy: user.name,
+  //     transactionId: uuid,
+  //     status: 'booked',
+  //     isManual: true
+
+  //   };
+
+  //   try {
+  //     // Create a booking entry
+  //     let position = '';
+  //     if (user.isAdmin) {
+  //       position = 'Admin';
+  //     } else if (user.isManager) {
+  //       position = 'Manager';
+  //     } else if (user.isReceptionist) {
+  //       position = 'Receptionist';
+  //     } else {
+  //       position = 'Employee';
+  //     }
+
+  //     // Create reception data
+  //     const receptionDetails = {
+  //       userId: user.id,
+  //       name: user.name,
+  //       role: position,
+  //       image: user.image,
+  //       phoneNumber: user.phoneNumber,
+  //       branch: branch,
+  //       totalTransactions: '0'
+  //     };
+
+  //     // Create reception entry
+  //     await axios.post('/api/reception/', receptionDetails);
+
+  //     const result = await axios.post('/api/booking/', bookingDetails);
+  //     toast.success('Booked Successfully');
+  //     navigate("/transactions/booking")
+
+  //     // Update the room's currentbookings
+  //     const roomTemp = await axios.get(`/api/room/${selectedRoom._id}`);
+  //     const updatedCurrentBookings = [
+  //       ...roomTemp.data.currentbookings,
+  //       {
+  //         bookingid: result.data._id,
+  //         fromDate: startDate.format('MM-DD-YYYY'),
+  //         toDate: endDate.format('MM-DD-YYYY'),
+  //         userId: user.id,
+  //         status: 'booked',
+  //         bookedBy: user.name,
+  //         isManual: true,
+  //         totalAmount: totalAmount.toString(),
+  //         transactionId: uuid
+  //       },
+  //     ];
+
+  //     console.log("RESERVATION STATUS", updatedCurrentBookings)
+
+  //     await axios.put(`/api/room/${selectedRoom._id}`, {
+  //       ...roomTemp.data,
+  //       currentbookings: updatedCurrentBookings,
+  //     });
+
+  //     // navigate('/'); // Redirect to the homepage after booking
+  //     // window.location.href = `${window.location.origin}/roomsReserved`;
+
+  //   } catch (error) {
+  //     // Handle error
+  //     console.error(error);
+  //   }
+  // };
+
+
 
   return (
     <div>

@@ -9,6 +9,7 @@ const path = require('path');
 // const authroute = require("./routes/auth.js");
 const roomsroute = require("./routes/rooms.js");
 const bookhistoryroute = require("./routes/bookinghistory.js")
+const receptionroute = require("./routes/receptionsRoutes.js");
 const reviewsroute = require("./routes/reviews.js")
 const customerroute = require('./routes/authRoutes.js')
 const adminroute = require('./routes/adminRoutes.js')
@@ -56,6 +57,7 @@ app.use("/admin", adminroute);
 app.use("/api/room", roomsroute);
 app.use("/api/bookingHistory", bookhistoryroute);
 app.use("/api/reviews", reviewsroute);
+app.use("/api/reception", receptionroute);
 app.use("/api/booking", bookingroute);
 
 //GOOGLE OAUTH WITHOUT API's

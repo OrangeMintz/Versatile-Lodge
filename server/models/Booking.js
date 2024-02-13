@@ -34,6 +34,10 @@ const bookingSchema = new mongoose.Schema({
         type: Number,
     },
 
+    bookedBy: {
+        type: String,
+    },
+
     //Remove if not needed
     transactionId: {
     },

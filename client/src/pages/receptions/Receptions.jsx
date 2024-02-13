@@ -7,37 +7,41 @@ import { UserContext } from '../../components/userContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import Loader from '../../components/Loader';
+import Error from '../../components/Error';
 
 const Receptions = () => {
-
-  // Check LOGON
   const navigate = useNavigate();
   const { user, setUser } = useContext(UserContext);
+  const [receptionsData, setReceptionsData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [operationsComplete, setOperationsComplete] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch user data including the role from the /profile endpoint
-        const profileResponse = await axios.get('/profile/admin');
-        setUser(profileResponse.data);
-
-        // Fetch only archived employee data using the /admin/user endpoint with query parameters
-        const employeeResponse = await axios.get('/admin/user', { params: { isArchive: false } });
-        setData(employeeResponse.data);
-        setOriginalData(employeeResponse.data); // Save the original data
+        const response = await axios.get('http://localhost:8000/api/reception/');
+        setReceptionsData(response.data);
+        setLoading(false);
       } catch (error) {
-        console.error('Error fetching user or employee data:', error);
+        console.error('Error fetching reception data:', error);
         setError(error);
-      } finally {
         setLoading(false);
       }
     };
-    fetchData();
-  }, [setUser]);
 
-  // Check LOGON
-  useEffect(() => {
+    const lastVisitTime = localStorage.getItem('lastVisitTime');
+    const now = new Date().getTime();
+    const oneDay = 24 * 60 * 60 * 1000; // milliseconds in a day
+
+    if (!lastVisitTime || now - lastVisitTime > oneDay) {
+      deleteAllReceptions();
+      localStorage.setItem('lastVisitTime', now);
+    } else {
+      fetchData();
+    }
+
     if (!user) {
       axios
         .get('/profile/admin')
@@ -46,10 +50,10 @@ const Receptions = () => {
         })
         .catch((error) => {
           console.error('Error fetching user profile:', error);
+          setError(error);
         })
         .finally(() => {
-          // Set operationsComplete to true after data fetching is complete
-          setOperationsComplete(true);
+          setLoading(false);
         });
     }
   }, [user, setUser]);
@@ -63,158 +67,55 @@ const Receptions = () => {
       toast.error("Unauthorized Access");
       navigate('/dashboard');
     }
-    else if (operationsComplete && user && user.isReceptionist === true) {
-      toast.error("Unauthorized Access");
-      navigate('/dashboard');
-    }
   }, [user, operationsComplete, navigate]);
-  // Check LOGON
+
+  const deleteAllReceptions = async () => {
+    try {
+      await axios.delete('http://localhost:8000/api/reception/');
+      console.log('All receptions deleted successfully.');
+    } catch (error) {
+      console.error('Error deleting receptions:', error);
+    }
+  };
+
   return (
     <div className="receptionContainer">
-
       <HeaderAdmin />
       <Sidebar />
       <section className="receptions">
-        <h1 className="heading">reception desks</h1>
-        <div className="box-container">
-          <div className="box">
-            <div className="reception">
-              <img src="/assets/images/charmee.gif" alt="" />
-              <div>
-                <h3>John Doe</h3>
-                <span>Receptionist</span>
+        <h1 className="heading">Reception Desks</h1>
+        {loading && <Loader />}
+        {error && <Error />}
+        {!loading && !error && (
+          <div className="box-container">
+            {receptionsData.map((reception) => (
+              <div key={reception._id} className="box">
+                <div className="reception">
+                  <img src={reception.image} alt="" />
+                  <div>
+                    <h3>{reception.name}</h3>
+                    <span>{reception.role}</span>
+                  </div>
+                </div>
+                <p>
+                  Branch : <span>{reception.branch}</span>
+                </p>
+                <p>
+                  Total Transaction/s : <span>{reception.totalTransactions}</span>
+                </p>
+                <p>
+                  Call Number: <span>{reception.phoneNumber}</span>
+                </p>
+                {/* <a href="reception-profile.html" className="inline-btn">
+                    view profile
+                  </a> */}
               </div>
-            </div>
-            <p>
-              Branch : <span>Malaybalay</span>
-            </p>
-            <p>
-              Total Transaction/s : <span>14</span>
-            </p>
-            <p>
-              Call Number: <span>0912345679</span>
-            </p>
-            {/* <a href="reception-profile.html" className="inline-btn">
-            view profile
-          </a> */}
+            ))}
           </div>
-
-          <div className="box">
-            <div className="reception">
-              <img src="/assets/images/finral.gif" alt="" />
-              <div>
-                <h3>John Doe</h3>
-                <span>Receptionist</span>
-              </div>
-            </div>
-            <p>
-              Branch : <span>Valencia</span>
-            </p>
-            <p>
-              Total Transaction/s : <span>4</span>
-            </p>
-            <p>
-              Call Number : <span>0912346987</span>
-            </p>
-            {/* <a href="reception-profile.html" className="inline-btn">
-            view profile
-          </a> */}
-          </div>
-
-          <div className="box">
-            <div className="reception">
-              <img src="/assets/images/grey.gif" alt="" />
-              <div>
-                <h3>John Doe</h3>
-                <span>Receptionist</span>
-              </div>
-            </div>
-            <p>
-              Branch : <span>Malaybalay</span>
-            </p>
-            <p>
-              Total Transaction/s : <span>1</span>
-            </p>
-            <p>
-              Call Number : <span>0912346987</span>
-            </p>
-            {/* <a href="reception-profile.html" className="inline-btn">
-            view profile
-          </a> */}
-          </div>
-
-          <div className="box">
-            <div className="reception">
-              <img src="/assets/images/luck.gif" alt="" />
-              <div>
-                <h3>John Doe</h3>
-                <span>Receptionist</span>
-              </div>
-            </div>
-            <p>
-              Branch : <span>Maramag</span>
-            </p>
-            <p>
-              Total Transaction/s : <span>9</span>
-            </p>
-            <p>
-              Call Number : <span>0912346987</span>
-            </p>
-            {/* <a href="reception-profile.html" className="inline-btn">
-            view profile
-          </a> */}
-          </div>
-
-          <div className="box">
-            <div className="reception">
-              <img src="/assets/images/vanessa.gif" alt="" />
-              <div>
-                <h3>John Doe</h3>
-                <span>Receptionist</span>
-              </div>
-            </div>
-            <p>
-              Branch : <span>Valencia</span>
-            </p>
-            <p>
-              Total Transaction/s : <span>660</span>
-            </p>
-            <p>
-              Call Number : <span>0912346987</span>
-            </p>
-            {/* <a href="reception-profile.html" className="inline-btn">
-            view profile
-          </a> */}
-          </div>
-
-          <div className="box">
-            <div className="reception">
-              <img src="/assets/images/yuno.gif" alt="" />
-              <div>
-                <h3>John Doe</h3>
-                <span>Receptionist</span>
-              </div>
-            </div>
-            <p>
-              Branch : <span>Valencia</span>
-            </p>
-            <p>
-              Total Transaction/s : <span>17</span>
-            </p>
-            <p>
-              Call Number : <span>0912346987</span>
-            </p>
-            {/* <a href="reception-profile.html" className="inline-btn">
-            view profile
-          </a> */}
-          </div>
-
-        </div>
-
+        )}
       </section>
-      < Footer />
+      <Footer />
     </div>
-
   );
 };
 

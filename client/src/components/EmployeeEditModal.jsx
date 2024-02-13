@@ -106,6 +106,12 @@ const EmployeeEditModal = ({ open, onClose, userId }) => {
                 toast.error('Phone number should start with 09');
                 return;
             }
+
+            // Check if phoneNumber starts with 0
+            if (phoneNumber.length < 11) {
+                toast.error('Enter a valid 11 digit phone number');
+                return;
+            }
         }
 
         // Validate address

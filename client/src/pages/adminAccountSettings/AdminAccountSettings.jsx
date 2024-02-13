@@ -149,10 +149,11 @@ const AdminAccountSettings = () => {
 
             const response = await axios.put(`/admin/profile/${user.id}`, updatedDetailsWithoutImage);
             console.log(response.data);
-            window.location.href = `${window.location.origin}/AccountSettings`;
+            location.reload();
         } catch (error) {
             console.error('Error updating user profile:', error);
-            toast.error('Error updating user profile. Please try again.');
+            location.reload();
+            // toast.error('Error updating user profile. Please try again.');
         } finally {
             setFormSubmitted(false);
         }

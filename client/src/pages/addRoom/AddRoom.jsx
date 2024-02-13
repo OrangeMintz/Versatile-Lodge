@@ -71,21 +71,6 @@ const AddRoom = () => {
     }));
   };
 
-  // const handleImageChange = (e) => {
-  //   const { files } = e.target;
-
-  //   // Check if files is not null or undefined
-  //   if (files) {
-  //     setFormData((prevData) => {
-  //       console.log({ ...prevData, imageurls: files });
-  //       return {
-  //         ...prevData,
-  //         imageurls: files,
-  //       };
-  //     });
-  //   }
-  // };
-
   const handleImageChange = (e) => {
     const { files } = e.target;
 

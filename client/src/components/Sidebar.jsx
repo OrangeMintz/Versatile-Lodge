@@ -58,7 +58,7 @@ const Sidebar = () => {
                     <h3>{user.name}</h3>
                     <span>{user.isAdmin && 'Admin'}</span>
                     <span>{user.isManager && 'Manager'}</span>
-                    <span>{user.isEmployee && 'Employee'}</span>
+                    <span>{user.isReceptionist && 'Receptionist'}</span>
                     <Link to="/profile" className="btn">View profile</Link>
                 </div>
             )}
@@ -68,8 +68,8 @@ const Sidebar = () => {
                     <Link to="/dashboard" className={location.pathname === '/dashboard' ? 'active' : ''}><i className="fa-solid fa-chart-bar"></i><span>Dashboard</span></Link>
                     <Link to="/employees" className={location.pathname === '/employees' || location.pathname.includes('/employees/archive') ? 'active' : ''}><i className="fas fa-users"></i><span>Employees</span></Link>
                     <Link to="/roomsAvailable" className={location.pathname.includes('/roomsAvailable') || location.pathname.includes('/roomsUnavailable') ? 'active' : ''}><i className="fas fa-bed"></i><span>Rooms</span></Link>
-                    <Link to="/transactions/booking" className={location.pathname.includes('/roomsReserved') || location.pathname.includes('/roomsBooking') ? 'active' : ''}><i className="fa-solid fa-credit-card"></i><span>Transactions</span></Link>
-                    <Link to="/receptions"><i className="fas fa-desktop"></i><span>Receptions</span></Link>
+                    <Link to="/transactions/booking" className={location.pathname.includes('/transactions/booking') || location.pathname.includes('/roomsBooking') ? 'active' : ''}><i className="fa-solid fa-credit-card"></i><span>Transactions</span></Link>
+                    <Link to="/receptions" className={location.pathname === '/receptions' ? 'active' : ''}><i className="fas fa-desktop"></i><span>Receptions</span></Link>
                     <Link onClick={handleLogout}><i className="fas fa-power-off"></i><span>Log out</span></Link>
                 </nav>
             )}
@@ -78,8 +78,8 @@ const Sidebar = () => {
                 <nav className="navbar">
                     <Link to="/dashboard" className={location.pathname === '/dashboard' ? 'active' : ''}><i className="fa-solid fa-chart-bar"></i><span>Dashboard</span></Link>
                     <Link to="/roomsAvailable" className={location.pathname.includes('/roomsAvailable') || location.pathname.includes('/roomsUnavailable') ? 'active' : ''}><i className="fas fa-bed"></i><span>Rooms</span></Link>
-                    <Link to="/transactions/booking" className={location.pathname.includes('/roomsReserved') || location.pathname.includes('/roomsBooking') ? 'active' : ''}><i className="fa-solid fa-credit-card"></i><span>Transactions</span></Link>
-                    <Link to="/receptions"><i className="fas fa-desktop"></i><span>Receptions</span></Link>
+                    <Link to="/transactions/booking" className={location.pathname.includes('/transactions/booking') || location.pathname.includes('/roomsBooking') ? 'active' : ''}><i className="fa-solid fa-credit-card"></i><span>Transactions</span></Link>
+                    <Link to="/receptions" className={location.pathname === '/receptions' ? 'active' : ''}><i className="fas fa-desktop"></i><span>Receptions</span></Link>
                     <Link onClick={handleLogout}><i className="fas fa-power-off"></i><span>Log out</span></Link>
                 </nav>
             )}
@@ -88,7 +88,8 @@ const Sidebar = () => {
                 <nav className="navbar">
                     <Link to="/dashboard" className={location.pathname === '/dashboard' ? 'active' : ''}><i className="fa-solid fa-chart-bar"></i><span>Dashboard</span></Link>
                     <Link to="/roomsAvailable" className={location.pathname.includes('/roomsAvailable') || location.pathname.includes('/roomsUnavailable') ? 'active' : ''}><i className="fas fa-bed"></i><span>Rooms</span></Link>
-                    <Link to="/transactions/booking" className={location.pathname.includes('/roomsReserved') || location.pathname.includes('/roomsBooking') ? 'active' : ''}><i className="fa-solid fa-credit-card"></i><span>Transactions</span></Link>
+                    <Link to="/transactions/booking" className={location.pathname.includes('/transactions/booking') || location.pathname.includes('/roomsBooking') ? 'active' : ''}><i className="fa-solid fa-credit-card"></i><span>Transactions</span></Link>
+                    <Link to="/receptions" className={location.pathname === '/receptions' ? 'active' : ''}><i className="fas fa-desktop"></i><span>Receptions</span></Link>
                     <Link onClick={handleLogout}><i className="fas fa-power-off"></i><span>Log out</span></Link>
                 </nav>
             )}

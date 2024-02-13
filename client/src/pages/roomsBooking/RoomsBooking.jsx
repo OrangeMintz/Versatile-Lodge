@@ -229,6 +229,8 @@ const RoomsBooking = () => {
                                     <span className='sub'>Start Date: {reservedBooking.fromDate}</span>
                                     <span className='sub'>End Date: {reservedBooking.toDate}</span>
                                     <p className='sub'>Total Ammount: ₱{reservedBooking.totalAmount}</p>
+                                    {/* <p className='sub'>Booked by: Admin User</p>/ */}
+                                    <p className='sub'>Booked by: {reservedBooking.bookedBy}</p>
                                     <p className='sub' style={{ fontWeight: "bold", fontStyle: 'normal' }}>{reservedBooking.transactionId}</p>
                                 </div>
                                 <div className="roomButtons">

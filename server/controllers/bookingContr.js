@@ -19,6 +19,7 @@ const createBooking = async (req, res, next) => {
             userId: savedBooking.user_id,
             status: savedBooking.status,
             totalAmount: savedBooking.totalAmount,
+            bookedBy: savedBooking.bookedBy,
             transactionId: savedBooking.transactionId,
             isManual: savedBooking.isManual
 

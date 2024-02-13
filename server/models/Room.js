@@ -39,6 +39,7 @@ const roomschema = new mongoose.Schema(
                 userId: String,
                 status: String,
                 totalAmount: String,
+                bookedBy: String,
                 transactionId: String,
                 isManual: Boolean
 
