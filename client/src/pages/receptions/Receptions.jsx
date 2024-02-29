@@ -19,29 +19,7 @@ const Receptions = () => {
   const [operationsComplete, setOperationsComplete] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('/api/reception/');
-        setReceptionsData(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching reception data:', error);
-        setError(error);
-        setLoading(false);
-      }
-    };
-
-    const lastVisitTime = localStorage.getItem('lastVisitTime');
-    const now = new Date().getTime();
-    const oneDay = 24 * 60 * 60 * 1000; // milliseconds in a day
-
-    if (!lastVisitTime || now - lastVisitTime > oneDay) {
-      deleteAllReceptions();
-      localStorage.setItem('lastVisitTime', now);
-    } else {
-      fetchData();
-    }
-
+    // Check if user is logged in
     if (!user) {
       axios
         .get('/profile/admin')
@@ -53,25 +31,45 @@ const Receptions = () => {
           setError(error);
         })
         .finally(() => {
-          setLoading(false);
+          setOperationsComplete(true); // Mark operations as complete
         });
+    } else {
+      setOperationsComplete(true); // Mark operations as complete if user already exists
     }
   }, [user, setUser]);
 
   useEffect(() => {
+    // Redirect unauthorized users or receptionists
     if (operationsComplete && !user) {
       navigate('/401');
       toast.error("Unauthorized Access");
-    }
-    if (operationsComplete && user && user.isReceptionist === true) {
-      toast.error("Unauthorized Access");
+    } else if (operationsComplete && user && user.isEmployee === true) {
       navigate('/dashboard');
+      toast.error("Unauthorized Access");
     }
   }, [user, operationsComplete, navigate]);
 
+  useEffect(() => {
+    // Fetch reception data after user is logged in
+    if (user) {
+      axios
+        .get('/api/reception/')
+        .then(({ data }) => {
+          setReceptionsData(data);
+        })
+        .catch((error) => {
+          console.error('Error fetching reception data:', error);
+          setError(error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  }, [user]);
+
   const deleteAllReceptions = async () => {
     try {
-      await axios.delete('/api/reception/');
+      await axios.delete('/api/reception/delete');
       console.log('All receptions deleted successfully.');
     } catch (error) {
       console.error('Error deleting receptions:', error);
