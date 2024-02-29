@@ -13,7 +13,7 @@ router.post("/", createReception);
 router.put("/:id", updateReception);
 
 //Delete
-router.delete("/", deleteAllReceptions);
+router.delete("/delete", deleteAllReceptions);
 
 //Get
 router.get("/:id", getReception);
