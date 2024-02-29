@@ -26,8 +26,8 @@ import toast, { Toaster } from 'react-hot-toast';
 import { UserContextProvider } from './components/userContext.jsx';
 
 
-// axios.defaults.baseURL = 'http://localhost:8000'
-axios.defaults.baseURL = 'http://192.168.8.69:8000'
+axios.defaults.baseURL = 'http://localhost:8000'
+// axios.defaults.baseURL = 'http://192.168.8.69:8000'
 axios.defaults.withCredentials = true
 
 

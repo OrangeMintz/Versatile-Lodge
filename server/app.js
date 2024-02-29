@@ -92,7 +92,7 @@ app.use((err, req, res, next) => {
 
 
 
-app.listen(8000, '192.168.8.69', () => {
+app.listen(8000, () => {
   connect();
   console.log("Connected to Backend");
 });
