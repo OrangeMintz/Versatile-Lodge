@@ -21,7 +21,7 @@ const Receptions = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/reception/');
+        const response = await axios.get('/api/reception/');
         setReceptionsData(response.data);
         setLoading(false);
       } catch (error) {
@@ -71,7 +71,7 @@ const Receptions = () => {
 
   const deleteAllReceptions = async () => {
     try {
-      await axios.delete('http://localhost:8000/api/reception/');
+      await axios.delete('/api/reception/');
       console.log('All receptions deleted successfully.');
     } catch (error) {
       console.error('Error deleting receptions:', error);

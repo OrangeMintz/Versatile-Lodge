@@ -1,10 +1,10 @@
 {
   "name": "vite2",
-  "private": true,
+  "private": false,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "vite --port 3001",
+    "start": "vite --host 192.168.8.69 --port 3001",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
