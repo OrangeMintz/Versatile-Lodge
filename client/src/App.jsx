@@ -27,6 +27,7 @@ import { UserContextProvider } from './components/userContext.jsx';
 
 
 axios.defaults.baseURL = 'http://localhost:8000'
+// axios.defaults.baseURL = 'http://192.168.8.69:8000'
 axios.defaults.withCredentials = true
 
 
@@ -74,8 +75,8 @@ function App() {
         {/* INVALID ACCESS */}
         <Route path="/404" element={<Error404 />} />
         <Route path="/401" element={<Error401 />} />
-
         <Route path="*" element={<Navigate to="/404" />} />
+
       </Routes>
     </UserContextProvider>
 

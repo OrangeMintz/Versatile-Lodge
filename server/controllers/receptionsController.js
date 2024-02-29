@@ -1,5 +1,7 @@
 const Reception = require("../models/Receptions.js");
 const Room = require("../models/Room.js");
+const cron = require('node-cron');
+
 
 const createReception = async (req, res, next) => {
     try {
@@ -43,15 +45,30 @@ const updateReception = async (req, res, next) => {
 };
 
 // Controller to delete all receptions
-const deleteAllReceptions = async (req, res, next) => {
+const deleteAllReceptions = async () => {
     try {
         await Reception.deleteMany({}); // Assuming Reception is your Mongoose model
-        res.status(200).json({ message: "All receptions deleted successfully." });
+        console.log("All receptions deleted successfully.");
     } catch (error) {
-        next(error);
+        console.error("Error deleting receptions:", error);
     }
 };
 
+// Schedule the task to run every day at midnight (00:00)
+cron.schedule('0 0 * * *', async () => {
+    console.log('Running daily task to delete all receptions...');
+    await deleteAllReceptions();
+});
+
+
+// const deleteAllReceptions = async (req, res, next) => {
+//     try {
+//         await Reception.deleteMany({}); // Assuming Reception is your Mongoose model
+//         res.status(200).json({ message: "All receptions deleted successfully." });
+//     } catch (error) {
+//         next(error);
+//     }
+// };
 
 // const deleteReception = async (req, res, next) => {
 //     try {

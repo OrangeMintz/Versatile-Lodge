@@ -187,9 +187,12 @@ const loginAdmin = async (req, res) => {
                 (err, aToken) => {
                     if (err) throw err;
                     res.cookie(`aToken`, aToken, {
-                        secure: true,
+                        secure: false,
                         httpOnly: true,
                         sameSite: 'strict',
+                        // secure: true,
+                        // httpOnly: true,
+                        // sameSite: 'strict',
                     }).json(adminWithImage);
                 }
             );

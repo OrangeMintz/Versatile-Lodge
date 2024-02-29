@@ -41,7 +41,7 @@ mongoose.connection.on("connected", () => {
 //Middlewares
 const { sendEmail } = require('./middleware/emailMiddleware.js'); // Import the email middleware
 const corsOptions = {
-  origin: ["http://localhost:3000", "http://localhost:3001"],
+  origin: ["http://localhost:3000", "http://localhost:3001", "http://192.168.8.69:3001", "https://192.168.8.69:3001"],
   credentials: true,
 };
 
