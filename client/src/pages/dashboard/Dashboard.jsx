@@ -11,6 +11,8 @@ import './dashboard.css';
 import moment from 'moment';
 import { Chart as Chartjs } from "chart.js/auto"
 import { Bar, Doughnut, Line } from "react-chartjs-2"
+import toast from 'react-hot-toast';
+
 
 
 const Dashboard = () => {
@@ -145,6 +147,21 @@ const Dashboard = () => {
         return monthlyReservations;
     };
 
+    const handleExportCSV = () => {
+        axios.get('/api/booking/export-bookings')
+            .then(response => {
+                // Handle success, maybe show a success message or trigger a download
+                console.log('CSV Exported Successfully');
+                toast.success('CSV Exported Successfully');
+
+            })
+            .catch(error => {
+                console.error('Error exporting CSV:', error);
+                toast.error('Error exporting CSV.');
+
+            });
+    };
+
     return (
         // <div className={styles.dashboard}>
         <>
@@ -186,6 +203,8 @@ const Dashboard = () => {
 
                         <div className="box">
                             <h3 className="title">Reservation Statistics:</h3>
+                            {/* <div className="button-csv"><button><i className='fa fa-download'></i> CSV</button></div> */}
+                            <button onClick={handleExportCSV}><i className='fa fa-download'></i> CSV</button>
                             <div className="monthly"><i className='fas fa-calendar'></i> Monthly</div>
                             <div className="chart-container"> {/* Add this container */}
                                 <Bar
@@ -208,6 +227,7 @@ const Dashboard = () => {
                         </div>
 
                         {user && (user.isAdmin) && (
+
                             <div className="box">
                                 <h3 className="title">Rooms and Comments:</h3>
                                 <p className="stat">Total Rooms: <span>{roomCount}</span></p>

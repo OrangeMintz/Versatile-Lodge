@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const { createObjectCsvWriter } = require('csv-writer');
 const path = require('path');
 
 
@@ -64,7 +65,6 @@ app.use("/api/booking", bookingroute);
 app.use("/oauth", oauthRouter);
 app.use("/request", requestRouter);
 
-
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
   const errorMessage = err.message || "Something went wrong!";
@@ -75,21 +75,6 @@ app.use((err, req, res, next) => {
     stack: err.stack,
   });
 });
-
-
-// NODEMAILER NOT FINISHED
-// Example route that sends an email
-// app.get('/send-email', async (req, res) => {
-//   try {
-//     // Replace 'test@email.com' with the recipient's email address
-//     await sendEmail('test@email.com', 'Test Subject', 'Test Text', '<b>Test HTML</b>');
-//     res.status(200).json({ message: 'Email sent successfully' });
-//   } catch (error) {
-//     console.error('Error sending email:', error);
-//     res.status(500).json({ error: 'Internal server error' });
-//   }
-// });
-
 
 
 app.listen(8000, () => {

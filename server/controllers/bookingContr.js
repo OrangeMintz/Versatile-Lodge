@@ -1,6 +1,9 @@
 const Booking = require("../models/Booking.js");
 const Room = require('../models/Room.js')
 const createError = require('../utils/error.js');
+const { createObjectCsvWriter } = require('csv-writer');
+const os = require('os'); // Import the 'os' module
+
 
 const createBooking = async (req, res, next) => {
     const newBooking = new Booking(req.body);
@@ -71,10 +74,86 @@ const getSpecificBooking = async (req, res, next) => {
     }
 };
 
+const aggregateBookingsByMonth = async () => {
+    try {
+        const bookings = await Booking.find();
+        const aggregatedData = {};
+
+        bookings.forEach(booking => {
+            const createdAt = new Date(booking.createdAt);
+            const month = createdAt.toLocaleString('en-US', { month: 'long' });
+
+            if (!aggregatedData[month]) {
+                aggregatedData[month] = { totalBookings: 0, totalEarnings: 0, receptionists: {} };
+            }
+
+            aggregatedData[month].totalBookings++;
+            aggregatedData[month].totalEarnings += booking.totalAmount;
+
+        });
+
+        return aggregatedData;
+    } catch (err) {
+        throw err;
+    }
+};
+
+const convertToCsv = async (aggregatedData) => {
+    try {
+        const currencySymbol = 'Pesos'; // Currency symbol for Philippine Peso
+        const desktopPath = os.homedir() + '/Desktop/'; // Get the user's desktop path
+        const csvWriter = createObjectCsvWriter({
+            path: desktopPath + 'bookings.csv', // Specify the path as the user's desktop path
+            delimiter: '\t', // Try using tabs instead of commas
+            header: [
+                { id: 'Month', title: 'Month' },
+                { id: 'Monthly Bookings', title: 'Monthly Bookings' },
+                { id: 'Monthly Profit', title: 'Monthly Profit' },
+            ],
+        });
+
+        const records = [];
+
+        // Add an empty row before the month data
+        records.push({ Month: '', 'Monthly Bookings': '', 'Monthly Profit': '' });
+
+        // Add data for each month
+        Object.entries(aggregatedData).forEach(([month, data]) => {
+            records.push({
+                Month: month,
+                'Monthly Bookings': data.totalBookings,
+                'Monthly Profit': data.totalEarnings + " " + currencySymbol,
+                // Format receptionists' reservations
+                Receptionists: Object.keys(data.receptionists).join('\n'),
+                Reservations: Object.values(data.receptionists).join('\n')
+            });
+        });
+
+        // Add five empty rows after the month data
+        for (let i = 0; i < 3; i++) {
+            records.push({ Month: '', 'Monthly Bookings': '', 'Monthly Profit': '' });
+        }
+
+        // Add data for Total Profit row
+        const totalProfit = Object.values(aggregatedData).reduce((acc, data) => acc + data.totalEarnings, 0);
+        records.push({ Month: 'Total Profit:', 'Monthly Bookings': '', 'Monthly Profit': totalProfit + ' ' + currencySymbol });
+
+        await csvWriter.writeRecords(records);
+    } catch (err) {
+        throw err;
+    }
+};
+
+
+
+
+
 
 module.exports = {
     createBooking,
     deleteBooking,
     getBooking,
-    getSpecificBooking
+    getSpecificBooking,
+    aggregateBookingsByMonth,
+    convertToCsv,
 };
