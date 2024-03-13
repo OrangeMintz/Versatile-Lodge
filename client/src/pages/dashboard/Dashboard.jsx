@@ -203,10 +203,8 @@ const Dashboard = () => {
 
                         <div className="box">
                             <h3 className="title">Reservation Statistics:</h3>
-                            {/* <div className="button-csv"><button><i className='fa fa-download'></i> CSV</button></div> */}
-                            <button onClick={handleExportCSV}><i className='fa fa-download'></i> CSV</button>
-                            <div className="monthly"><i className='fas fa-calendar'></i> Monthly</div>
-                            <div className="chart-container"> {/* Add this container */}
+                            <button className="monthly" onClick={handleExportCSV}><i className='fa fa-download'></i> CSV</button>
+                            <div className="chart-container">
                                 <Bar
                                     className="chart"
                                     data={{
