@@ -10,10 +10,10 @@ export default defineConfig({
                 changeOrigin: true,
             },
 
-            '/uploads': {
-                target: 'http://192.168.8.69:8000',
-                changeOrigin: true,
-            },
+            // '/uploads': {
+            //     target: 'http://192.168.8.69:8000',
+            //     changeOrigin: true,
+            // },
 
             '/dad-joke': {
                 target: 'https://icanhazdadjoke.com',

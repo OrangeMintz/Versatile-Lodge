@@ -34,11 +34,11 @@ axios.defaults.withCredentials = true
 function App() {
   return (
     <UserContextProvider>
-      <Toaster position='bottom-right' gutter={12} toastOptions={{
+      <Toaster position='top-right' gutter={12} toastOptions={{
         style: {
           background: '#DCC69C',
           color: '#363636',
-          fontSize: "12px",
+          fontSize: "2.2rem",
           boxShadow: "10px 10px 15px rgba(0,0,0,.4)"
 
 

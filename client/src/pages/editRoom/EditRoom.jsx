@@ -115,6 +115,16 @@ const EditRoom = () => {
             return;
         }
 
+        if (formData.maxPeople <= 0) {
+            toast.error('Maximum people should be at least 1 above.');
+            return;
+        }
+
+        if (formData.price < 50) {
+            toast.error('Price too low.');
+            return;
+        }
+
         axios
             .put(`/api/room/${id}`, formData)
             .then((response) => {
