@@ -120,10 +120,16 @@ const EditRoom = () => {
             return;
         }
 
-        if (formData.price < 50) {
+        if (formData.price <= 0) {
+            toast.error('Price cannot be 0 or negative.');
+            return;
+        }
+
+        else if (formData.price < 50) {
             toast.error('Price too low.');
             return;
         }
+
 
         axios
             .put(`/api/room/${id}`, formData)

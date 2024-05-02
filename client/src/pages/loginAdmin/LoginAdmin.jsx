@@ -35,6 +35,17 @@ const LoginAdmin = () => {
     // Check LOGON
 
 
+    const auth = async () => {
+        try {
+            const response = await axios.post('http://localhost:8000/request');
+            const { url } = response.data;
+            window.open(url, '_blank'); // Open URL in new tab/window
+        } catch (error) {
+            console.error('Error fetching OAuth URL:', error);
+        }
+    };
+
+
     const loginAdmin = async (e) => {
 
 
@@ -88,6 +99,12 @@ const LoginAdmin = () => {
                     />
                     <input type="submit" className='loginAdminBtn' value="Login" />
                 </form>
+
+
+                {/* button to trigger the googleOauth signin */}
+                <div className="buttons">
+                    <Link className="btn" onClick={() => auth()}><i className="fab fa-google"></i></Link>
+                </div>
             </div>
         </div>
     )
