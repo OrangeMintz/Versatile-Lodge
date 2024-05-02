@@ -16,7 +16,10 @@ const customerroute = require('./routes/authRoutes.js')
 const adminroute = require('./routes/adminRoutes.js')
 const bookingroute = require('./routes/booking.js')
 const oauthRouter = require("./routes/oauth.js");
+const oauthRouter2 = require("./routes/oauth2.js");
 const requestRouter = require("./routes/request.js");
+const requestRouter2 = require("./routes/request2.js");
+
 
 const app = express();
 dotenv.config();
@@ -62,8 +65,15 @@ app.use("/api/reception", receptionroute);
 app.use("/api/booking", bookingroute);
 
 //GOOGLE OAUTH WITHOUT API's
-app.use("/oauth", oauthRouter);
-app.use("/request", requestRouter);
+// app.use("/oauth", oauthRouter);
+app.use("/oauth", oauthRouter2);
+// app.use("/request", requestRouter);
+app.use("/request", requestRouter2);
+
+app.get('/', (req, res) => {
+  res.send('Welcome to your application!');
+});
+
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
