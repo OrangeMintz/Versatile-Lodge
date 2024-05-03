@@ -1,92 +1,131 @@
-const Room = require("../models/Room.js");
-// const Branch = require("../models/Branch.js");
+const Room = require('../models/Room.js');
 const BookingHistory = require('../models/BookingHistory.js');
 const ArchiveRooms = require('../models/ArchiveRooms.js')
 const upload = require('../middleware/multerConfig');
+const cloudinary = require('../cloudinary/cloudinary')
 
 const createRoom = async (req, res) => {
     try {
-        // Multer middleware
-        upload.array('imageurls', 20)(req, res, async (err) => {
-            if (err) {
-                console.error('Multer error:', err);
-                return res.status(500).json({ error: 'Internal server error' });
-            }
-
-            try {
-                const { body } = req;
-
-                // Check if files were uploaded
-                if (!req.files || req.files.length === 0) {
-                    return res.status(400).json({ message: 'No files were uploaded.' });
+        const { name, branch, price, imageurls, maxPeople, desc } = req.body;
+        let uploadedImage;
+        if (imageurls) {
+            // If image is provided, upload the image to Cloudinary
+            uploadedImage = await cloudinary.uploader.upload(imageurls, {
+                upload_preset: 'unsigned_upload',
+                public_id: `${name}avatar`,
+                allowed_formats: ['png', 'jpg', 'jpeg', 'svg', 'ico', 'jfif', 'webp']
+            }, function (error, result) {
+                if (error) {
+                    console.log(error);
                 }
+                console.log(result);
+            });
+        } else {
+            // If image is not provided, use a default image URL
+            uploadedImage = {
+                public_id: 'User_Avatar/w0nkngai05o8lbapligf',
+                secure_url: 'https://res.cloudinary.com/dl0qncxjh/image/upload/v1707139556/User_Avatar/mqkdwsgbtoe6c0z3iuws_sfgqpg_rrm97f_ofrszm_ojn80h_ympxcx_cpvpn3_xi82ps_a9ckfa.jpg'
+            };
+        }
+        // Check if name was entered and does not contain leading/trailing spaces
+        if (!name || name.trim() !== name) {
+            return res.json({
+                error: 'Room name is required and should not contain leading/trailing spaces'
+            });
+        }
+        if (!branch) {
+            return res.json({
+                error: 'Branch is required'
+            });
+        }
+        if (!maxPeople) {
+            return res.json({
+                error: 'Max People is required'
+            });
+        }
+        if (!desc) {
+            return res.json({
+                error: 'Description is required'
+            });
+        }
+        const exist = await Room.findOne({ name });
+        if (exist) {
+            return res.json({
+                error: 'Room Name is already taken'
+            });
+        }
 
-                const { name, branch, price, maxPeople, desc, unavailable } = body;
-
-                // Process uploaded files
-                const images = req.files.map((file) => `/uploads/${file.filename}`);
-
-                // Assuming images are stored in a public/uploads directory
-
-                const newRoom = new Room({
-                    name,
-                    branch,
-                    price,
-                    maxPeople,
-                    desc,
-                    imageurls: images,
-                    unavailable,
-                });
-
-                const savedRoom = await newRoom.save();
-
-                res.status(201).json(savedRoom);
-            } catch (error) {
-                console.error('Error creating room:', error);
-                res.status(500).json({ error: 'Internal server error' });
-            }
+        const room = await Room.create({
+            name,
+            branch,
+            price,
+            maxPeople,
+            desc,
+            imageurls: `https://res.cloudinary.com/dl0qncxjh/image/upload/${uploadedImage.public_id}`,
+            unavailable: false,
+            currentbookings: []
         });
+
+        const imageUrl = `https://res.cloudinary.com/dl0qncxjh/image/upload/${room.imageurls}`;
+        const roomWithImage = { ...room.toObject(), imageUrl };
+
+        return res.json(roomWithImage);
     } catch (error) {
-        console.error('Error creating room:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        console.log(error);
+        return res.status(500).json({
+            error: 'Internal server error'
+        });
     }
-};
+}
 
 
+
+//CHANGE THIS UPLOAD METHOD OF IMAGE TO CLOUDINARY UPLOAD METHOD WHERE IT SHOULD STORE ON MY CLOUD STORAGE
 // const createRoom = async (req, res) => {
 //     try {
-//         const { body } = req;
+//         // Multer middleware
+//         upload.array('imageurls', 20)(req, res, async (err) => {
+//             if (err) {
+//                 console.error('Multer error:', err);
+//                 return res.status(500).json({ error: 'Internal server error' });
+//             }
 
-//         // Check if files were uploaded
-//         if (!req.files || Object.keys(req.files).length === 0) {
-//             return res.status(400).json({ message: 'No files were uploaded.' });
-//         }
+//             try {
+//                 const { body } = req;
 
-//         const { name, branch, price, maxPeople, desc } = body;
+//                 // Check if files were uploaded
+//                 if (!req.files || req.files.length === 0) {
+//                     return res.status(400).json({ message: 'No files were uploaded.' });
+//                 }
 
-//         // Process uploaded files
-//         const images = req.files.imageurls.map((file) => `/uploads/${file.filename}`);
+//                 const { name, branch, price, maxPeople, desc, unavailable } = body;
 
-//         // Assuming images are stored in a public/uploads directory
+//                 // Process uploaded files
+//                 const images = req.files.map((file) => `/uploads/${file.filename}`);
 
-//         const newRoom = new Room({
-//             name,
-//             branch,
-//             price,
-//             maxPeople,
-//             desc,
-//             imageurls: images,
+//                 // Assuming images are stored in a public/uploads directory
+//                 const newRoom = new Room({
+//                     name,
+//                     branch,
+//                     price,
+//                     maxPeople,
+//                     desc,
+//                     imageurls: images,
+//                     unavailable,
+//                 });
+//                 const savedRoom = await newRoom.save();
+
+//                 res.status(201).json(savedRoom);
+//             } catch (error) {
+//                 console.error('Error creating room:', error);
+//                 res.status(500).json({ error: 'Internal server error' });
+//             }
 //         });
-
-//         const savedRoom = await newRoom.save();
-
-//         res.status(201).json(savedRoom);
 //     } catch (error) {
 //         console.error('Error creating room:', error);
 //         res.status(500).json({ error: 'Internal server error' });
 //     }
 // };
-
 
 
 

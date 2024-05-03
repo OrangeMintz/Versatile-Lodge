@@ -19,10 +19,12 @@ const oauthRouter = require("./routes/oauth.js");
 const oauthRouter2 = require("./routes/oauth2.js");
 const requestRouter = require("./routes/request.js");
 const requestRouter2 = require("./routes/request2.js");
+const cloudinary = require('cloudinary').v2;
 
 
 const app = express();
 dotenv.config();
+
 
 
 const connect = async () => {
@@ -40,6 +42,12 @@ mongoose.connection.on("disconnected", () => {
 
 mongoose.connection.on("connected", () => {
   console.log("Connected to MongoDB");
+});
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_APIKEY,
+  api_secret: process.env.CLOUDINARY_APISECRET
 });
 
 //Middlewares

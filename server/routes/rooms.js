@@ -33,6 +33,6 @@ router.get("/:id", getRoom);
 router.get("/", getRooms);
 
 //Create
-router.post("/", verifyAdmin, createRoom);
+router.post("/", createRoom);
 
 module.exports = router;
