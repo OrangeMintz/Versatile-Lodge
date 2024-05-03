@@ -1,3 +1,4 @@
+const Room2 = require('../models/Room2.js');
 const Room = require('../models/Room.js');
 const BookingHistory = require('../models/BookingHistory.js');
 const ArchiveRooms = require('../models/ArchiveRooms.js')
@@ -48,14 +49,16 @@ const createRoom = async (req, res) => {
                 error: 'Description is required'
             });
         }
-        const exist = await Room.findOne({ name });
-        if (exist) {
-            return res.json({
-                error: 'Room Name is already taken'
+
+        const existingRoom = await Room2.findOne({ name, branch });
+
+        if (existingRoom) {
+            return res.status(400).json({
+                error: 'A room with the same name and branch already exists'
             });
         }
 
-        const room = await Room.create({
+        const room = await Room2.create({
             name,
             branch,
             price,
@@ -79,56 +82,6 @@ const createRoom = async (req, res) => {
 }
 
 
-
-//CHANGE THIS UPLOAD METHOD OF IMAGE TO CLOUDINARY UPLOAD METHOD WHERE IT SHOULD STORE ON MY CLOUD STORAGE
-// const createRoom = async (req, res) => {
-//     try {
-//         // Multer middleware
-//         upload.array('imageurls', 20)(req, res, async (err) => {
-//             if (err) {
-//                 console.error('Multer error:', err);
-//                 return res.status(500).json({ error: 'Internal server error' });
-//             }
-
-//             try {
-//                 const { body } = req;
-
-//                 // Check if files were uploaded
-//                 if (!req.files || req.files.length === 0) {
-//                     return res.status(400).json({ message: 'No files were uploaded.' });
-//                 }
-
-//                 const { name, branch, price, maxPeople, desc, unavailable } = body;
-
-//                 // Process uploaded files
-//                 const images = req.files.map((file) => `/uploads/${file.filename}`);
-
-//                 // Assuming images are stored in a public/uploads directory
-//                 const newRoom = new Room({
-//                     name,
-//                     branch,
-//                     price,
-//                     maxPeople,
-//                     desc,
-//                     imageurls: images,
-//                     unavailable,
-//                 });
-//                 const savedRoom = await newRoom.save();
-
-//                 res.status(201).json(savedRoom);
-//             } catch (error) {
-//                 console.error('Error creating room:', error);
-//                 res.status(500).json({ error: 'Internal server error' });
-//             }
-//         });
-//     } catch (error) {
-//         console.error('Error creating room:', error);
-//         res.status(500).json({ error: 'Internal server error' });
-//     }
-// };
-
-
-
 const deleteRoom = async (req, res, next) => {
     const branchId = req.params.branchId;
 
@@ -141,15 +94,6 @@ const deleteRoom = async (req, res, next) => {
     }
 };
 
-
-// const updateRoom = async (req, res, next) => {
-//     try {
-//         const updatedRoom = await Room.findByIdAndUpdate(req.params.id, { $set: req.body });
-//         res.status(200).json(updatedRoom)
-//     } catch (err) {
-//         next(err);
-//     }
-// };
 
 const updateRoom = async (req, res, next) => {
     try {
@@ -188,7 +132,7 @@ const updateRoom = async (req, res, next) => {
 
 const getRoom = async (req, res, next) => {
     try {
-        const room = await Room.findById(req.params.id);
+        const room = await Room2.findById(req.params.id);
         res.send(room)
         // res.status(200).json(room)
     } catch (err) {
@@ -198,8 +142,8 @@ const getRoom = async (req, res, next) => {
 
 const getRooms = async (req, res, next) => {
     try {
-        const rooms = await Room.find({})
-        const roomsCount = Room.length;
+        const rooms = await Room2.find({})
+        const roomsCount = Room2.length;
 
         res.send(rooms)
     } catch (err) {
