@@ -19,6 +19,9 @@ const oauthRouter = require("./routes/oauth.js");
 const oauthRouter2 = require("./routes/oauth2.js");
 const requestRouter = require("./routes/request.js");
 const requestRouter2 = require("./routes/request2.js");
+
+const testingRoutes = require("./routes/testingRoutes.js");
+
 const cloudinary = require('cloudinary').v2;
 
 
@@ -71,6 +74,8 @@ app.use("/api/bookingHistory", bookhistoryroute);
 app.use("/api/reviews", reviewsroute);
 app.use("/api/reception", receptionroute);
 app.use("/api/booking", bookingroute);
+app.use("/api/testing", testingRoutes);
+
 
 //GOOGLE OAUTH WITHOUT API's
 // app.use("/oauth", oauthRouter);

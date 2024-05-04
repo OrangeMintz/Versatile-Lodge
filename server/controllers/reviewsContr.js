@@ -2,8 +2,6 @@ const Reviews = require("../models/Reviews.js");
 
 const createError = require('../utils/error.js');
 
-
-
 const createReviews = async (req, res, next) => {
     try {
         // Always create a new review
