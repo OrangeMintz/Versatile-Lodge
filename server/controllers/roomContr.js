@@ -28,35 +28,6 @@ const createRoom = async (req, res) => {
                 secure_url: 'https://res.cloudinary.com/dl0qncxjh/image/upload/v1714846588/User_Avatar/asmdztviq7ovtidsdrcy.jpg'
             };
         }
-        // Check if name was entered and does not contain leading/trailing spaces
-        // if (!name || name.trim() !== name) {
-        //     return res.json({
-        //         error: 'Room name is required and should not contain leading/trailing spaces'
-        //     });
-        // }
-        // if (!branch) {
-        //     return res.json({
-        //         error: 'Branch is required'
-        //     });
-        // }
-        // if (!maxPeople) {
-        //     return res.json({
-        //         error: 'Max People is required'
-        //     });
-        // }
-        // if (!desc) {
-        //     return res.json({
-        //         error: 'Description is required'
-        //     });
-        // }
-
-        // const existingRoom = await Room2.findOne({ name, branch });
-
-        // if (existingRoom) {
-        //     return res.status(400).json({
-        //         error: 'A room with the same name and branch already exists'
-        //     });
-        // }
 
         const room = await Room2.create({
             name,
