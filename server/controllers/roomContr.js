@@ -24,7 +24,7 @@ const createRoom = async (req, res) => {
         } else {
             // If image is not provided, use a default image URL
             uploadedImage = {
-                public_id: 'User_Avatar/w0nkngai05o8lbapligf',
+                public_id: 'User_Avatar/asmdztviq7ovtidsdrcy',
                 secure_url: 'https://res.cloudinary.com/dl0qncxjh/image/upload/v1714846588/User_Avatar/asmdztviq7ovtidsdrcy.jpg'
             };
         }
