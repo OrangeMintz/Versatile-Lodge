@@ -4,32 +4,26 @@ const { Schema } = mongoose
 const roomSchema2 = new Schema({
     name: {
         type: String,
-        required: true,
     },
 
     branch: {
         type: String,
-        required: true,
     },
 
     price: {
         type: Number,
-        required: true,
     },
 
     maxPeople: {
         type: Number,
-        required: true,
     },
 
     desc: {
         type: String,
-        required: true,
     },
 
     imageurls: {
         type: [String],
-        required: true,
     },
 
     currentbookings: [
