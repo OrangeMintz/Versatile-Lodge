@@ -29,10 +29,10 @@ const createRoom = async (req, res) => {
             };
         }
 
-        const exist = await Room2.findOne({ name });
+        const exist = await Room2.findOne({ name, branch });
         if (exist) {
             return res.json({
-                error: 'Room Name is already taken'
+                error: 'Room Name and Branch is already taken'
             });
         }
 
@@ -89,39 +89,71 @@ const deleteRoom = async (req, res, next) => {
 };
 
 
+// const updateRoom = async (req, res, next) => {
+//     try {
+//         const roomId = req.params.id;
+
+//         // Fetch the existing room data from the database
+//         const existingRoom = await Room.findById(roomId);
+
+//         // Check if the room exists
+//         if (!existingRoom) {
+//             return res.status(404).json({ error: 'Room not found' });
+//         }
+
+//         // Extract the changed fields from the request body
+//         const changedFields = req.body;
+
+//         // Update the existing room with the changed fields
+//         Object.entries(changedFields).forEach(([key, value]) => {
+//             // Handle the "status" field to update the "unavailable" field
+//             if (key === 'status') {
+//                 existingRoom.unavailable = value.toLowerCase() === 'maintenance'; // Convert to lowercase for case-insensitive comparison
+//             } else {
+//                 existingRoom[key] = value;
+//             }
+//         });
+
+//         // Save the updated room to the database
+//         const updatedRoom = await existingRoom.save();
+
+//         res.status(200).json(updatedRoom);
+//     } catch (err) {
+//         next(err);
+//     }
+// };
+
 const updateRoom = async (req, res, next) => {
     try {
-        const roomId = req.params.id;
+        const { id } = req.params; // Assuming you pass the ID in the URL params
+        const updateData = req.body;
 
-        // Fetch the existing room data from the database
-        const existingRoom = await Room.findById(roomId);
+        const { name, branch } = updateData;
 
-        // Check if the room exists
-        if (!existingRoom) {
-            return res.status(404).json({ error: 'Room not found' });
+        // Check if there's already a room with the same name and branch
+        const existingRoom = await Room2.findOne({ name, branch });
+
+        if (existingRoom && existingRoom._id.toString() !== id) {
+            // If a room with the same name and branch exists and it's not the current room being updated
+            return res.status(400).json({ error: "Room and Branch already exists" });
         }
 
-        // Extract the changed fields from the request body
-        const changedFields = req.body;
-
-        // Update the existing room with the changed fields
-        Object.entries(changedFields).forEach(([key, value]) => {
-            // Handle the "status" field to update the "unavailable" field
-            if (key === 'status') {
-                existingRoom.unavailable = value.toLowerCase() === 'maintenance'; // Convert to lowercase for case-insensitive comparison
-            } else {
-                existingRoom[key] = value;
-            }
+        const updatedRoom = await Room2.findByIdAndUpdate(id, updateData, {
+            new: true, // Return the updated document
+            runValidators: true, // Run model validations on update
         });
 
-        // Save the updated room to the database
-        const updatedRoom = await existingRoom.save();
+        if (!updatedRoom) {
+            return res.status(404).json({ message: "Room not found" });
+        }
 
         res.status(200).json(updatedRoom);
     } catch (err) {
         next(err);
     }
 };
+
+
 
 
 const getRoom = async (req, res, next) => {

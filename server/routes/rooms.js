@@ -21,7 +21,7 @@ router.put('/:roomId/rejectBooking/:bookingId', verifyUser, rejectBooking);
 router.post("/archive", verifyAdmin, archiveRoom);
 
 //Update
-router.put("/:id", verifyUser, updateRoom)
+router.put("/:id", updateRoom);
 
 //Delete
 router.delete("/:id", deleteRoom);
