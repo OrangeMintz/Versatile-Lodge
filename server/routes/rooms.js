@@ -24,7 +24,7 @@ router.post("/archive", verifyAdmin, archiveRoom);
 router.put("/:id", verifyUser, updateRoom)
 
 //Delete
-router.delete("/:id", verifyAdmin, deleteRoom);
+router.delete("/:id", deleteRoom);
 
 //Get Specific
 router.get("/:id", getRoom);
