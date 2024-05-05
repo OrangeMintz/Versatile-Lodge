@@ -29,6 +29,13 @@ const createRoom = async (req, res) => {
             };
         }
 
+        const exist = await Room2.findOne({ name });
+        if (exist) {
+            return res.json({
+                error: 'Room Name is already taken'
+            });
+        }
+
         const room = await Room2.create({
             name,
             branch,
