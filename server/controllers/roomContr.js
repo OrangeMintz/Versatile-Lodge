@@ -17,7 +17,7 @@ const createRoom = async (req, res) => {
                 allowed_formats: ['png', 'jpg', 'jpeg', 'svg', 'ico', 'jfif', 'webp']
             }, function (error, result) {
                 if (error) {
-                    console.log(error);
+                    console.log("GANA NA PLEASE");
                 }
                 console.log(result);
             });

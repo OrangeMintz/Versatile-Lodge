@@ -208,7 +208,7 @@ const RoomsAvailable = () => {
                     sortRoomsByRoomNumber(filteredRooms).map((room) => (
                         <div key={room._id} className="roomsRow">
                             <div className="roomsRowWrapper">
-                                <img src={room.imageurls[0]} alt="" />
+                                <img src={room.imageurls} alt="" />
                                 <div className="roomDetails">
                                     <p className='sub-heading'>{room.branch}</p>
                                     <p>{room.name}</p>
