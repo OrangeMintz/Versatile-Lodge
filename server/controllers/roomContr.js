@@ -52,6 +52,22 @@ const createRoom = async (req, res) => {
     }
 }
 
+const checkRoomExists = async (req, res) => {
+    const { name, branch } = req.query;
+
+    try {
+        const existingRoom = await Room2.findOne({ name, branch });
+        if (existingRoom) {
+            res.json(true); // Room exists
+        } else {
+            res.json(false); // Room does not exist
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
 
 const deleteRoom = async (req, res, next) => {
     const branchId = req.params.branchId;
@@ -240,6 +256,7 @@ const archiveRoom = async (req, res, next) => {
 
 module.exports = {
     createRoom,
+    checkRoomExists,
     deleteRoom,
     updateRoom,
     getRoom,
