@@ -77,8 +77,6 @@ const checkRoomExists = async (req, res) => {
 
 
 const deleteRoom = async (req, res, next) => {
-    const branchId = req.params.branchId;
-
     try {
         const room = await Room2.findByIdAndDelete(req.params.id);
 
@@ -128,7 +126,7 @@ const updateRoom = async (req, res, next) => {
         const { id } = req.params; // Assuming you pass the ID in the URL params
         const updateData = req.body;
 
-        const { name, branch } = updateData;
+        const { name, branch, price, maxPeople, desc, } = updateData;
 
         // Check if there's already a room with the same name and branch
         const existingRoom = await Room2.findOne({ name, branch });
@@ -136,6 +134,18 @@ const updateRoom = async (req, res, next) => {
         if (existingRoom && existingRoom._id.toString() !== id) {
             // If a room with the same name and branch exists and it's not the current room being updated
             return res.status(400).json({ error: "Room and Branch already exists" });
+        }
+
+        if (!price) {
+            return res.status(400).json({ error: "Room must have a price" });
+        }
+
+        if (!maxPeople) {
+            return res.status(400).json({ error: "Room must have a Maximum People Capacity" });
+        }
+
+        if (!desc) {
+            return res.status(400).json({ error: "Room must have a description" });
         }
 
         const updatedRoom = await Room2.findByIdAndUpdate(id, updateData, {
